@@ -1,0 +1,11 @@
+/vendor
+/node_modules
+Gruntfile.js
+package.json
+composer.phar
+.DS_Store
+.php_cs.cache
+.idea
+.php_cs
+.styleci.yml
+.editorconfig
