@@ -212,17 +212,18 @@
 						</tr>						
 						<tr>
 							<th class="bg-grey">اصلی</th>
-							<td></td>
-							<td></td>
-							<td></td>
+							<td>{{ $student->province }}</td>
+							<td>{{ $student->district }}</td>
+							<td>{{ $student->village }}</td>							
 							<td></td>
 						</tr>						
 						<tr>
 							<th class="bg-grey">فعلی</th>
-							<td>{{ $student->province }}</td>
-							<td>{{ $student->district }}</td>
-							<td>{{ $student->village }}</td>
 							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							
 						</tr>						
 					</table>
 				</td>

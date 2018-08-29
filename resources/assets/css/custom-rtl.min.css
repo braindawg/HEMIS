@@ -1,0 +1,8 @@
+@font-face {
+    font-family: nazanin;
+    src: url(../fonts/Nazanin-Regular.ttf);
+}
+
+h1, h2, h3, h4, h5, p, th, td, li, span, div {
+    font-family: 'nazanin' !important
+}

@@ -44,7 +44,8 @@ mix.styles([
         'resources/assets/css/uniform.default.css',
         'resources/assets/css/components-rtl.min.css',
         'resources/assets/css/plugins-rtl.min.css',
-        'resources/assets/css/login-5-rtl.css',
+        'resources/assets/css/login-5-rtl.min.css',
+        'resources/assets/css/custom-rtl.min.css',
         
     ], 'public/css/login.css')
 

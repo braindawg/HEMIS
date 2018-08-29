@@ -368,42 +368,11 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>                    
+                                    </div>   
                                     <div class="row">                        
                                         <div class="col-md-3">
                                             <div class="form-group">
                                                 {!! Form::label('', trans('general.original'), ['class' => 'control-label col-sm-4']) !!}                                
-                                                <div class="col-sm-8">
-                                                    {!! Form::text('address["original"]["province"]', null, ['class' => 'form-control']) !!}
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <div class="form-group">                                
-                                                <div class="col-sm-12">
-                                                {!! Form::text('address["original"]["city"]', null, ['class' => 'form-control']) !!}
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <div class="form-group">                                
-                                                <div class="col-sm-12">
-                                                {!! Form::text('address["original"]["town"]', null, ['class' => 'form-control']) !!}
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <div class="form-group">                                
-                                                <div class="col-sm-12">
-                                                {!! Form::text('address["original"]["address"]', null, ['class' => 'form-control']) !!}
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>                    
-                                    <div class="row">                        
-                                        <div class="col-md-3">
-                                            <div class="form-group">
-                                                {!! Form::label('', trans('general.current'), ['class' => 'control-label col-sm-4']) !!}                                
                                                 <div class="col-sm-8">
                                                 {!! Form::text('province', null, ['class' => 'form-control']) !!}
                                                 </div>
@@ -430,7 +399,39 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>      
+                                    </div>                   
+                                    <div class="row">                        
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                {!! Form::label('', trans('general.current'), ['class' => 'control-label col-sm-4']) !!}                                
+                                                <div class="col-sm-8">
+                                                    {!! Form::select('province_current', \App\Models\Province::pluck('name', 'id'),null, ['class' => 'form-control select2', 'placeholder' => trans('general.select')]) !!}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group">                                
+                                                <div class="col-sm-12">
+                                                {!! Form::text('district_current', null, ['class' => 'form-control']) !!}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group">                                
+                                                <div class="col-sm-12">
+                                                {!! Form::text('village_current', null, ['class' => 'form-control']) !!}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group">                                
+                                                <div class="col-sm-12">
+                                                {!! Form::text('address_current', null, ['class' => 'form-control']) !!}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>                    
+    
                                     
                                     <hr>
                                     
@@ -544,7 +545,7 @@
 @push('scripts')
 <script>
     $(function () {
-        $("input").each(function(){ 
+        $("input, select, .select2").each(function(){ 
             if ($(this).val() != '') {
                 $(this).attr('readonly', 'readonly')
             }

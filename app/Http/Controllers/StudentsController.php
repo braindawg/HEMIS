@@ -107,28 +107,37 @@ class StudentsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $user)
+    public function update(Request $request, $student)
     {
         $validatedData = $request->validate([
             // 'code' => [
             //     'required', 
-            //     Rule::unique('students')->ignore($user->id, 'id')->whereNull('deleted_at')
+            //     Rule::unique('students')->ignore($student->id, 'id')->whereNull('deleted_at')
             // ],
             // 'name' => 'required',
             // 'position' => 'required',            
             // 'email' => [
             //     'required', 
-            //     Rule::unique('students')->ignore($user->id, 'id')->whereNull('deleted_at')
+            //     Rule::unique('students')->ignore($student->id, 'id')->whereNull('deleted_at')
             // ],
             // 'phone' => 'nullable',
             'status' => 'required'            
         ]);
         
-        $user->update([
+        $student->update([
+            'province' => $request->province,
+            'district' => $request->district,
+            'village' => $request->village,
+            'address' => $request->address,
+
+            'province_current' => $request->province_current,
+            'district_current' => $request->district_current,
+            'village_current' => $request->village_current,
+            'address_current' => $request->address_current,
             'status_id' => $request->status
         ]);        
 
-        return redirect(route('students.index'));
+        return redirect(route('students.index'))->with('message', 'اطلاعات '.$student->name.' موفقانه آبدیت شد.');;
     }
 
     public function updateStatus($student)

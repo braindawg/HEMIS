@@ -23,11 +23,11 @@
 @push('styles')
     <!-- <link rel="stylesheet" href="//cdn.datatables.net/1.10.7/css/jquery.dataTables.min.css"> -->
     <link href="{{ asset('css/datatables.css') }}" rel="stylesheet">
-    <style>
+    <!-- <style>
     table td, table th {
         font-size: 12px !important;
     }
-    </style>
+    </style> -->
 @endpush
 
 @push('scripts')
