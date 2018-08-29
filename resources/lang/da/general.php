@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'dashboard' => 'داشبورد',
+    'dashboard' => 'آمار احصائیه',
     'logout' => 'خروج',    
     'submit' => 'ارسال',
     'save' => 'ذخیره',
@@ -47,7 +47,7 @@ return [
     'role_account' => 'تصحیح وظیفه',
     'permissions' => 'دسترسی ها',
     'divorced' => 'مطلقه',
-    'support' => 'ساپورت',
+    'support' => 'تماس با تیم ‍پشتیبانی',
     
     'student_information' => 'شهرت و مشخصات محصل',
     'fame' => 'شهرت',

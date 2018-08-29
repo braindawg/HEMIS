@@ -101,7 +101,8 @@
     </li>
     @endif
     <li class="nav-item start {{ request()->is('support') ? 'active' : '' }}">
-        <a href="{{ route('support') }}" class="nav-link nav-toggle">            
+        <a href="{{ route('support') }}" class="nav-link nav-toggle">
+            <i class="icon-earphones-alt"></i>            
             <span class="title">{{ trans('general.support') }}</span>         
         </a>       
     </li>
