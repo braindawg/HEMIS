@@ -215,14 +215,14 @@
 							<td>{{ $student->province }}</td>
 							<td>{{ $student->district }}</td>
 							<td>{{ $student->village }}</td>							
-							<td></td>
+							<td>{{ $student->address }}</td>
 						</tr>						
 						<tr>
 							<th class="bg-grey">فعلی</th>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
+							<td>{{ $student->currentProvince ? $student->currentProvince->name : '' }}</td>
+							<td>{{ $student->district_current }}</td>
+							<td>{{ $student->village_current }}</td>
+							<td>{{ $student->address_current }}</td>
 							
 						</tr>						
 					</table>

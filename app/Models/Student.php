@@ -54,4 +54,9 @@ class Student extends Model
     {
         return $this->hasMany(\App\Models\Relative::class);
     }
+
+    public function currentProvince()
+    {
+        return $this->belongsTo(\App\Models\Province::class, 'province_current');
+    }
 }
