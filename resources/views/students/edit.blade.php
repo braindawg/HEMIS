@@ -173,7 +173,7 @@
                                             <div class="form-group {{ $errors->has('general_number') ? ' has-error' : '' }}">
                                                 {!! Form::label('general_number', trans('general.general_number'), ['class' => 'control-label col-sm-4']) !!}                                
                                                 <div class="col-sm-8">
-                                                    {!! Form::text('general_number', $tazkira[3] ?? null, ['class' => 'form-control']) !!}     
+                                                    {!! Form::text('tazkira["general_number"]', $tazkira[3] ?? null, ['class' => 'form-control']) !!}     
                                                     @if ($errors->has('general_number'))
                                                         <span class="help-block">
                                                             <strong>{{ $errors->first('general_number') }}</strong>
@@ -186,7 +186,7 @@
                                             <div class="form-group {{ $errors->has('volume') ? ' has-error' : '' }}">
                                                 {!! Form::label('volume', trans('general.volume'), ['class' => 'control-label col-sm-4']) !!}                                
                                                 <div class="col-sm-8">
-                                                    {!! Form::text('volume', $tazkira[2] ?? null, ['class' => 'form-control']) !!}     
+                                                    {!! Form::text('tazkira["volume"]', $tazkira[2] ?? null, ['class' => 'form-control']) !!}     
                                                     @if ($errors->has('volume'))
                                                         <span class="help-block">
                                                             <strong>{{ $errors->first('volume') }}</strong>
@@ -199,7 +199,7 @@
                                             <div class="form-group {{ $errors->has('page') ? ' has-error' : '' }}">
                                                 {!! Form::label('page', trans('general.page'), ['class' => 'control-label col-sm-4']) !!}                                
                                                 <div class="col-sm-8">
-                                                    {!! Form::text('page', $tazkira[1] ?? null, ['class' => 'form-control']) !!}     
+                                                    {!! Form::text('tazkira["page"]', $tazkira[1] ?? null, ['class' => 'form-control']) !!}     
                                                     @if ($errors->has('page'))
                                                         <span class="help-block">
                                                             <strong>{{ $errors->first('page') }}</strong>
@@ -214,7 +214,7 @@
                                             <div class="form-group {{ $errors->has('registration_number') ? ' has-error' : '' }}">
                                                 {!! Form::label('registration_number', trans('general.registration_number'), ['class' => 'control-label col-sm-4']) !!}                                
                                                 <div class="col-sm-8">
-                                                    {!! Form::text('registration_number', $tazkira[0] ?? null, ['class' => 'form-control']) !!}     
+                                                    {!! Form::text('tazkira["registration_number"]', $tazkira[0] ?? null, ['class' => 'form-control']) !!}     
                                                     @if ($errors->has('registration_number'))
                                                         <span class="help-block">
                                                             <strong>{{ $errors->first('registration_number') }}</strong>

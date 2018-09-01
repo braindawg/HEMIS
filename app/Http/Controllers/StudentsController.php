@@ -110,21 +110,11 @@ class StudentsController extends Controller
     public function update(Request $request, $student)
     {
         $validatedData = $request->validate([
-            // 'code' => [
-            //     'required', 
-            //     Rule::unique('students')->ignore($student->id, 'id')->whereNull('deleted_at')
-            // ],
-            // 'name' => 'required',
-            // 'position' => 'required',            
-            // 'email' => [
-            //     'required', 
-            //     Rule::unique('students')->ignore($student->id, 'id')->whereNull('deleted_at')
-            // ],
-            // 'phone' => 'nullable',
             'status' => 'required'            
         ]);
         
         $student->update([
+            'tazikra' => implode('!@#', array_reverse($request->tazkira)),
             'province' => $request->province,
             'district' => $request->district,
             'village' => $request->village,
