@@ -112,9 +112,9 @@ class StudentsController extends Controller
         $validatedData = $request->validate([
             'status' => 'required'            
         ]);
-        
+
         $student->update([
-            'tazikra' => implode('!@#', array_reverse($request->tazkira)),
+            'tazkira' => implode('!@#', array_reverse($request->tazkira)),
             'province' => $request->province,
             'district' => $request->district,
             'village' => $request->village,
