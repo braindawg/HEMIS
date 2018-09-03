@@ -187,7 +187,7 @@
 							<td>{{ $student->language }}</td>
 
 							<td class="bg-grey">مدنی حالت / حالت مدنی</td>
-							<td>{{ $student->marital_status =! '' ? trans('general.'.$student->marital_status) : '' }}</td>
+							<td>{{ $student->marital_status == '' ? '' : trans('general.'.$student->marital_status) }}</td>
 
 							<td class="bg-grey">د اړیکی شمیره / شماره تماس</td>
 							<td>{{ $student->phone }}</td>

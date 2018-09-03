@@ -114,7 +114,14 @@ class StudentsController extends Controller
         ]);
 
         $student->update([
-            'tazkira' => implode('!@#', array_reverse($request->tazkira)),
+            'last_name' => $request->last_name,
+            'marital_status' => $request->marital_status,
+            'school_name' => $request->school_name,
+            'school_graduation_year' => $request->school_graduation_year,
+            'birthdate' => $request->birthdate,
+            'language' => $request->language,
+            'phone' => $request->phone,
+            'tazkira' => implode('!@#', [ $request->tazkira['volume'],$request->tazkira['registration_number'], $request->tazkira['page'], $request->tazkira['general_number']]),
             'province' => $request->province,
             'district' => $request->district,
             'village' => $request->village,
@@ -124,10 +131,21 @@ class StudentsController extends Controller
             'district_current' => $request->district_current,
             'village_current' => $request->village_current,
             'address_current' => $request->address_current,
-            'status_id' => $request->status
+            'status_id' => $request->status,
+
+            'name_eng' => $request->name_eng,
+            'last_name_eng' => $request->last_name_eng,
+            'father_name_eng' => $request->father_name_eng,
+            'grandfather_name_eng' => $request->grandfather_name_eng,
+            'code' => $request->code,
+            'department_eng' => $request->department_eng,
         ]);        
 
-        return redirect(route('students.index'))->with('message', 'اطلاعات '.$student->name.' موفقانه آبدیت شد.');;
+        if ($request->has('print')) {
+            return redirect(route('students.show', $student));
+        }
+
+        return redirect(route('students.index'))->with('message', 'اطلاعات '.$student->name.' موفقانه آبدیت شد.');
     }
 
     public function updateStatus($student)

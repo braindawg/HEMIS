@@ -124,7 +124,7 @@
                                             <div class="form-group {{ $errors->has('last_name') ? ' has-error' : '' }}">
                                                 {!! Form::label('last_name', trans('general.last_name'), ['class' => 'control-label col-sm-3']) !!}                                
                                                 <div class="col-sm-9">
-                                                    {!! Form::text('last_name', null, ['class' => 'form-control']) !!}     
+                                                    {!! Form::text('last_name', null, ['class' => 'form-control editable']) !!}     
                                                     @if ($errors->has('last_name'))
                                                         <span class="help-block">
                                                             <strong>{{ $errors->first('last_name') }}</strong>
@@ -259,7 +259,7 @@
                                             <div class="form-group {{ $errors->has('school_name') ? ' has-error' : '' }}">
                                                 {!! Form::label('school_name', trans('general.school_name'), ['class' => 'control-label col-sm-4']) !!}                                
                                                 <div class="col-sm-8">
-                                                    {!! Form::text('school_name', null, ['class' => 'form-control']) !!}     
+                                                    {!! Form::text('school_name', null, ['class' => 'form-control editable']) !!}     
                                                     @if ($errors->has('school_name'))
                                                         <span class="help-block">
                                                             <strong>{{ $errors->first('school_name') }}</strong>
@@ -272,7 +272,7 @@
                                             <div class="form-group {{ $errors->has('school_graduation_year') ? ' has-error' : '' }}">
                                                 {!! Form::label('school_graduation_year', trans('general.school_graduation_year'), ['class' => 'control-label col-sm-4']) !!}                                
                                                 <div class="col-sm-8">
-                                                    {!! Form::text('school_graduation_year', null, ['class' => 'form-control ltr']) !!}     
+                                                    {!! Form::text('school_graduation_year', null, ['class' => 'form-control ltr editable']) !!}     
                                                     @if ($errors->has('school_graduation_year'))
                                                         <span class="help-block">
                                                             <strong>{{ $errors->first('school_graduation_year') }}</strong>
@@ -413,21 +413,21 @@
                                         <div class="col-md-3">
                                             <div class="form-group">                                
                                                 <div class="col-sm-12">
-                                                {!! Form::text('district_current', null, ['class' => 'form-control']) !!}
+                                                {!! Form::text('district_current', null, ['class' => 'form-control editable']) !!}
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-md-3">
                                             <div class="form-group">                                
                                                 <div class="col-sm-12">
-                                                {!! Form::text('village_current', null, ['class' => 'form-control']) !!}
+                                                {!! Form::text('village_current', null, ['class' => 'form-control editable']) !!}
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-md-3">
                                             <div class="form-group">                                
                                                 <div class="col-sm-12">
-                                                {!! Form::text('address_current', null, ['class' => 'form-control']) !!}
+                                                {!! Form::text('address_current', null, ['class' => 'form-control editable']) !!}
                                                 </div>
                                             </div>
                                         </div>
@@ -564,11 +564,9 @@
                                             {!! Form::label('student_code', trans('general.student_code'), ['class' => 'control-label col-sm-3']) !!}                                
                                             <div class="col-sm-9">
                                                 {!! Form::text('code', null, ['class' => 'form-control editable']) !!}     
-                                                @if ($errors->has('student_code'))
                                                     <span class="help-block">
-                                                        <strong>{{ $errors->first('student_code') }}</strong>
-                                                    </span>
-                                                @endif                                                                                                   
+                                                        <strong>اطلاعات این فیلد اختیاری بوده و برای کارت محصلین است.</strong>
+                                                    </span>                                                                                                  
                                             </div>
                                         </div>
                                     </div>
@@ -605,6 +603,13 @@
                                 <hr>
                                 <div class="form-actions fluid">
                                     <div class="row">
+                                         <div class="col-md-offset-1 col-md-9">
+                                            <label for="">
+                                                
+                                                <input type="checkbox" name="print" value="true" checked>
+                                                {{ trans('general.print') }}
+                                            </label>
+                                        </div>
                                         <div class="col-md-offset-1 col-md-9">
                                             <button type="submit" class="btn green">{{ trans('general.save') }}</button>
                                             <a href="{{ route('students.index') }}" class="btn default">{{ trans('general.cancel') }}</a>
