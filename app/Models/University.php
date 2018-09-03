@@ -27,4 +27,16 @@ class University extends Model
     {
         return $this->hasMany(\App\Models\Department::class);
     }
+
+    public function students()
+    {
+        return $this->hasMany(\App\Models\Student::class);
+    }
+
+    public function studentsByStatus()
+    {
+        return $this->students()->select('university_id', 'status_id', \DB::raw('COUNT(students.id) as students_count'))
+            ->groupBy('university_id', 'status_id');
+    }
+
 }

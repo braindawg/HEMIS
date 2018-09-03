@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use \App\Models\Student;
+use \App\Models\University;
 use Illuminate\Http\Request;
+use \App\Models\StudentStatus;
 
 class HomeController extends Controller
 {
@@ -35,11 +37,17 @@ class HomeController extends Controller
             ->with('university')
             ->withoutGlobalScopes()
             ->get();
-        
+
+        $statuses = StudentStatus::get();
+        $universityStatus = University::with('studentsByStatus')->get();
+       // dd($universityStatus->first()->studentsByStatus);
+
         return view('home', [
             'title' => trans('general.dashboard'),
+            'statuses' => $statuses,
             'provinces' => $provinces,
             'universities' => $universities,
+            'universityStatus' => $universityStatus
         ]);
     }
 }
