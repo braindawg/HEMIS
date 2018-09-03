@@ -110,4 +110,5 @@ return [
     'student_code' => 'آی دی پوهنتون محصل',
     'print' => 'پرینت',
     'widow' => 'مطلقه',
+    'all_options' => 'همه موارد',
 ];

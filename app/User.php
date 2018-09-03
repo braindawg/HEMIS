@@ -52,4 +52,9 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(\App\Models\Department::class)->withTimestamps()->withoutGlobalScopes();
     }
+
+    public function allUniversities()
+    {
+        return $this->university_id == -1;
+    }
 }

@@ -39,11 +39,12 @@ class UsersController extends Controller
      */
     public function create()
     {   
+        
         return view('users.create', [
             'title' => trans('general.users'),
             'description' => trans('general.create_account'),
             'roles' => Role::all(),            
-            'universities' => University::pluck('name', 'id'),
+            'universities' => ['-1' => trans('general.all_options')] + University::pluck('name', 'id')->toArray(),
             'departments' => old('departments') ? Department::whereIn('id', old('departments'))->pluck('name', 'id') : []
         ]);
     }
@@ -103,7 +104,7 @@ class UsersController extends Controller
             'description' => trans('general.edit_account'),
             'user' => $user,
             'roles' => Role::all(),
-            'universities' => University::pluck('name', 'id'),
+            'universities' => ['-1' => trans('general.all_options')] + University::pluck('name', 'id')->toArray(),
             'departments' => old('departments') ? Department::whereIn('id', old('departments'))->pluck('name', 'id') : $user->departments()->pluck('name', 'id')
         ]);
     }

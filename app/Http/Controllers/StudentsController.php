@@ -17,7 +17,7 @@ class StudentsController extends Controller
     {        
          $this->middleware('permission:view-student', ['only' => ['index', 'show']]);        
          $this->middleware('permission:create-student', ['only' => ['create','store']]);
-         $this->middleware('permission:edit-student', ['only' => ['edit','update']]);
+         $this->middleware('permission:edit-student', ['only' => ['edit','update', 'updateStatus']]);
          $this->middleware('permission:delete-student', ['only' => ['destroy']]);
     }
     /**

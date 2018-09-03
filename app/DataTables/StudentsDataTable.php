@@ -22,15 +22,21 @@ class StudentsDataTable extends DataTable
             ->addColumn('action', function ($student) {
                 $html = '';
                 $html .= '<a href="'.route('students.show', $student).'" class="btn btn-primary btn-xs" target="new"><i class="icon-printer"></i></a>';
-                $html .= '<a href="'.route('students.edit', $student).'" class="btn btn-success btn-xs" target="new"><i class="icon-pencil"></i></a>';
                 
-                if ($student->status_id != 2) {
-                    $html .= '<form action="'. route('students.updateStatus', $student) .'" method="post" style="display:inline">
-                            <input type="hidden" name="_method" value="patch" />
-                            <input type="hidden" name="_token" value="'.csrf_token().'" />
-                            <button type="submit" class="btn btn-xs btn-default" onClick="doConfirm()" style="margin-top: 5px">شامل پوهنتون</button>
-                        </form>';
-                }                
+                if (auth()->user()->can('edit-student')) {
+                    $html .= '<a href="'.route('students.edit', $student).'" class="btn btn-success btn-xs" target="new"><i class="icon-pencil"></i></a>';
+                    
+                    if ($student->status_id != 2) {
+                        $html .= '<form action="'. route('students.updateStatus', $student) .'" method="post" style="display:inline">
+                                <input type="hidden" name="_method" value="patch" />
+                                <input type="hidden" name="_token" value="'.csrf_token().'" />
+                                <button type="submit" class="btn btn-xs btn-default" onClick="doConfirm()" style="margin-top: 5px">شامل پوهنتون</button>
+                            </form>';
+                    } 
+                }
+                
+                
+                               
 
                 return $html;
             })
