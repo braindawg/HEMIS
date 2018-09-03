@@ -108,4 +108,6 @@ return [
     'grandfather_name_eng' => 'نام پدر کلان به انگلیسی',
     'department_eng' => 'نام دیپاتمنت به انگلیسی',
     'student_code' => 'آی دی پوهنتون محصل',
+    'print' => 'پرینت',
+    'widow' => 'مطلقه',
 ];

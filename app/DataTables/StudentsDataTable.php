@@ -22,7 +22,7 @@ class StudentsDataTable extends DataTable
             ->addColumn('action', function ($student) {
                 $html = '';
                 $html .= '<a href="'.route('students.show', $student).'" class="btn btn-primary btn-xs" target="new"><i class="icon-printer"></i></a>';
-                $html .= '<a href="'.route('students.edit', $student).'" class="btn btn-success btn-xs"><i class="icon-pencil"></i></a>';
+                $html .= '<a href="'.route('students.edit', $student).'" class="btn btn-success btn-xs" target="new"><i class="icon-pencil"></i></a>';
                 
                 if ($student->status_id != 2) {
                     $html .= '<form action="'. route('students.updateStatus', $student) .'" method="post" style="display:inline">

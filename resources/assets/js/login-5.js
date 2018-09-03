@@ -59,14 +59,14 @@ var Login = function() {
             }
         });
 
-        $('.forget-form input').keypress(function(e) {
-            if (e.which == 13) {
-                if ($('.forget-form').validate().form()) {
-                    $('.forget-form').submit();
-                }
-                return false;
-            }
-        });
+        // $('.forget-form input').keypress(function(e) {
+        //     if (e.which == 13) {
+        //         if ($('.forget-form').validate().form()) {
+        //             $('.forget-form').submit();
+        //         }
+        //         return false;
+        //     }
+        // });
 
         $('#forget-password').click(function(){
             $('.login-form').hide();
