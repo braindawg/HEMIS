@@ -361,6 +361,22 @@
                     </li>
                     <!-- END TODO DROPDOWN -->
                     @endif
+                    <li class="dropdown dropdown-extended dropdown-tasks dropdown-dark" id="header_task_bar">
+                        <a href="{{ route('logout') }}" onclick="event.preventDefault();
+                           document.getElementById('logout-form').submit();" 
+                           class="dropdown-toggle" 
+                           data-toggle="dropdown" 
+                           data-hover="dropdown" 
+                           data-close-others="true"
+                           title="{{ trans('general.logout') }}">
+                            <i class="icon-logout"></i>                            
+                        </a>                      
+                        
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            {{ csrf_field() }}
+                        </form>
+
+                    </li>
                     <!-- BEGIN USER LOGIN DROPDOWN -->
                     <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
                     <li class="dropdown dropdown-user dropdown-dark">
@@ -369,8 +385,8 @@
                             <!-- DOC: Do not remove below empty space(&nbsp;) as its purposely used -->
                             <!-- <img alt="" class="img-circle" src="img/avatar9.jpg" />  -->
                         </a>
-                        <ul class="dropdown-menu dropdown-menu-default">
-                            @if (0)
+                        @if (0)
+                        <ul class="dropdown-menu dropdown-menu-default">                            
                             <li>
                                 <a href="page_user_profile_1.html">
                                     <i class="icon-user"></i> My Profile </a>
@@ -395,19 +411,9 @@
                             <li>
                                 <a href="page_user_lock_1.html">
                                     <i class="icon-lock"></i> Lock Screen </a>
-                            </li>
-                            @endif
-                            <li>                                        
-                                <a href="{{ route('logout') }}"
-                                    onclick="event.preventDefault();
-                                                document.getElementById('logout-form').submit();">
-                                    <i class="icon-key"></i> {{ trans('general.logout') }}
-                                </a>
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                    {{ csrf_field() }}
-                                </form>
-                            </li>
+                            </li>                           
                         </ul>
+                        @endif
                     </li>
                     <!-- END USER LOGIN DROPDOWN -->
                     <!-- BEGIN QUICK SIDEBAR TOGGLER -->

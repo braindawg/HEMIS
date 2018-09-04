@@ -10,7 +10,8 @@
 	"sLengthMenu":     "نمایش _MENU_ ریکارد",
 	"sLoadingRecords": "در حال بارگزاری...",
 	"sProcessing":     "در حال پردازش...",
-	"sSearch":         "<span class='search-text'>جستجو:</span><div class='search-box input-group'> _INPUT_ </div>",
+	"sSearch":         "<div class='search-box input-group'> _INPUT_ </div>",
+	"sSearchPlaceholder": "جستجو",
 	"sZeroRecords":    "ریکاردی با این مشخصات موجود نیست.",
 	"oPaginate": {
 		"sFirst":    "ابتدا",

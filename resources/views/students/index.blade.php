@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="portlet light bordered">
+    <div class="portlet light bordered card">
         @if (session('message'))
             <div class="alert alert-success">
                 {{ session('message') }}
@@ -9,7 +9,7 @@
         @endif
         <div class="portlet-title">
             @can ('create-student')
-            <a href="{{ route('students.create') }}" class="btn btn-primary"><i class="icon-plus"></i> {{ trans('general.create_student') }} </a>
+            <a href="{{ route('students.create') }}" class="btn btn-info"><i class="icon-plus"></i> {{ trans('general.create_student') }} </a>
             @endcan
             <div class="tools"> </div>
         </div>
