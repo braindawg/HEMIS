@@ -147,7 +147,7 @@
 							<td>{{ $student->father_name }}</td>
 
 							<td class="bg-grey">ټوک / جلد</td>
-							<td>{{ $tazkira[2] ?? '' }}</td>
+							<td>{{ $tazkira[0] ?? '' }}</td>
 
 							<td class="bg-grey"> د فراغت کال / سال فراغت</td>
 							<td>{{ $student->school_graduation_year }}</td>
@@ -157,7 +157,7 @@
 							<td>{{ $student->grandfather_name }}</td>
 
 							<td class="bg-grey">پاڼه/ صفحه</td>
-							<td>{{ $tazkira[1] ?? '' }}</td>
+							<td>{{ $tazkira[2] ?? '' }}</td>
 
 							<td class="bg-grey">د کانکور کال / سال کانکور</td>
 							<td>{{ $student->kankor_year }}</td>
@@ -167,7 +167,7 @@
 							<td>{{ $student->last_name }}</td>
 
 							<td class="bg-grey"> ثبت ګڼه / شماره ثبت</td>
-							<td>{{ $tazkira[0] ?? '' }}</td>
+							<td>{{ $tazkira[1] ?? '' }}</td>
 
 							<td class="bg-grey">کانکور نمره / نمره کانکور</td>
 							<td>{{ $student->kankor_score }}</td>
@@ -187,7 +187,7 @@
 							<td>{{ $student->language }}</td>
 
 							<td class="bg-grey">مدنی حالت / حالت مدنی</td>
-							<td>{{ $student->marital_status =! '' ? trans('general.'.$student->marital_status) : '' }}</td>
+							<td>{{ $student->marital_status == '' ? '' : trans('general.'.$student->marital_status) }}</td>
 
 							<td class="bg-grey">د اړیکی شمیره / شماره تماس</td>
 							<td>{{ $student->phone }}</td>

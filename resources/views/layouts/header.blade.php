@@ -360,23 +360,7 @@
                         </ul>
                     </li>
                     <!-- END TODO DROPDOWN -->
-                    @endif
-                    <li class="dropdown dropdown-extended dropdown-tasks dropdown-dark" id="header_task_bar">
-                        <a href="{{ route('logout') }}" onclick="event.preventDefault();
-                           document.getElementById('logout-form').submit();" 
-                           class="dropdown-toggle" 
-                           data-toggle="dropdown" 
-                           data-hover="dropdown" 
-                           data-close-others="true"
-                           title="{{ trans('general.logout') }}">
-                            <i class="icon-logout"></i>                            
-                        </a>                      
-                        
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                            {{ csrf_field() }}
-                        </form>
-
-                    </li>
+                    @endif                    
                     <!-- BEGIN USER LOGIN DROPDOWN -->
                     <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
                     <li class="dropdown dropdown-user dropdown-dark">
@@ -414,6 +398,21 @@
                             </li>                           
                         </ul>
                         @endif
+                    </li>
+                    <li class="dropdown dropdown-extended dropdown-tasks dropdown-dark" id="header_task_bar">
+                        <a href="{{ route('logout') }}" onclick="event.preventDefault();
+                           document.getElementById('logout-form').submit();" 
+                           class="dropdown-toggle" 
+                           data-toggle="dropdown" 
+                           data-hover="dropdown" 
+                           data-close-others="true"
+                           title="{{ trans('general.logout') }}">
+                            <i class="icon-logout"></i>                            
+                        </a>                      
+                        
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            {{ csrf_field() }}
+                        </form>
                     </li>
                     <!-- END USER LOGIN DROPDOWN -->
                     <!-- BEGIN QUICK SIDEBAR TOGGLER -->

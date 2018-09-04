@@ -19,7 +19,7 @@ class Student extends Model
         parent::boot();         
 
         static::addGlobalScope('department', function (Builder $builder) {           
-            if (! auth()->user()->hasRole('admin')) {
+            if (! auth()->user()->allUniversities()) {
                 $builder->where('students.university_id', auth()->user()->university_id);                
             }
         });

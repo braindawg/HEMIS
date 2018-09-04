@@ -33,9 +33,11 @@ class HomeController extends Controller
             ->with('university')
             ->withoutGlobalScopes()
             ->get();
+
         $statuses = StudentStatus::get();
         $universityStatus = University::with('studentsByStatus')->get();
        // dd($universityStatus->first()->studentsByStatus);
+
         return view('home', [
             'title' => trans('general.dashboard'),
             'statuses' => $statuses,

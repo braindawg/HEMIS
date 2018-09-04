@@ -64,7 +64,7 @@ class UsersDataTable extends DataTable
     {
         return [            
             'name'     => ['title' => trans('general.name')],            
-            'university' => ['title' => trans('general.university')],
+            'university' => ['name' => 'universities.name' ,'title' => trans('general.university')],
             'position' => ['title' => trans('general.position')],
             'email'    => ['title' => trans('general.email')], 
             'phone'    => ['title' => trans('general.phone')]            

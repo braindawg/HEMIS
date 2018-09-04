@@ -53,13 +53,9 @@ class UniversitiesController extends Controller
      */
     public function store(Request $request)
     {
-        $validatedData = $request->validate([            
-            'code' => [
-                'required', 
-                Rule::unique('universities')->whereNull('deleted_at')
-            ],
+        $validatedData = $request->validate([
             'name' => 'required',
-            'domain' => 'required'            
+            'domain' => ''            
         ]);
         
         $university = University::create($validatedData);
@@ -103,11 +99,8 @@ class UniversitiesController extends Controller
     public function update(Request $request, $university)
     {
         $validatedData = $request->validate([
-            'code' => [
-                'required', 
-                Rule::unique('universities')->ignore($university->id, 'id')->whereNull('deleted_at')
-            ],
-            'name' => 'required'                                   
+            'name' => 'required',
+            'domain' => '',
         ]);
         
         $university->update($validatedData);        

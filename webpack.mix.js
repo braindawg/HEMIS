@@ -37,7 +37,6 @@ mix.styles([
         
     ], 'public/css/datatables.css')
     .styles([
-        
         'resources/assets/css/font-awesome.min.css',
         'resources/assets/css/simple-line-icons.min.css',
         'resources/assets/css/bootstrap-rtl.min.css',
