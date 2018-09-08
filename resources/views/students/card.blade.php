@@ -40,7 +40,7 @@
 	</div>
 
 	<div style="margin-top: 5px">
-		<img src="{{ asset('img/wezarat-logo.jpg') }}" style='margin-top: 2px; margin-left: 2px; float: left' >
+		<img src="{{ asset('img/app/universities/2.jpg') }}" style='margin-top: 2px; margin-left: 2px; float: left' >
 	</div>
 
 	<div style="float: left">
@@ -66,11 +66,11 @@
 
 <div class="eng">
 	<div style="margin-right:60px; padding-top:48px; width: 200px;text-align:center; float:right;">
-		پوهنتون {{ $student->university->name }}
+		Kabul Polytechnic University
 	</div>
 
 	<div style="margin-top: 5px">
-		<img src="{{ asset('img/wezarat-logo.jpg') }}" style='margin-top: 2px; margin-left: 2px; float: left' >
+		<img src="{{ asset('img/app/universities/2.jpg') }}" style='margin-top: 2px; margin-left: 2px; float: left' >
 	</div>
 	
 	<div style="float: right; clear; right; width: 66px">

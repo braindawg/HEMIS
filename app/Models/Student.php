@@ -55,8 +55,22 @@ class Student extends Model
         return $this->hasMany(\App\Models\Relative::class);
     }
 
+    public function originalProvince()
+    {
+        return $this->belongsTo(\App\Models\Province::class, 'province');
+    }
+
     public function currentProvince()
     {
         return $this->belongsTo(\App\Models\Province::class, 'province_current');
+    }
+
+    public function photo()
+    {
+        if (file_exists($this->photo_url)) {
+            return $this->photo_url;
+        } 
+
+        return "img/avatar-placeholder.png";
     }
 }

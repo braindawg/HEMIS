@@ -375,7 +375,7 @@
                                             <div class="form-group">
                                                 {!! Form::label('', trans('general.original'), ['class' => 'control-label col-sm-4']) !!}                                
                                                 <div class="col-sm-8">
-                                                {!! Form::text('province', null, ['class' => 'form-control editable']) !!}
+                                                    {!! Form::select('province', \App\Models\Province::pluck('name', 'id'),null, ['class' => 'form-control select2', 'placeholder' => trans('general.select'), 'required']) !!}
                                                 </div>
                                             </div>
                                         </div>
@@ -564,9 +564,9 @@
                                             {!! Form::label('student_code', trans('general.student_code'), ['class' => 'control-label col-sm-3']) !!}                                
                                             <div class="col-sm-9">
                                                 {!! Form::text('code', null, ['class' => 'form-control editable']) !!}     
-                                                    <span class="help-block">
-                                                        <strong>اطلاعات این فیلد اختیاری بوده و برای کارت محصلین است.</strong>
-                                                    </span>                                                                                                  
+                                                <span class="help-block">
+                                                    <strong>اطلاعات این فیلد اختیاری بوده و برای کارت محصلین است.</strong>
+                                                </span>                                                                                                  
                                             </div>
                                         </div>
                                     </div>

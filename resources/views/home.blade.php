@@ -39,44 +39,48 @@
                 <div class="col-md-12 charts-canvas">
                         <canvas  id="provinces-pie-chart" width="250" height="270"></canvas> 
                 </div>
-                <div class="row">
-                    <div class="col-md-10 col-md-offset-1">
-                        <canvas id="universities-bar-chart" width="400" height="400" ></canvas>
-                        <script type="text/javascript">
-                            new Chart(document.getElementById("universities-bar-chart"), {
-                                type: 'bar',
-                                data: {
-                                labels: [@foreach($universityStatus as $university) "{{ $university->name }}" {{ $loop->last ? '' : ',' }} @endforeach],
-                                datasets: [
-                                    @foreach($statuses as $status){
-                                        label: "{{ $status->title }}",
-                                        backgroundColor: window.chartColors.c{{ $loop->iteration }},
-                                        stack: 1,
-                                        data: [@foreach($universityStatus as $university){{ $university->studentsByStatus->where('status_id', $status->id)->first()->students_count ?? 0 }}{{ $loop->last ? '' : ',' }}@endforeach],
-                                    }{{ $loop->last ? '' : ',' }}
-                                    @endforeach]
-                                },
-                                options: {
-                                    title: {
-                                        display: true,
-                                        text: 'تعداد  محصلین براساس وضعیت در هر پوهنتون  (1397)'
-                                    },
-                                    legend: {
-                                        position: 'left',
-                                        reverse: true,
-                                        fontFamily: 'nazanin'
-                                    },
-                                    sclaes: {
-                                        scales: {
-                                            yAxes: [{
-                                                stacked: true
-                                            }]
-                                        }
-                                    }
-                                }
-                            });
-                        </script>
-                    </div>
+                <script type="text/javascript">
+                    new Chart(document.getElementById("provinces-pie-chart"), {
+                        type: 'pie',
+                        data: {
+                            labels: [@foreach($provinces as $province)
+                                "{{ $province->province }}" {{ $loop -> last ? '' : ',' }}
+                                @endforeach
+                            ],
+                            datasets: [{
+                                label: "Population (millions)",
+                                backgroundColor: [@foreach($provinces as $province)
+                                    "#{{ str_pad(dechex(rand(0x000000, 0xFFFFFF)), 6, 0, STR_PAD_LEFT) }}" {{$loop -> last ? '' : ','}}
+                                    @endforeach
+                                ],
+                                data: [@foreach($provinces as $province)
+                                    "{{ $province->count }}" {{$loop -> last ? '' : ','}}
+                                    @endforeach
+                                ]
+                            }]
+                        },
+                        options: {
+                            title: {
+                                display: false,
+                            },
+                            legend: {
+                                position: 'bottom',
+                                reverse: true,
+                                fontFamily: 'nazanin'
+                            }
+                        }
+                    });
+                </script>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6 col-sm-12">
+        <div class="portlet">
+            <div class="row">   
+                <h3 class="text-center">تعداد کامیاب کانکور بر اساس پوهنتون ها (1397)</h3>
+                <div class="col-md-12 charts-canvas">
+                    <canvas id="universities-pie-chart" width="250" height="270"></canvas>
                 </div>
                 
                 <script type="text/javascript">
@@ -115,11 +119,6 @@
         </div>
     </div>
 </div>
-
-
-
-
-
 <div class="portlet">
     <div class="row">
         <h1 class="text-center">تعداد محصلین براساس وضعیت در هر پوهنتون (1397)</h1>
@@ -131,7 +130,7 @@
             new Chart(document.getElementById("universities-bar-chart"), {
                 type: 'bar',
                 data: {
-                    labels: [@foreach($universities as $university)
+                    labels: [@foreach($universityStatus as $university)
                         "{{ $university->name }}" {{$loop -> last ? '' : ','}}
                         @endforeach
                     ],
