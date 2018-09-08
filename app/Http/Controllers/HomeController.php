@@ -26,8 +26,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $provinces = Student::select('province', \DB::raw('count(id) as count'))
-        ->groupBy('province')
+        $provinces = Student::select('provinces.name as province', \DB::raw('count(students.id) as count'))
+        ->leftJoin('provinces', 'provinces.id', '=', 'students.province')
+        ->groupBy('provinces.name')
         ->withoutGlobalScopes()
         ->get();
         
@@ -40,7 +41,6 @@ class HomeController extends Controller
 
         $statuses = StudentStatus::get();
         $universityStatus = University::with('studentsByStatus')->get();
-       // dd($universityStatus->first()->studentsByStatus);
 
         return view('home', [
             'title' => trans('general.dashboard'),

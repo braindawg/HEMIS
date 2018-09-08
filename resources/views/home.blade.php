@@ -96,7 +96,7 @@
                             new Chart(document.getElementById("universities-bar-chart"), {
                                 type: 'bar',
                                 data: {
-                                labels: [@foreach($universities as $university) "{{ $university->name }}" {{ $loop->last ? '' : ',' }} @endforeach],
+                                labels: [@foreach($universityStatus as $university) "{{ $university->name }}" {{ $loop->last ? '' : ',' }} @endforeach],
                                 datasets: [
                                     @foreach($statuses as $status){
                                         label: "{{ $status->title }}",
