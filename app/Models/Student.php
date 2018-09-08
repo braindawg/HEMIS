@@ -68,9 +68,9 @@ class Student extends Model
     public function photo()
     {
         if (file_exists($this->photo_url)) {
-            return $this->photo_url;
+            return asset($this->photo_url);
         } 
 
-        return "img/avatar-placeholder.png";
+        return asset("img/avatar-placeholder.png");
     }
 }

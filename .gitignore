@@ -1,6 +1,7 @@
 /node_modules
 /public/hot
 /public/storage
+/public/img/
 /storage/*.key
 /storage/temp/
 /vendor
@@ -11,3 +12,4 @@ Homestead.yaml
 npm-debug.log
 yarn-error.log
 .vscode/
+.env

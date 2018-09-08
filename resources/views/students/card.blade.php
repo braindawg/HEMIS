@@ -40,7 +40,7 @@
 	</div>
 
 	<div style="margin-top: 5px">
-		<img src="{{ asset('img/app/universities/2.jpg') }}" style='margin-top: 2px; margin-left: 2px; float: left' >
+		<img src="{{ $student->university->logo() }}" style='margin-top: 2px; margin-left: 2px; float: left' >
 	</div>
 
 	<div style="float: left">
@@ -55,22 +55,22 @@
 		{{ $student->father_name }}
 	</div>
 
-	<div style="float: right; clear: right; margin-right:73px; margin-top:10px; width: 160px; font-size: 8px; line-height: 8px;">
-		{{ $student->department->name }}
+	<div style="float: right; clear: right; margin-right:73px; margin-top:6px; width: 160px;">
+		{{ $student->department->short_name }}
 	</div>
 
 	<div  style="float: right; clear: right; margin-right:73px; margin-top:5px; width: 160px;">
-		{{ $student->code }}
+		{{ $student->form_no }}
 	</div>
 </div>
 
 <div class="eng">
 	<div style="margin-right:60px; padding-top:48px; width: 200px;text-align:center; float:right;">
-		Kabul Polytechnic University
+		{{ $student->university->name_eng }}
 	</div>
 
 	<div style="margin-top: 5px">
-		<img src="{{ asset('img/app/universities/2.jpg') }}" style='margin-top: 2px; margin-left: 2px; float: left' >
+		<img src="{{ $student->university->logo() }}" style='margin-top: 2px; margin-left: 2px; float: left' >
 	</div>
 	
 	<div style="float: right; clear; right; width: 66px">
@@ -86,7 +86,7 @@
 	</div>
 
 	<div  style="float: left; clear: left; margin-left:73px; margin-top:10px; width: 160px;text-align: left">
-		{{ $student->code }}
+		{{ $student->form_no }}
 	</div>
 
 		

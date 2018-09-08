@@ -558,18 +558,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row">                        
-                                    <div class="col-md-6">
-                                        <div class="form-group {{ $errors->has('student_code') ? ' has-error' : '' }}">
-                                            {!! Form::label('student_code', trans('general.student_code'), ['class' => 'control-label col-sm-3']) !!}                                
-                                            <div class="col-sm-9">
-                                                {!! Form::text('code', null, ['class' => 'form-control editable']) !!}     
-                                                <span class="help-block">
-                                                    <strong>اطلاعات این فیلد اختیاری بوده و برای کارت محصلین است.</strong>
-                                                </span>                                                                                                  
-                                            </div>
-                                        </div>
-                                    </div>
+                                <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group {{ $errors->has('department_eng') ? ' has-error' : '' }}">
                                             {!! Form::label('department_eng', trans('general.department_eng'), ['class' => 'control-label col-sm-3']) !!}                                
