@@ -1,12 +1,9 @@
 <?php
-
 namespace App\Http\Controllers;
-
 use \App\Models\Student;
 use \App\Models\University;
 use Illuminate\Http\Request;
 use \App\Models\StudentStatus;
-
 class HomeController extends Controller
 {
     /**
@@ -18,7 +15,6 @@ class HomeController extends Controller
     {
         $this->middleware('auth');
     }
-
     /**
      * Show the application dashboard.
      *
