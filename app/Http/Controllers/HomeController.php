@@ -1,5 +1,6 @@
 <?php
 namespace App\Http\Controllers;
+
 use \App\Models\Province;
 use \App\Models\Department;
 use \App\Models\Student;
@@ -25,10 +26,21 @@ class HomeController extends Controller
     public function index()
     {
 
+        $universityName = '';
+         if( auth()->user()->allUniversities() ) {
+            $studentsByStatus = University::with('studentsByStatus')->get();
+            $allUniversities = University::get();
+        }
+        else {
+            $studentsByStatus = Department::with('studentsByStatus')->get();
+            $allUniversities = University::where('id', auth()->user()->university_id)->get();
+            $universityName = $allUniversities->first()->name;
+        }
+
         //this query returns some basic states such as total universities, departments, students count by status
-        $allProvinces = Province::select('*')->get();
-        $allUniversities = University::select('*')->get();
-        $allDepartments = Department::select('*')->get();
+        $allProvinces = Province::get();
+        
+        $allDepartments = Department::get();
 
 
 
@@ -39,13 +51,11 @@ class HomeController extends Controller
         $provinces = Student::select('provinces.name as province', \DB::raw('count(students.id) as count'))
         ->leftJoin('provinces', 'provinces.id', '=', 'students.province')
         ->groupBy('provinces.name')
-        ->orderBy('provinces.id', 'asc')
         ->withoutGlobalScopes()
         ->get();
         
         $universities = Student::leftJoin('universities', 'universities.id', '=', 'university_id')
             ->select('universities.name', \DB::raw('count(students.id) as count'))
-            ->orderBy('universities.id', 'asc')
             ->groupBy('universities.name')
             ->with('university')
             ->withoutGlobalScopes()
@@ -60,13 +70,7 @@ class HomeController extends Controller
         // to take the first university for university data manipulation
         $university = $allUniversities->first();
 
-        // this query is used to fetch the students of different cities of a specific university
-        // $uniSpecStudents = \DB::select(\DB::raw("SELECT universities.name as name, count(students.id) as std_count from
-        // students inner join universities on students.university_id = universities.id
-        //         and students.province = (select id from provinces where name = '$city') group by universities.name"));
-
         // this query is used to fetch students of a specific city in all the universities
-
         $provinceStudentsInUnis = Student::leftJoin('universities', 'universities.id', '=', 'university_id')
             ->select('universities.name', \DB::raw('count(students.id) as std_count'))
             ->where('province', $city->id)
@@ -76,12 +80,6 @@ class HomeController extends Controller
             ->get();
 
 
-
-        // this query is used to fetch the students of different cities of a specific university
-        // $proSpecStudents = \DB::select(\DB::raw("SELECT provinces.name as name, count(students.id) std_count from students
-        // inner join provinces on students.province = provinces.id and students.university_id = (select id from universities
-        // where name = '$university') group by provinces.name"));
-
         //  This query is used to fetch data of a specific university grouped by provinces
         $uniStudentsFromProvinces = Student::leftJoin('provinces', 'provinces.id', '=', 'province')
             ->select('provinces.name', \DB::raw('count(students.id) as std_count'))
@@ -89,16 +87,18 @@ class HomeController extends Controller
             ->orderBy('std_count', 'asc')
             ->groupBy('provinces.name')
             ->withoutGlobalScopes()
-            ->get();
+            ->get(); 
 
             
 
 
         $statuses = \DB::table('student_statuses')->orderBy('id', 'desc')->get();
-        $universityStatus = University::with('studentsByStatus')->get();
+
+       
+        
 
         //  for dumping purpose
-        //  dd($university->id);
+        //  dd($allUniversities);
 
         return view('home', [
             'title' => trans('general.dashboard'),
@@ -106,8 +106,9 @@ class HomeController extends Controller
             'city' => $city->name,
             'provinces' => $provinces,
             'uniName' => $university->name,
+            'universityName' => $universityName,
             'universities' => $universities,
-            'universityStatus' => $universityStatus,
+            'studentsByStatus' => $studentsByStatus,
             'uniSpecStudents' => $provinceStudentsInUnis,
             'proSpecStudents' => $uniStudentsFromProvinces,
             'allUniversities' => $allUniversities,

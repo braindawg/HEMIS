@@ -7,7 +7,12 @@
         <div class="portlet text-center" style ="border-bottom: 2px solid #e05038;">
             <h3>پوهنتون</h3>
             <hr>
-            <h1 class = "counter">{{ count($allUniversities) }}</h1>
+            @if( auth()->user()->allUniversities())
+                <h1 class = "counter">{{ count($allUniversities) }}</h1>
+            @else 
+                <h1>{{ $universityName }}</h1>
+            @endif
+
         </div>
     </div>
     <div class="col-md-3 col-sm-6">
@@ -125,7 +130,7 @@
                                 data: [ @foreach($universities as $university)
                                     
                                     {
-                                        @if($university->name == 'انستیتوت تکنالوژی معلوماتی ومخابراتی وزارت مخابرات')
+                                        @if($university->name == ' تکنالوژی معلوماتی ومخابراتی وزارت مخابرات')
                                             name: 'انستیتوت مخابرات',
                                         @else
                                             name: '{{ $university->name }}',
@@ -160,14 +165,14 @@
                                 enabled: false
                     },
                     title: {
-                        text: 'تعداد محصلین براساس وضعیت در هر پوهنتون - 1397'
+                        text: 'تعداد محصلین براساس وضعیت - 1397'
                     },
                     xAxis: {
-                        categories: [@foreach($universities as $university)
-                         @if($university->name == 'انستیتوت تکنالوژی معلوماتی ومخابراتی وزارت مخابرات')
+                        categories: [@foreach($studentsByStatus as $category)
+                         @if($category->name == 'انستیتوت تکنالوژی معلوماتی ومخابراتی وزارت مخابرات')
                                             'انستیتوت مخابرات'
                                         @else
-                                            '{{ $university->name }}'
+                                            '{{ $category->name }}'
                                         @endif
                                         {{$loop -> last ? '' : ','}}
                         @endforeach]
@@ -216,7 +221,7 @@
                     series: [ @foreach($statuses as $status)
                         {
                         name: '{{ $status->title }}',
-                        data: [@foreach($universityStatus as $university) {{$university -> studentsByStatus -> where('status_id', $status -> id) -> first() -> students_count ?? 0}} {{$loop -> last ? '' : ','}} @endforeach]
+                        data: [@foreach($studentsByStatus as $studentsData) {{$studentsData -> studentsByStatus -> where('status_id', $status -> id) -> first() -> students_count ?? 0}} {{$loop -> last ? '' : ','}} @endforeach]
                     }{{$loop -> last ? '' : ','}}
                     @endforeach]
             });
@@ -227,7 +232,7 @@
 </div>
 
  <!-- this portlet is used to show chart for students of a specific city in all other cities -->
-
+@if( auth()->user()->allUniversities())
 <div class="portlet">
 
         <div class="row">
@@ -333,6 +338,7 @@
 </div>
 
 
+
 <!-- this portlet is used to show chart for students of a specific city in all other cities -->
 
 <div class="portlet">
@@ -428,6 +434,8 @@
 
 
 </div>
+
+@endif
 
 <!-- Ajax methdd to update data on province change for the province specific column chart -->
 <script src="{{ asset('js/ajaxCharts.js') }}" type="text/javascript"></script>
