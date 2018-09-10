@@ -137,7 +137,6 @@ class StudentsController extends Controller
             'last_name_eng' => $request->last_name_eng,
             'father_name_eng' => $request->father_name_eng,
             'grandfather_name_eng' => $request->grandfather_name_eng,
-            'code' => $request->code,
             'department_eng' => $request->department_eng,
         ]);        
 

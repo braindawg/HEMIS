@@ -37,6 +37,7 @@ Route::group(['middleware' => 'auth'], function() {
 
     Route::resource('/students', 'StudentsController');
     Route::patch('/students/{student}/updateStatus', 'StudentsController@updateStatus')->name('students.updateStatus');
+    Route::get('/students/{student}/card', 'StudentCardController@index')->name('students.card');
     
     Route::resource('/universities', 'UniversitiesController');
     Route::resource('/universities/{university}/departments', 'DepartmentsController');

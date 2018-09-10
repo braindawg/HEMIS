@@ -212,7 +212,7 @@
 						</tr>						
 						<tr>
 							<th class="bg-grey">اصلی</th>
-							<td>{{ $student->province }}</td>
+							<td>{{ $student->originalProvince ? $student->originalProvince->name : '' }}</td>
 							<td>{{ $student->district }}</td>
 							<td>{{ $student->village }}</td>							
 							<td>{{ $student->address }}</td>

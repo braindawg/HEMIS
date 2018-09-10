@@ -21,6 +21,9 @@ class StudentsDataTable extends DataTable
             })
             ->addColumn('action', function ($student) {
                 $html = '';
+
+                $html .= '<a href="'.route('students.card', $student).'" class="btn btn-info btn-xs" target="new">کارت</a>';
+                
                 $html .= '<a href="'.route('students.show', $student).'" class="btn btn-primary btn-xs" target="new"><i class="icon-printer"></i></a>';
                 
                 if (auth()->user()->can('edit-student')) {
@@ -62,7 +65,8 @@ class StudentsDataTable extends DataTable
                 'departments.name as department',
                 'student_statuses.title as status',
                 'student_statuses.tag_color as status_color',
-                'status_id'
+                'status_id',
+                'students.university_id'
             )            
             ->leftJoin('universities', 'universities.id', '=', 'university_id')
             ->leftJoin('departments', 'departments.id', '=', 'department_id')
@@ -81,7 +85,7 @@ class StudentsDataTable extends DataTable
         return $this->builder()
                     ->columns($this->getColumns())
                     ->minifiedAjax()
-                    ->addAction(['title' => trans('general.action'), 'width' => '60px'])
+                    ->addAction(['title' => trans('general.action'), 'width' => '۷0px'])
                     ->parameters($this->getBuilderParameters());
     }
 
