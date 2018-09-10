@@ -7,28 +7,28 @@
         <div class="portlet text-center" style ="border-bottom: 2px solid #e05038;">
             <h3>پوهنتون</h3>
             <hr>
-            <h1>{{ count($allUniversities) }}</h1>
+            <h1 class = "counter">{{ count($allUniversities) }}</h1>
         </div>
     </div>
     <div class="col-md-3 col-sm-6">
          <div class="portlet text-center" style ="border-bottom: 2px solid #28A744;">
             <h3>پوهنځی</h3>
             <hr>
-            <h1>{{ count($allDepartments) }}</h1>
+            <h1 class = "counter">{{ count($allDepartments) }}</h1>
         </div>
     </div>
     <div class="col-md-3 col-sm-6">
          <div class="portlet text-center" style ="border-bottom: 2px solid #62bcfa;">
             <h3>شاګرد کامیاب</h3>
             <hr>
-            <h1>{{ $studentsByStatusCount[0]->students_count }}</h1>
+            <h1 class = "counter">{{ $studentsByStatusCount[0]->students_count }}</h1>
         </div>
     </div>
     <div class="col-md-3 col-sm-6">
          <div class="portlet text-center" style ="border-bottom: 2px solid #f2b632;">
             <h3>شامل پوهنتون</h3>
             <hr>
-            <h1>{{ $studentsByStatusCount[1]->students_count }}</h1>
+            <h1 class = "counter">{{ $studentsByStatusCount[1]->students_count }}</h1>
         </div>
     </div>
 
@@ -175,7 +175,7 @@
                     yAxis: {
                         min: 0,
                         title: {
-                            text: 'أمار شاګردها کامیاب و شامل پوهنتون'
+                            text: "{{ trans('general.chart_yaxis_title_full') }}"
                         },
                         stackLabels: {
                             enabled: true,
@@ -278,7 +278,7 @@
                     yAxis: {
                         min: 0,
                         title: {
-                            text: 'أمار شاګردها کامیاب'
+                            text: "{{ trans('general.barchart_yaxis_title') }}"
                         },
                         stackLabels: {
                             enabled: true,
@@ -380,7 +380,7 @@
             yAxis: {
                 min: 0,
                 title: {
-                    text: 'أمار شاګردها کامیاب'
+                    text: "{{ trans('general.barchart_yaxis_title') }}"
                 },
                 stackLabels: {
                     enabled: true,
@@ -419,7 +419,7 @@
                 }
             },
             series: [{
-                name: 'تعداد شاګردان',
+                name: "{{ trans('general.barchart_series_name') }} ",
                 data: [@foreach($proSpecStudents as $proSpec) {{ $proSpec -> std_count}} {{ $loop -> last ? '' : ',' }}
                     @endforeach]
             }]

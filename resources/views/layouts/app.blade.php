@@ -40,11 +40,16 @@
 
         gtag('config', 'UA-124746908-1');
         </script>
-
         
     <script src="https://code.highcharts.com/highcharts.src.js"></script>
     <script src="https://code.highcharts.com/modules/exporting.js"></script>
     <script src="https://code.highcharts.com/modules/export-data.js"></script>
+
+    <!-- this is used to start the counter  -->
+    <!-- <script src="{{ asset('js/jquery.min.js') }}"></script> -->
+    
+
+
 
     <!-- <script src="{{ asset('js/highcharts.src.js') }}"></script>
     <script src="{{ asset('js/highcharts.exporting.js') }}"></script>
@@ -806,6 +811,22 @@
         }
     </script>
     <script src="{{ asset('js/all.js') }}" type="text/javascript"></script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
+    <script src="{{ asset('js/counterup.min.js') }}"></script>
+
+    <script>
+    
+        
+
+       
+            $('.counter').counterUp({
+                    delay: 10,
+                    time: 1000
+                });
+        
+    
+    </script>
 
     @stack('scripts')
 

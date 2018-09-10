@@ -24,7 +24,9 @@ Route::group(['middleware' => 'auth'], function() {
     
     Route::get('/home', 'HomeController@index')->name('home');
     Route::get('/support', function () {
-        return view('support');
+        return view('support', [
+            'title' => trans('general.support')
+        ]);
     })->name('support');
     Route::get('/syncPermissions', function () {
         //$role = \Spatie\Permission\Models\Role::create(['name' => 'super-admin', 'title' => 'ادمین']);
