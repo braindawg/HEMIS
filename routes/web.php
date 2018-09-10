@@ -40,4 +40,8 @@ Route::group(['middleware' => 'auth'], function() {
     
     Route::resource('/universities', 'UniversitiesController');
     Route::resource('/universities/{university}/departments', 'DepartmentsController');
+
+    Route::post('/cityupdate', 'HomeController@updateData');
+    Route::post('/universityupdate', 'HomeController@updateData');
+
 });
