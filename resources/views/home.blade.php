@@ -26,14 +26,18 @@
          <div class="portlet text-center" style ="border-bottom: 2px solid #62bcfa;">
             <h3>شاګرد کامیاب</h3>
             <hr>
-            <h1 class = "counter">{{ $studentsByStatusCount[0]->students_count }}</h1>
+            <h1 class = "counter">{{ $allStudents }}</h1>
         </div>
     </div>
     <div class="col-md-3 col-sm-6">
          <div class="portlet text-center" style ="border-bottom: 2px solid #f2b632;">
             <h3>شامل پوهنتون</h3>
             <hr>
-            <h1 class = "counter">{{ $studentsByStatusCount[1]->students_count }}</h1>
+            @if(sizeof($studentsByStatusCount) > 1)
+                <h1 class = "counter">{{ $studentsByStatusCount[1]->students_count }}</h1>  
+            @else
+                <h1 class = "counter">0</h1>  
+            @endif
         </div>
     </div>
 

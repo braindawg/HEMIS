@@ -42,6 +42,8 @@ class HomeController extends Controller
         
         $allDepartments = Department::get();
 
+        $allStudents = Student::count();
+
 
 
         $totalStudentsByStatus = Student::select(\DB::raw('count(students.id) as students_count'),'status_id as status')
@@ -98,7 +100,7 @@ class HomeController extends Controller
         
 
         //  for dumping purpose
-        //  dd($allUniversities);
+        //  dd($allStudents);
 
         return view('home', [
             'title' => trans('general.dashboard'),
@@ -114,6 +116,7 @@ class HomeController extends Controller
             'allUniversities' => $allUniversities,
             'allDepartments' => $allDepartments,
             'allProvinces' => $allProvinces,
+            'allStudents' => $allStudents,
             'studentsByStatusCount' => $totalStudentsByStatus
         ]);
     }
