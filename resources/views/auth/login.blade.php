@@ -67,7 +67,7 @@
                             </div>
                             <div class="alert alert-danger display-hide">
                                 <button class="close" data-close="alert"></button>
-                                <span>لطفا ایمیل و پسورد خود را وارذ کنید. </span>
+                                <span>لطفا ایمیل و پسورد خود را وارد کنید. </span>
                             </div>
                             <div class="row">
                                 <div class="col-sm-10 col-sm-offset-1">

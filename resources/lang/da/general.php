@@ -49,7 +49,7 @@ return [
     'role_account' => 'تصحیح وظیفه',
     'permissions' => 'دسترسی ها',
     'divorced' => 'مطلقه',
-    'support' => 'تماس با تیم ‍پشتیبانی',
+    'support' => 'تماس با تیم پشتیبانی',
     
     'student_information' => 'شهرت و مشخصات محصل',
     'fame' => 'شهرت',
@@ -120,4 +120,7 @@ return [
     'note' => 'نوت',
     'from_department' => 'از دیپارتمنت',
     'to_department' => 'به دیپارتمنت',
+    'barchart_yaxis_title' => 'أمار شاګردها کامیاب',
+    'chart_yaxis_title_full' => 'أمار شاګردها کامیاب و شامل پوهنتون',
+    'barchart_series_name' => 'تعداد شاګردان'
 ];

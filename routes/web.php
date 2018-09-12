@@ -25,7 +25,9 @@ Route::group(['middleware' => 'auth'], function() {
     
     Route::get('/home', 'HomeController@index')->name('home');
     Route::get('/support', function () {
-        return view('support');
+        return view('support', [
+            'title' => trans('general.support')
+        ]);
     })->name('support');
 
     Route::resource('/users', 'UsersController');
@@ -39,4 +41,8 @@ Route::group(['middleware' => 'auth'], function() {
     
     Route::resource('/universities', 'UniversitiesController');
     Route::resource('/universities/{university}/departments', 'DepartmentsController');
+
+    Route::post('/cityupdate', 'HomeController@updateData');
+    Route::post('/universityupdate', 'HomeController@updateData');
+
 });
