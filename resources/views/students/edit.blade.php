@@ -561,17 +561,6 @@
                                     </div>
                                     <div class="row">                        
                                         <div class="col-md-6">
-                                            <div class="form-group {{ $errors->has('student_code') ? ' has-error' : '' }}">
-                                                {!! Form::label('student_code', trans('general.student_code'), ['class' => 'control-label col-sm-3']) !!}                                
-                                                <div class="col-sm-9">
-                                                    {!! Form::text('code', null, ['class' => 'form-control editable']) !!}     
-                                                        <span class="help-block">
-                                                            <strong>اطلاعات این فیلد اختیاری بوده و برای کارت محصلین است.</strong>
-                                                        </span>                                                                                                  
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
                                             <div class="form-group {{ $errors->has('department_eng') ? ' has-error' : '' }}">
                                                 {!! Form::label('department_eng', trans('general.department_eng'), ['class' => 'control-label col-sm-3']) !!}                                
                                                 <div class="col-sm-9">
@@ -586,125 +575,30 @@
                                         </div>
                                     </div> 
                                     
-                                    <hr>
                                     
-                                    <div class="row">                        
-                                        <div class="col-md-3">
-                                            <div class="form-group">
-                                                {!! Form::label('address', trans('general.address'), ['class' => 'control-label col-sm-4']) !!}                                
-                                                <div class="col-sm-8">
-                                                    <p class="form-control-static"> {{ trans('general.province') }} </p>                                                                                                
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <div class="form-group">                                
-                                                <div class="col-sm-12">
-                                                    <p class="form-control-static"> {{ trans('general.city') }} </p>                                                                                                  
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <div class="form-group">                                
-                                                <div class="col-sm-12">
-                                                    <p class="form-control-static"> {{ trans('general.town') }} </p>                                                                                                  
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <div class="form-group">                                
-                                                <div class="col-sm-12">
-                                                    <p class="form-control-static"> {{ trans('general.address_2') }} </p>                                                                                                  
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>   
-                                    <div class="row">                        
-                                        <div class="col-md-3">
-                                            <div class="form-group">
-                                                {!! Form::label('', trans('general.original'), ['class' => 'control-label col-sm-4']) !!}                                
-                                                <div class="col-sm-8">
-                                                    {!! Form::select('province', \App\Models\Province::pluck('name', 'id'),null, ['class' => 'form-control select2', 'placeholder' => trans('general.select'), 'required']) !!}
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <div class="form-group">                                
-                                                <div class="col-sm-12">
-                                                {!! Form::text('district', null, ['class' => 'form-control editable']) !!}
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <div class="form-group">                                
-                                                <div class="col-sm-12">
-                                                {!! Form::text('village', null, ['class' => 'form-control editable']) !!}
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <div class="form-group">                                
-                                                <div class="col-sm-12">
-                                                {!! Form::text('address', null, ['class' => 'form-control editable']) !!}
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>                   
-                                    <div class="row">                        
-                                        <div class="col-md-3">
-                                            <div class="form-group">
-                                                {!! Form::label('', trans('general.current'), ['class' => 'control-label col-sm-4']) !!}                                
-                                                <div class="col-sm-8">
-                                                    {!! Form::select('province_current', \App\Models\Province::pluck('name', 'id'),null, ['class' => 'form-control select2', 'placeholder' => trans('general.select')]) !!}
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <div class="form-group">                                
-                                                <div class="col-sm-12">
-                                                {!! Form::text('district_current', null, ['class' => 'form-control editable']) !!}
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <div class="form-group">                                
-                                                <div class="col-sm-12">
-                                                {!! Form::text('village_current', null, ['class' => 'form-control editable']) !!}
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <div class="form-group">                                
-                                                <div class="col-sm-12">
-                                                {!! Form::text('address_current', null, ['class' => 'form-control editable']) !!}
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>                    
-    
-                                    
+                                  
                                     <hr>
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group {{ $errors->has('status') ? ' has-error' : '' }}">
-                                                {!! Form::label('status', trans('general.status'), ['class' => 'control-label col-sm-3']) !!}                                
+                                                {!! Form::label('status', trans('general.status'), ['class' => 'control-label col-sm-3']) !!}
                                                 <div class="col-sm-9">
                                                     {!! Form::select('status', $statuses, $student->status_id, ['class' => 'form-control select2']) !!}
                                                     @if ($errors->has('status'))
-                                                        <span class="help-block">
-                                                            <strong>{{ $errors->first('status') }}</strong>
-                                                        </span>
-                                                    @endif                                                                                                   
+                                                    <span class="help-block">
+                                                        <strong>{{ $errors->first('status') }}</strong>
+                                                    </span>
+                                                    @endif
                                                 </div>
                                             </div>
-                                        </div>                                    
+                                        </div>
                                     </div>
                                     <hr>
                                     <div class="form-actions fluid">
                                         <div class="row">
                                             <div class="col-md-offset-1 col-md-9">
                                                 <label for="">
-                                                    
+
                                                     <input type="checkbox" name="print" value="true" checked>
                                                     {{ trans('general.print') }}
                                                 </label>
@@ -715,67 +609,8 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group {{ $errors->has('grandfather_name_eng') ? ' has-error' : '' }}">
-                                            {!! Form::label('grandfather_name_eng', trans('general.grandfather_name_eng'), ['class' => 'control-label col-sm-3']) !!}                                
-                                            <div class="col-sm-9">
-                                                {!! Form::text('grandfather_name_eng', null, ['class' => 'form-control editable']) !!}     
-                                                @if ($errors->has('grandfather_name_eng'))
-                                                    <span class="help-block">
-                                                        <strong>{{ $errors->first('grandfather_name_eng') }}</strong>
-                                                    </span>
-                                                @endif                                                                                                   
-                                            </div>
-                                        </div>
-                                    </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group {{ $errors->has('department_eng') ? ' has-error' : '' }}">
-                                            {!! Form::label('department_eng', trans('general.department_eng'), ['class' => 'control-label col-sm-3']) !!}                                
-                                            <div class="col-sm-9">
-                                                {!! Form::text('department_eng', null, ['class' => 'form-control editable']) !!}     
-                                                @if ($errors->has('department_eng'))
-                                                    <span class="help-block">
-                                                        <strong>{{ $errors->first('department_eng') }}</strong>
-                                                    </span>
-                                                @endif                                                                                                   
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <hr>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group {{ $errors->has('status') ? ' has-error' : '' }}">
-                                            {!! Form::label('status', trans('general.status'), ['class' => 'control-label col-sm-3']) !!}                                
-                                            <div class="col-sm-9">
-                                                {!! Form::select('status', $statuses, $student->status_id, ['class' => 'form-control select2']) !!}
-                                                @if ($errors->has('status'))
-                                                    <span class="help-block">
-                                                        <strong>{{ $errors->first('status') }}</strong>
-                                                    </span>
-                                                @endif                                                                                                   
-                                            </div>
-                                        </div>
-                                    </div>                                    
-                                </div>
-                                <hr>
-                                <div class="form-actions fluid">
-                                    <div class="row">
-                                         <div class="col-md-offset-1 col-md-9">
-                                            <label for="">
-                                                
-                                                <input type="checkbox" name="print" value="true" checked>
-                                                {{ trans('general.print') }}
-                                            </label>
-                                        </div>
-                                        <div class="col-md-offset-1 col-md-9">
-                                            <button type="submit" class="btn green">{{ trans('general.save') }}</button>
-                                            <a href="{{ route('students.index') }}" class="btn default">{{ trans('general.cancel') }}</a>
-                                        </div>
-                                    </div>
-                                </div>
+                                
                             {!! Form::close() !!}
                             <!-- END FORM-->
                         </div>
