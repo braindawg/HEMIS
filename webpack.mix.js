@@ -31,7 +31,6 @@ mix.styles([
         
     ], 'public/css/all.css')
     .styles([
-        
         'resources/assets/css/datatables.min.css',
         'resources/assets/css/datatables.bootstrap-rtl.css',
         

@@ -60,14 +60,15 @@ class StudentsDataTable extends DataTable
                 'students.name as name',
                 'father_name',
                 'grandfather_name',
-                'province',
+                'provinces.name as province',
                 'universities.name as university', 
                 'departments.name as department',
                 'student_statuses.title as status',
                 'student_statuses.tag_color as status_color',
                 'status_id',
                 'students.university_id'
-            )            
+            )
+            ->leftJoin('provinces', 'provinces.id', '=', 'students.province')
             ->leftJoin('universities', 'universities.id', '=', 'university_id')
             ->leftJoin('departments', 'departments.id', '=', 'department_id')
             ->leftJoin('student_statuses', 'student_statuses.id', '=', 'status_id');

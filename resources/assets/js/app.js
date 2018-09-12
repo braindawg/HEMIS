@@ -33,7 +33,31 @@ var App = function() {
             },
             cache: true
         },
-        clear: true            
+        clear: true
+    });
+
+    $(".select2-students").select2({
+        language: "fa",
+        ajax: {
+            url: function (params) {                
+                return '/api/students' + ($(".select2-students").attr('remote-param') ? '/' + $($(".select2-students").attr('remote-param')).val() : '');
+            },            
+            dataType: 'json',
+            delay: 250,
+            data: function(params) {
+                return {
+                    q: params.term
+                };
+            },
+            processResults: function(data) {
+                return {
+                    results: data
+                };
+            },
+            cache: true
+        },
+        clear: true,
+        minimumInputLength: 2
     });
     // IE mode
     var isRTL = false;

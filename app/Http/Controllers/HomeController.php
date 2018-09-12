@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers;
 
 use \App\Models\Province;
@@ -7,6 +8,7 @@ use \App\Models\Student;
 use \App\Models\University;
 use Illuminate\Http\Request;
 use \App\Models\StudentStatus;
+
 class HomeController extends Controller
 {
     /**
@@ -63,9 +65,6 @@ class HomeController extends Controller
             ->withoutGlobalScopes()
             ->get();
 
-        
-
-
         // to take the first city for province data manipulation
         $city = $allProvinces->first();
 
@@ -91,16 +90,7 @@ class HomeController extends Controller
             ->withoutGlobalScopes()
             ->get(); 
 
-            
-
-
         $statuses = \DB::table('student_statuses')->orderBy('id', 'desc')->get();
-
-       
-        
-
-        //  for dumping purpose
-        //  dd($allStudents);
 
         return view('home', [
             'title' => trans('general.dashboard'),

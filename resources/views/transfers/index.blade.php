@@ -2,9 +2,6 @@
 
 @section('content')
     <div class="portlet light bordered card">
-        <div class="alert alert-danger">
-            به دلیل مشکلات تخنیکی که در سیستم بوجود آمد, لطفا دیتای تاریخ ۱۹ سنبله الی ۲۰ سنبله را مجددا آبدیت نمایید.
-        </div>
         @if (session('message'))
             <div class="alert alert-success">
                 {{ session('message') }}
@@ -12,7 +9,7 @@
         @endif
         <div class="portlet-title">
             @can ('create-student')
-            <a href="{{ route('students.create') }}" class="btn btn-info"><i class="icon-plus"></i> {{ trans('general.create_student') }} </a>
+            <a href="{{ route('transfers.create') }}" class="btn btn-info"><i class="icon-plus"></i> {{ trans('general.create_transfer') }} </a>
             @endcan
             <div class="tools"> </div>
         </div>
@@ -24,13 +21,7 @@
 @endsection
 
 @push('styles')
-    <!-- <link rel="stylesheet" href="//cdn.datatables.net/1.10.7/css/jquery.dataTables.min.css"> -->
     <link href="{{ asset('css/datatables.css') }}" rel="stylesheet">
-    <!-- <style>
-    table td, table th {
-        font-size: 12px !important;
-    }
-    </style> -->
 @endpush
 
 @push('scripts')

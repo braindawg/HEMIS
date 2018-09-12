@@ -112,6 +112,14 @@ return [
     'widow' => 'مطلقه',
     'all_options' => 'همه موارد',
 
+    'transfers' => 'تبدیلی ها',
+    'new_transfer' => 'تبدیلی جدید',
+    'transfers_list' => 'لیست تبذیلی ها',
+    'create_transfer' => 'تبدیلی جدید',
+    'student' => 'محصل',
+    'note' => 'نوت',
+    'from_department' => 'از دیپارتمنت',
+    'to_department' => 'به دیپارتمنت',
     'barchart_yaxis_title' => 'أمار شاګردها کامیاب',
     'chart_yaxis_title_full' => 'أمار شاګردها کامیاب و شامل پوهنتون',
     'barchart_series_name' => 'تعداد شاګردان'

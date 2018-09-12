@@ -20,6 +20,7 @@ Auth::routes();
 Route::group(['middleware' => 'auth'], function() { 
     Route::group(['namespace' => 'Api'], function() { 
         Route::get('api/departments/{universityId?}', "DepartmentsController@index")->name('api.departments');
+        Route::get('api/students', "StudentsController@index")->name('api.students');
     });
     
     Route::get('/home', 'HomeController@index')->name('home');
@@ -28,11 +29,6 @@ Route::group(['middleware' => 'auth'], function() {
             'title' => trans('general.support')
         ]);
     })->name('support');
-    Route::get('/syncPermissions', function () {
-        //$role = \Spatie\Permission\Models\Role::create(['name' => 'super-admin', 'title' => 'ادمین']);
-        $role = \Spatie\Permission\Models\Role::where('name', 'super-admin')->first();
-        $role->givePermissionTo(\Spatie\Permission\Models\Permission::all());
-    });
 
     Route::resource('/users', 'UsersController');
     Route::resource('/roles', 'RolesController');
@@ -40,6 +36,8 @@ Route::group(['middleware' => 'auth'], function() {
     Route::resource('/students', 'StudentsController');
     Route::patch('/students/{student}/updateStatus', 'StudentsController@updateStatus')->name('students.updateStatus');
     Route::get('/students/{student}/card', 'StudentCardController@index')->name('students.card');
+
+    Route::resource('/transfers', 'TransfersController');
     
     Route::resource('/universities', 'UniversitiesController');
     Route::resource('/universities/{university}/departments', 'DepartmentsController');
