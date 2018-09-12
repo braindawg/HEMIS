@@ -29,6 +29,7 @@ class RouteServiceProvider extends ServiceProvider
         Route::model('department', \App\Models\Department::class);
         Route::model('role', \Spatie\Permission\Models\Role::class);
         Route::model('student', \App\Models\Student::class);
+        Route::model('transfer', \App\Models\Transfer::class);
     }
 
     /**

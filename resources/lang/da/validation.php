@@ -124,6 +124,9 @@ return [
         'password' => 'پسورد',
         'password_confirmation' => 'تکرار پسورد',
         'phone' => 'تلفن',
+        'student_id' => 'محصل',
+        'department_id' => 'دی‍پارتمنت',
+        'university_id' => 'پوهنتون',
     ],
 
 ];

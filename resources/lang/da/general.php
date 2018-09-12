@@ -111,4 +111,13 @@ return [
     'print' => 'پرینت',
     'widow' => 'مطلقه',
     'all_options' => 'همه موارد',
+
+    'transfers' => 'تبدیلی ها',
+    'new_transfer' => 'تبدیلی جدید',
+    'transfers_list' => 'لیست تبذیلی ها',
+    'create_transfer' => 'تبدیلی جدید',
+    'student' => 'محصل',
+    'note' => 'نوت',
+    'from_department' => 'از دیپارتمنت',
+    'to_department' => 'به دیپارتمنت',
 ];
