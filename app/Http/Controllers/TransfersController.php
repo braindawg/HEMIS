@@ -15,10 +15,9 @@ class TransfersController extends Controller
 {
     public function __construct()
     {        
-        //  $this->middleware('permission:view-transfer', ['only' => ['index', 'show']]);        
-        //  $this->middleware('permission:create-transfer', ['only' => ['create','store']]);
-        //  $this->middleware('permission:edit-transfer', ['only' => ['edit','update', 'updateStatus']]);
-        //  $this->middleware('permission:delete-transfer', ['only' => ['destroy']]);
+          $this->middleware('permission:view-transfer', ['only' => ['index', 'show']]);        
+          $this->middleware('permission:create-transfer', ['only' => ['create','store']]);
+          $this->middleware('permission:delete-transfer', ['only' => ['destroy']]);
     }
     /**
      * Display a listing of the resource.

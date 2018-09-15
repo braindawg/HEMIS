@@ -57,6 +57,32 @@
     </li>
     @endif
 
+    @if (auth()->user()->can(['view-transfer']))
+    <li class="nav-item start {{ request()->is('transfers*') ? 'active' : '' }}">
+        <a href="#" class="nav-link nav-toggle">
+            <i class="icon-grid"></i>
+            <span class="title">{{ trans('general.transfers') }}</span>
+            <span class="arrow {{ request()->is('transfers*') ? 'open' : '' }}"></span>
+        </a>
+        <ul class="sub-menu">            
+            <li class="nav-item {{ request()->is('transfers') ? 'active' : '' }}">
+                <a href="{{ route('transfers.index') }}" class="nav-link ">
+                    <i class="icon-list"></i>
+                    <span class="title">{{ trans('general.transfers_list') }}</span>                    
+                </a>
+            </li> 
+            @if (auth()->user()->can(['create-transfer']))          
+            <li class="nav-item {{ request()->is('transfers/create') ? 'active' : '' }}">
+                <a href="{{ route('transfers.create') }}" class="nav-link ">
+                    <i class="icon-plus"></i>
+                    <span class="title">{{ trans('general.create_transfer') }}</span>
+                </a>
+            </li>
+            @endif            
+        </ul>
+    </li>
+    @endif
+
     @if (auth()->user()->hasAnyPermission(['view-user', 'view-role']))
     <li class="nav-item start {{ (request()->is('users*') or request()->is('roles*')) ? 'active' : '' }}">
         <a href="javascript:;" class="nav-link nav-toggle">
