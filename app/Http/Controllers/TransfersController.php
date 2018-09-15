@@ -92,7 +92,6 @@ class TransfersController extends Controller
                 'university_id' => $transfer->fromDepartment->university_id,
                 'department_id' => $transfer->from_department_id
             ]);
-
             $transfer->delete();
         });
 

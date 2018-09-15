@@ -122,5 +122,15 @@ return [
     'to_department' => 'به دیپارتمنت',
     'barchart_yaxis_title' => 'أمار شاګردها کامیاب',
     'chart_yaxis_title_full' => 'أمار شاګردها کامیاب و شامل پوهنتون',
-    'barchart_series_name' => 'تعداد شاګردان'
+    'barchart_series_name' => 'تعداد شاګردان',
+
+
+    'dropouts' => 'منفکی ها',
+    'new_dropouts' => 'منفکی جدید',
+    'dropouts_list' => 'لیست منفکی ها',
+    'dropouts_date' => 'تاربخ منفکی',
+    'create_dropouts' => 'منفکی جدید',
+    'dropouts_list' => 'لیست منفکی ها',
+
+
 ];
