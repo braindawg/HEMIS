@@ -5,7 +5,7 @@
 <div class="row">
     <div class="col-md-3 col-sm-6">
         <div class="portlet text-center" style ="border-bottom: 2px solid #e05038;">
-            <h3>پوهنتون</h3>
+            <h3>تعداد پوهنتون ها</h3>
             <hr>
             @if( auth()->user()->allUniversities())
                 <h1 class = "counter">{{ count($allUniversities) }}</h1>
@@ -17,21 +17,21 @@
     </div>
     <div class="col-md-3 col-sm-6">
          <div class="portlet text-center" style ="border-bottom: 2px solid #28A744;">
-            <h3>پوهنځی</h3>
+            <h3>تعداد پوهنځی ها</h3>
             <hr>
             <h1 class = "counter">{{ count($allDepartments) }}</h1>
         </div>
     </div>
     <div class="col-md-3 col-sm-6">
          <div class="portlet text-center" style ="border-bottom: 2px solid #62bcfa;">
-            <h3>شاګرد کامیاب</h3>
+            <h3>تعداد محصلین کامیاب</h3>
             <hr>
             <h1 class = "counter">{{ $allStudents }}</h1>
         </div>
     </div>
     <div class="col-md-3 col-sm-6">
          <div class="portlet text-center" style ="border-bottom: 2px solid #f2b632;">
-            <h3>شامل پوهنتون</h3>
+            <h3>تعداد  محصلین شامل پوهنتون</h3>
             <hr>
             @if(sizeof($studentsByStatusCount) > 1)
                 <h1 class = "counter">{{ $studentsByStatusCount[1]->students_count }}</h1>  
@@ -41,6 +41,86 @@
         </div>
     </div>
 
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="portlet">
+            <div id="universities-bar-chart" style="min-width: 310px; min-height: 400px; "></div> 
+            <script  type="text/javascript">
+                Highcharts.chart('universities-bar-chart', {
+                        chart: {
+                            type: 'column',
+                            plotBackgroundColor: '#E9EEFF'
+                        },
+                        colors: ['#f2b632', '#fd7474', '#28A744', '#17a2b8'],
+                        credits:{
+                                    enabled: false
+                        },
+                        title: {
+                            text: 'تعداد محصلین براساس وضعیت در هر پوهنتون - 1397'
+                        },
+                        xAxis: {
+                            categories: [@foreach($studentsByStatus as $category)
+                            @if($category->name == 'انستیتوت تکنالوژی معلوماتی ومخابراتی وزارت مخابرات')
+                                                'انستیتوت مخابرات'
+                                            @else
+                                                '{{ $category->name }}'
+                                            @endif
+                                            {{$loop -> last ? '' : ','}}
+                            @endforeach]
+                        },
+                        yAxis: {
+                            min: 0,
+                            title: {
+                                text: "{{ trans('general.chart_yaxis_title_full') }}"
+                            },
+                            stackLabels: {
+                                enabled: true,
+                                style: {
+                                    fontWeight: 'bold',
+                                    color: (Highcharts.theme && Highcharts.theme.textColor) || 'gray'
+                                }
+                            }
+                        },
+                        legend: {
+                            align: 'right',
+                            x: -30,
+                            verticalAlign: 'top',
+                            y: 25,
+                            floating: true,
+                            backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || 'white',
+                            borderColor: '#CCC',
+                            borderWidth: 1,
+                            shadow: false
+                        },
+                        tooltip: {
+                            headerFormat: '<span><b>{series.name}</b></span><table>',
+                            pointFormat: '<tr><td>{point.y}</td></tr><tr><td>Total: {point.stackTotal}</td></tr>',
+                            footerFormat: '</table>',
+                            useHTML: true
+
+                        },
+                        plotOptions: {
+                            column: {
+                                stacking: 'normal',
+                                dataLabels: {
+                                    enabled: false,
+                                    color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white'
+                                }
+
+                            }
+                        },
+                        series: [ @foreach($statuses as $status)
+                            {
+                            name: '{{ $status->title }}',
+                            data: [@foreach($studentsByStatus as $studentsData) {{$studentsData -> studentsByStatus -> where('status_id', $status -> id) -> first() -> students_count ?? 0}} {{$loop -> last ? '' : ','}} @endforeach]
+                        }{{$loop -> last ? '' : ','}}
+                        @endforeach]
+                });
+            </script>
+        </div>
+    </div>
 </div>
 
 <div class="row">
@@ -150,139 +230,133 @@
     </div>
 </div>
 
-
-
-<div class="portlet">
-        <!-- <h1 class="text-center">تعداد محصلین براساس وضعیت در هر پوهنتون (1397)</h1> -->
-       
-        <div id="universities-bar-chart" style="min-width: 310px; min-height: 400px; "></div> 
-
-    <script  type="text/javascript">
-
-                Highcharts.chart('universities-bar-chart', {
-                    chart: {
-                        type: 'column',
-                        plotBackgroundColor: '#E9EEFF'
-                    },
-                    colors: ['#28A744', '#17a2b8'],
-                    credits:{
-                                enabled: false
-                    },
-                    title: {
-                        text: 'تعداد محصلین براساس وضعیت - 1397'
-                    },
-                    xAxis: {
-                        categories: [@foreach($studentsByStatus as $category)
-                         @if($category->name == 'انستیتوت تکنالوژی معلوماتی ومخابراتی وزارت مخابرات')
-                                            'انستیتوت مخابرات'
-                                        @else
-                                            '{{ $category->name }}'
-                                        @endif
-                                        {{$loop -> last ? '' : ','}}
-                        @endforeach]
-                    },
-                    yAxis: {
-                        min: 0,
-                        title: {
-                            text: "{{ trans('general.chart_yaxis_title_full') }}"
-                        },
-                        stackLabels: {
-                            enabled: true,
-                            style: {
-                                fontWeight: 'bold',
-                                color: (Highcharts.theme && Highcharts.theme.textColor) || 'gray'
-                            }
-                        }
-                    },
-                    legend: {
-                        align: 'right',
-                        x: -30,
-                        verticalAlign: 'top',
-                        y: 25,
-                        floating: true,
-                        backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || 'white',
-                        borderColor: '#CCC',
-                        borderWidth: 1,
-                        shadow: false
-                    },
-                    tooltip: {
-                        headerFormat: '<span><b>{series.name}</b></span><table>',
-                        pointFormat: '<tr><td>{point.y}</td></tr><tr><td>Total: {point.stackTotal}</td></tr>',
-                        footerFormat: '</table>',
-                        useHTML: true
-
-                    },
-                    plotOptions: {
-                        column: {
-                            stacking: 'normal',
-                            dataLabels: {
-                                enabled: false,
-                                color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white'
-                            }
-
-                        }
-                    },
-                    series: [ @foreach($statuses as $status)
-                        {
-                        name: '{{ $status->title }}',
-                        data: [@foreach($studentsByStatus as $studentsData) {{$studentsData -> studentsByStatus -> where('status_id', $status -> id) -> first() -> students_count ?? 0}} {{$loop -> last ? '' : ','}} @endforeach]
-                    }{{$loop -> last ? '' : ','}}
-                    @endforeach]
-            });
-    
-           
-    </script>
-    
-</div>
-
  <!-- this portlet is used to show chart for students of a specific city in all other cities -->
 @if( auth()->user()->allUniversities())
-<div class="portlet">
-
-        <div class="row">
-            <div class="col-md-12">
-                <div class="col-md-6 col-sm-12">
-                    <h1>
-                        <h3>لطف نموده ولایت را انتخاب نماید</h3>
-                    </h1>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="portlet">
+                <div class="portlet-title">
+                    <div class="col-md-1 col-sm-12">
+                        <h3 style="text-align: left">ولایت:</h3>   
+                    </div>
+                    <div class="col-md-3 col-sm-12" >
+                        <select name="cities" id="" class="form-control" style = "width: 80% !important; margin-top:16px;" onChange="getCitySpecData(this.value, 'university-specific')">
+                            @foreach($allProvinces as $province)
+                            <option value="{{ $province->id }}">{{ $province->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
                 </div>
-                <div class="col-md-6 col-sm-12" >
-                    <select name="cities" id="" class="form-control" style = "width: 80% !important; margin-top:16px;" onChange="getCitySpecData(this.value, 'university-specific')">
-                        @foreach($allProvinces as $province)
-                        <option value="{{ $province->id }}">{{ $province->name }}</option>
+                <div id="university-specific" style="min-width: 310px; min-height: 400px; "></div>
+                    <script  type="text/javascript">
+                        Highcharts.chart('university-specific', {
+                            chart: {
+                                type: 'column',
+                                plotBackgroundColor: '#FCFFC5'
+                            },
+                            colors: ['#17a2b8' ],
+                            credits:{
+                                        enabled: false
+                            },
+                            title: {
+                                text: 'تعداد محصلین ولایت {{$city}} بر اساس پوهنتون ها'
+                            },
+                            xAxis: {
+                                categories: [@foreach($uniSpecStudents as $uniSpec)
+                                    @if($uniSpec-> name == 'انستیتوت تکنالوژی معلوماتی ومخابراتی وزارت مخابرات')
+                                        'انستیتوت مخابرات'
+                                    @else
+                                    '{{ $uniSpec->name }}'
+                                    @endif
+                                        {{$loop -> last ? '' : ','}}
+                                @endforeach]
+                            },
+                            yAxis: {
+                                min: 0,
+                                title: {
+                                    text: "{{ trans('general.barchart_yaxis_title') }}"
+                                },
+                                stackLabels: {
+                                    enabled: true,
+                                    style: {
+                                        fontWeight: 'bold',
+                                        color: (Highcharts.theme && Highcharts.theme.textColor) || 'gray'
+                                    }
+                                }
+                            },
+                            legend: {
+                                align: 'right',
+                                x: -30,
+                                verticalAlign: 'top',
+                                y: 25,
+                                floating: true,
+                                backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || 'white',
+                                borderColor: '#CCC',
+                                borderWidth: 1,
+                                shadow: false
+                            },
+                            tooltip: {
+                                headerFormat: '<span><b>{series.name}</b></span><table>',
+                                pointFormat: '<tr><td>{point.y}</td></tr>',
+                                footerFormat: '</table>',
+                                useHTML: true
+
+                            },
+                            plotOptions: {
+                                column: {
+                                    stacking: 'normal',
+                                    dataLabels: {
+                                        enabled: false,
+                                        color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || '17a2b8'
+                                    }
+
+                                }
+                            },
+                            series: [{
+                                name: 'تعداد محصلین',
+                                data: [ @foreach($uniSpecStudents as $uniSpec) {{ $uniSpec->std_count }} {{ $loop->last ? '' : ',' }} @endforeach]
+                            }
+                        ]
+                    });
+            </script>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="portlet">
+            <div class="portlet-title">
+                <div class="col-md-1 col-sm-2">
+                    <h3 style="text-align: left">پوهنتون:</h3>
+                </div>
+                <div class="col-md-3 col-sm-4">
+                    <select name="universities" id="" class="form-control" style="width: 80% !important; margin-top:16px;"onChange="getUniSpecData(this.value, 'province-specific')">
+                        @foreach($allUniversities as $university)
+                        <option value="{{ $university->id }}">{{ $university->name }}</option>
                         @endforeach
                     </select>
-                    </h1>
                 </div>
             </div>
-        </div>
-        
-
-        <div id="university-specific" style="min-width: 310px; min-height: 400px; "></div> 
-
-    <script  type="text/javascript">
-
-                Highcharts.chart('university-specific', {
+            <div id="province-specific" style="min-width: 310px; min-height: 400px; "></div>
+            <script type="text/javascript">
+                Highcharts.chart('province-specific', {
                     chart: {
                         type: 'column',
-                        plotBackgroundColor: '#FCFFC5'
+                        plotBackgroundColor: '#e1e8f0'
                     },
-                    colors: ['#17a2b8' ],
-                    credits:{
-                                enabled: false
+                    colors: ['#e62739' ],
+                    credits: {
+                        enabled: false
                     },
                     title: {
-                        text: ' تعداد محصلین از ولایت {{$city}} در پوهنتونها'
+                        text: ' تعداد محصلین پوهنتون  {{$uniName}} بر اساس ولایت'
                     },
                     xAxis: {
-                        categories: [@foreach($uniSpecStudents as $uniSpec)
-                            @if($uniSpec-> name == 'انستیتوت تکنالوژی معلوماتی ومخابراتی وزارت مخابرات')
-                                'انستیتوت مخابرات'
-                            @else
-                            '{{ $uniSpec->name }}'
-                            @endif
-                                {{$loop -> last ? '' : ','}}
-                        @endforeach]
+                        categories: [@foreach($proSpecStudents as $proSpec)
+                        '{{ $proSpec->name }}' {{ $loop -> last ? '' : ','}}
+                            @endforeach
+                        ]
                     },
                     yAxis: {
                         min: 0,
@@ -320,123 +394,20 @@
                             stacking: 'normal',
                             dataLabels: {
                                 enabled: false,
-                                color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || '17a2b8'
+                                color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || '6FC827'
                             }
 
                         }
                     },
-                    series: [
-                        {
-                        name: 'تعداد شاګردان',
-                        data: [ @foreach($uniSpecStudents as $uniSpec) {{ $uniSpec->std_count }} {{ $loop->last ? '' : ',' }} @endforeach]
-                        }
-                   ]
-            });
-    
-           
-    </script>
-
-   
-
-
-</div>
-
-
-
-<!-- this portlet is used to show chart for students of a specific city in all other cities -->
-
-<div class="portlet">
-
-    <div class="row">
-        <div class="col-md-12">
-            <div class="col-md-6 col-sm-12">
-                <h1>
-                    <h3>لطف نموده پوهنتون را انتخاب نماید</h3>
-                </h1>
-            </div>
-            <div class="col-md-6 col-sm-12">
-                <select name="universities" id="" class="form-control" style="width: 80% !important; margin-top:16px;"onChange="getUniSpecData(this.value, 'province-specific')">
-                    @foreach($allUniversities as $university)
-                    <option value="{{ $university->id }}">{{ $university->name }}</option>
-                    @endforeach
-                </select>
-                </h1>
-            </div>
+                    series: [{
+                        name: "{{ trans('general.barchart_series_name') }} ",
+                        data: [@foreach($proSpecStudents as $proSpec) {{ $proSpec -> std_count}} {{ $loop -> last ? '' : ',' }}
+                            @endforeach]
+                    }]
+                });
+            </script>
         </div>
     </div>
-
-
-    <div id="province-specific" style="min-width: 310px; min-height: 400px; "></div>
-
-    <script type="text/javascript">
-        Highcharts.chart('province-specific', {
-            chart: {
-                type: 'column',
-                plotBackgroundColor: '#e1e8f0'
-            },
-            colors: ['#e62739' ],
-            credits: {
-                enabled: false
-            },
-            title: {
-                text: ' تعداد محصلین نظر به ولایات در پوهنتون {{$uniName}} '
-            },
-            xAxis: {
-                categories: [@foreach($proSpecStudents as $proSpec)
-                   '{{ $proSpec->name }}' {{ $loop -> last ? '' : ','}}
-                    @endforeach
-                ]
-            },
-            yAxis: {
-                min: 0,
-                title: {
-                    text: "{{ trans('general.barchart_yaxis_title') }}"
-                },
-                stackLabels: {
-                    enabled: true,
-                    style: {
-                        fontWeight: 'bold',
-                        color: (Highcharts.theme && Highcharts.theme.textColor) || 'gray'
-                    }
-                }
-            },
-            legend: {
-                align: 'right',
-                x: -30,
-                verticalAlign: 'top',
-                y: 25,
-                floating: true,
-                backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || 'white',
-                borderColor: '#CCC',
-                borderWidth: 1,
-                shadow: false
-            },
-            tooltip: {
-                headerFormat: '<span><b>{series.name}</b></span><table>',
-                pointFormat: '<tr><td>{point.y}</td></tr>',
-                footerFormat: '</table>',
-                useHTML: true
-
-            },
-            plotOptions: {
-                column: {
-                    stacking: 'normal',
-                    dataLabels: {
-                        enabled: false,
-                        color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || '6FC827'
-                    }
-
-                }
-            },
-            series: [{
-                name: "{{ trans('general.barchart_series_name') }} ",
-                data: [@foreach($proSpecStudents as $proSpec) {{ $proSpec -> std_count}} {{ $loop -> last ? '' : ',' }}
-                    @endforeach]
-            }]
-        });
-    </script>
-
-
 </div>
 
 @endif
