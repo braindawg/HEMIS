@@ -2,16 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Dropouts;
 use App\Models\Student;
 use App\Models\Transfer;
 use App\Models\University;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Maklad\Permission\Models\Role;
-use App\DataTables\TransfersDataTable;
+use App\DataTables\DropoutsDataTable;
 use Maklad\Permission\Models\Permission;
 
-class TransfersController extends Controller
+class DropoutsController extends Controller
 {
     public function __construct()
     {        
@@ -25,11 +26,11 @@ class TransfersController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(TransfersDataTable $dataTable)
+    public function index(DropoutsDataTable $dataTable)
     {        
-        return $dataTable->render('transfers.index', [
-            'title' => trans('general.transfers'),
-            'description' => trans('general.transfers_list')            
+        return $dataTable->render('dropouts.index', [
+            'title' => trans('general.dropouts'),
+            'description' => trans('general.dropouts_list')
         ]);
     }
 
@@ -40,10 +41,10 @@ class TransfersController extends Controller
      */
     public function create()
     {
-        return view('transfers.create', [
-            'title' => trans('general.transfers'),
-            'description' => trans('general.new_transfer'),
-            'universities' => University::pluck('name', 'id')
+        return view('dropouts.create', [
+            'title' => trans('general.dropouts'),
+            'description' => trans('general.new_dropouts'),
+            'students' => Student::pluck('name', 'id')
         ]);
     }
 
@@ -57,27 +58,23 @@ class TransfersController extends Controller
     {        
         $validatedData = $request->validate([            
             'student_id' => 'required',
-            'university_id' => 'required',
-            'department_id' => 'required'
         ]);
 
         \DB::transaction(function () use ($request){
             $student = Student::find($request->student_id);
             
-            $transfer = Transfer::create([
+            $dropouts = Dropouts::create([
                 'student_id' => $request->student_id,
-                'from_department_id' => $student->department_id,
-                'to_department_id' => $request->department_id,
+                'dropouts_date' => '2018-09-12',
                 'note' => $request->note
             ]);
 
             $student->update([
-                'university_id' => $request->university_id,
-                'department_id' => $request->department_id
+                'status_id' => 3,
             ]);
         });
 
-        return redirect(route('transfers.index'));
+        return redirect(route('dropouts.index'));
     }
     
     /**
@@ -86,16 +83,16 @@ class TransfersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($transfer)
+    public function destroy($dropout)
     {
-        \DB::transaction(function () use ($transfer){
-            $transfer->student->update([
-                'university_id' => $transfer->fromDepartment->university_id,
-                'department_id' => $transfer->from_department_id
+
+        \DB::transaction(function () use ($dropout){
+            $dropout->student->update([
+                'status_id' => 1
             ]);
-            $transfer->delete();
+            $dropout->delete();
         });
 
-        return redirect(route('transfers.index'));
+        return redirect(route('dropouts.index'));
     }
 }

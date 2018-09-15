@@ -38,7 +38,8 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('/students/{student}/card', 'StudentCardController@index')->name('students.card');
 
     Route::resource('/transfers', 'TransfersController');
-    
+    Route::resource('/dropouts', 'DropoutsController');
+
     Route::resource('/universities', 'UniversitiesController');
     Route::resource('/universities/{university}/departments', 'DepartmentsController');
 
