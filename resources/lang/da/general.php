@@ -132,5 +132,12 @@ return [
     'create_dropouts' => 'منفکی جدید',
     'dropouts_list' => 'لیست منفکی ها',
 
+    'leaves' => 'تعجیلی ها',
+    'new_leaves' => 'تعجیلی جدید',
+    'leaves_list' => 'لیست تعجیلی ها',
+    'leave_year' => 'سال تعجیلی',
+    'create_leaves' => 'تعجیلی جدید',
+    'leaves_list' => 'لیست تعجیلی ها',
+
 
 ];
