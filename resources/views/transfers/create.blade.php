@@ -41,7 +41,7 @@
                             <div class="form-group {{ $errors->has('department_id') ? ' has-error' : '' }}">
                                 {!! Form::label('department_id', trans('general.department'), ['class' => 'control-label col-sm-3']) !!}                                
                                 <div class="col-sm-9">
-                                    {!! Form::select('department_id', [], null, ['class' => 'form-control select2-ajax', 'remote-url' => route('api.departments'), 'remote-param' => 'select[name="university"]']) !!}
+                                    {!! Form::select('department_id', [], null, ['class' => 'form-control select2-ajax', 'remote-url' => route('api.departments'), 'remote-param' => 'select[name="university_id"]']) !!}
                                     @if ($errors->has('department_id'))
                                         <span class="help-block">
                                             <strong>{{ $errors->first('department_id') }}</strong>

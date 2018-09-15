@@ -9,14 +9,14 @@ use App\Http\Controllers\Controller;
 
 class DepartmentsController extends Controller
 {
-    public function index(Request $request, $universityId)
+    public function index(Request $request, $universityId = null)
     {
         
-       $departments =  Department::select('id', 'name as text');
-
+        $departments =  Department::select('id', 'name as text')
+            ->where('university_id', $universityId);
+        
         if ($request->q != '') {
-            $departments->where('name', 'like', '%'.$request->q.'%')
-                ->where('university_id', $universityId);
+            $departments->where('name', 'like', '%'.$request->q.'%');
         }
                 
         return $departments->get();
