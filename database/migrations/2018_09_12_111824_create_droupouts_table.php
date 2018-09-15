@@ -19,6 +19,8 @@ class CreateDroupoutsTable extends Migration
             $table->date('dropouts_date')->nullable();
             $table->text('note')->nullable();
             $table->timestamps();
+            $table->softdeletes();
+
         });
     }
 
