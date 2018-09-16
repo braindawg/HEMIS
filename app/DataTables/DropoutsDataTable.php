@@ -76,7 +76,7 @@ class DropoutsDataTable extends DataTable
             'name'            => ['title' => trans('general.name')],
             'father_name'     => ['title' => trans('general.father_name')],
             'dropouts_date'     => ['title' => trans('general.dropouts_date')],
-            'note'            => ['name' => 'transfers.note', 'title' => trans('general.note'), 'sortable' => false, 'searchable' => false]
+            'note'            => ['name' => 'dropouts.note', 'title' => trans('general.note'), 'sortable' => false, 'searchable' => false]
         ];
     }
 

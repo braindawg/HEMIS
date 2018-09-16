@@ -11,7 +11,7 @@
                             <div class="form-group {{ $errors->has('student_id') ? ' has-error' : '' }}">
                                 {!! Form::label('student_id', trans('general.student'), ['class' => 'control-label col-sm-3']) !!}                                
                                 <div class="col-sm-9">
-                                    {!! Form::select('student_id', $students, null, ['class' => 'form-control select2-students']) !!}
+                                    {!! Form::select('student_id', [], null, ['class' => 'form-control select2-students']) !!}
                                     @if ($errors->has('student_id'))
                                         <span class="help-block">
                                             <strong>{{ $errors->first('student_id') }}</strong>
