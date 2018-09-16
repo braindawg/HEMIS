@@ -9,7 +9,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Leave extends Model
 {
     use SoftDeletes;
+
     protected $guarded = [];
+    
     public function student()
     {
         return $this->belongsTo(\App\Models\Student::class, 'student_id');

@@ -16,11 +16,10 @@ class CreateDroupoutsTable extends Migration
         Schema::create('dropouts', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('student_id')->unsigned();
-            $table->date('dropouts_date')->nullable();
+            $table->date('dropout_date')->nullable();
             $table->text('note')->nullable();
             $table->timestamps();
             $table->softdeletes();
-
         });
     }
 

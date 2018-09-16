@@ -114,7 +114,7 @@ return [
 
     'transfers' => 'تبدیلی ها',
     'new_transfer' => 'تبدیلی جدید',
-    'transfers_list' => 'لیست تبذیلی ها',
+    'transfers_list' => 'لیست تبدیلی ها',
     'create_transfer' => 'تبدیلی جدید',
     'student' => 'محصل',
     'note' => 'نوت',
@@ -129,14 +129,14 @@ return [
     'new_dropouts' => 'منفکی جدید',
     'dropouts_list' => 'لیست منفکی ها',
     'dropouts_date' => 'تاربخ منفکی',
-    'create_dropouts' => 'منفکی جدید',
+    'create_dropout' => 'منفکی جدید',
     'dropouts_list' => 'لیست منفکی ها',
 
     'leaves' => 'تعجیلی ها',
     'new_leaves' => 'تعجیلی جدید',
     'leaves_list' => 'لیست تعجیلی ها',
     'leave_year' => 'سال تعجیلی',
-    'create_leaves' => 'تعجیلی جدید',
+    'create_leave' => 'تعجیلی جدید',
     'leaves_list' => 'لیست تعجیلی ها',
 
 

@@ -83,6 +83,58 @@
     </li>
     @endif
 
+    @if (auth()->user()->can(['view-leave']))
+    <li class="nav-item start {{ request()->is('leaves*') ? 'active' : '' }}">
+        <a href="#" class="nav-link nav-toggle">
+            <i class="icon-grid"></i>
+            <span class="title">{{ trans('general.leaves') }}</span>
+            <span class="arrow {{ request()->is('leaves*') ? 'open' : '' }}"></span>
+        </a>
+        <ul class="sub-menu">            
+            <li class="nav-item {{ request()->is('leaves') ? 'active' : '' }}">
+                <a href="{{ route('leaves.index') }}" class="nav-link ">
+                    <i class="icon-list"></i>
+                    <span class="title">{{ trans('general.leaves_list') }}</span>                    
+                </a>
+            </li> 
+            @if (auth()->user()->can(['create-leave']))          
+            <li class="nav-item {{ request()->is('leaves/create') ? 'active' : '' }}">
+                <a href="{{ route('leaves.create') }}" class="nav-link ">
+                    <i class="icon-plus"></i>
+                    <span class="title">{{ trans('general.create_leave') }}</span>
+                </a>
+            </li>
+            @endif            
+        </ul>
+    </li>
+    @endif
+
+    @if (auth()->user()->can(['view-dropout']))
+    <li class="nav-item start {{ request()->is('dropouts*') ? 'active' : '' }}">
+        <a href="#" class="nav-link nav-toggle">
+            <i class="icon-grid"></i>
+            <span class="title">{{ trans('general.dropouts') }}</span>
+            <span class="arrow {{ request()->is('dropouts*') ? 'open' : '' }}"></span>
+        </a>
+        <ul class="sub-menu">            
+            <li class="nav-item {{ request()->is('dropouts') ? 'active' : '' }}">
+                <a href="{{ route('dropouts.index') }}" class="nav-link ">
+                    <i class="icon-list"></i>
+                    <span class="title">{{ trans('general.dropouts_list') }}</span>                    
+                </a>
+            </li> 
+            @if (auth()->user()->can(['create-dropout']))          
+            <li class="nav-item {{ request()->is('dropouts/create') ? 'active' : '' }}">
+                <a href="{{ route('dropouts.create') }}" class="nav-link ">
+                    <i class="icon-plus"></i>
+                    <span class="title">{{ trans('general.create_dropout') }}</span>
+                </a>
+            </li>
+            @endif            
+        </ul>
+    </li>
+    @endif
+
     @if (auth()->user()->hasAnyPermission(['view-user', 'view-role']))
     <li class="nav-item start {{ (request()->is('users*') or request()->is('roles*')) ? 'active' : '' }}">
         <a href="javascript:;" class="nav-link nav-toggle">

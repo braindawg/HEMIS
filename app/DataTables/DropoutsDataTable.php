@@ -2,7 +2,7 @@
 
 namespace App\DataTables;
 
-use App\Models\Dropouts;
+use App\Models\Dropout;
 use Yajra\DataTables\Services\DataTable;
 
 class DropoutsDataTable extends DataTable
@@ -36,7 +36,7 @@ class DropoutsDataTable extends DataTable
      * @param \App\Models\Transfer $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function query(Dropouts $model)
+    public function query(Dropout $model)
     {
         $query = $model->select(
             'dropouts.id',
