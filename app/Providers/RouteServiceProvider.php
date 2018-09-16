@@ -31,6 +31,7 @@ class RouteServiceProvider extends ServiceProvider
         Route::model('student', \App\Models\Student::class);
         Route::model('transfer', \App\Models\Transfer::class);
         Route::model('dropout', \App\Models\Dropouts::class);
+        Route::model('leave', \App\Models\Leave::class);
     }
 
     /**
