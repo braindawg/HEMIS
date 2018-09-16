@@ -44,7 +44,6 @@ class DropoutsController extends Controller
         return view('dropouts.create', [
             'title' => trans('general.dropouts'),
             'description' => trans('general.new_dropouts'),
-            'students' => Student::pluck('name', 'id')
         ]);
     }
 
@@ -68,7 +67,6 @@ class DropoutsController extends Controller
                 'dropouts_date' => '2018-09-12',
                 'note' => $request->note
             ]);
-
             $student->update([
                 'status_id' => 3,
             ]);

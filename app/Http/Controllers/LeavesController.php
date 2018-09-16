@@ -42,7 +42,6 @@ class LeavesController extends Controller
         return view('leaves.create', [
             'title' => trans('general.leaves'),
             'description' => trans('general.new_leaves'),
-            'students' => Student::pluck('name', 'id')
         ]);
     }
 
