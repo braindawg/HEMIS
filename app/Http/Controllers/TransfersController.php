@@ -65,8 +65,8 @@ class TransfersController extends Controller
             
             $transfer = Transfer::create([
                 'student_id' => $request->student_id,
-                'from_department_id' => $student->department_id,
-                'to_department_id' => $request->department_id,
+                'from_department_id' => $student->department_id, //from studetn existing department
+                'to_department_id' => $request->department_id, //to requested department  
                 'note' => $request->note
             ]);
 

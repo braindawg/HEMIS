@@ -2,9 +2,6 @@
 
 @section('content')
     <div class="portlet light bordered card">
-        <div class="alert alert-danger">
-            به دلیل مشکلات تخنیکی که در سیستم بوجود آمد, لطفا دیتای تاریخ ۱۹ سنبله الی ۲۰ سنبله را مجددا آبدیت نمایید.
-        </div>
         @if (session('message'))
             <div class="alert alert-success">
                 {{ session('message') }}

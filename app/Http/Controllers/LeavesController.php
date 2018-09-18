@@ -55,17 +55,20 @@ class LeavesController extends Controller
         ]);
 
         \DB::transaction(function () use ($request){
+            
             $student = Student::find($request->student_id);
             
             $leaves = Leave::create([
                 'student_id' => $request->student_id,
                 'leave_year' => $request->leave_year,
-                'note' => $request->note
+                'note' => $request->note,
+                'university_id' => $student->university_id
             ]);
 
             $student->update([
                 'status_id' => 4,
             ]);
+            
         });
 
         return redirect(route('leaves.index'));
@@ -80,10 +83,13 @@ class LeavesController extends Controller
     public function destroy($leave)
     {
         \DB::transaction(function () use ($leave){
+            
             $leave->student->update([
                 'status_id' => 1
             ]);
+
             $leave->delete();
+
         });
 
         return redirect(route('leaves.index'));

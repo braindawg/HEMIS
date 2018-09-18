@@ -48,10 +48,18 @@ class TransfersDataTable extends DataTable
             'note'
             )
         ->join('students', 'students.id', '=', 'student_id')
-        ->leftJoin('departments as from_department', 'from_department.id', '=', 'from_department_id')
-        ->leftJoin('departments as to_department', 'to_department.id', '=', 'to_department_id')
+        ->join('departments as from_department', 'from_department.id', '=', 'from_department_id')
+        ->join('departments as to_department', 'to_department.id', '=', 'to_department_id')
         ->leftJoin('universities as from_university', 'from_university.id', '=', 'from_department.university_id')
         ->leftJoin('universities as to_university', 'to_university.id', '=', 'to_department.university_id');
+
+        if (! auth()->user()->allUniversities()) {
+                
+            $query->leftJoin('departments as from', 'from.id', '=' , 'from_department_id')
+                ->leftJoin('departments as to', 'from.id', '=' , 'to_department_id')
+                ->where('from_department.university_id', auth()->user()->university_id)
+                ->orWhere('to_department.university_id', auth()->user()->university_id);                    
+        }
 
         return $query;
     }

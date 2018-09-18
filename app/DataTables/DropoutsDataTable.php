@@ -42,7 +42,6 @@ class DropoutsDataTable extends DataTable
             'dropouts.id',
             'students.form_no',
             'students.name',
-            'dropouts.dropouts_date',
             'students.father_name as father_name',
             'note'
             )
@@ -75,7 +74,6 @@ class DropoutsDataTable extends DataTable
             'form_no'         => ['title' => trans('general.form_no')],
             'name'            => ['title' => trans('general.name')],
             'father_name'     => ['title' => trans('general.father_name')],
-            'dropouts_date'     => ['title' => trans('general.dropouts_date')],
             'note'            => ['name' => 'dropouts.note', 'title' => trans('general.note'), 'sortable' => false, 'searchable' => false]
         ];
     }

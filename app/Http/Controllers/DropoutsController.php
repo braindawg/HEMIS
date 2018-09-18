@@ -54,16 +54,19 @@ class DropoutsController extends Controller
         ]);
 
         \DB::transaction(function () use ($request){
+            
             $student = Student::find($request->student_id);
             
             $dropouts = Dropout::create([
                 'student_id' => $request->student_id,
-                'dropouts_date' => '2018-09-12',
-                'note' => $request->note
+                'note' => $request->note,
+                'university_id' => $student->university_id
             ]);
+
             $student->update([
                 'status_id' => 3,
             ]);
+
         });
 
         return redirect(route('dropouts.index'));
