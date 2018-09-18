@@ -2,24 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Dropouts;
+use App\Models\Dropout;
 use App\Models\Student;
-use App\Models\Transfer;
-use App\Models\University;
 use Illuminate\Http\Request;
-use Illuminate\Validation\Rule;
-use Maklad\Permission\Models\Role;
 use App\DataTables\DropoutsDataTable;
-use Maklad\Permission\Models\Permission;
 
 class DropoutsController extends Controller
 {
     public function __construct()
     {        
-        //  $this->middleware('permission:view-transfer', ['only' => ['index', 'show']]);        
-        //  $this->middleware('permission:create-transfer', ['only' => ['create','store']]);
-        //  $this->middleware('permission:edit-transfer', ['only' => ['edit','update', 'updateStatus']]);
-        //  $this->middleware('permission:delete-transfer', ['only' => ['destroy']]);
+        $this->middleware('permission:view-dropout', ['only' => ['index', 'show']]);        
+        $this->middleware('permission:create-dropout', ['only' => ['create','store']]);
+        $this->middleware('permission:delete-dropout', ['only' => ['destroy']]);
     }
     /**
      * Display a listing of the resource.
@@ -60,16 +54,19 @@ class DropoutsController extends Controller
         ]);
 
         \DB::transaction(function () use ($request){
+            
             $student = Student::find($request->student_id);
             
-            $dropouts = Dropouts::create([
+            $dropouts = Dropout::create([
                 'student_id' => $request->student_id,
-                'dropouts_date' => '2018-09-12',
-                'note' => $request->note
+                'note' => $request->note,
+                'university_id' => $student->university_id
             ]);
+
             $student->update([
                 'status_id' => 3,
             ]);
+
         });
 
         return redirect(route('dropouts.index'));

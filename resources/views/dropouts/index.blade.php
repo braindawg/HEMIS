@@ -8,8 +8,8 @@
             </div>
         @endif
         <div class="portlet-title">
-            @can ('create-student')
-            <a href="{{ route('dropouts.create') }}" class="btn btn-info"><i class="icon-plus"></i> {{ trans('general.create_dropouts') }} </a>
+            @can ('create-dropout')
+            <a href="{{ route('dropouts.create') }}" class="btn btn-info"><i class="icon-plus"></i> {{ trans('general.create_dropout') }} </a>
             @endcan
             <div class="tools"> </div>
         </div>

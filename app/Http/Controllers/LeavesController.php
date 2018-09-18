@@ -5,19 +5,15 @@ namespace App\Http\Controllers;
 use App\Models\Leave;
 use App\Models\Student;
 use Illuminate\Http\Request;
-use Illuminate\Validation\Rule;
-use Maklad\Permission\Models\Role;
 use App\DataTables\LeavesDataTable;
-use Maklad\Permission\Models\Permission;
 
 class LeavesController extends Controller
 {
     public function __construct()
     {        
-        //  $this->middleware('permission:view-transfer', ['only' => ['index', 'show']]);        
-        //  $this->middleware('permission:create-transfer', ['only' => ['create','store']]);
-        //  $this->middleware('permission:edit-transfer', ['only' => ['edit','update', 'updateStatus']]);
-        //  $this->middleware('permission:delete-transfer', ['only' => ['destroy']]);
+        $this->middleware('permission:view-leave', ['only' => ['index', 'show']]);        
+        $this->middleware('permission:create-leave', ['only' => ['create','store']]);
+        $this->middleware('permission:delete-leave', ['only' => ['destroy']]);
     }
     /**
      * Display a listing of the resource.
@@ -59,17 +55,20 @@ class LeavesController extends Controller
         ]);
 
         \DB::transaction(function () use ($request){
+            
             $student = Student::find($request->student_id);
             
             $leaves = Leave::create([
                 'student_id' => $request->student_id,
                 'leave_year' => $request->leave_year,
-                'note' => $request->note
+                'note' => $request->note,
+                'university_id' => $student->university_id
             ]);
 
             $student->update([
                 'status_id' => 4,
             ]);
+            
         });
 
         return redirect(route('leaves.index'));
@@ -84,10 +83,13 @@ class LeavesController extends Controller
     public function destroy($leave)
     {
         \DB::transaction(function () use ($leave){
+            
             $leave->student->update([
                 'status_id' => 1
             ]);
+
             $leave->delete();
+
         });
 
         return redirect(route('leaves.index'));

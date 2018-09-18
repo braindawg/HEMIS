@@ -96,7 +96,7 @@ class StudentsController extends Controller
             'description' => trans('general.edit_student'),
             'student' => $student,
             'universities' => University::pluck('name', 'id'),
-            'statuses' => StudentStatus::pluck('title', 'id')
+            'statuses' => StudentStatus::whereIn('id', [1, 2])->pluck('title', 'id')
         ]);
     }
 
