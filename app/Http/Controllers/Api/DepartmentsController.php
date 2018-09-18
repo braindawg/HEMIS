@@ -12,8 +12,11 @@ class DepartmentsController extends Controller
     public function index(Request $request, $universityId = null)
     {
         
-        $departments =  Department::select('id', 'name as text')
-            ->where('university_id', $universityId);
+        $departments =  Department::select('id', 'name as text');
+        
+        if ($universityId != 'undefined') {
+            $departments->where('university_id', $universityId);
+        }
         
         if ($request->q != '') {
             $departments->where('name', 'like', '%'.$request->q.'%');

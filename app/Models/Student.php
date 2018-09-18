@@ -73,4 +73,9 @@ class Student extends Model
 
         return asset("img/avatar-placeholder.png");
     }
+
+    public function getFullNameAttribute()
+    {
+        return $this->name." ".$this->last_name;
+    }
 }

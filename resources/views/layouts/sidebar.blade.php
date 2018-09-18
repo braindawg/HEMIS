@@ -32,11 +32,11 @@
     @endif
 
     @if (auth()->user()->can(['view-student']))
-    <li class="nav-item start {{ request()->is('students*') ? 'active' : '' }}">
+    <li class="nav-item start {{ (request()->is('students*') or request()->is('attendance*')) ? 'active' : '' }}">
         <a href="#" class="nav-link nav-toggle">
             <i class="icon-graduation"></i>
             <span class="title">{{ trans('general.students') }}</span>
-            <span class="arrow {{ request()->is('students*') ? 'open' : '' }}"></span>
+            <span class="arrow {{ (request()->is('students*') or request()->is('attendance*')) ? 'open' : '' }}"></span>
         </a>
         <ul class="sub-menu">
             <li class="nav-item {{ request()->is('students') ? 'active' : '' }}">
@@ -45,6 +45,12 @@
                     <span class="title">{{ trans('general.students_list') }}</span>                    
                 </a>
             </li> 
+            <li class="nav-item {{ request()->is('attendance') ? 'active' : '' }}">
+                <a href="{{ route('attendance.create') }}" class="nav-link ">
+                    <i class="icon-printer"></i>
+                    <span class="title">{{ trans('general.print_attendance') }}</span>
+                </a>
+            </li>
             @if (auth()->user()->can(['create-student']))          
             <li class="nav-item {{ request()->is('students/create') ? 'active' : '' }}">
                 <a href="{{ route('students.create') }}" class="nav-link ">

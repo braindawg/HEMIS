@@ -37,6 +37,9 @@ Route::group(['middleware' => 'auth'], function() {
     Route::patch('/students/{student}/updateStatus', 'StudentsController@updateStatus')->name('students.updateStatus');
     Route::get('/students/{student}/card', 'StudentCardController@index')->name('students.card');
 
+    Route::get('/attendance', 'AttendanceController@index')->name('attendance.create');
+    Route::get('/attendance/show', 'AttendanceController@show')->name('attendance.show');
+
     Route::resource('/transfers', 'TransfersController');
     Route::resource('/dropouts', 'DropoutsController');
     Route::resource('/leaves', 'LeavesController', ['parameters' => [
