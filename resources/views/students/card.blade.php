@@ -4,15 +4,6 @@
 					/*(% of page-box width for LR, of height for TB) */
 		margin-header: 0; /* <any of the usual CSS values for margins> */
 		margin-footer: 0; /* <any of the usual CSS values for margins> */
-		/* marks: /*crop | cross | none
-		header: html_myHTMLHeaderOdd;
-		footer: html_myHTMLFooterOdd;
-		background: ...
-		background-image: ...
-		background-position ...
-		background-repeat ...
-		background-color ...
-		background-gradient: ... */
 		background: url('{{ asset('img/app/card-dari.jpg') }}');
 		background-image-resize: 4;
 	}
@@ -35,7 +26,7 @@
 </style>
 
 <div>
-	<div style="margin-right:60px; padding-top:48px; width: 204px;text-align:center; float:right; {{ $student->university_id == 38 ? 'font-size: 8px' : '' }}">
+	<div style="margin-right:60px; width: 208px;text-align:center; float:right; {{ strlen($student->university->name) > 40 ? 'font-size: 8px;padding-top:53px; ' : 'padding-top:48px;' }}">
 			پوهنتون {{ $student->university->name }}
 	</div>
 
@@ -65,7 +56,7 @@
 </div>
 
 <div class="eng">
-	<div style="margin-right:60px; padding-top:48px; width: 200px;text-align:center; float:right;">
+	<div style="margin-right:60px; width: 200px;text-align:center; float:right; {{ strlen($student->university->name) > 40 ? 'font-size: 8px;padding-top:53px; ' : 'padding-top:48px;' }}">
 		{{ $student->university->name_eng }}
 	</div>
 

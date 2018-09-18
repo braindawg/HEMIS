@@ -132,12 +132,19 @@ return [
     'create_dropout' => 'منفکی جدید',
     'dropouts_list' => 'لیست منفکی ها',
 
-    'leaves' => 'تعجیلی ها',
-    'new_leaves' => 'تعجیلی جدید',
-    'leaves_list' => 'لیست تعجیلی ها',
-    'leave_year' => 'سال تعجیلی',
-    'create_leave' => 'تعجیلی جدید',
-    'leaves_list' => 'لیست تعجیلی ها',
+    'leaves' => 'تاجیلی ها',
+    'new_leaves' => 'تاجیلی جدید',
+    'leaves_list' => 'لیست تاجیلی ها',
+    'leave_year' => 'سال تاجیلی',
+    'create_leave' => 'تاجیلی جدید',
+    'leaves_list' => 'لیست تاجیلی ها',
 
-
+    'print_attendance' => 'پرینت حاضری',
+    'attendance' => 'حاضری',
+    'create_attendance' => 'ایجاد حاضری',
+    'hours' => 'تعداد ساعات درسی',
+    'teacher' => 'نام استاد',
+    'subject' => 'نام مضممون',
+    'grade' => 'صنف',
+    'semester' => 'سمستر',
 ];
