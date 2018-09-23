@@ -45,8 +45,7 @@ Route::group(['middleware' => 'auth'], function() {
     Route::resource('/leaves', 'LeavesController', ['parameters' => [
         'leaves' => 'leave'
     ]]);
-
-
+    Route::resource('/teachers', 'TeachersController');
     Route::resource('/universities', 'UniversitiesController');
     Route::resource('/universities/{university}/departments', 'DepartmentsController');
 

@@ -41,6 +41,18 @@ return [
     'create_student' => 'محصل جدید',
     'edit_student' => 'تصحیح محصل',
 
+    'teachers' => 'استادها',
+    'teachers_list' => ' لیست استادها',
+    'create_teacher' => 'استاد جدید',
+    'edit_teacher' => 'تصحیح استاد',
+    'degree' => 'درجه تحصیل',
+    'bachelor' => 'لیسانس',
+    'master' => 'ماستر',
+    'doctor' => 'دکتور',
+
+
+
+
     'roles_list' => 'لیست وظایف',
     'roles' => 'وظایف',
     'title' => 'عنوان',
