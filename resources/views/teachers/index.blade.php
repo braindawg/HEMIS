@@ -8,7 +8,7 @@
             </div>
         @endif
         <div class="portlet-title">
-            @can ('create-student')
+            @can ('create-teacher')
             <a href="{{ route('teachers.create') }}" class="btn btn-info"><i class="icon-plus"></i> {{ trans('general.create_teacher') }} </a>
             @endcan
             <div class="tools"> </div>
@@ -21,13 +21,7 @@
 @endsection
 
 @push('styles')
-    <!-- <link rel="stylesheet" href="//cdn.datatables.net/1.10.7/css/jquery.dataTables.min.css"> -->
     <link href="{{ asset('css/datatables.css') }}" rel="stylesheet">
-    <!-- <style>
-    table td, table th {
-        font-size: 12px !important;
-    }
-    </style> -->
 @endpush
 
 @push('scripts')

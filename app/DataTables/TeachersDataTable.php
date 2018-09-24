@@ -1,5 +1,7 @@
 <?php
+
 namespace App\DataTables;
+
 use App\Models\Teacher;
 use Yajra\DataTables\Services\DataTable;
 
@@ -16,12 +18,17 @@ class TeachersDataTable extends DataTable
         return datatables($query)
             ->addColumn('action', function ($teachers) {
                 $html = '';
-                $html .= '<a href="'.route('teachers.edit', $teachers).'" class="btn btn-success btn-xs" target="new"><i class="icon-pencil"></i></a>';
-                $html .= '<form action="'. route('teachers.destroy', $teachers) .'" method="post" style="display:inline">
-                <input type="hidden" name="_method" value="DELETE" />
-                <input type="hidden" name="_token" value="'.csrf_token().'" />
-                <button type="submit" class="btn btn-xs btn-danger" onClick="doConfirm()" style="margin-top: 5px"><i class="fa fa-trash"></i></button>
-            </form>';
+
+                if (auth()->user()->can('edit-teacher'))
+                    $html .= '<a href="'.route('teachers.edit', $teachers).'" class="btn btn-success btn-xs" target="new"><i class="icon-pencil"></i></a>';
+               
+
+                if (auth()->user()->can('delete-teacher'))
+                    $html .= '<form action="'. route('teachers.destroy', $teachers) .'" method="post" style="display:inline">
+                            <input type="hidden" name="_method" value="DELETE" />
+                            <input type="hidden" name="_token" value="'.csrf_token().'" />
+                            <button type="submit" class="btn btn-xs btn-danger" onClick="doConfirm()" ><i class="fa fa-trash"></i></button>
+                        </form>';
 
 
              return $html;
@@ -39,7 +46,7 @@ class TeachersDataTable extends DataTable
     {
         $query = $model->select(
                 'teachers.id',
-                'teachers.first_name as name',
+                'teachers.name',
                 'teachers.father_name',
                 'teachers.phone',
                 'departments.name as department',
@@ -47,7 +54,6 @@ class TeachersDataTable extends DataTable
                 'teachers.grandfather_name',
                 'teachers.university_id',
                 'teachers.department_id'
-
             )
             ->leftJoin('provinces', 'provinces.id', '=', 'teachers.province')
             ->leftJoin('universities', 'universities.id', '=', 'university_id')
@@ -77,12 +83,12 @@ class TeachersDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            'first_name'     => ['name' => 'teachers.first_name','title' => trans('general.name')],
-            'father_name'     => ['title' => trans('general.father_name')],
-            'grandfather_name'     => ['title' => trans('general.grandfather_name')],
-            'phone'     => [ 'title' => trans('general.phone')],
-            'department'    => ['name' => 'departments.name', 'title' => trans('general.department')],
-            'university' => ['name' => 'universities.name', 'title' => trans('general.university')],
+            'name'       => ['name' => 'teachers.name','title' => trans('general.name')],
+            'father_name'      => ['title' => trans('general.father_name')],
+            'grandfather_name' => ['title' => trans('general.grandfather_name')],
+            'phone'            => [ 'title' => trans('general.phone')],
+            'department'       => ['name' => 'departments.name', 'title' => trans('general.department')],
+            'university'       => ['name' => 'universities.name','title' => trans('general.university')],
         ];
     }
 

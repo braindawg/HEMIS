@@ -141,6 +141,32 @@
     </li>
     @endif
 
+    @if (auth()->user()->can(['view-teacher']))
+    <li class="nav-item start {{ request()->is('teachers*') ? 'active' : '' }}">
+        <a href="#" class="nav-link nav-toggle">
+            <i class="icon-grid"></i>
+            <span class="title">{{ trans('general.teachers') }}</span>
+            <span class="arrow {{ request()->is('teachers*') ? 'open' : '' }}"></span>
+        </a>
+        <ul class="sub-menu">            
+            <li class="nav-item {{ request()->is('teachers') ? 'active' : '' }}">
+                <a href="{{ route('teachers.index') }}" class="nav-link ">
+                    <i class="icon-list"></i>
+                    <span class="title">{{ trans('general.teachers_list') }}</span>                    
+                </a>
+            </li> 
+            @if (auth()->user()->can(['create-teacher']))          
+            <li class="nav-item {{ request()->is('teachers/create') ? 'active' : '' }}">
+                <a href="{{ route('teachers.create') }}" class="nav-link ">
+                    <i class="icon-plus"></i>
+                    <span class="title">{{ trans('general.create_teacher') }}</span>
+                </a>
+            </li>
+            @endif            
+        </ul>
+    </li>
+    @endif
+
     @if (auth()->user()->hasAnyPermission(['view-user', 'view-role']))
     <li class="nav-item start {{ (request()->is('users*') or request()->is('roles*')) ? 'active' : '' }}">
         <a href="javascript:;" class="nav-link nav-toggle">

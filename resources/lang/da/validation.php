@@ -124,6 +124,8 @@ return [
         'password' => 'پسورد',
         'password_confirmation' => 'تکرار پسورد',
         'phone' => 'تلفن',
+        'department' => 'دیپارتمنت',
+        'father_name' => 'نام پدر',
     ],
 
 ];

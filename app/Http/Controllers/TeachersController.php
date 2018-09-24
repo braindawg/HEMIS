@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Province;
-use App\Models\Teacher;
 use App\User;
+use App\Models\Teacher;
+use App\Models\Province;
 use App\Models\University;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
@@ -16,10 +16,10 @@ class TeachersController extends Controller
 {
     public function __construct()
     {        
-//         $this->middleware('permission:view-student', ['only' => ['index', 'show']]);
-//         $this->middleware('permission:create-student', ['only' => ['create','store']]);
-//         $this->middleware('permission:edit-student', ['only' => ['edit','update', 'updateStatus']]);
-//         $this->middleware('permission:delete-student', ['only' => ['destroy']]);
+         $this->middleware('permission:view-teacher', ['only' => ['index', 'show']]);
+         $this->middleware('permission:create-teacher', ['only' => ['create','store']]);
+         $this->middleware('permission:edit-teacher', ['only' => ['edit','update']]);
+         $this->middleware('permission:delete-teacher', ['only' => ['destroy']]);
     }
     /**
      * Display a listing of the resource.
@@ -67,7 +67,7 @@ class TeachersController extends Controller
         ]);
 
         $teacher = Teacher::create([
-            'first_name' => $request->name,
+            'name' => $request->name,
             'last_name' => $request->last_name,
             'father_name' => $request->father_name,
             'grandfather_name' => $request->grandfather_name,
@@ -83,19 +83,6 @@ class TeachersController extends Controller
 
         return redirect(route('teachers.index'));
     }
-
-
-     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($teacher)
-    {        
-    //   dd('yea');
-    }
-
     /**
      * Show the form for editing the specified resource.
      *
@@ -123,9 +110,8 @@ class TeachersController extends Controller
      */
     public function update(Request $request, $teacher)
     {
-        //  dd($request->all());
         $validatedData = $request->validate([
-            'first_name' => 'required|min:3',
+            'name' => 'required|min:3',
             'father_name' => 'required|min:3',
             'phone' => 'required',
             'email' => 'required|email',
@@ -134,7 +120,7 @@ class TeachersController extends Controller
         ]);
         
         $teacher->update([
-            'first_name' => $request->first_name,
+            'name' => $request->name,
             'last_name' => $request->last_name,
             'father_name' => $request->father_name,
             'grandfather_name' => $request->grandfather_name,
@@ -146,7 +132,8 @@ class TeachersController extends Controller
             'degree' => $request->degree,
             'university_id' => $request->university,
             'department_id' => $request->department,
-        ]);    
+        ]);
+
         return redirect(route('teachers.index'))->with('message', 'اطلاعات '.$teacher->name.' موفقانه آبدیت شد.');
     }
 
@@ -163,6 +150,7 @@ class TeachersController extends Controller
             $teacher->delete();
 
         });
+
         return redirect(route('teachers.index'));
     }
 }
