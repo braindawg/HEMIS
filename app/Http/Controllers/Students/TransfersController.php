@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Students;
 
 use App\Models\Student;
 use App\Models\Transfer;
@@ -8,6 +8,7 @@ use App\Models\University;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Maklad\Permission\Models\Role;
+use App\Http\Controllers\Controller;
 use App\DataTables\TransfersDataTable;
 use Maklad\Permission\Models\Permission;
 

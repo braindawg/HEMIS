@@ -30,24 +30,33 @@ Route::group(['middleware' => 'auth'], function() {
         ]);
     })->name('support');
 
-    Route::resource('/users', 'UsersController');
-    Route::resource('/roles', 'RolesController');
+    Route::group(['namespace' => 'Users'], function() { 
+        Route::resource('/users', 'UsersController');
+        Route::resource('/roles', 'RolesController');
+    });
 
-    Route::resource('/students', 'StudentsController');
-    Route::patch('/students/{student}/updateStatus', 'StudentsController@updateStatus')->name('students.updateStatus');
-    Route::get('/students/{student}/card', 'StudentCardController@index')->name('students.card');
+    Route::group(['namespace' => 'Students'], function() { 
+        Route::resource('/students', 'StudentsController');
+        Route::patch('/students/{student}/updateStatus', 'StudentsController@updateStatus')->name('students.updateStatus');
+        Route::get('/students/{student}/card', 'StudentCardController@index')->name('students.card');
 
-    Route::get('/attendance', 'AttendanceController@index')->name('attendance.create');
-    Route::get('/attendance/show', 'AttendanceController@show')->name('attendance.show');
+        Route::get('/attendance', 'AttendanceController@index')->name('attendance.create');
+        Route::get('/attendance/show', 'AttendanceController@show')->name('attendance.show');
 
-    Route::resource('/transfers', 'TransfersController');
-    Route::resource('/dropouts', 'DropoutsController');
-    Route::resource('/leaves', 'LeavesController', ['parameters' => [
-        'leaves' => 'leave'
-    ]]);
+        Route::resource('/transfers', 'TransfersController');
+        Route::resource('/dropouts', 'DropoutsController');
+        Route::resource('/leaves', 'LeavesController', ['parameters' => [
+            'leaves' => 'leave'
+        ]]);
+    });
+
+    Route::group(['namespace' => 'Universities'], function() { 
+        
+        Route::resource('/universities', 'UniversitiesController');
+        Route::resource('/universities/{university}/departments', 'DepartmentsController');
+    });
+
     Route::resource('/teachers', 'TeachersController');
-    Route::resource('/universities', 'UniversitiesController');
-    Route::resource('/universities/{university}/departments', 'DepartmentsController');
 
     Route::post('/cityupdate', 'HomeController@updateData');
     Route::post('/universityupdate', 'HomeController@updateData');

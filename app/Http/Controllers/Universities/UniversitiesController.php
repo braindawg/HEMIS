@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Universities;
 
 use App\Models\University;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Maklad\Permission\Models\Role;
+use App\Http\Controllers\Controller;
 use Maklad\Permission\Models\Permission;
 use App\DataTables\UniversitiesDataTable;
 

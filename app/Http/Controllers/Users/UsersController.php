@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Users;
 
 use App\User;
 use App\Models\University;
@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use App\DataTables\UsersDataTable;
 use Spatie\Permission\Models\Role;
+use App\Http\Controllers\Controller;
 
 class UsersController extends Controller
 {

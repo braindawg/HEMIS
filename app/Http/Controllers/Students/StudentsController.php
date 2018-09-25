@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Students;
 
 use App\User;
 use App\Models\University;
@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\StudentStatus;
 use Illuminate\Validation\Rule;
 use Maklad\Permission\Models\Role;
+use App\Http\Controllers\Controller;
 use App\DataTables\StudentsDataTable;
 use Maklad\Permission\Models\Permission;
 

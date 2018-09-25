@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Students;
 
 use PDF;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class StudentCardController extends Controller
 {

@@ -1,30 +1,31 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Students;
 
-use App\Models\Leave;
+use App\Models\Dropout;
 use App\Models\Student;
 use Illuminate\Http\Request;
-use App\DataTables\LeavesDataTable;
+use App\Http\Controllers\Controller;
+use App\DataTables\DropoutsDataTable;
 
-class LeavesController extends Controller
+class DropoutsController extends Controller
 {
     public function __construct()
     {        
-        $this->middleware('permission:view-leave', ['only' => ['index', 'show']]);        
-        $this->middleware('permission:create-leave', ['only' => ['create','store']]);
-        $this->middleware('permission:delete-leave', ['only' => ['destroy']]);
+        $this->middleware('permission:view-dropout', ['only' => ['index', 'show']]);        
+        $this->middleware('permission:create-dropout', ['only' => ['create','store']]);
+        $this->middleware('permission:delete-dropout', ['only' => ['destroy']]);
     }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(LeavesDataTable $dataTable)
+    public function index(DropoutsDataTable $dataTable)
     {        
-        return $dataTable->render('leaves.index', [
-            'title' => trans('general.leaves'),
-            'description' => trans('general.leaves_list')
+        return $dataTable->render('dropouts.index', [
+            'title' => trans('general.dropouts'),
+            'description' => trans('general.dropouts_list')
         ]);
     }
 
@@ -35,9 +36,9 @@ class LeavesController extends Controller
      */
     public function create()
     {
-        return view('leaves.create', [
-            'title' => trans('general.leaves'),
-            'description' => trans('general.new_leaves'),
+        return view('dropouts.create', [
+            'title' => trans('general.dropouts'),
+            'description' => trans('general.new_dropouts'),
         ]);
     }
 
@@ -48,30 +49,28 @@ class LeavesController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
+    {        
         $validatedData = $request->validate([            
             'student_id' => 'required',
-            'leave_year' => 'required',
         ]);
 
         \DB::transaction(function () use ($request){
             
             $student = Student::find($request->student_id);
             
-            $leaves = Leave::create([
+            $dropouts = Dropout::create([
                 'student_id' => $request->student_id,
-                'leave_year' => $request->leave_year,
                 'note' => $request->note,
                 'university_id' => $student->university_id
             ]);
 
             $student->update([
-                'status_id' => 4,
+                'status_id' => 3,
             ]);
-            
+
         });
 
-        return redirect(route('leaves.index'));
+        return redirect(route('dropouts.index'));
     }
     
     /**
@@ -80,18 +79,16 @@ class LeavesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($leave)
+    public function destroy($dropout)
     {
-        \DB::transaction(function () use ($leave){
-            
-            $leave->student->update([
+
+        \DB::transaction(function () use ($dropout){
+            $dropout->student->update([
                 'status_id' => 1
             ]);
-
-            $leave->delete();
-
+            $dropout->delete();
         });
 
-        return redirect(route('leaves.index'));
+        return redirect(route('dropouts.index'));
     }
 }
