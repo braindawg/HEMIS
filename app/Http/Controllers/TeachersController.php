@@ -6,6 +6,7 @@ use App\User;
 use App\Models\Teacher;
 use App\Models\Province;
 use App\Models\University;
+use App\Models\Department;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Maklad\Permission\Models\Role;
@@ -45,7 +46,8 @@ class TeachersController extends Controller
             'title' => trans('general.teachers'),
             'description' => trans('general.create_teacher'),
             'universities' => University::pluck('name', 'id'),
-            'provinces' =>Province::pluck('name','id')
+            'provinces' => Province::pluck('name','id'),
+            'department' => old('department') != '' ? Department::where('id', old('department'))->pluck('name', 'id') : []
         ]);
     }
 
@@ -62,10 +64,9 @@ class TeachersController extends Controller
             'father_name' => 'required|min:3',
             'phone' => 'required',
             'email' => 'required|email|unique:teachers',
-            'university' =>'required',
             'department' =>'required',
         ]);
-
+    
         $teacher = Teacher::create([
             'name' => $request->name,
             'last_name' => $request->last_name,
@@ -96,8 +97,8 @@ class TeachersController extends Controller
             'description' => trans('general.edit_teacher'),
             'teacher' => $teacher,
             'universities' => University::pluck('name', 'id'),
-            'provinces' =>Province::pluck('name','id')
-
+            'provinces' =>Province::pluck('name','id'),
+            'department' => old('department') != '' ? Department::where('id', old('department'))->pluck('name', 'id') : $teacher->department()->pluck('name', 'id')
         ]);
     }
 
@@ -115,7 +116,6 @@ class TeachersController extends Controller
             'father_name' => 'required|min:3',
             'phone' => 'required',
             'email' => 'required|email',
-            'university' =>'required',
             'department' =>'required',
         ]);
         

@@ -7,6 +7,7 @@
             {!! Form::open(['route' => 'teachers.store', 'method' => 'post', 'class' => 'form-horizontal']) !!}
                 <div class="form-body" id="app">
                     <div class="row">
+                        @if(auth()->user()->allUniversities())
                         <div class="col-md-6">
                             <div class="form-group {{ $errors->has('university') ? ' has-error' : '' }}">
                                 {!! Form::label('university', trans('general.university'), ['class' => 'control-label col-sm-3']) !!}                                
@@ -20,11 +21,14 @@
                                 </div>
                             </div>
                         </div>
+                        @else
+                            {!! Form::hidden('university', auth()->user()->university_id) !!}
+                        @endif                     
                         <div class="col-md-6">
                             <div class="form-group {{ $errors->has('department') ? ' has-error' : '' }}">
                                 {!! Form::label('department', trans('general.department'), ['class' => 'control-label col-sm-3']) !!}                                
                                 <div class="col-sm-8">
-                                    {!! Form::select('department', [], null, ['class' => 'form-control select2-ajax', 'remote-url' => route('api.departments'), 'remote-param' => 'select[name="university"]']) !!}
+                                    {!! Form::select('department', $department, null, ['class' => 'form-control select2-ajax', 'remote-url' => route('api.departments'), 'remote-param' => 'select[name="university"]']) !!}
                                     @if ($errors->has('department'))
                                         <span class="help-block">
                                             <strong>{{ $errors->first('department') }}</strong>
@@ -34,7 +38,6 @@
                             </div>
                         </div>
                     </div>
-
                     <hr>
                     <div class="row">
                         <div class="col-md-6">

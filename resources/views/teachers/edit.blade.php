@@ -18,11 +18,12 @@
                             {!! Form::model($teacher, ['route' => ['teachers.update', $teacher], 'method' => 'patch', 'class' => 'form-horizontal']) !!}            
                                 <div class="form-body" id="app">
                                     <div class="row">
+                                        @if(auth()->user()->allUniversities())
                                         <div class="col-md-6">
                                             <div class="form-group {{ $errors->has('university') ? ' has-error' : '' }}">
                                                 {!! Form::label('university', trans('general.university'), ['class' => 'control-label col-sm-3']) !!}                                
                                                 <div class="col-sm-8">
-                                                    {!! Form::select('university', $universities, $teacher->university_id, ['class' => 'form-control select2']) !!}
+                                                    {!! Form::select('university', $universities, null, ['class' => 'form-control select2']) !!}
                                                     @if ($errors->has('university'))
                                                         <span class="help-block">
                                                             <strong>{{ $errors->first('university') }}</strong>
@@ -31,11 +32,14 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        @else
+                                            {!! Form::hidden('university', $teacher->university_id) !!}
+                                        @endif
                                         <div class="col-md-6">
                                             <div class="form-group {{ $errors->has('department') ? ' has-error' : '' }}">
                                                 {!! Form::label('department', trans('general.department'), ['class' => 'control-label col-sm-3']) !!}                                
                                                 <div class="col-sm-8">
-                                                    {!! Form::select('department', $teacher->department()->pluck('name', 'id'), null, ['class' => 'form-control select2-ajax', 'remote-url' => route('api.departments'), 'remote-param' => 'select[name="university"]']) !!}
+                                                    {!! Form::select('department', $department, null, ['class' => 'form-control select2-ajax', 'remote-url' => route('api.departments'), 'remote-param' => 'select[name="university"]']) !!}
                                                     @if ($errors->has('department'))
                                                         <span class="help-block">
                                                             <strong>{{ $errors->first('department') }}</strong>
@@ -74,7 +78,6 @@
                                                 </div>
                                             </div>
                                         </div>
-
                                     </div>
                                     <div class="row">
                                         <div class="col-md-6">
@@ -103,7 +106,6 @@
                                                 </div>
                                             </div>
                                         </div>
-
                                     </div>
                                     <div class="row">
                                         <div class="col-md-6">
@@ -193,9 +195,9 @@
                                 <hr>
                                 <div class="form-actions fluid">
                                     <div class="row">
-                                    <div class="col-md-offset-2 col-md-8">
-                                                    <button type="submit" class="btn green">{{ trans('general.save') }}</button>
-                                                <a href="{{ route('teachers.index') }}" class="btn default">{{ trans('general.cancel') }}</a>
+                                        <div class="col-md-offset-2 col-md-8">
+                                            <button type="submit" class="btn green">{{ trans('general.save') }}</button>
+                                            <a href="{{ route('teachers.index') }}" class="btn default">{{ trans('general.cancel') }}</a>
                                         </div>
                                     </div>
                                 </div>                            
