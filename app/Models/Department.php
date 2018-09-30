@@ -2,27 +2,17 @@
 
 namespace App\Models;
 
+use App\Traits\UseByUniversity;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Department extends Model
 {
-    use SoftDeletes;
+    use SoftDeletes, UseByUniversity;
 
     protected $guarded = [];
     protected $dates = ['deleted_at'];
-
-    protected static function boot()
-    {
-        parent::boot();         
-
-        static::addGlobalScope('department', function (Builder $builder) {           
-            if (! auth()->user()->allUniversities()) {
-                $builder->where('departments.university_id', auth()->user()->university_id);                
-            }
-        });
-    }
 
     public function users()
     {
@@ -38,10 +28,4 @@ class Department extends Model
     {
         return $this->students()->select('department_id', 'status_id', \DB::raw('COUNT(students.id) as students_count'))->groupBy('department_id', 'status_id');
     }
-
-    public function university()
-    {
-        return $this->belongsTo(\App\Models\University::class);
-    }
-
 }

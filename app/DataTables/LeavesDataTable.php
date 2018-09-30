@@ -72,10 +72,10 @@ class LeavesDataTable extends DataTable
     protected function getColumns()
     {
         return [            
-            'form_no'         => ['title' => trans('general.form_no')],
-            'name'            => ['title' => trans('general.name')],
-            'father_name'     => ['title' => trans('general.father_name')],
-            'leave_year'     => ['title' => trans('general.leave_year')],
+            'form_no'         => ['name' => 'students.form_no', 'title' => trans('general.form_no')],
+            'name'            => ['name' => 'students.name', 'title' => trans('general.name')],
+            'father_name'     => ['name' => 'students.father_name', 'title' => trans('general.father_name')],
+            'leave_year'     =>  ['name' => 'leaves.form_no', 'title' => trans('general.leave_year')],
             'note'            => ['name' => 'leaves.note', 'title' => trans('general.note'), 'sortable' => false, 'searchable' => false]
         ];
     }

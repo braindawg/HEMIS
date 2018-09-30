@@ -18,12 +18,17 @@ class DepartmentsDataTable extends DataTable
         return datatables($query)
             ->addColumn('action', function ($department) {
                 $html = '';
-                $html .= '<a href="'.route('departments.edit', [request()->segment(2), $department]).'" class="btn btn-success btn-xs"><i class="icon-pencil"></i></a>';
-                $html .= '<form action="'. route('departments.destroy', [request()->segment(2), $department]) .'" method="post" style="display:inline">
-                            <input type="hidden" name="_method" value="DELETE" />
-                            <input type="hidden" name="_token" value="'.csrf_token().'" />
-                            <button type="submit" class="btn btn-xs btn-danger" onClick="doConfirm()"><i class="icon-trash"></i></button>
-                        </form>';
+
+                if (request()->is('universities*')) {
+                    $html .= '<a href="'.route('departments.edit', [request()->segment(2), $department]).'" class="btn btn-success btn-xs"><i class="icon-pencil"></i></a>';
+                    $html .= '<form action="'. route('departments.destroy', [request()->segment(2), $department]) .'" method="post" style="display:inline">
+                                <input type="hidden" name="_method" value="DELETE" />
+                                <input type="hidden" name="_token" value="'.csrf_token().'" />
+                                <button type="submit" class="btn btn-xs btn-danger" onClick="doConfirm()"><i class="icon-trash"></i></button>
+                            </form>';
+                } elseif (request()->is('curriculum*')) {
+                    $html .= '<a href="'.route('subjects.index', [request()->segment(2), $department]).'" class="btn btn-default btn-xs">'.trans('general.subjects').'</a>';
+                }
 
                 return $html;
             });
@@ -37,7 +42,7 @@ class DepartmentsDataTable extends DataTable
      */
     public function query(Department $model)
     {
-        return $model->where('university_id', request()->segment(2))->select('name');
+        return $model->where('university_id', request()->segment(2))->select('name', 'id');
     }
 
     /**

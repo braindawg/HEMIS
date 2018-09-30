@@ -50,15 +50,22 @@ Route::group(['middleware' => 'auth'], function() {
         ]]);
     });
 
-    Route::group(['namespace' => 'Universities'], function() { 
-        
+    Route::group(['namespace' => 'Universities'], function() {
         Route::resource('/universities', 'UniversitiesController');
         Route::resource('/universities/{university}/departments', 'DepartmentsController');
+    });
+
+    Route::group(['namespace' => 'Curriculum'], function() {
+        Route::get('/curriculum', 'UniversitiesController@index')->name('curriculum.universities');
+        Route::get('/curriculum/{university}', 'DepartmentsController@index')->name('curriculum.departments');;
+        Route::resource('/curriculum/{university}/{department}/subjects', 'SubjectsController');
     });
 
     Route::resource('/teachers', 'TeachersController');
 
     Route::post('/cityupdate', 'HomeController@updateData');
     Route::post('/universityupdate', 'HomeController@updateData');
+
+
 
 });

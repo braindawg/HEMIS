@@ -18,13 +18,18 @@ class UniversitiesDataTable extends DataTable
         return datatables($query)
             ->addColumn('action', function ($university) {
                 $html = '';
-                $html .= '<a href="'.route('departments.index', $university).'" class="btn btn-default btn-xs">'.trans('general.departments').'</a>';
-                $html .= '<a href="'.route('universities.edit', $university).'" class="btn btn-success btn-xs"><i class="icon-pencil"></i></a>';
-                $html .= '<form action="'. route('universities.destroy', $university) .'" method="post" style="display:inline">
-                            <input type="hidden" name="_method" value="DELETE" />
-                            <input type="hidden" name="_token" value="'.csrf_token().'" />
-                            <button type="submit" class="btn btn-xs btn-danger" onClick="doConfirm()"><i class="icon-trash"></i></button>
-                        </form>';
+
+                if (request()->is('universities*')) {
+                    $html .= '<a href="'.route('departments.index', $university).'" class="btn btn-default btn-xs">'.trans('general.departments').'</a>';
+                    $html .= '<a href="'.route('universities.edit', $university).'" class="btn btn-success btn-xs"><i class="icon-pencil"></i></a>';
+                    $html .= '<form action="'. route('universities.destroy', $university) .'" method="post" style="display:inline">
+                                <input type="hidden" name="_method" value="DELETE" />
+                                <input type="hidden" name="_token" value="'.csrf_token().'" />
+                                <button type="submit" class="btn btn-xs btn-danger" onClick="doConfirm()"><i class="icon-trash"></i></button>
+                            </form>';
+                } elseif (request()->is('curriculum*')) {
+                    $html .= '<a href="'.route('curriculum.departments', $university).'" class="btn btn-default btn-xs">'.trans('general.departments').'</a>';
+                }
 
                 return $html;
             });
