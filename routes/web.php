@@ -60,5 +60,17 @@ Route::group(['middleware' => 'auth'], function() {
 
     Route::post('/cityupdate', 'HomeController@updateData');
     Route::post('/universityupdate', 'HomeController@updateData');
+    Route::resource('/noticeboards', 'NoticeBoardController');
+    Route::get('/noticeboards/download/{file}/{recordID}/{folername}','SystemDownloadController@download')->name('noticeboards.download');
+    Route::get('/deletefile/{file}/{recordID}','FilesDeleteController@deleteFiles')->name('deletefile');
+    Route::get('/noticeboard','NoticeBoardListController@show')->name('noticeboard-list');
 
+
+    //advertisement document files link
+    Route::get('advertisment_doctument/{file_name}', function($filename){
+        $path = storage_path('app').'/system_files/'.$filename;
+        $image = \File::get($path);
+        $mime = \File::mimeType($path);
+        return \Response::make($image, 200)->header('Content-Type', $mime);
+    });
 });
