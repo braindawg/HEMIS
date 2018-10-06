@@ -70,6 +70,7 @@ return [
     'roles_list' => 'لیست وظایف',
     'roles' => 'وظایف',
     'title' => 'عنوان',
+    'title_eng' => 'عنوان انگلیسی',
     'create_role' => 'وظیفه جدید',
     'edit_role' => 'تصحیح وظیفه',
     'role_account' => 'تصحیح وظیفه',
@@ -173,4 +174,19 @@ return [
     'subject' => 'نام مضممون',
     'grade' => 'صنف',
     'semester' => 'سمستر',
+
+    'subjects' => 'مضامین',
+    'curriculum' => 'کریکلم',
+
+    'subjects_list' => 'لیست مضامین',
+    'create_subject' => 'مضمون جدید',
+    'edit_subject' => ' تصحیح مضمون',
+    'credits' => 'تعداد کریدت',
+    'type' => 'نوع',
+    'core' => 'اساسی',
+    'specialized' => 'تخصصی',
+    'elective' => 'اختیاری',
+    'general' => 'عمومی',
+    'active' => 'فعال',
+    'inactive' => 'غیر فعال',
 ];

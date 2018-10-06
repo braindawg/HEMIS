@@ -142,6 +142,33 @@
     @endif
 
     @if (auth()->user()->can(['view-teacher']))
+    <li class="nav-item start {{ request()->is('curriculum*') ? 'active' : '' }}">
+        <a href="#" class="nav-link nav-toggle">
+            <i class="icon-grid"></i>
+            <span class="title">{{ trans('general.curriculum') }}</span>
+            <span class="arrow {{ request()->is('curriculum*') ? 'open' : '' }}"></span>
+        </a>
+        <ul class="sub-menu">
+            @if (auth()->user()->allUniversities())            
+            <li class="nav-item {{ request()->is('curriculum*') ? 'active' : '' }}">
+                <a href="{{ route('curriculum.universities') }}" class="nav-link ">
+                    <i class="icon-list"></i>
+                    <span class="title">{{ trans('general.universities_list') }}</span>                    
+                </a>
+            </li>
+            @else
+            <li class="nav-item {{ request()->is('curriculum*') ? 'active' : '' }}">
+                <a href="{{ route('curriculum.departments', auth()->user()->university_id) }}" class="nav-link ">
+                    <i class="icon-list"></i>
+                    <span class="title">{{ trans('general.departments_list') }}</span>                    
+                </a>
+            </li>
+            @endif        
+        </ul>
+    </li>
+    @endif
+
+    @if (auth()->user()->can(['view-teacher']))
     <li class="nav-item start {{ request()->is('teachers*') ? 'active' : '' }}">
         <a href="#" class="nav-link nav-toggle">
             <i class="icon-grid"></i>

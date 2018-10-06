@@ -58,6 +58,7 @@ return [
      */
     'parameters' => [
         'dom'     => 'Bfrtip',
+        'stateSave' => true,
         'order'   => [[0, 'desc']],
         'buttons' => [            
             //'export',

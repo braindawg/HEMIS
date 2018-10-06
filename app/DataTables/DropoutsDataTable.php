@@ -71,9 +71,9 @@ class DropoutsDataTable extends DataTable
     protected function getColumns()
     {
         return [            
-            'form_no'         => ['title' => trans('general.form_no')],
-            'name'            => ['title' => trans('general.name')],
-            'father_name'     => ['title' => trans('general.father_name')],
+            'form_no'         => ['name' => 'students.form_no', 'title' => trans('general.form_no')],
+            'name'            => ['name' => 'students.name', 'title' => trans('general.name')],
+            'father_name'     => ['name' => 'students.father_name', 'title' => trans('general.father_name')],
             'note'            => ['name' => 'dropouts.note', 'title' => trans('general.note'), 'sortable' => false, 'searchable' => false]
         ];
     }

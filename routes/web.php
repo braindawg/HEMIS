@@ -50,10 +50,15 @@ Route::group(['middleware' => 'auth'], function() {
         ]]);
     });
 
-    Route::group(['namespace' => 'Universities'], function() { 
-        
+    Route::group(['namespace' => 'Universities'], function() {
         Route::resource('/universities', 'UniversitiesController');
         Route::resource('/universities/{university}/departments', 'DepartmentsController');
+    });
+
+    Route::group(['namespace' => 'Curriculum'], function() {
+        Route::get('/curriculum', 'UniversitiesController@index')->name('curriculum.universities');
+        Route::get('/curriculum/{university}', 'DepartmentsController@index')->name('curriculum.departments');;
+        Route::resource('/curriculum/{university}/{department}/subjects', 'SubjectsController');
     });
 
     Route::resource('/teachers', 'TeachersController');
@@ -64,8 +69,7 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('/noticeboards/download/{file}/{recordID}/{folername}','SystemDownloadController@download')->name('noticeboards.download');
     Route::get('/deletefile/{file}/{recordID}','FilesDeleteController@deleteFiles')->name('deletefile');
     Route::get('/noticeboard','NoticeBoardListController@show')->name('noticeboard-list');
-
-
+    
     //advertisement document files link
     Route::get('advertisment_doctument/{file_name}', function($filename){
         $path = storage_path('app').'/system_files/'.$filename;
@@ -73,4 +77,5 @@ Route::group(['middleware' => 'auth'], function() {
         $mime = \File::mimeType($path);
         return \Response::make($image, 200)->header('Content-Type', $mime);
     });
+
 });
