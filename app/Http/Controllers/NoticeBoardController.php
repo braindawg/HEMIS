@@ -80,7 +80,7 @@ class NoticeBoardController extends Controller
             //stroing all requested file
                 foreach($files as $file)
                     {
-                        // file store using trait
+                        // file store using SystemAttacheFile trait
                         $noticeboard->uploadFile($file,$currentID,$ModelName);
                     }
             }
@@ -152,7 +152,8 @@ class NoticeBoardController extends Controller
     public function destroy($noticeboard)
     {
         \DB::transaction(function () use ($noticeboard){
-            $files =$noticeboard->systemfile;//getting all realated files
+            $model_name ="NoticeBoard";
+            $files =$noticeboard->getFile($noticeboard->id,$model_name);//getting all realated files from SystemAttacheFile Traits by passing Parrent Record Id and Model Name
             $noticeboard->delete();
             foreach ($files as $file)
             {

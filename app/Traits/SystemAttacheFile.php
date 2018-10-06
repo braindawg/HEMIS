@@ -53,4 +53,10 @@ Trait SystemAttacheFile
         //deleting related childs records
         SystemFile::where('id',$file->id)->delete();
     }
+
+    //get Child rows by passing parrent record ID and model Name
+    public function getFile($parrent_id,$model_name){
+        $data = SystemFile::where('model_record_id',$parrent_id)->where('model',$model_name)->get();
+        return $data;
+    }
 }

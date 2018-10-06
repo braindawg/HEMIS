@@ -42,8 +42,8 @@
                             </tr>
                         </thead>
                     <tbody>
-                            @if($noticeboard->systemfile->count()>0)
-                            @foreach($noticeboard->systemfile as $document)
+                            @if($noticeboard->getFile($noticeboard->id,"NoticeBoard")->count()>0)
+                            @foreach($noticeboard->getFile($noticeboard->id,"NoticeBoard") as $document)
                             <tr>
                                 <td>{{$document->extension}}</td>
                                 <td><a href="{{URL::to('/noticeboards/'.'download/'.$document->file.'/'.$document->id.'/'.'system_files')}}"><i class="fa fa-download"></i> {{trans('general.download')}} </a></td>

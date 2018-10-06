@@ -97,8 +97,8 @@
                                 </tr>
                             </thead>
                                 <tbody>
-                                    @if($noticeboard->advertisedocument->count()>0)
-                                    @foreach($noticeboard->advertisedocument as $document)
+                                    @if($noticeboard->getFIle($noticeboard->id,"NoticeBoard")->count()>0)
+                                    @foreach($noticeboard->getFile($noticeboard->id,"NoticeBoard") as $document)
                                         <tr>
                                             <td>
                                                 {{$document->extension}}
