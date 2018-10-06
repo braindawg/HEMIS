@@ -15,6 +15,7 @@ class UsersDataTable extends DataTable
      */
     public function dataTable($query)
     {
+
         return datatables($query)
             ->addColumn('action', function ($user) {
                 $html = '';

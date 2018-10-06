@@ -79,7 +79,4 @@
 	<div  style="float: left; clear: left; margin-left:73px; margin-top:10px; width: 160px;text-align: left">
 		{{ $student->form_no }}
 	</div>
-
-		
-	
 </div>

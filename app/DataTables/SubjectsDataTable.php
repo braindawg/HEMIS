@@ -84,6 +84,6 @@ class SubjectsDataTable extends DataTable
      */
     protected function filename()
     {
-        return 'Users_' . date('YmdHis');
+        return 'Subjects_' . date('YmdHis');
     }
 }

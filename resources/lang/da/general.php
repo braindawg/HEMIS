@@ -175,4 +175,5 @@ return [
     'general' => 'عمومی',
     'active' => 'فعال',
     'inactive' => 'غیر فعال',
+    'admin' => 'Super Admin',
 ];

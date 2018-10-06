@@ -73,6 +73,7 @@ class UsersController extends Controller
             'phone' => $request->phone,
             'university_id' => $request->university_id ?? null,
             'password' => $request->password ?? null,
+            'admin' => $request->has('admin'),
         ]);
 
         $user->roles()->sync($request->roles ?? []);
@@ -138,6 +139,7 @@ class UsersController extends Controller
             'phone' => $request->phone,
             'university_id' => $request->university_id ?? null,
             'password' => $request->password ?? null,
+            'admin' => $request->has('admin')
         ]);
 
         $user->roles()->sync($request->roles ?? []);
