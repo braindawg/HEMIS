@@ -18,6 +18,7 @@
     <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
 
     <link href="{{ asset('css/all.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/summernote/dist/summernote.css')}}" rel="stylesheet" type="text/css" />
 
     <link rel="shortcut icon" href="favicon.ico" />
 
@@ -814,12 +815,25 @@
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
     <script src="{{ asset('js/counterup.min.js') }}"></script>
+    <script src="{{ asset('css/summernote/dist/summernote.js')}}"></script>
+    <script>
+ 	    $(document).ready(function() {
+ 		$('#summernote').summernote({
+ 		    height: 200,  
+ 		    toolbar: [
+ 		    ['style', ['bold', 'italic', 'underline', 'clear']],
+ 		    ['font', ['strikethrough', 'superscript', 'subscript']],
+ 		    ['fontsize', ['fontsize']],
+ 		    ['color', ['color']],
+ 		    ['para', ['ul', 'ol', 'paragraph']],
+ 		    ['height', ['height']],
+ 		    ['insert', ['picture']],
+ 		  ]
+ 		});
+ 	    });
+ 	  </script>
 
     <script>
-    
-        
-
-       
             $('.counter').counterUp({
                     delay: 10,
                     time: 1000

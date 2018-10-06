@@ -50,6 +50,20 @@ return [
     'master' => 'ماستر',
     'doctor' => 'دکتور',
 
+    'noticeboard' => 'اعلانات',
+    'noticeboard_list' => ' لیست اعلانات',
+    'create_noticeboard' => 'اعلان جدید',
+    'edit_noticeboard' => 'تصحیح اعلان',
+    'body' =>'متن اعلان',
+    'ntitle' =>'عنوان اعلان',
+    'file' =>'فایل',
+    'download' =>'دانلود فایل ',
+    'attached_files' =>'پیوست ها',
+    'noticeboard_description' =>'مشاهده اعلان',
+    'file_not_attached' =>'پیوست ها موجود نیست',
+
+
+
 
 
 
