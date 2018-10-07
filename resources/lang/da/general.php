@@ -51,7 +51,7 @@ return [
     'doctor' => 'دکتور',
 
     'noticeboard' => 'اعلانات',
-    'noticeboard_list' => ' لیست اعلانات',
+    'noticeboard_list' => ' تابلوی اعلانات',
     'create_noticeboard' => 'اعلان جدید',
     'edit_noticeboard' => 'تصحیح اعلان',
     'body' =>'متن اعلان',
@@ -61,6 +61,8 @@ return [
     'attached_files' =>'پیوست ها',
     'noticeboard_description' =>'مشاهده اعلان',
     'file_not_attached' =>'پیوست ها موجود نیست',
+    'delete' =>'حذف',
+    
 
 
 

@@ -4,25 +4,25 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
-use App\Models\SystemFile;
-use App\Models\NoticeBoard;
+use App\Models\Attachment;
+use App\Models\Announcement;
 
 class FilesDeleteController extends Controller
 {
     //
     public function deleteFiles($filename,$recordID)
     {       
-            $data = SystemFile::find($recordID);
+            $data = Attachment::find($recordID);
             if($data)
             {
             $filename = $data->file;
-            SystemFile::where('id',$recordID)->delete();
+            Attachment::where('id',$recordID)->delete();
             if($filename != null)
             {
-                $imagexistanse=Storage::exists('\system_files\\' . $filename);
+                $imagexistanse=Storage::exists('\attachments\\' . $filename);
                     if($imagexistanse)
                     {
-                          Storage::delete('\system_files\\' . $filename);
+                          Storage::delete('\attachments\\' . $filename);
                     }
             }
         }

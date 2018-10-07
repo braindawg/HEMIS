@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\SystemFile;
+use App\Models\Attachment;
 use Response;
 
 class SystemDownloadController extends Controller
@@ -11,8 +11,9 @@ class SystemDownloadController extends Controller
     //
     public function download($filename,$recordID,$foldername){
             $record_id = $recordID;
-            $data = SystemFile::find($recordID);
+            $data = Attachment::find($recordID);
             $filename = $data->file;
+            
             if($filename)
             {
             $downloadFIleName =$data->extension;
