@@ -141,7 +141,7 @@
     </li>
     @endif
 
-    @if (auth()->user()->can(['view-teacher']))
+    @if (auth()->user()->can(['view-curriculum']))
     <li class="nav-item start {{ request()->is('curriculum*') ? 'active' : '' }}">
         <a href="#" class="nav-link nav-toggle">
             <i class="icon-grid"></i>
@@ -163,7 +163,7 @@
                     <span class="title">{{ trans('general.departments_list') }}</span>                    
                 </a>
             </li>
-            @endif        
+            @endif
         </ul>
     </li>
     @endif

@@ -14,6 +14,20 @@ class Department extends Model
     protected $guarded = [];
     protected $dates = ['deleted_at'];
 
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::addGlobalScope('department', function ( $query) {
+            //if user assigned to departments filter else not filter
+            if (!auth()->guest() and !auth()->user()->allUniversities() and auth()->user()->departments->count()) {
+                
+                $query->whereIn($query->getQuery()->from . '.id',  auth()->user()->departments->pluck('id'));
+   
+            }
+        });
+    }
+
     public function users()
     {
         return $this->belongsToMany(\App\User::class)->withTimestamps();
@@ -22,6 +36,11 @@ class Department extends Model
     public function students()
     {
         return $this->hasMany(\App\Models\Student::class);
+    }
+
+    public function subjects()
+    {
+        return $this->hasMany(\App\Models\Subject::class);
     }
 
     public function studentsByStatus()

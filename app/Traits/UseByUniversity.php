@@ -14,7 +14,7 @@ trait UseByUniversity
             if (!auth()->guest() and !auth()->user()->allUniversities()) {
 
                 $query->where($query->getQuery()->from . '.university_id', auth()->user()->university_id);
-                
+   
             }
 
         });

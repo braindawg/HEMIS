@@ -59,7 +59,11 @@ class RolesController extends Controller
             'title' => 'required'                         
         ]);
         
-        $role = Role::create($validatedData);
+        $role = Role::create([
+            'name' => $request->name,
+            'title' => $request->title,
+            'admin' => $request->has('admin'),
+        ]);
 
         if ($request->abilities) {
             $role->permissions()->sync($request->abilities);
@@ -113,7 +117,11 @@ class RolesController extends Controller
             'title' => 'required'              
         ]);
         
-        $role->update($validatedData);
+        $role->update([
+            'name' => $request->name,
+            'title' => $request->title,
+            'admin' => $request->has('admin'),
+        ]);
 
         if ($request->abilities) {
             $role->permissions()->sync($request->abilities);

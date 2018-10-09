@@ -28,6 +28,10 @@ class DepartmentsDataTable extends DataTable
                             </form>';
                 } elseif (request()->is('curriculum*')) {
                     $html .= '<a href="'.route('subjects.index', [request()->segment(2), $department]).'" class="btn btn-default btn-xs">'.trans('general.subjects').'</a>';
+
+                    if ($department->subjects_count) {
+                        $html .= '<span class="badge badge-success">'.$department->subjects_count.'</span>';
+                    }
                 }
 
                 return $html;
@@ -42,7 +46,13 @@ class DepartmentsDataTable extends DataTable
      */
     public function query(Department $model)
     {
-        return $model->where('university_id', request()->segment(2))->select('name', 'id');
+        $model = $model->where('departments.university_id', request()->segment(2))->select('name', 'id');
+
+        if (request()->is('curriculum*')) {
+            $model->withCount('subjects');
+        }
+
+        return $model;
     }
 
     /**

@@ -3,12 +3,13 @@
 namespace App\Http\Controllers\Users;
 
 use App\User;
+use App\Models\Role;
 use App\Models\University;
 use App\Models\Department;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use App\DataTables\UsersDataTable;
-use Spatie\Permission\Models\Role;
+
 use App\Http\Controllers\Controller;
 
 class UsersController extends Controller
@@ -73,10 +74,11 @@ class UsersController extends Controller
             'phone' => $request->phone,
             'university_id' => $request->university_id ?? null,
             'password' => $request->password ?? null,
-            'admin' => $request->has('admin'),
+            'active' => $request->has('active'),
         ]);
 
         $user->roles()->sync($request->roles ?? []);
+
         $user->departments()->sync($request->departments ?? []); 
 
         return redirect(route('users.index'));
@@ -139,7 +141,7 @@ class UsersController extends Controller
             'phone' => $request->phone,
             'university_id' => $request->university_id ?? null,
             'password' => $request->password ?? null,
-            'admin' => $request->has('admin')
+            'active' => $request->has('active')
         ]);
 
         $user->roles()->sync($request->roles ?? []);

@@ -74,6 +74,7 @@
                         </div>
                     </div>
                     <hr>
+                    @if (auth()->user()->allUniversities())
                     <div class="form-group {{ $errors->has('university') ? ' has-error' : '' }}">
                         {!! Form::label('university', trans('general.university'), ['class' => 'control-label col-sm-3']) !!}                                
                         <div class="col-sm-4">
@@ -84,11 +85,14 @@
                                 </span>
                             @endif                                                                                                   
                         </div>
-                    </div>                    
+                    </div>
+                    @else
+                    <input type="hidden" name="university_id" value="{{ auth()->user()->university_id }}">
+                    @endif                    
                     <div class="form-group {{ $errors->has('department') ? ' has-error' : '' }}">
                         {!! Form::label('department', trans('general.department'), ['class' => 'control-label col-sm-3']) !!}                                
                         <div class="col-sm-4">
-                            {!! Form::select('departments[]', $departments, null, ['class' => 'form-control select2-ajax', 'remote-url' => route('api.departments'), 'remote-param' => 'select[name="university_id"]', "multiple" =>"multiple"]) !!}
+                            {!! Form::select('departments[]', $departments, null, ['class' => 'form-control select2-ajax', 'remote-url' => route('api.departments'), 'remote-param' => '[name="university_id"]', "multiple" =>"multiple"]) !!}
                             @if ($errors->has('department'))
                                 <span class="help-block">
                                     <strong>{{ $errors->first('department') }}</strong>
@@ -96,16 +100,18 @@
                             @endif                                                                                                   
                         </div>
                     </div>
-                    <div class="form-group {{ $errors->has('admin') ? ' has-error' : '' }}">
-                        {!! Form::label('admin', trans('general.admin'), ['class' => 'control-label col-sm-3']) !!}                                
+
+                    <div class="form-group {{ $errors->has('active') ? ' has-error' : '' }}">
+                        {!! Form::label('active', trans('general.status'), ['class' => 'control-label col-sm-3']) !!}                                
                         <div class="col-sm-4">                 
                             <div >
                                 <label class="checkbox-inline">
-                                <input type="checkbox" name="admin" value="1" > {{ trans('general.active') }}                               
+                                <input type="checkbox" name="active" value="1" checked> {{ trans('general.active') }}                               
                                 </label>                                                       
                             </div>                                               
                         </div>
                     </div>
+
                     <hr>
                     <div class="form-group">
                         {!! Form::label('roles[]', trans('general.roles'), ['class' => 'control-label col-sm-4']) !!}

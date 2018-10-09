@@ -3,13 +3,14 @@
 namespace App\Models;
 
 use App\Traits\UseByUniversity;
+use App\Traits\UseByDepartment;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Subject extends Model
 {
-    use SoftDeletes, useByUniversity;
+    use SoftDeletes, useByUniversity, UseByDepartment;
 
     protected $guarded = [];
     protected $dates = ['deleted_at'];

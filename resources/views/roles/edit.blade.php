@@ -31,6 +31,17 @@
                         </div>                    
                     </div>
                 </div>    
+                <div class="form-group {{ $errors->has('admin') ? ' has-error' : '' }}">
+                    {!! Form::label('admin', trans('general.admin'), ['class' => 'control-label col-sm-3']) !!}                                
+                    <div class="col-sm-4">                 
+                        <div >
+                            <label class="checkbox-inline">
+                            <input type="checkbox" name="admin" value="1" {{ $role->admin ? "checked" : "" }}> {{ trans('general.active') }}                               
+                            </label>                                                       
+                        </div>                                               
+                    </div>
+                </div>
+                <hr>
                 <div class="form-group">
                     {!! Form::label('abilities[]', trans('general.permissions'), ['class' => 'control-label col-sm-4']) !!}
                     <div class="col-md-8">

@@ -16,7 +16,10 @@ class UsersDataTable extends DataTable
     public function dataTable($query)
     {
 
-        return datatables($query)
+        $datatables = datatables($query)
+            ->editColumn('active', function ($user) {
+                return $user->active ? "<i class='fa fa-check font-green'></i>" : "<i class='fa fa-remove font-red'></i>";
+            })
             ->addColumn('action', function ($user) {
                 $html = '';
                 $html .= '<a href="'.route('users.edit', $user).'" class="btn btn-success btn-xs"><i class="icon-pencil"></i></a>';
@@ -27,7 +30,11 @@ class UsersDataTable extends DataTable
                         </form>';
 
                 return $html;
-            });
+            })
+            ->rawColumns([ 'action', 'active']);
+
+
+        return $datatables;
     }
 
     /**
@@ -38,8 +45,14 @@ class UsersDataTable extends DataTable
      */
     public function query(User $model)
     {
-        return $model->select('users.id', 'users.name', 'position', 'email', 'phone', 'universities.name as university')
+        $users = $model->select('users.id', 'users.name', 'position', 'email', 'phone', 'universities.name as university', 'active')
             ->leftJoin('universities', 'universities.id', '=', 'university_id');
+
+        if (!auth()->user()->allUniversities()) {
+            $users->where('university_id', auth()->user()->university_id);
+        }
+
+        return $users;
     }
 
     /**
@@ -63,13 +76,16 @@ class UsersDataTable extends DataTable
      */
     protected function getColumns()
     {
-        return [            
+        $columns = [            
             'name'     => ['title' => trans('general.name')],            
             'university' => ['name' => 'universities.name' ,'title' => trans('general.university')],
             'position' => ['title' => trans('general.position')],
             'email'    => ['title' => trans('general.email')], 
-            'phone'    => ['title' => trans('general.phone')]            
+            'phone'    => ['title' => trans('general.phone')],
+            'active'    => ['title' => trans('general.active')]
         ];
+
+        return $columns;
     }
 
     /**

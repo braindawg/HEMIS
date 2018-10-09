@@ -13,10 +13,10 @@ class SubjectsController extends Controller
 
     public function __construct()
     {        
-        //  $this->middleware('permission:view-department', ['only' => ['index', 'show']]);        
-        //  $this->middleware('permission:create-department', ['only' => ['create','store']]);
-        //  $this->middleware('permission:edit-department', ['only' => ['edit','update']]);
-        //  $this->middleware('permission:delete-department', ['only' => ['destroy']]);
+        $this->middleware('permission:view-curriculum', ['only' => ['index', 'show']]);        
+        $this->middleware('permission:create-curriculum', ['only' => ['create','store']]);
+        $this->middleware('permission:edit-curriculum', ['only' => ['edit','update']]);
+        $this->middleware('permission:delete-curriculum', ['only' => ['destroy']]);
     }
     /**
      * Display a listing of the resource.
