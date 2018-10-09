@@ -57,7 +57,7 @@
                     <div class="row">
                         <div class="col-md-offset-3 col-md-6">
                             <button type="submit" class="btn green">{{ trans('general.save') }}</button>
-                            <a href="{{ route('dropouts.index') }}" class="btn default">{{ trans('general.cancel') }}</a>
+                            <a href="{{ route('announcements.index') }}" class="btn default">{{ trans('general.cancel') }}</a>
                         </div>
                     </div>
                 </div>

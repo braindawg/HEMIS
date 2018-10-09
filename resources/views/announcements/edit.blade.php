@@ -110,20 +110,16 @@
                                                 <i class="fa fa-trash"></i>  {{trans('general.delete')}} </a>
                                             </td>
                                         </tr>
-                                @endforeach
+                                    @endforeach
                                     @else
-                                    <td>
-                                        {{trans('general.file_not_attached')}}
-                                    </td>
+                                        <td>
+                                            {{trans('general.file_not_attached')}}
+                                        </td>
                                     @endif                                            
-                            
                                 </tbody>
-                         </table>
+                        </table>
                     </div>
                 </div>           
-            </div>
-            </div>
-                            <!-- END SAMPLE TABLE PORTLET-->
             </div>
         </div>
     </div>
