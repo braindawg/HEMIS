@@ -2,7 +2,7 @@
 
 namespace App\DataTables;
 
-use App\Models\NoticeBoard;
+use App\Models\Announcement;
 use Yajra\DataTables\Services\DataTable;
 
 class NoticeBoardDataTable extends DataTable
@@ -16,12 +16,12 @@ class NoticeBoardDataTable extends DataTable
     public function dataTable($query)
     {
         return datatables($query)
-            ->addColumn('action', function ($noticeboard) {
+            ->addColumn('action', function ($announcement) {
                 $html = '';
-                    $html .= '<a href="'.route('noticeboards.show', $noticeboard).'" class="btn btn-success btn-xs" target="new"><i class="fa fa-eye"></i></a>';                   
-                    $html .= '<a href="'.route('noticeboards.edit', $noticeboard).'" class="btn btn-success btn-xs" target="new"><i class="icon-pencil"></i></a>';
-                    // $html .= '<a href="'.route('noticeboards.download', $noticeboard).'" class="btn btn-success btn-xs" target="new"><i class="fa fa-download"></i></a>';                   
-                    $html .= '<form action="'. route('noticeboards.destroy', $noticeboard) .'" method="post" style="display:inline">
+                    $html .= '<a href="'.route('announcements.show', $announcement).'" class="btn btn-success btn-xs" target="new"><i class="fa fa-eye"></i></a>';                   
+                    $html .= '<a href="'.route('announcements.edit', $announcement).'" class="btn btn-success btn-xs" target="new"><i class="icon-pencil"></i></a>';
+                    // $html .= '<a href="'.route('noticeboards.download', $announcement).'" class="btn btn-success btn-xs" target="new"><i class="fa fa-download"></i></a>';                   
+                    $html .= '<form action="'. route('announcements.destroy', $announcement) .'" method="post" style="display:inline">
                             <input type="hidden" name="_method" value="DELETE" />
                             <input type="hidden" name="_token" value="'.csrf_token().'" />
                             <button type="submit" class="btn btn-xs btn-danger" onClick="doConfirm()"><i class="fa fa-trash"></i></button>
@@ -37,11 +37,11 @@ class NoticeBoardDataTable extends DataTable
      * @param \App\Models\Transfer $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function query(NoticeBoard $model)
+    public function query(Announcement $model)
     {
         $query = $model->select(
-            'notice_boards.id',
-            'notice_boards.title'
+            'announcements.id',
+            'announcements.title'
         );
         return $query;
     }
@@ -68,7 +68,7 @@ class NoticeBoardDataTable extends DataTable
     protected function getColumns()
     {
         return [            
-            'title'         => ['name' => 'notice_boards.title','title' => trans('general.ntitle')],
+            'title'         => ['name' => 'announcements.title','title' => trans('general.ntitle')],
         ];
     }
 
@@ -79,6 +79,6 @@ class NoticeBoardDataTable extends DataTable
      */
     protected function filename()
     {
-        return 'NoticeBoard_' . date('YmdHis');
+        return 'Announcement_' . date('YmdHis');
     }
 }
