@@ -14,7 +14,7 @@
                                     <p>تاریخ نشر :{{ $announcement->date()}}</p>
                                 </div>
                             </li>
-                            <li style ="color: red; font-size: 15px;">
+                            <li style ="color: black; font-size: 15px;">
                                 <p>{!!$announcement->body!!}</p>
                             </li>
                          </ul>

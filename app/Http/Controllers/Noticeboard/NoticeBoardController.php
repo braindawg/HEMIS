@@ -13,7 +13,7 @@ class NoticeBoardController extends Controller
     {
         $announcements=Announcement::latest('created_at')->paginate(5);
         return view('announcements.noticeboard_list', [
-            'title' => trans('general.noticeboard_list'),
+            'title' => trans('general.noticeboard'),
         ],compact('announcements'));
     }
 }

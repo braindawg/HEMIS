@@ -18,10 +18,9 @@ class AnnouncementController extends Controller
 {
     public function __construct()
     {        
-        //  $this->middleware('permission:view-teacher', ['only' => ['index', 'show']]);
-        //  $this->middleware('permission:create-teacher', ['only' => ['create','store']]);
-        //  $this->middleware('permission:edit-teacher', ['only' => ['edit','update']]);
-        //  $this->middleware('permission:delete-teacher', ['only' => ['destroy']]);
+         $this->middleware('permission:create-announcement', ['only' => ['create','store']]);
+         $this->middleware('permission:edit-announcement', ['only' => ['edit','update']]);
+         $this->middleware('permission:delete-announcement', ['only' => ['destroy']]);
     }
     /**
      * Display a listing of the resource.
@@ -32,7 +31,7 @@ class AnnouncementController extends Controller
     {        
         return $dataTable->render('announcements.index', [
             'title' => trans('general.noticeboard'),
-            'description' => trans('general.noticeboard_list')
+            'description' => trans('general.announcements_list')
         ]);
     }
 

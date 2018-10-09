@@ -104,11 +104,9 @@
                         {!! Form::label('department', trans('general.department'), ['class' => 'control-label col-sm-3']) !!}                                
                         <div class="col-sm-4">
                             {!! Form::select('departments[]', $departments, null, ['class' => 'form-control select2-ajax', 'remote-url' => route('api.departments'), 'remote-param' => '[name="university_id"]', "multiple" =>"multiple"]) !!}
-                            @if ($errors->has('department'))
-                                <span class="help-block">
-                                    <strong>{{ $errors->first('department') }}</strong>
-                                </span>
-                            @endif                                                                                                   
+                            <span class="help-block">
+                                    <strong>در صورت خالی بودن دیپارتمنت, تمامی دیپارتمنت ها قابل دسترس می باشد.</strong>
+                                </span>                                                                                                   
                         </div>
                     </div>
 

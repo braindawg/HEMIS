@@ -54,9 +54,10 @@ Route::group(['middleware' => 'auth'], function() {
         Route::resource('/universities', 'UniversitiesController');
         Route::resource('/universities/{university}/departments', 'DepartmentsController');
     });
+
     Route::group(['namespace' => 'Noticeboard'], function() {
-    Route::get('/noticeboard','NoticeBoardController@show')->name('noticeboard-list');
-    Route::resource('/announcements', 'AnnouncementController');
+        Route::get('/noticeboard','NoticeBoardController@show')->name('noticeboard');
+        Route::resource('/announcements', 'AnnouncementController');
     });
 
     Route::group(['namespace' => 'Curriculum'], function() {

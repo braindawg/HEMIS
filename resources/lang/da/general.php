@@ -50,8 +50,8 @@ return [
     'master' => 'ماستر',
     'doctor' => 'دکتور',
 
-    'noticeboard' => 'اعلانات',
-    'noticeboard_list' => ' تابلوی اعلانات',
+    'announcements_list' => ' لیست اعلانات',
+    'noticeboard' => ' تابلوی اعلانات',
     'create_noticeboard' => 'اعلان جدید',
     'edit_noticeboard' => 'تصحیح اعلان',
     'body' =>'متن اعلان',

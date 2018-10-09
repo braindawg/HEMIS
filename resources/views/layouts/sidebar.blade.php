@@ -1,10 +1,27 @@
 <ul class="page-sidebar-menu   " data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200">
+    <li class="nav-item start {{ request()->is('noticeboard') ? 'active' : '' }}">
+        <a href="{{ route('noticeboard') }}" class="nav-link nav-toggle">
+            <i class="icon-list"></i>
+            <span class="title">{{ trans('general.noticeboard') }}</span>         
+        </a>       
+    </li>
+
+    @if (auth()->user()->can(['view-announcement']))
+    <li class="nav-item start {{ request()->is('announcements') ? 'active' : '' }}">
+        <a href="{{ route('announcements.index') }}" class="nav-link nav-toggle">
+            <i class="icon-list"></i>
+            <span class="title">{{ trans('general.announcements_list') }}</span>         
+        </a>       
+    </li>
+    @endif 
+
     <li class="nav-item start {{ request()->is('home') ? 'active' : '' }}">
         <a href="{{ route('home') }}" class="nav-link nav-toggle">
             <i class="icon-home"></i>
             <span class="title">{{ trans('general.dashboard') }}</span>         
         </a>       
     </li>
+
     @if (auth()->user()->can(['view-university']))
     <li class="nav-item start {{ request()->is('universities*') ? 'active' : '' }}">
         <a href="#" class="nav-link nav-toggle">

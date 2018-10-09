@@ -33,8 +33,9 @@ class RouteServiceProvider extends ServiceProvider
         Route::model('dropout', \App\Models\Dropout::class);
         Route::model('leave', \App\Models\Leave::class);
         Route::model('teacher', \App\Models\Teacher::class);
-        Route::model('noticeboard', \App\Models\NoticeBoard::class);
+        Route::model('announcement', \App\Models\Announcement::class);
         Route::model('subject', \App\Models\Subject::class);
+        Route::model('issue', \App\Models\Issue::class);
 
 
     }
