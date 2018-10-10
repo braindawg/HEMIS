@@ -12,9 +12,13 @@
                         $body_text =substr($body_text, 0, 600);                                              
                         ?>
                     <li class="todo-projects-item noticeboar_list">
+                    @if($announcement->userView($announcement->id,\Auth::user()->id)==1 )
                         <h3>{{$announcement->title}}</h3>
+                    @else
+                        <h3>{{$announcement->title}} &nbsp;&nbsp; <span class="badge badge-danger"> جدید </span></h3>
+                    @endif
                         <p>تاریخ نشر:{{ $announcement->date()}}</p>
-                        <p>{!!$body_text!!} <span><a href="{{URL::to('/announcements/'.$announcement->id)}}">...بیشتر بخواند</a></span> </p>
+                        <p>{!!$body_text!!} <span><a href="{{URL::to('/announcements/'.$announcement->id)}}"><span style = "font-size : 13px">...بیشتر بخواند</span></a></span> </p>
                     </li>
                     <hr>
                     <?php }?>

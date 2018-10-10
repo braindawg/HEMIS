@@ -62,6 +62,8 @@ return [
     'noticeboard_description' =>'مشاهده اعلان',
     'file_not_attached' =>'پیوست ها موجود نیست',
     'delete' =>'حذف',
+    'noticeboard_view' =>'مشاهده کننده های اعلان',
+    'no_one_see' =>'مشاهده کننده وجود ندارد',
     
 
 

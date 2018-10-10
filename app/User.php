@@ -57,4 +57,9 @@ class User extends Authenticatable
     {
         return $this->university_id == -1;
     }
+
+    public function noticeboardView()
+    {
+        return $this->hasMany(\App\Models\NoticeboardView::class);
+    }
 }

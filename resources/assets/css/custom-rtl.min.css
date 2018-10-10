@@ -48,6 +48,14 @@ div.dt-button {
 }
 .noticeboar_list {
     padding-top: 10px;
+    padding-right: 15px;
+}
+.read_color {
+    color:darkgray;
+}
+.unread_color {
+    color:black;
+    font-weight: bold;
 }
 .body-color p {
     color:royalblue;
