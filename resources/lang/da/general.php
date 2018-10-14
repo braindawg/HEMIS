@@ -63,6 +63,8 @@ return [
     'file_not_attached' =>'پیوست ها موجود نیست',
     'delete' =>'حذف',
     'all_students' => 'همه محصلان',
+    'noticeboard_view' =>'مشاهده کننده های اعلان',
+    'no_one_see' =>'مشاهده کننده وجود ندارد',
     
 
 

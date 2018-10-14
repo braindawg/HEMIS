@@ -57,6 +57,44 @@
                 </div>  
             </div>
         </div>
+
+        
+      <!-- user seen table -->
+        <div class="col-md-5">
+            <div class="portlet">
+                <div class="portlet-title">
+                    <div class="caption" >
+                            <h3 style ="margin-right:20px; text-align:center">{{trans('general.noticeboard_view')}}</h3>  
+                    </div>              
+                    <div class="portlet-body">
+                        <div class="table-scrollable">
+                            <table class="table table-striped table-bordered table-advance table-hover">
+                                <thead>
+                                    <tr>
+                                        <th> نام کاربر </th>
+                                        <th>زمان مشاهده </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @if($announcement->noticeboardView()->count()>0)
+                                    @foreach($announcement->noticeboardView as $view)
+                                    <tr>
+                                        <td>{{$view->user->name}}</td>
+                                        <td>{{$view->date()}}</td>
+                                    </tr>
+                                    @endforeach
+                                    @else
+                                        <td>{{trans('general.no_one_see')}}</td>
+                                    @endif                                            
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>  
+            </div>
+        </div>
+    
+
     
 @endsection('content')
 

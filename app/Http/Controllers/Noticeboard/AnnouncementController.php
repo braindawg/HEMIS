@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Noticeboard;
 use App\User;
 use App\Models\Announcement;
 use App\Models\Attachment;
+use App\Models\NoticeboardView;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Maklad\Permission\Models\Role;
@@ -12,6 +13,7 @@ use App\Http\Controllers\Controller;
 use App\DataTables\NoticeBoardDataTable;
 use Maklad\Permission\Models\Permission;
 use Illuminate\Support\Facades\Storage;
+use Auth;
 
 
 class AnnouncementController extends Controller
@@ -55,7 +57,19 @@ class AnnouncementController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-     public function show($announcement){
+     public function show($announcement)
+     {
+         //check whether the current user has seen the announcement
+        $user_id = Auth::user()->id;
+        $announcement_id = $announcement->id;
+        $checkNoticeboardView =$announcement->userView($announcement_id,$user_id); 
+        if($checkNoticeboardView == 0)
+        {
+            NoticeboardView::create([
+                'user_id' => $user_id,
+                'announcement_id' => $announcement_id,
+            ]);
+        }
         return view('announcements.show', [
             'title' => trans('general.noticeboard_description'),],compact('announcement'));
      }
