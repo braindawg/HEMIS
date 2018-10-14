@@ -92,6 +92,10 @@ class StudentsController extends Controller
      */
     public function edit($student)
     {
+        if (! $student->status->editable) {
+            abort(404);
+        }
+
         return view('students.edit', [
             'title' => trans('general.students'),
             'description' => trans('general.edit_student'),

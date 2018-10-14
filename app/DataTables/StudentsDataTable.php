@@ -22,11 +22,13 @@ class StudentsDataTable extends DataTable
             ->addColumn('action', function ($student) {
                 $html = '';
 
-                $html .= '<a href="'.route('students.card', $student).'" class="btn btn-info btn-xs" target="new">کارت</a>';
+                if ($student->editable) {
+                    $html .= '<a href="'.route('students.card', $student).'" class="btn btn-info btn-xs" target="new">کارت</a>';
+                }
                 
                 $html .= '<a href="'.route('students.show', $student).'" class="btn btn-primary btn-xs" target="new"><i class="icon-printer"></i></a>';
                 
-                if (auth()->user()->can('edit-student')) {
+                if (auth()->user()->can('edit-student') and $student->editable) {
                     $html .= '<a href="'.route('students.edit', $student).'" class="btn btn-success btn-xs" target="new"><i class="icon-pencil"></i></a>';
                     
                     if ($student->status_id < 2) {
@@ -69,7 +71,8 @@ class StudentsDataTable extends DataTable
                 'student_statuses.tag_color as status_color',
                 'status_id',
                 'students.university_id',
-                'kankor_year'
+                'kankor_year',
+                'student_statuses.editable'
             )
             ->leftJoin('provinces', 'provinces.id', '=', 'students.province')
             ->leftJoin('universities', 'universities.id', '=', 'university_id')
