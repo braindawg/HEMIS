@@ -62,6 +62,7 @@ return [
     'noticeboard_description' =>'مشاهده اعلان',
     'file_not_attached' =>'پیوست ها موجود نیست',
     'delete' =>'حذف',
+    'all_students' => 'همه محصلان',
     
 
 

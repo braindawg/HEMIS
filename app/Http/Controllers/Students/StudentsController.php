@@ -132,7 +132,7 @@ class StudentsController extends Controller
             'district_current' => $request->district_current,
             'village_current' => $request->village_current,
             'address_current' => $request->address_current,
-            'status_id' => $request->status,
+            'status_id' => $request->has('status') ? $request->status : $student->status_id,
 
             'name_eng' => $request->name_eng,
             'last_name_eng' => $request->last_name_eng,

@@ -63,8 +63,8 @@ return [
         'buttons' => [            
             //'export',
             //'print',
-            'reset',
-            'reload',
+            ['extend' => 'reset', 'text' => '<i class="fa fa-undo"></i> رفع فیلتر'],
+            ['extend' => 'reload', 'text' => '<i class="fa fa-refresh"></i> تازه سازی'],
         ],
         'language' => ['url' => '/vendor/datatables/Dari.json']
     ],

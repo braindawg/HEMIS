@@ -573,7 +573,8 @@
                                         </div>
                                     </div>
                                 </div>
-                                <hr>
+                                @if ($student->status_id <= 2)
+                                <hr>                                
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group {{ $errors->has('status') ? ' has-error' : '' }}">
@@ -589,6 +590,7 @@
                                         </div>
                                     </div>                                    
                                 </div>
+                                @endif
                                 <hr>
                                 <div class="form-actions fluid">
                                     <div class="row">

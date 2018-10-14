@@ -50,6 +50,7 @@ class UsersDataTable extends DataTable
 
         if (!auth()->user()->allUniversities()) {
             $users->where('university_id', auth()->user()->university_id);
+            $users->where('users.id', '!=', auth()->user()->id);
         }
 
         return $users;
