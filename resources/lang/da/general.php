@@ -195,4 +195,6 @@ return [
     'active' => 'فعال',
     'inactive' => 'غیر فعال',
     'admin' => 'Super Admin',
+
+    'back_to_my_account' => 'بازگشت به حساب اصلی',
 ];

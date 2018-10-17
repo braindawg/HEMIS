@@ -2,16 +2,17 @@
 
 namespace App;
 
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Notifications\Notifiable;
-use Illuminate\Database\Eloquent\SoftDeletes;
-use Spatie\Permission\Traits\HasRoles;
-use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\Traits\UseByUniversity;
+use Illuminate\Support\Facades\Hash;
+use Spatie\Permission\Traits\HasRoles;
+use Illuminate\Notifications\Notifiable;
+use Lab404\Impersonate\Models\Impersonate;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
-    use Notifiable, SoftDeletes, HasRoles;
+    use Notifiable, SoftDeletes, HasRoles, Impersonate;
 
     /**
      * The attributes that are mass assignable.
@@ -19,6 +20,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $guarded = [];
+    protected $developers = ['rajabi@rubik.af'];
 
     /**
      * The attributes that should be hidden for arrays.
@@ -61,5 +63,20 @@ class User extends Authenticatable
     public function noticeboardView()
     {
         return $this->hasMany(\App\Models\NoticeboardView::class);
+    }
+
+    public function isDeveloper()
+    {
+        return in_array($this->email, $this->developers);
+    }
+
+    public function canImpersonate()
+    {
+        return $this->isDeveloper();
+    }
+
+    public function canBeImpersonated()
+    {
+        return ! $this->isDeveloper();
     }
 }

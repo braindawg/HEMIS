@@ -22,12 +22,26 @@ class UsersDataTable extends DataTable
             })
             ->addColumn('action', function ($user) {
                 $html = '';
-                $html .= '<a href="'.route('users.edit', $user).'" class="btn btn-success btn-xs"><i class="icon-pencil"></i></a>';
-                $html .= '<form action="'. route('users.destroy', $user) .'" method="post" style="display:inline">
+                
+               
+                if (auth()->user()->can('edit-user')) {
+                    $html .= '<a href="'.route('users.edit', $user).'" class="btn btn-success btn-xs"><i class="icon-pencil"></i></a>';
+                }
+
+                if (auth()->user()->can('delete-user')) {
+                    $html .= '<form action="'. route('users.destroy', $user) .'" method="post" style="display:inline">
                             <input type="hidden" name="_method" value="DELETE" />
                             <input type="hidden" name="_token" value="'.csrf_token().'" />
                             <button type="submit" class="btn btn-xs btn-danger" onClick="doConfirm()"><i class="icon-trash"></i></button>
                         </form>';
+                }
+                
+                
+
+
+                if (auth()->user()->isDeveloper()) {
+                    $html .= '<a href="'.route('impersonate', $user).'" class="btn btn-primary btn-xs"><i class="fa fa-user-secret"></i></a>';
+                }
 
                 return $html;
             })
@@ -66,7 +80,7 @@ class UsersDataTable extends DataTable
         return $this->builder()
                     ->columns($this->getColumns())
                     ->minifiedAjax()
-                    ->addAction(['title' => trans('general.action'), 'width' => '60px'])
+                    ->addAction(['title' => trans('general.action'), 'width' => '80px'])
                     ->parameters($this->getBuilderParameters());
     }
 

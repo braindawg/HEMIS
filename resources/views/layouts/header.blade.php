@@ -399,13 +399,23 @@
                         </ul>
                         @endif
                     </li>
+
+                    
+   
+                    @impersonating
+                    <li class="dropdown dropdown-extended dropdown-tasks dropdown-dark" id="header_task_bar">
+                        <a href="{{ route('impersonate.leave') }}" o
+                           class="dropdown-toggle" 
+                           title="{{ trans('general.back_to_my_account') }}">
+                            <i class="fa fa-remove"></i>                            
+                        </a>                      
+                    </li>
+                    @endImpersonating
+                    
                     <li class="dropdown dropdown-extended dropdown-tasks dropdown-dark" id="header_task_bar">
                         <a href="{{ route('logout') }}" onclick="event.preventDefault();
                            document.getElementById('logout-form').submit();" 
                            class="dropdown-toggle" 
-                           data-toggle="dropdown" 
-                           data-hover="dropdown" 
-                           data-close-others="true"
                            title="{{ trans('general.logout') }}">
                             <i class="icon-logout"></i>                            
                         </a>                      

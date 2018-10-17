@@ -62,12 +62,7 @@
                     <span class="title">{{ trans('general.students_list') }}</span>                    
                 </a>
             </li> 
-            <li class="nav-item {{ request()->is('attendance') ? 'active' : '' }}">
-                <a href="{{ route('attendance.create') }}" class="nav-link ">
-                    <i class="icon-printer"></i>
-                    <span class="title">{{ trans('general.print_attendance') }}</span>
-                </a>
-            </li>
+           
             @if (auth()->user()->can(['create-student']))          
             <li class="nav-item {{ request()->is('students/create') ? 'active' : '' }}">
                 <a href="{{ route('students.create') }}" class="nav-link ">
@@ -76,6 +71,13 @@
                 </a>
             </li>
             @endif
+
+            <li class="nav-item {{ request()->is('attendance') ? 'active' : '' }}">
+                <a href="{{ route('attendance.create') }}" class="nav-link ">
+                    <i class="icon-printer"></i>
+                    <span class="title">{{ trans('general.print_attendance') }}</span>
+                </a>
+            </li>
         </ul>
     </li>
     @endif
