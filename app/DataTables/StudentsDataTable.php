@@ -103,6 +103,9 @@ class StudentsDataTable extends DataTable
 
             if (isset($input['columns'][7]['search']['value']) and $input['columns'][7]['search']['value'] != '')
                 $query->where('universities.name', 'like', "%".$input['columns'][7]['search']['value']."%");
+
+            if (isset($input['columns'][8]['search']['value']) and $input['columns'][8]['search']['value'] != '')
+                $query->where('kankor_year', 'like', "%".$input['columns'][8]['search']['value']."%");
            
         return $query;
     }
@@ -139,7 +142,7 @@ class StudentsDataTable extends DataTable
                                 var column = this;
                                 var onEvent = 'change';
                                                                                                                     
-                                if(this.index() >= 1 && this.index() <= 7) { 
+                                if(this.index() >= 1 && this.index() <= 8) { 
                                     if (this.index() == 1 || this.index() == 8) {
                                         $('<input class=\"datatable-footer-input ltr \" placeholder=\"'+$(column.header()).text()+'\" name=\"'+ column.index() + '\" value=\"'+ (state ? state.columns[this.index()].search.search : emptyValue) +'\" />').appendTo($(column.footer()).empty())                                        
                                         .on(onEvent, function () {

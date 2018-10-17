@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-
     <div class="tabbable-custom ">
         <ul class="nav nav-tabs">
             <li>
@@ -24,7 +23,7 @@
                     @can ('create-student')
                     <a href="{{ route('students.create') }}" class="btn btn-info"><i class="icon-plus"></i> {{ trans('general.create_student') }} </a>
                     @endcan
-                    <div class="tools"> </div>
+                    <div class="tools"></div>
                 </div>
                 <div class="portlet-body">
                 
