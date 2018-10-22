@@ -18,9 +18,13 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::group(['middleware' => 'auth'], function() { 
+
+    Route::impersonate();
+    
     Route::group(['namespace' => 'Api'], function() { 
         Route::get('api/departments/{universityId?}', "DepartmentsController@index")->name('api.departments');
         Route::get('api/students', "StudentsController@index")->name('api.students');
+        Route::get('api/provinces', "ProvinceController")->name('api.provinces');
     });
     
     Route::get('/home', 'HomeController@index')->name('home');
@@ -88,5 +92,4 @@ Route::group(['middleware' => 'auth'], function() {
         $mime = \File::mimeType($path);
         return \Response::make($image, 200)->header('Content-Type', $mime);
     });
-
 });

@@ -33,7 +33,7 @@ var App = function() {
             },
             cache: true
         },
-        clear: true
+        allowClear: true,
     });
 
     $(".select2-students").select2({
@@ -56,9 +56,37 @@ var App = function() {
             },
             cache: true
         },
-        clear: true,
+        allowClear: true,
         minimumInputLength: 2
     });
+
+    window.select2ProvincesOptions = {
+        language: "fa",
+        ajax: {
+            url: function (params) {                
+                return '/api/provinces';
+            },            
+            dataType: 'json',
+            delay: 250,
+            data: function(params) {
+                return {
+                    q: params.term
+                };
+            },
+            processResults: function(data) {
+                return {
+                    results: data
+                };
+            },
+            cache: true
+        },
+        placeholder: "ولایت",
+        allowClear: true,
+        minimumInputLength: 1
+    }
+
+    $(".select2-parovinces").select2(select2ProvincesOptions);
+
     // IE mode
     var isRTL = false;
     var isIE8 = false;

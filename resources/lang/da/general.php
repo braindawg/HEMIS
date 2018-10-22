@@ -62,6 +62,7 @@ return [
     'noticeboard_description' =>'مشاهده اعلان',
     'file_not_attached' =>'پیوست ها موجود نیست',
     'delete' =>'حذف',
+    'all_students' => 'همه محصلان',
     'noticeboard_view' =>'مشاهده کننده های اعلان',
     'no_one_see' =>'مشاهده کننده وجود ندارد',
     
@@ -201,7 +202,5 @@ return [
     'issue_comments' =>'نظریات',
     'issue_view' =>'مشاهده کننده های سوال',
     'comment' => 'پاسخ خودرا بنویسد ',
-    
-
-
+    'back_to_my_account' => 'بازگشت به حساب اصلی',
 ];
