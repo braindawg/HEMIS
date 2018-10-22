@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\TeacherAcademicRank;
 use App\User;
 use App\Models\Teacher;
 use App\Models\Province;
@@ -47,6 +48,7 @@ class TeachersController extends Controller
             'description' => trans('general.create_teacher'),
             'universities' => University::pluck('name', 'id'),
             'provinces' => Province::pluck('name','id'),
+            'teacher_academic_rank' => TeacherAcademicRank::pluck('title', 'id'),
             'department' => old('department') != '' ? Department::where('id', old('department'))->pluck('name', 'id') : []
         ]);
     }
@@ -65,6 +67,7 @@ class TeachersController extends Controller
             'phone' => 'required',
             'email' => 'required|email|unique:teachers',
             'department' =>'required',
+            'academic_rank_id' =>'required',
         ]);
     
         $teacher = Teacher::create([
@@ -78,6 +81,7 @@ class TeachersController extends Controller
             'phone' => $request->phone,
             'email' => $request->email,
             'degree' => $request->degree,
+            'academic_rank_id' => $request->academic_rank_id,
             'university_id' => $request->university,
             'department_id' => $request->department,
         ]);
@@ -98,6 +102,7 @@ class TeachersController extends Controller
             'teacher' => $teacher,
             'universities' => University::pluck('name', 'id'),
             'provinces' =>Province::pluck('name','id'),
+            'teacher_academic_rank' => TeacherAcademicRank::pluck('title', 'id'),
             'department' => old('department') != '' ? Department::where('id', old('department'))->pluck('name', 'id') : $teacher->department()->pluck('name', 'id')
         ]);
     }
@@ -130,6 +135,7 @@ class TeachersController extends Controller
             'phone' => $request->phone,
             'email' => $request->email,
             'degree' => $request->degree,
+            'academic_rank_id' => $request->academic_rank_id,
             'university_id' => $request->university,
             'department_id' => $request->department,
         ]);

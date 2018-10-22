@@ -65,12 +65,6 @@ return [
     'noticeboard_view' =>'مشاهده کننده های اعلان',
     'no_one_see' =>'مشاهده کننده وجود ندارد',
     
-
-
-
-
-
-
     'roles_list' => 'لیست وظایف',
     'roles' => 'وظایف',
     'title' => 'عنوان',
@@ -178,6 +172,7 @@ return [
     'subject' => 'نام مضممون',
     'grade' => 'صنف',
     'semester' => 'سمستر',
+    'academic_rank' => 'رتبه علمی',
 
     'subjects' => 'مضامین',
     'curriculum' => 'کریکلم',
@@ -194,4 +189,19 @@ return [
     'active' => 'فعال',
     'inactive' => 'غیر فعال',
     'admin' => 'Super Admin',
+
+    'issue_list' => ' لیست سوالات',
+    'issue' => ' تابلوی سوالات',
+    'create_issue' => 'سوال جدید',
+    'edit_issue' => 'تصحیح سوال',
+    'issue_body' =>'متن سوال',
+    'issue_title' =>'عنوان سوال',
+    'attached_files' =>'پیوست ها',
+    'issue_description' =>'مشاهده سوال',
+    'issue_comments' =>'نظریات',
+    'issue_view' =>'مشاهده کننده های سوال',
+    'comment' => 'پاسخ خودرا بنویسد ',
+    
+
+
 ];
