@@ -20,7 +20,7 @@ Auth::routes();
 Route::group(['middleware' => 'auth'], function() { 
 
     Route::impersonate();
-    
+
     Route::group(['namespace' => 'Api'], function() { 
         Route::get('api/departments/{universityId?}', "DepartmentsController@index")->name('api.departments');
         Route::get('api/students', "StudentsController@index")->name('api.students');
@@ -39,7 +39,13 @@ Route::group(['middleware' => 'auth'], function() {
         Route::resource('/roles', 'RolesController');
     });
 
-    Route::group(['namespace' => 'Students'], function() { 
+    Route::group(['namespace' => 'Students'], function() {
+        Route::resource('/students/groups', 'Groups\GroupsController');
+
+        Route::get('/students/groups/{group}/list', 'Groups\GroupListController@index')->name('groups.list');
+        Route::post('/students/groups/{group}/list', 'Groups\GroupListController@addStudent')->name('groups.student.add');
+        Route::delete('/students/groups/{group}/list', 'Groups\GroupListController@removeStudent')->name('groups.student.remove');
+
         Route::resource('/students', 'StudentsController');
         Route::patch('/students/{student}/updateStatus', 'StudentsController@updateStatus')->name('students.updateStatus');
         Route::get('/students/{student}/card', 'StudentCardController@index')->name('students.card');
@@ -52,6 +58,8 @@ Route::group(['middleware' => 'auth'], function() {
         Route::resource('/leaves', 'LeavesController', ['parameters' => [
             'leaves' => 'leave'
         ]]);
+
+        
     });
 
     Route::group(['namespace' => 'Universities'], function() {

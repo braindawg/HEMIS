@@ -65,13 +65,14 @@ return [
     'all_students' => 'همه محصلان',
     'noticeboard_view' =>'مشاهده کننده های اعلان',
     'no_one_see' =>'مشاهده کننده وجود ندارد',
+
+
+    'groups' =>'گروپ ها',
+    'groups_list' =>'لیست گروپ ها',
+    'create_group' =>'ایجاد گروپ',
+    'edit_group' =>'تصحیح گروپ',
+    'description' =>'تشریحات',
     
-
-
-
-
-
-
     'roles_list' => 'لیست وظایف',
     'roles' => 'وظایف',
     'title' => 'عنوان',
@@ -179,6 +180,12 @@ return [
     'subject' => 'نام مضممون',
     'grade' => 'صنف',
     'semester' => 'سمستر',
+    'list' => 'لیست',
+    'add' => 'اضافه',
+    'new_student' => 'محصل جدید',
+    'add_student_individually' => 'اضافه نمودن محصل جدید بطور جداگانه',
+    'add_student_by_department' => 'اضافه نمودن گروهی محصل جدید بر اساس دی‍پارتمنت',
+    'students_count' => 'تعداد محصلان',
 
     'subjects' => 'مضامین',
     'curriculum' => 'کریکلم',
@@ -191,7 +198,8 @@ return [
     'core' => 'اساسی',
     'specialized' => 'تخصصی',
     'elective' => 'اختیاری',
-    'general' => 'عمومی',
+    'general' => 'پوهنتون شمول',
+    'profesional' => 'مسلکی',
     'active' => 'فعال',
     'inactive' => 'غیر فعال',
     'admin' => 'Super Admin',

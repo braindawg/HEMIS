@@ -36,7 +36,7 @@ class RouteServiceProvider extends ServiceProvider
         Route::model('announcement', \App\Models\Announcement::class);
         Route::model('subject', \App\Models\Subject::class);
         Route::model('issue', \App\Models\Issue::class);
-
+        Route::model('group', \App\Models\Group::class);
 
     }
 
