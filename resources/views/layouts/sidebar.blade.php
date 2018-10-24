@@ -72,12 +72,32 @@
             </li>
             @endif
 
+            @if (auth()->user()->can(['view-group']))   
+            <hr>
+            <li class="nav-item {{ (request()->is('*groups') or request()->is('*groups*edit')) ? 'active' : '' }}">
+                <a href="{{ route('groups.index') }}" class="nav-link ">
+                    <i class="icon-list"></i>
+                    <span class="title">{{ trans('general.groups_list') }}</span>
+                </a>
+            </li>
+            @endif
+
+            @if (auth()->user()->can(['create-group']))          
+            <li class="nav-item {{ request()->is('*groups/create') ? 'active' : '' }}">
+                <a href="{{ route('groups.create') }}" class="nav-link ">
+                    <i class="icon-plus"></i>
+                    <span class="title">{{ trans('general.create_group') }}</span>
+                </a>
+            </li>
+            @endif
+            <hr>
             <li class="nav-item {{ request()->is('attendance') ? 'active' : '' }}">
                 <a href="{{ route('attendance.create') }}" class="nav-link ">
                     <i class="icon-printer"></i>
                     <span class="title">{{ trans('general.print_attendance') }}</span>
                 </a>
             </li>
+
         </ul>
     </li>
     @endif

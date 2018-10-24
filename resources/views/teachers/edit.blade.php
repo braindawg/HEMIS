@@ -23,7 +23,7 @@
                                             <div class="form-group {{ $errors->has('university') ? ' has-error' : '' }}">
                                                 {!! Form::label('university', trans('general.university'), ['class' => 'control-label col-sm-3']) !!}                                
                                                 <div class="col-sm-8">
-                                                    {!! Form::select('university', $universities, null, ['class' => 'form-control select2']) !!}
+                                                    {!! Form::select('university', $universities, null, ['class' => 'form-control select2', 'placeholder' => trans('general.select')]) !!}
                                                     @if ($errors->has('university'))
                                                         <span class="help-block">
                                                             <strong>{{ $errors->first('university') }}</strong>

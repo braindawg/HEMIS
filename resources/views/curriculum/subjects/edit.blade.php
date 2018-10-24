@@ -57,6 +57,7 @@
                                 'general' => trans('general.general'),
                                 'core' => trans('general.core'),
                                 'specialized' => trans('general.specialized'),
+                                'profesional' => trans('general.profesional'),
                                 'elective' => trans('general.elective'),
                             ], null, ['class' => 'form-control select2', 'placeholder' => trans('general.select')]) !!}     
                             @if ($errors->has('type'))
