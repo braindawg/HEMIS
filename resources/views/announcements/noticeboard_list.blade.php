@@ -9,7 +9,7 @@
                     foreach($announcements as $announcement)
                     {      
                         $body_text= $announcement->body;
-                        $body_text =substr($body_text, 0, 600);                                              
+                        $body_text =str_limit($body_text, 400,'...');
                         ?>
                     <li class="todo-projects-item noticeboar_list">
                     @if($announcement->userView($announcement->id,\Auth::user()->id)==1 )
