@@ -25,8 +25,10 @@ class Teacher extends Model
     {
         return $this->belongsTo(\App\User::class, 'updated_by');
     }
-
-
+    public function teacherAcademic()
+    {
+        return $this->belongsTo(\App\Models\TeacherAcademicRank::class, 'academic_rank_id');
+    }
     public function province()
     {
         return $this->belongsTo(\App\Models\Province::class, 'province');

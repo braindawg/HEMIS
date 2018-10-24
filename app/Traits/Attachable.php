@@ -3,7 +3,6 @@ namespace App\Traits;
 
 use Illuminate\Http\Response;
 use App\Models\Attachment;
-use App\Traits\Attachable;
 use Illuminate\Support\Facades\Storage;
 
 Trait Attachable

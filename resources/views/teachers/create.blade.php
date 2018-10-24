@@ -112,13 +112,13 @@
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <div class="form-group {{ $errors->has('province') ? ' has-error' : '' }}">
-                                {!! Form::label('province', trans('general.province'), ['class' => 'control-label col-sm-3']) !!}
+                            <div class="form-group {{ $errors->has('academic_rank_id') ? ' has-error' : '' }}">
+                                {!! Form::label('academic_rank_id', trans('general.academic_rank'), ['class' => 'control-label col-sm-3']) !!}
                                 <div class="col-sm-8">
-                                    {!! Form::select('province', $provinces, null, ['class' => 'form-control ']) !!}
-                                    @if ($errors->has('province'))
+                                    {!! Form::select('academic_rank_id', $teacher_academic_rank, null, ['class' => 'form-control ']) !!}
+                                @if ($errors->has('academic_rank_id'))
                                         <span class="help-block">
-                                            <strong>{{ $errors->first('province') }}</strong>
+                                            <strong>{{ $errors->first('academic_rank_id') }}</strong>
                                         </span>
                                     @endif
                                 </div>
@@ -147,6 +147,21 @@
                                     @if ($errors->has('marital_status'))
                                         <span class="help-block">
                                             <strong>{{ $errors->first('marital_status') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group {{ $errors->has('province') ? ' has-error' : '' }}">
+                                {!! Form::label('province', trans('general.province'), ['class' => 'control-label col-sm-3']) !!}
+                                <div class="col-sm-8">
+                                    {!! Form::select('province', $provinces, null, ['class' => 'form-control ']) !!}
+                                    @if ($errors->has('province'))
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('province') }}</strong>
                                         </span>
                                     @endif
                                 </div>
