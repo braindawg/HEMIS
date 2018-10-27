@@ -23,11 +23,6 @@ class Issue extends Model
         Carbon::setLocale('fa');
         return  Carbon::parse($this->created_at)->diffForHumans();
     }
-    public function excerpt($limit = 260, $post_fix = ' ...')
-    {
-        $this->dom->loadHtml(mb_convert_encoding($this->body, 'HTML-ENTITIES', 'UTF-8'));
-        return str_limit($this->dom->textContent, $limit, $post_fix);
-    }
     public function user()
     {
         return $this->belongsTo(\App\User::class);

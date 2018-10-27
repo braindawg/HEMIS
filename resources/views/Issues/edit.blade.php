@@ -9,7 +9,7 @@
             <div class="portlet box">        
                 <div class="portlet-body">
                             <!-- BEGIN FORM-->            
-                            {!! Form::model($issue, ['route' => ['issues.update', $issue], 'method' => 'patch', 'class' => 'form-horizontal', 'files' => 'true']) !!}            
+                            {!! Form::model($issue, ['route' => ['issues.update', $issue], 'method' => 'patch', 'class' => 'form-horizontal', 'files' => true]) !!}
                             <div class="form-body" id="app">
                                 <div class="row">
                                     <div class="col-md-12">
@@ -89,7 +89,7 @@
                                     <th>
                                             نام فایل </th>
                                     <th >
-                                                نام مشکل مربوطه </th>
+                                                سوال مربوطه </th>
                                     <th>
                                             عملیه 
                                     </th>

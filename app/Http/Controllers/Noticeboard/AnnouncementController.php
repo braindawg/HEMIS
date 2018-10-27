@@ -62,9 +62,9 @@ class AnnouncementController extends Controller
          //check whether the current user has seen the announcement
         $user_id = Auth::user()->id;
         $announcement_id = $announcement->id;
-        $checkNoticeboardView =$announcement->userView($announcement_id,$user_id); 
-        if($checkNoticeboardView == 0)
-        {
+        $checkNoticeboardView =$announcement->userView($announcement_id,$user_id);
+
+        if($checkNoticeboardView == 0) {
             NoticeboardView::create([
                 'user_id' => $user_id,
                 'announcement_id' => $announcement_id,
@@ -79,25 +79,24 @@ class AnnouncementController extends Controller
             'title' => 'required|unique:announcements|max:255',
             'body' => 'required|min:10',
         ]);
-        $files =$request->file('file');
-        //inserting data to Announcements table                
+
+        $files = $request->file('file');
+
         $announcement = Announcement::create([
             'title' => $request->title,
             'body' => $request->body,
         ]);
-        $currentID=$announcement->id;
-        $ModelName = "Announcement";
+
+        $currentID = $announcement->id;
+        $ModelName = class_basename($announcement);
+
         //cheacking where the input has files
-        if ($request->hasFile('file'))
-            { 
-            //stroing all requested file
+        if ($request->hasFile('file')) {
+
                 foreach($files as $file)
                     {
-                        // file store using SystemAttacheFile trait
                         $announcement->uploadFile($file,$currentID,$ModelName);
                     }
-            }
-        else{
             }
 
         return redirect(route('announcements.index'));
@@ -127,30 +126,24 @@ class AnnouncementController extends Controller
     public function update(Request $request, $announcement)
     {
         Storage::makeDirectory('system_files');
-                $filename=null;
-                $filepath =null;
-                $i1=1; 
-                $files =$request->file('file');
-                //inserting data to noticeboard table                
-               $announcement->update([
-                    'title' => $request->title,
-                    'body' => $request->body,
-                ]);
-            $currentID=$announcement->id;
-            $ModelName = "Announcement";
-            //cheacking where the input has files
-            if ($request->hasFile('file'))
-                { 
-                //stroing all requested file
-                    foreach($files as $file)
-                        {
-                            // file store using trait
+
+           $files = $request->file('file');
+
+           $announcement->update([
+                'title' => $request->title,
+                'body' => $request->body,
+            ]);
+
+            $currentID = $announcement->id;
+            $ModelName = class_basename($announcement);
+
+            if ($request->hasFile('file')) {
+
+                    foreach($files as $file) {
+
                             $announcement->uploadFile($file,$currentID,$ModelName);
-                        }
-                }
-            else
-                {
-                }
+                    }
+            }
 
         return redirect(route('announcements.index'))->with('message', 'اطلاعات '.$announcement->name.' موفقانه آبدیت شد.');
     }
@@ -164,15 +157,18 @@ class AnnouncementController extends Controller
     public function destroy($announcement)
     {
         \DB::transaction(function () use ($announcement){
-            $model_name ="Announcement";
-            $files =$announcement->getFile($announcement->id,$model_name);//getting all realated files from SystemAttacheFile Traits by passing Parrent Record Id and Model Name
+
+            $ModelName = class_basename($announcement);
+
+            $files = $announcement->getFile($announcement->id,$ModelName);
+
             $announcement->delete();
-            foreach ($files as $file)
-            {
-                // deleting all resourses of the object
+
+            foreach ($files as $file) {
                 $announcement->deleteFile($file);
             }
         });
+
         return redirect(route('announcements.index'));
     }
 }

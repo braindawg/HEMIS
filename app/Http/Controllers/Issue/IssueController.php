@@ -31,11 +31,12 @@ class IssueController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(IssueDataTable $dataTable)
-    {        
+    {
+        $issues = Issue::latest('created_at')->paginate(10);
         return $dataTable->render('issues.index', [
             'title' => trans('general.issue'),
-            'description' => trans('general.issue_list')
-        ]);
+            'description' => trans('general.issue_list'),
+            ], compact('issues'));
     }
 
     /**
@@ -67,29 +68,27 @@ class IssueController extends Controller
         $validatedData = $request->validate([
             'title' => 'required|max:255',
             'body' => 'required|min:10',
-//            'file' => 'mimes:jpeg,png,bmp,jpg:max:10000',
+            'file.*' => 'mimes:jpeg,png,bmp,jpg:max:10000',
         ]);
-        $files =$request->file('file');
-        $user_id= Auth::user()->id;
-        //inserting data to issues table                
+
+        $files = $request->file('file');
+        $user_id = Auth::user()->id;
+
         $issue = Issue::create([
             'title' => $request->title,
             'body' => $request->body,
             'user_id' => $user_id,
         ]);
-        $currentID=$issue->id;
-        $ModelName = "Issue";
-        //cheacking where the input has files
-        if ($request->hasFile('file'))
-            { 
-            //stroing all requested file
+
+        $currentID = $issue->id;
+        $ModelName = class_basename($issue);
+
+        if ($request->hasFile('file')) {
+
                 foreach($files as $file)
                     {
-                        // file store using SystemAttacheFile trait
                         $issue->uploadFile($file,$currentID,$ModelName);
                     }
-            }
-        else{
             }
 
         return redirect(route('issues.index'));
@@ -100,17 +99,17 @@ class IssueController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($issue)
-    {
-        if(Auth::user()->id == $issue->user_id)
-        {
+    public function edit($issue){
+
+        if(Auth::user()->id == $issue->user_id) {
+
             return view('issues.edit', [
                 'title' => trans('general.issue'),
                 'description' => trans('general.edit_issue'),
                 'issue' => $issue,
             ]);
-        }else
-        {
+
+        }else {
             App::abort(503);
         }
     }
@@ -127,28 +126,26 @@ class IssueController extends Controller
         $validatedData = $request->validate([
             'title' => 'required|max:255',
             'body' => 'required|min:10',
-//            'file' => 'mimes:jpeg,png,bmp,jpg:max:10000',
+            'file.*' => 'mimes:jpeg,png,bmp,jpg:max:10000',
         ]);
-        $files =$request->file('file');
-        $user_id= Auth::user()->id;
-        //inserting data to issues table                
+
+        $files = $request->file('file');
+        $user_id = Auth::user()->id;
+
         $issue->update([
             'title' => $request->title,
             'body' => $request->body,
             'user_id' => $user_id,
         ]);
+
         $currentID=$issue->id;
-        $ModelName = "Issue";
-            //cheacking where the input has files
-            if ($request->hasFile('file'))
-                { 
-                //stroing all requested file
-                    foreach($files as $file)
-                        {
-                            // file store using trait
+        $ModelName = class_basename($issue);
+
+            if ($request->hasFile('file')) {
+
+                    foreach($files as $file) {
                             $issue->uploadFile($file,$currentID,$ModelName);
                         }
-                }else{
                 }
 
         return redirect(route('issues.index'))->with('message', 'اطلاعات '.$issue->name.' موفقانه آبدیت شد.');
@@ -163,15 +160,19 @@ class IssueController extends Controller
     public function destroy($issue)
     {
         \DB::transaction(function () use ($issue){
-            $model_name ="Issue";
-            $files =$issue->getFile($issue->id,$model_name);//getting all realated files from SystemAttacheFile Traits by passing Parrent Record Id and Model Name
+
+            $ModelName = class_basename($issue);
+            $files =$issue->getFile($issue->id,$ModelName);
+
             $issue->delete();
+
             foreach ($files as $file)
             {
-                // deleting all resourses of the object
                 $issue->deleteFile($file);
             }
+
         });
+
         return redirect(route('issues.index'));
     }
 }
