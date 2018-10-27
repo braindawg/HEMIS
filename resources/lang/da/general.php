@@ -65,7 +65,6 @@ return [
     'all_students' => 'همه محصلان',
     'noticeboard_view' =>'مشاهده کننده های اعلان',
     'no_one_see' =>'مشاهده کننده وجود ندارد',
-<<<<<<< HEAD
 
 
     'groups' =>'گروپ ها',
@@ -73,8 +72,6 @@ return [
     'create_group' =>'ایجاد گروپ',
     'edit_group' =>'تصحیح گروپ',
     'description' =>'تشریحات',
-=======
->>>>>>> fa4aa25bae7a17070abef29dd5d63b14f79c534e
     
     'roles_list' => 'لیست وظایف',
     'roles' => 'وظایف',
@@ -219,5 +216,5 @@ return [
     'issue_comments' =>'نظریات',
     'issue_view' =>'مشاهده کننده های سوال',
     'comment' => 'پاسخ خودرا بنویسد ',
-    'back_to_my_account' => 'بازگشت به حساب اصلی',
+                                                                                        'back_to_my_account' => 'بازگشت به حساب اصلی',
 ];
