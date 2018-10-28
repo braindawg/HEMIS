@@ -40,11 +40,11 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @if($announcement->getFile($announcement->id,"Announcement")->count()>0)
-                                    @foreach($announcement->getFile($announcement->id,"Announcement") as $document)
+                                    @if($announcement->attachments()->count() > 0)
+                                    @foreach($announcement->attachments as $file)
                                     <tr>
-                                        <td>{{$document->extension}}</td>
-                                        <td><a href="{{URL::to('/noticeboards/'.'download/'.$document->file.'/'.$document->id.'/'.'attachments')}}"><i class="fa fa-download"></i> {{trans('general.download')}} </a></td>
+                                        <td>{{$file->extension}}</td>
+                                        <td><a href="{{URL::to('download/'.$file->id)}}"><i class="fa fa-download"></i> {{trans('general.download')}} </a></td>
                                     </tr>
                                     @endforeach
                                     @else

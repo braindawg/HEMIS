@@ -10,19 +10,22 @@ use App\Models\Announcement;
 class FilesDeleteController extends Controller
 {
     //
-    public function deleteFiles($filename,$recordID)
-    {       
-            $data = Attachment::find($recordID);
-            if($data)
+    public function deleteFiles($attachmentID)
+    {
+            $data = Attachment::find($attachmentID);
+
+            if($data) {
+            $attachmentName = $data->file;
+
+            Attachment::where('id',$attachmentID)->delete();
+
+            if($attachmentName)
             {
-            $filename = $data->file;
-            Attachment::where('id',$recordID)->delete();
-            if($filename != null)
-            {
-                $imagexistanse=Storage::exists('\attachments\\' . $filename);
+                $imagexistanse=Storage::exists('\attachments\\' . $attachmentName);
+
                     if($imagexistanse)
                     {
-                          Storage::delete('\attachments\\' . $filename);
+                          Storage::delete('\attachments\\' . $attachmentName);
                     }
             }
         }

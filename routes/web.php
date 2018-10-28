@@ -89,8 +89,8 @@ Route::group(['middleware' => 'auth'], function() {
     Route::resource('/teachers', 'TeachersController');
     Route::post('/cityupdate', 'HomeController@updateData');
     Route::post('/universityupdate', 'HomeController@updateData');
-    Route::get('/noticeboards/download/{file}/{recordID}/{folername}','SystemDownloadController@download')->name('noticeboards.download');
-    Route::get('/deletefile/{file}/{recordID}','FilesDeleteController@deleteFiles')->name('deletefile');
+    Route::get('/download/{file}','SystemDownloadController@download')->name('noticeboards.download');
+    Route::get('/deletefile/{file}','FilesDeleteController@deleteFiles')->name('deletefile');
     
     //advertisement document files link
     Route::get('getAttachment/{file_name}', function($filename){

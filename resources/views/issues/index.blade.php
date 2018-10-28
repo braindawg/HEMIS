@@ -14,7 +14,7 @@
                                 <li>
                                     <div class="row">
                                         <div class="col-md-10">
-                                            <a href="{{URL::to('issue-show/'.$issue->id)}}">
+                                            <a href="{{ route ('issues.show', $issue->id)}}">
                                                 <div class="col1">
                                                     <div class="cont">
                                                         <div class="cont-col1">
@@ -27,7 +27,7 @@
                                                             <div class="cont">
                                                                 <div class="cont-col1">
                                                                     <div style="color: black; margin-right: 40px">
-                                                                       <p style="font-size: 11px;" >#{{$issue->id}} &nbsp; باز شده : &nbsp; {{$issue->date()}} &nbsp; <i class="fa fa-comments">{{$issue->issueComment->count()}}</i>  </p>
+                                                                       <p style="font-size: 11px;" >#{{$issue->id}} &nbsp; باز شده : &nbsp; {{$issue->date()}} &nbsp; <i class="fa fa-comments">{{$issue->comments->count()}}</i>  </p>
                                                                     </div>
                                                                 </div>
                                                             </div>

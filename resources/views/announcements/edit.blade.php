@@ -96,17 +96,17 @@
                                 </tr>
                             </thead>
                                 <tbody>
-                                    @if($announcement->getFIle($announcement->id,"Announcement")->count()>0)
-                                    @foreach($announcement->getFile($announcement->id,"Announcement") as $document)
+                                    @if($announcement->attachments()->count()>0)
+                                    @foreach($announcement->attachments as $attachment)
                                         <tr>
                                             <td>
-                                                {{$document->extension}}
+                                                {{$attachment->extension}}
                                             </td>
                                             <td> 
-                                                {{$announcement->title}} 
+                                                {{$attachment->title}}
                                             </td>
                                             <td>
-                                                <a href="{{URL::to('/deletefile/'.$document->file.'/'.$document->id)}}"  onClick="doConfirm()"  class="btn dark btn-sm btn-outline sbold uppercase">
+                                                <a href="{{URL::to('/deletefile/'.$attachment->id)}}"  onClick="doConfirm()"  class="btn dark btn-sm btn-outline sbold uppercase">
                                                 <i class="fa fa-trash"></i>  {{trans('general.delete')}} </a>
                                             </td>
                                         </tr>
