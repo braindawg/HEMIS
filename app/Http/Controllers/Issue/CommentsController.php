@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Auth;
 use App\User;
+
 class CommentsController extends Controller
 {
     public function index()
@@ -19,13 +20,16 @@ class CommentsController extends Controller
             ],   compact('issues')
         );
     }
-    public function show($issue){
-        $issue=Issue::find($issue);
+    public function show($issue)
+    { 
+
         return view('issues.comments.show', [
-                'title' => trans('general.issue_description'),
-                'description' => trans('general.issue_comments'),
-                ] , compact('issue'));
+            'title' => trans('general.issue_description'),
+            'description' => trans('general.issue_comments'),
+            'issue' => $issue
+        ]);
     }
+
     public function store(Request $request){
         $message= $request->message;
         $issue_id= $request->issue;

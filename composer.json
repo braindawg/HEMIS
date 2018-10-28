@@ -6,6 +6,7 @@
     "type": "project",
     "require": {
         "php": ">=7.0.0",
+        "doctrine/dbal": "^2.8",
         "fideloper/proxy": "~3.3",
         "khill/lavacharts": "3.0.*",
         "lab404/laravel-impersonate": "^1.2",

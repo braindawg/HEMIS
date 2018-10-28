@@ -24,9 +24,6 @@ function addComment(data) {
     if(adminUser == 1)
         {
             mycomment = "<div id = " + 'c' + id + "><div class=\"media\">\n" +
-            "                                <div class=\"media-left\">\n" +
-            "                                    <img class=\"media-object\" alt=\"\" src=" + url + ">\n" +
-            "                                </div>\n" +
             "                                <div class=\"media-body\">\n" +
             "                                    <h4 class=\"media-heading\">\n" +
             "                                      <div> <h4 style=\"padding-right: 20px;\">" +
@@ -40,9 +37,6 @@ function addComment(data) {
         }
         else {
         mycomment = "<div id = " + 'c' + id + "><div class=\"media\">\n" +
-            "                                <div class=\"media-left\">\n" +
-            "                                    <img class=\"media-object\" alt=\"\" src=" + url + ">\n" +
-            "                                </div>\n" +
             "                                <div class=\"media-body\">\n" +
             "                                    <h4 class=\"media-heading\">\n" +
             "                                        <span class=\"font-blue\">" + name + "</span>\n" +

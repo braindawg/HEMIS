@@ -3,20 +3,13 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Traits\Attachable;
 
 class Attachment extends Model
 {
-    use Attachable;
-    protected $table ='attachments';
-    protected $fillable =[
-        'model_record_id',
-        'model',
-        'file',
-        'extension'
-          ];
-public function announcement()
+    protected $guarded =[];
+    
+    public function attachable()
     {
-        return $this->belongsTo(\App\Models\Announcement::class);
+        return $this->morphTo();
     }
 }
