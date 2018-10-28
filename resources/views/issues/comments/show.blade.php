@@ -49,7 +49,7 @@
                             <h1 class="center-align" style="width: inherit">
                                 <img src="{{url('/getAttachment/'.'loading_image.gif')}}" id="commet_loading" style="height: 60px;width: 60px;display: none;">
                             </h1>
-                            <h3 class="sbold blog-comments-title">{{trans('comment')}}</h3>
+                            <h3 class="sbold blog-comments-title">{{trans('general.comment')}}</h3><br>
                             <div class="form-group">
                                 <textarea rows="8" name="message" id="summernote" placeholder="Write comment here ..." class="form-control c-square"></textarea>
                             </div>

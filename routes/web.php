@@ -72,7 +72,6 @@ Route::group(['middleware' => 'auth'], function() {
         Route::resource('/announcements', 'AnnouncementController');
     });
     Route::group(['namespace' => 'Issue'], function() {
-        Route::get('/issue','CommentsController@index')->name('issue-list');
         Route::get('/issue-show/{issue}','CommentsController@show')->name('issue-show');
         Route::get('/store-comment','CommentsController@store')->name('store-comment');
         Route::get('/delete-comment','CommentsController@destroy')->name('delete-comment');

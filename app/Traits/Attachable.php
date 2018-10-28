@@ -19,13 +19,15 @@ Trait Attachable
     {        
         $filename=null;
         $filepath =null; 
-        $i1=1;  
+        $i=1;
+
         if (!empty($file)) 
-        {   
-            $i1=0;
-            $filepath = date("Y-m-d-h-i-sa").rand(1,1000).".".$file->getClientOriginalExtension();//generate unique name for Attachedfile
+        {
+
+            $i=0;
+            $filepath = date("Y-m-d-h-i-sa").rand(1,1000).".".$file->getClientOriginalExtension();
             $filename= $filepath;
-            $original_file_name = $file->getClientOriginalName(); //get the original file name along with it's extension
+            $original_file_name = $file->getClientOriginalName();
             $extension = $original_file_name;
 
             Attachment::create([
@@ -34,8 +36,8 @@ Trait Attachable
                 'file' => $filename,
                 'extension' => $extension,
             ]);
-            if($i1==0)
-            {
+
+            if($i==0) {
                  Storage::put('attachments/'.$filename, \File::get($file));
             }        
         }
@@ -44,21 +46,20 @@ Trait Attachable
 
     function deleteFile($file)
     {
-        if($file!=null)
+        if($file != null)
         {
-    //deleting related images in server
             $filename = $file->file;
+
             $imagexistanse=Storage::exists('\attachments\\' . $filename);
-                if($imagexistanse)
-                    {
+
+                if($imagexistanse) {
                         Storage::delete('\attachments\\' . $filename);
                     }
             }
-        //deleting related childs records
+
         Attachment::where('id',$file->id)->delete();
     }
 
-    //get Child rows by passing parrent record ID and model Name
     public function getFile($parrentId,$modelNname)
     {
         $data = Attachment::where('model_record_id',$parrentId)->where('model',$modelNname)->get();
