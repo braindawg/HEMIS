@@ -9,17 +9,18 @@ use Response;
 class SystemDownloadController extends Controller
 {
     //
-    public function download($filename,$recordID,$foldername){
-            $record_id = $recordID;
-            $data = Attachment::find($recordID);
-            $filename = $data->file;
-            
-            if($filename)
-            {
-            $downloadFIleName =$data->extension;
-            $path = storage_path('app').'/'.$foldername.'/'.$filename;
+    public function download($file)
+    {
+        $attachment = Attachment::find($file);
+        $filename = $attachment->file;
+
+        if($filename) {
+
+            $downloadFIleName =$attachment->extension;
+            $path = storage_path('app').'\attachments/'. $filename;
             return response()->download($path,$downloadFIleName);
-            }
+
+        }
         return "فایل وجود ندارد";
     }
 }

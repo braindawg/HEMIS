@@ -87,16 +87,11 @@ class AnnouncementController extends Controller
             'body' => $request->body,
         ]);
 
-        $currentID = $announcement->id;
-        $ModelName = class_basename($announcement);
-
-        //cheacking where the input has files
         if ($request->hasFile('file')) {
 
-                foreach($files as $file)
-                    {
-                        $announcement->uploadFile($file,$currentID,$ModelName);
-                    }
+            foreach($files as $file) {
+                $announcement->uploadFile($file);
+                }
             }
 
         return redirect(route('announcements.index'));
@@ -134,15 +129,11 @@ class AnnouncementController extends Controller
                 'body' => $request->body,
             ]);
 
-            $currentID = $announcement->id;
-            $ModelName = class_basename($announcement);
-
             if ($request->hasFile('file')) {
 
-                    foreach($files as $file) {
-
-                            $announcement->uploadFile($file,$currentID,$ModelName);
-                    }
+                foreach($files as $file) {
+                    $announcement->uploadFile($file);
+                }
             }
 
         return redirect(route('announcements.index'))->with('message', 'اطلاعات '.$announcement->name.' موفقانه آبدیت شد.');
@@ -158,9 +149,8 @@ class AnnouncementController extends Controller
     {
         \DB::transaction(function () use ($announcement){
 
-            $ModelName = class_basename($announcement);
 
-            $files = $announcement->getFile($announcement->id,$ModelName);
+            $files = $announcement->attachments();
 
             $announcement->delete();
 

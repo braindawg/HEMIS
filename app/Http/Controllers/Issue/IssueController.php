@@ -80,16 +80,12 @@ class IssueController extends Controller
             'user_id' => $user_id,
         ]);
 
-        $currentID = $issue->id;
-        $ModelName = class_basename($issue);
-
         if ($request->hasFile('file')) {
 
-                foreach($files as $file)
-                    {
-                        $issue->uploadFile($file,$currentID,$ModelName);
-                    }
+            foreach($files as $file) {
+                $issue->uploadFile($file);
             }
+        }
 
         return redirect(route('issues.index'));
     }
@@ -138,15 +134,12 @@ class IssueController extends Controller
             'user_id' => $user_id,
         ]);
 
-        $currentID=$issue->id;
-        $ModelName = class_basename($issue);
-
             if ($request->hasFile('file')) {
 
-                    foreach($files as $file) {
-                            $issue->uploadFile($file,$currentID,$ModelName);
-                        }
+                foreach($files as $file) {
+                    $issue->uploadFile($file);
                 }
+            }
 
         return redirect(route('issues.index'))->with('message', 'اطلاعات '.$issue->name.' موفقانه آبدیت شد.');
     }
@@ -161,8 +154,7 @@ class IssueController extends Controller
     {
         \DB::transaction(function () use ($issue){
 
-            $ModelName = class_basename($issue);
-            $files =$issue->getFile($issue->id,$ModelName);
+            $files =$issue->attachments();
 
             $issue->delete();
 
@@ -170,7 +162,6 @@ class IssueController extends Controller
             {
                 $issue->deleteFile($file);
             }
-
         });
 
         return redirect(route('issues.index'));
