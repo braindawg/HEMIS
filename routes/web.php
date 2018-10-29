@@ -82,8 +82,12 @@ Route::group(['middleware' => 'auth'], function() {
 
     Route::group(['namespace' => 'Curriculum'], function() {
         Route::get('/curriculum', 'UniversitiesController@index')->name('curriculum.universities');
-        Route::get('/curriculum/{university}', 'DepartmentsController@index')->name('curriculum.departments');;
+        Route::get('/curriculum/{university}', 'DepartmentsController@index')->name('curriculum.departments');
         Route::resource('/curriculum/{university}/{department}/subjects', 'SubjectsController');
+    });
+
+    Route::group(['namespace' => 'Course'], function() {
+        Route::resource('/courses', 'CourseController');
     });
 
     Route::resource('/teachers', 'TeachersController');

@@ -101,6 +101,7 @@ return [
     'school_name' => 'نام مکتب',
     'school_graduation_year' => 'سال فراغت',
     'kankor_year' => 'سال کانکور',
+    'kankor_result' => 'نتیجه کانکور',
     'kankor_score' => 'نمره کانکور',
     'kankor_id' => 'ID کانکور',
     'form_no' => 'ID کانکور',
@@ -217,5 +218,10 @@ return [
     'issue_comments' =>'نظریات',
     'issue_view' =>'مشاهده کننده های سوال',
     'comment' => 'پاسخ خودرا بنویسد ',
-                                                                                        'back_to_my_account' => 'بازگشت به حساب اصلی',
+    'back_to_my_account' => 'بازگشت به حساب اصلی',
+
+    'courses' => 'صنف ها',
+    'courses_list' => 'لیست صنف ها',
+    'create_course' => 'صنف جدید',
+    'edit_course' => ' تصحیح صنف',
 ];
