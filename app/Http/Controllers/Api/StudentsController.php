@@ -4,12 +4,11 @@ namespace App\Http\Controllers\Api;
 
 use App\Models\Student;
 use Illuminate\Http\Request;
-use Illuminate\Validation\Rule;
 use App\Http\Controllers\Controller;
 
 class StudentsController extends Controller
 {
-    public function index(Request $request)
+    public function __invoke(Request $request)
     {
        $students =  Student::select('id', \DB::raw('CONCAT(form_no, " ", name, " ", last_name) as text'));
 

@@ -49,15 +49,13 @@ class TeachersDataTable extends DataTable
                 'teachers.name',
                 'teachers.father_name',
                 'teachers.phone',
-                'departments.name as department',
                 'universities.name as university',
                 'teachers.grandfather_name',
-                'teachers.university_id',
-                'teachers.department_id'
+                'teachers.university_id'
             )
             ->leftJoin('provinces', 'provinces.id', '=', 'teachers.province')
-            ->leftJoin('universities', 'universities.id', '=', 'university_id')
-            ->leftJoin('departments', 'departments.id', '=', 'department_id');
+            ->leftJoin('universities', 'universities.id', '=', 'university_id');
+
         return $query;
     }
 
@@ -71,7 +69,7 @@ class TeachersDataTable extends DataTable
         return $this->builder()
                     ->columns($this->getColumns())
                     ->minifiedAjax()
-                    ->addAction(['title' => trans('general.action'), 'width' => '۷0px'])
+                    ->addAction(['title' => trans('general.action'), 'width' => '70px'])
                     ->parameters($this->getBuilderParameters());
     }
 
@@ -87,7 +85,6 @@ class TeachersDataTable extends DataTable
             'father_name'      => ['title' => trans('general.father_name')],
             'grandfather_name' => ['title' => trans('general.grandfather_name')],
             'phone'            => [ 'title' => trans('general.phone')],
-            'department'       => ['name' => 'departments.name', 'title' => trans('general.department')],
             'university'       => ['name' => 'universities.name','title' => trans('general.university')],
         ];
     }
@@ -99,6 +96,6 @@ class TeachersDataTable extends DataTable
      */
     protected function filename()
     {
-        return 'teachers_' . date('YmdHis');
+        return 'Teachers_' . date('YmdHis');
     }
 }

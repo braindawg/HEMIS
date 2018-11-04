@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Api;
 
 use App\Models\Province;
 use Illuminate\Http\Request;
-use Illuminate\Validation\Rule;
 use App\Http\Controllers\Controller;
 
 class ProvinceController extends Controller

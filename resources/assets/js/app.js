@@ -40,7 +40,57 @@ var App = function() {
         language: "fa",
         ajax: {
             url: function (params) {                
-                return '/api/students' + ($(".select2-students").attr('remote-param') ? '/' + $($(".select2-students").attr('remote-param')).val() : '');
+                return '/api/students';
+            },            
+            dataType: 'json',
+            delay: 250,
+            data: function(params) {
+                return {
+                    q: params.term
+                };
+            },
+            processResults: function(data) {
+                return {
+                    results: data
+                };
+            },
+            cache: true
+        },
+        allowClear: true,
+        minimumInputLength: 2
+    });
+
+
+    $(".select2-subjects").select2({
+        language: "fa",
+        ajax: {
+            url: function (params) {                
+                return '/api/subjects';
+            },            
+            dataType: 'json',
+            delay: 250,
+            data: function(params) {
+                return {
+                    q: params.term
+                };
+            },
+            processResults: function(data) {
+                return {
+                    results: data
+                };
+            },
+            cache: true
+        },
+        allowClear: true,
+        minimumInputLength: 2
+    });
+
+
+    $(".select2-teachers").select2({
+        language: "fa",
+        ajax: {
+            url: function (params) {                
+                return '/api/teachers';
             },            
             dataType: 'json',
             delay: 250,

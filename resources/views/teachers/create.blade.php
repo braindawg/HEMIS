@@ -23,22 +23,8 @@
                         </div>
                         @else
                             {!! Form::hidden('university', auth()->user()->university_id) !!}
-                        @endif                     
-                        <div class="col-md-6">
-                            <div class="form-group {{ $errors->has('department') ? ' has-error' : '' }}">
-                                {!! Form::label('department', trans('general.department'), ['class' => 'control-label col-sm-3']) !!}                                
-                                <div class="col-sm-8">
-                                    {!! Form::select('department', $department, null, ['class' => 'form-control select2-ajax', 'remote-url' => route('api.departments'), 'remote-param' => '[name="university"]']) !!}
-                                    @if ($errors->has('department'))
-                                        <span class="help-block">
-                                            <strong>{{ $errors->first('department') }}</strong>
-                                        </span>
-                                    @endif                                                                                                   
-                                </div>
-                            </div>
-                        </div>
+                        @endif
                     </div>
-                    <hr>
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group {{ $errors->has('name') ? ' has-error' : '' }}">

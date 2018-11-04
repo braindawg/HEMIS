@@ -126,6 +126,7 @@ return [
         'phone' => 'تلفن',
         'department' => 'دیپارتمنت',
         'father_name' => 'نام پدر',
+        'university' => '‍‍‍پوهنتون',
     ],
 
 ];

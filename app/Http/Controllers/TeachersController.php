@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\TeacherAcademicRank;
 use App\User;
 use App\Models\Teacher;
 use App\Models\Province;
@@ -11,6 +10,7 @@ use App\Models\Department;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Maklad\Permission\Models\Role;
+use App\Models\TeacherAcademicRank;
 use App\DataTables\TeachersDataTable;
 use Maklad\Permission\Models\Permission;
 
@@ -48,8 +48,7 @@ class TeachersController extends Controller
             'description' => trans('general.create_teacher'),
             'universities' => University::pluck('name', 'id'),
             'provinces' => Province::pluck('name','id'),
-            'teacher_academic_rank' => TeacherAcademicRank::pluck('title', 'id'),
-            'department' => old('department') != '' ? Department::where('id', old('department'))->pluck('name', 'id') : []
+            'teacher_academic_rank' => TeacherAcademicRank::pluck('title', 'id')
         ]);
     }
 
@@ -66,7 +65,7 @@ class TeachersController extends Controller
             'father_name' => 'required|min:3',
             'phone' => 'required',
             'email' => 'required|email|unique:teachers',
-            'department' =>'required',
+            'university' =>'required',
             'academic_rank_id' =>'required',
         ]);
     
@@ -82,8 +81,7 @@ class TeachersController extends Controller
             'email' => $request->email,
             'degree' => $request->degree,
             'academic_rank_id' => $request->academic_rank_id,
-            'university_id' => $request->university,
-            'department_id' => $request->department,
+            'university_id' => $request->university
         ]);
 
         return redirect(route('teachers.index'));
@@ -102,8 +100,7 @@ class TeachersController extends Controller
             'teacher' => $teacher,
             'universities' => University::pluck('name', 'id'),
             'provinces' =>Province::pluck('name','id'),
-            'teacher_academic_rank' => TeacherAcademicRank::pluck('title', 'id'),
-            'department' => old('department') != '' ? Department::where('id', old('department'))->pluck('name', 'id') : $teacher->department()->pluck('name', 'id')
+            'teacher_academic_rank' => TeacherAcademicRank::pluck('title', 'id')
         ]);
     }
 
@@ -121,7 +118,7 @@ class TeachersController extends Controller
             'father_name' => 'required|min:3',
             'phone' => 'required',
             'email' => 'required|email',
-            'department' =>'required',
+            'university' =>'required',
         ]);
         
         $teacher->update([
@@ -136,8 +133,7 @@ class TeachersController extends Controller
             'email' => $request->email,
             'degree' => $request->degree,
             'academic_rank_id' => $request->academic_rank_id,
-            'university_id' => $request->university,
-            'department_id' => $request->department,
+            'university_id' => $request->university
         ]);
 
         return redirect(route('teachers.index'))->with('message', 'اطلاعات '.$teacher->name.' موفقانه آبدیت شد.');

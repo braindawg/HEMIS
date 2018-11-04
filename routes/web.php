@@ -22,9 +22,11 @@ Route::group(['middleware' => 'auth'], function() {
     Route::impersonate();
 
     Route::group(['namespace' => 'Api'], function() { 
-        Route::get('api/departments/{universityId?}', "DepartmentsController@index")->name('api.departments');
-        Route::get('api/students', "StudentsController@index")->name('api.students');
+        Route::get('api/students', "StudentsController")->name('api.students');// Filter is on Model
         Route::get('api/provinces', "ProvinceController")->name('api.provinces');
+        Route::get('api/subjects', "SubjectsController")->name('api.subjects');// Filter is on Model
+        Route::get('api/teachers', "TeachersController")->name('api.teachers');// Filter is on Model
+        Route::get('api/departments/{university?}', "DepartmentsController")->name('api.departments');
     });
     
     Route::get('/home', 'HomeController@index')->name('home');
