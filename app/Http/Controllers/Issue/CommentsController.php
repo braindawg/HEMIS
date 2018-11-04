@@ -38,7 +38,7 @@ class CommentsController extends Controller
 
         $id = $request->get('id');
 
-       IssueComment::where('id',$id)->delete();
+        IssueComment::where('id',$id)->delete();
 
     }
 }
