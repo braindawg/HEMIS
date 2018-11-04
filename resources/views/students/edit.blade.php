@@ -17,7 +17,7 @@
                 <div class="profile-usertitle">
                     <div class="profile-usertitle-name"> {{ $student->name }} </div>
                     <div class="profile-usertitle-job"> {{ $student->form_no }}</div>
-                    <div class="profile-usertitle-job"> {{ $student->department->name }}</div>
+                    <div class="profile-usertitle-job"> {{ $student->department->name ?? '' }}</div>
                     <div class="profile-usertitle-job"> {{ $student->university->name }}</div>
                 </div>
                 <!-- END SIDEBAR USER TITLE -->
@@ -48,6 +48,17 @@
                             {!! Form::model($student, ['route' => ['students.update', $student], 'method' => 'patch', 'class' => 'form-horizontal']) !!}            
                                 <div class="form-body" id="app">
                                     <div class="row">
+                                        <div class="col-md-6">                                                                                    
+                                            <div class="form-group">
+                                                <label class="col-md-3 control-label">{{ trans('general.kankor_result') }}</label>
+                                                <div class="col-md-9">
+                                                    <p class="form-control-static"> {{ $student->kankor_result }}</p>
+                                                </div>
+                                            </div>
+                                        </div>                                        
+                                    </div>
+                                    <hr>
+                                    <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group {{ $errors->has('university') ? ' has-error' : '' }}">
                                                 {!! Form::label('university', trans('general.university'), ['class' => 'control-label col-sm-3']) !!}                                
@@ -65,7 +76,7 @@
                                             <div class="form-group {{ $errors->has('department') ? ' has-error' : '' }}">
                                                 {!! Form::label('department', trans('general.department'), ['class' => 'control-label col-sm-3']) !!}                                
                                                 <div class="col-sm-9">
-                                                    {!! Form::select('department', $student->department()->pluck('name', 'id'), null, ['class' => 'form-control select2-ajax', 'remote-url' => route('api.departments'), 'remote-param' => 'select[name="university"]', 'disabled']) !!}
+                                                    {!! Form::select('department', $student->department()->pluck('name', 'id'), null, ['class' => 'form-control select2-ajax', 'remote-url' => route('api.departments'), 'remote-param' => 'select[name="university"]']) !!}
                                                     @if ($errors->has('department'))
                                                         <span class="help-block">
                                                             <strong>{{ $errors->first('department') }}</strong>
