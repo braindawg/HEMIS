@@ -43,6 +43,11 @@ class Department extends Model
         return $this->hasMany(\App\Models\Subject::class);
     }
 
+    public function courses()
+    {
+        return $this->hasMany(\App\Models\Course::class);
+    }
+
     public function studentsByStatus()
     {
         return $this->students()->select('department_id', 'status_id', \DB::raw('COUNT(students.id) as students_count'))->groupBy('department_id', 'status_id');
