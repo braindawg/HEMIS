@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Course;
 
 use App\Models\Course;
-use App\Models\University;
+use App\Models\Group;
+use App\Models\Subject;
+use App\Models\Teacher;
 use App\Models\Department;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
@@ -39,11 +41,14 @@ class CourseController extends Controller
      */
     public function create()
     {
+
         return view('course.create', [
             'title' => trans('general.courses'),
             'description' => trans('general.create_course'),
-            'universities' => University::pluck('name', 'id'),
-            'department' => old('department') != '' ? Department::where('id', old('department'))->pluck('name', 'id') : []
+            'subjects' => Subject::pluck('title', 'id'),
+            'teachers' => Teacher::pluck('name', 'id'),
+            'groups' => Group::pluck('name', 'id'),
+           'department' => old('department') != '' ? Department::where('id', old('department'))->pluck('name', 'id') : []
         ]);
     }
 
@@ -54,34 +59,43 @@ class CourseController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {        
-        $validatedData = $request->validate([            
+    {
+        $validatedData = $request->validate([
+
             'code' => [
-                'required', 
-                Rule::unique('students')->whereNull('deleted_at')
+                'required',
+                Rule::unique('courses')->whereNull('deleted_at')
             ],
-            'name' => 'required',
-            'position' => 'required',            
-            'email' => 'required|email|unique:students',
-            'phone' => 'nullable',
-            'password' => 'required|confirmed'            
+
+            'year' => 'required',
+            'semester' => 'required',
+            'half_year' => 'required',
+            'subject' => 'required',
+            'teacher' => 'required',
+            'group' => 'required'
         ]);
-        
-        $user = User::create($validatedData);
 
-        return redirect(route('course.index'));
+        $course = Course::create([
+            'code' => $request->code,
+            'year' => $request->year,
+            'half_year' => $request->half_year,
+            'semester' => $request->semester,
+            'subject' => $request->subject,
+            'teacher' => $request->teacher,
+            'group' => $request->group,
+            'university_id' => \Auth::user()->university_id,
+            'department_id' => $request->department,
+        ]);
+
+        if($request->next == 1){
+
+            return redirect()->back();
+
+        }
+
+        return redirect(route('courses.index'));
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($course)
-    {        
-        return view('course.print', compact('student'));
-    }
 
     /**
      * Show the form for editing the specified resource.
@@ -93,11 +107,14 @@ class CourseController extends Controller
     {
         return view('course.edit', [
             'title' => trans('general.courses'),
-            'description' => trans('general.edit_student'),
-            'student' => $course,
-            'universities' => University::pluck('name', 'id'),
-            'statuses' => StudentStatus::whereIn('id', [1, 2])->pluck('title', 'id')
+            'description' => trans('general.edit_course'),
+            'subjects' => Subject::pluck('title', 'id'),
+            'teachers' => Teacher::pluck('name', 'id'),
+            'groups' => Group::pluck('name', 'id'),
+            'course' => $course,
+            'department' => old('department') != '' ? Department::where('id', old('department'))->pluck('name', 'id') : []
         ]);
+
     }
 
     /**
@@ -110,51 +127,35 @@ class CourseController extends Controller
     public function update(Request $request, $course)
     {
         $validatedData = $request->validate([
-            'status' => 'required'            
+            'code' => [
+                'required',
+                Rule::unique('courses')->whereNull('deleted_at')
+            ],
+
+            'year' => 'required',
+            'semester' => 'required',
+            'half_year' => 'required',
+            'subject' => 'required',
+            'teacher' => 'required',
+            'group' => 'required'
         ]);
 
         $course->update([
-            'last_name' => $request->last_name,
-            'marital_status' => $request->marital_status,
-            'school_name' => $request->school_name,
-            'school_graduation_year' => $request->school_graduation_year,
-            'birthdate' => $request->birthdate,
-            'language' => $request->language,
-            'phone' => $request->phone,
-            'tazkira' => implode('!@#', [ $request->tazkira['volume'],$request->tazkira['registration_number'], $request->tazkira['page'], $request->tazkira['general_number']]),
-            'province' => $request->province,
-            'district' => $request->district,
-            'village' => $request->village,
-            'address' => $request->address,
-
-            'province_current' => $request->province_current,
-            'district_current' => $request->district_current,
-            'village_current' => $request->village_current,
-            'address_current' => $request->address_current,
-            'status_id' => $request->has('status') ? $request->status : $course->status_id,
-
-            'name_eng' => $request->name_eng,
-            'last_name_eng' => $request->last_name_eng,
-            'father_name_eng' => $request->father_name_eng,
-            'grandfather_name_eng' => $request->grandfather_name_eng,
-            'department_eng' => $request->department_eng,
-        ]);        
-
-        if ($request->has('print')) {
-            return redirect(route('course.show', $course));
-        }
-
-        return redirect(route('course.index'))->with('message', 'اطلاعات '.$course->name.' موفقانه آبدیت شد.');
-    }
-
-    public function updateStatus($course)
-    {        
-        $course->update([
-            'status_id' => 2
+            'code' => $request->code,
+            'year' => $request->year,
+            'half_year' => $request->half_year,
+            'semester' => $request->semester,
+            'subject' => $request->subject,
+            'teacher' => $request->teacher,
+            'group' => $request->group,
+            'university_id' => \Auth::user()->university_id,
+            'department_id' => $request->department,
         ]);
 
-        return redirect(route('course.index'))->with('message', $course->name.' موفقانه شامل پوهنتون شد.');;
+        return redirect(route('courses.index'));
+
     }
+
 
     /**
      * Remove the specified resource from storage.
@@ -162,9 +163,9 @@ class CourseController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($user)
+    public function destroy($course)
     {
-        $user->delete();
+        $course->delete();
 
         return redirect(route('course.index'));
     }

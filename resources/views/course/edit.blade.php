@@ -1,78 +1,62 @@
 @extends('layouts.app')
 
 @section('content')
-<!-- BEGIN PAGE BASE CONTENT -->
-<div class="row">
-    <div class="col-md-12">
-        <!-- BEGIN PROFILE SIDEBAR -->
-        <div class="profile-sidebar">
-        </div>
-        <!-- END BEGIN PROFILE SIDEBAR -->
-        <!-- BEGIN PROFILE CONTENT -->
-        <div class="profile-content">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="portlet box">        
-                        <div class="portlet-body">
-                            <!-- BEGIN FORM-->            
-                            {!! Form::model($teacher, ['route' => ['teachers.update', $teacher], 'method' => 'patch', 'class' => 'form-horizontal']) !!}            
+    <!-- BEGIN PAGE BASE CONTENT -->
+    <div class="row">
+        <div class="col-md-12">
+            <!-- BEGIN PROFILE SIDEBAR -->
+            <div class="profile-sidebar">
+            </div>
+            <!-- END BEGIN PROFILE SIDEBAR -->
+            <!-- BEGIN PROFILE CONTENT -->
+            <div class="profile-content">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="portlet box">
+                            <div class="portlet-body">
+                                <!-- BEGIN FORM-->
+                                {!! Form::model($course, ['route' => ['courses.update', $course], 'method' => 'patch', 'class' => 'form-horizontal']) !!}
                                 <div class="form-body" id="app">
                                     <div class="row">
-                                        @if(auth()->user()->allUniversities())
                                         <div class="col-md-6">
-                                            <div class="form-group {{ $errors->has('university') ? ' has-error' : '' }}">
-                                                {!! Form::label('university', trans('general.university'), ['class' => 'control-label col-sm-3']) !!}                                
+                                            <div class="form-group {{ $errors->has('code') ? ' has-error' : '' }}">
+                                                {!! Form::label('code', trans('general.code'), ['class' => 'control-label col-sm-3']) !!}
                                                 <div class="col-sm-8">
-                                                    {!! Form::select('university', $universities, null, ['class' => 'form-control select2', 'placeholder' => trans('general.select')]) !!}
-                                                    @if ($errors->has('university'))
+                                                    {!! Form::text('code', null, ['class' => 'form-control']) !!}
+                                                    @if ($errors->has('code'))
                                                         <span class="help-block">
-                                                            <strong>{{ $errors->first('university') }}</strong>
+                                                            <strong>{{ $errors->first('code') }}</strong>
                                                         </span>
-                                                    @endif                                                                                                   
+                                                    @endif
                                                 </div>
                                             </div>
                                         </div>
-                                        @else
-                                            {!! Form::hidden('university', $teacher->university_id) !!}
-                                        @endif
+                                    </div>
+                                    <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group {{ $errors->has('department') ? ' has-error' : '' }}">
-                                                {!! Form::label('department', trans('general.department'), ['class' => 'control-label col-sm-3']) !!}                                
+                                                {!! Form::label('department', trans('general.department'), ['class' => 'control-label col-sm-3']) !!}
                                                 <div class="col-sm-8">
-                                                    {!! Form::select('department', $department, null, ['class' => 'form-control select2-ajax', 'remote-url' => route('api.departments'), 'remote-param' => '[name="university"]']) !!}
+                                                    {!! Form::select('department',$department, null, ['class' => 'form-control select2-ajax', 'remote-url' => route('api.departments')]) !!}
                                                     @if ($errors->has('department'))
                                                         <span class="help-block">
                                                             <strong>{{ $errors->first('department') }}</strong>
                                                         </span>
-                                                    @endif                                                                                                   
+                                                    @endif
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <hr>
 
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <div class="form-group {{ $errors->has('name') ? ' has-error' : '' }}">
-                                                {!! Form::label('name', trans('general.name'), ['class' => 'control-label col-sm-3']) !!}
+                                            <div class="form-group {{ $errors->has('year') ? ' has-error' : '' }}">
+                                                {!! Form::label('year', trans('general.year'), ['class' => 'control-label col-sm-3']) !!}
                                                 <div class="col-sm-8">
-                                                    {!! Form::text('name', null, ['class' => 'form-control']) !!}
-                                                    @if ($errors->has('name'))
+                                                    {!! Form::text('year', null, ['class' => 'form-control']) !!}
+                                                    @if ($errors->has('year'))
                                                         <span class="help-block">
-                                                            <strong>{{ $errors->first('name') }}</strong>
-                                                        </span>
-                                                    @endif
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group {{ $errors->has('last_name') ? ' has-error' : '' }}">
-                                                {!! Form::label('last_name', trans('general.last_name'), ['class' => 'control-label col-sm-3']) !!}
-                                                <div class="col-sm-8">
-                                                    {!! Form::text('last_name', null, ['class' => 'form-control']) !!}
-                                                    @if ($errors->has('last_name'))
-                                                        <span class="help-block">
-                                                            <strong>{{ $errors->first('last_name') }}</strong>
+                                                            <strong>{{ $errors->first('year') }}</strong>
                                                         </span>
                                                     @endif
                                                 </div>
@@ -81,26 +65,13 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <div class="form-group {{ $errors->has('father_name') ? ' has-error' : '' }}">
-                                                {!! Form::label('father_name', trans('general.father_name'), ['class' => 'control-label col-sm-3']) !!}
+                                            <div class="form-group {{ $errors->has('half_year') ? ' has-error' : '' }}">
+                                                {!! Form::label('half_year', trans('general.half_year'), ['class' => 'control-label col-sm-3']) !!}
                                                 <div class="col-sm-8">
-                                                    {!! Form::text('father_name', null, ['class' => 'form-control']) !!}
-                                                    @if ($errors->has('father_name'))
+                                                    {!! Form::select('half_year', ['spring' => trans('general.spring'),  'fall' => trans('general.fall')], null, ['class' => 'form-control']) !!}
+                                                    @if ($errors->has('half_year'))
                                                         <span class="help-block">
-                                                            <strong>{{ $errors->first('father_name') }}</strong>
-                                                        </span>
-                                                    @endif
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group {{ $errors->has('grandfather_name') ? ' has-error' : '' }}">
-                                                {!! Form::label('grandfather_name', trans('general.grandfather_name'), ['class' => 'control-label col-sm-3']) !!}
-                                                <div class="col-sm-8">
-                                                    {!! Form::text('grandfather_name', null, ['class' => 'form-control']) !!}
-                                                    @if ($errors->has('grandfather_name'))
-                                                        <span class="help-block">
-                                                            <strong>{{ $errors->first('grandfather_name') }}</strong>
+                                                            <strong>{{ $errors->first('half_year') }}</strong>
                                                         </span>
                                                     @endif
                                                 </div>
@@ -109,54 +80,13 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <div class="form-group {{ $errors->has('degree') ? ' has-error' : '' }}">
-                                                {!! Form::label('degree', trans('general.degree'), ['class' => 'control-label col-sm-3']) !!}
+                                            <div class="form-group {{ $errors->has('semester') ? ' has-error' : '' }}">
+                                                {!! Form::label('semester', trans('general.semester'), ['class' => 'control-label col-sm-3']) !!}
                                                 <div class="col-sm-8">
-                                                    {!! Form::select('degree', ['bachelor' => trans('general.bachelor'),  'master' => trans('general.master'), 'doctor' => trans('general.doctor')], null, ['class' => 'form-control', 'placeholder' => trans('general.select')]) !!}
-                                                    @if ($errors->has('degree'))
+                                                    {!! Form::number('semester', null, ['min' => '0','class' => 'form-control'])  !!}
+                                                    @if ($errors->has('semester'))
                                                         <span class="help-block">
-                                                            <strong>{{ $errors->first('degree') }}</strong>
-                                                        </span>
-                                                    @endif
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group {{ $errors->has('academic_rank_id') ? ' has-error' : '' }}">
-                                                {!! Form::label('academic_rank', trans('general.academic_rank'), ['class' => 'control-label col-sm-3']) !!}
-                                                <div class="col-sm-8">
-                                                    {!! Form::select('academic_rank_id', $teacher_academic_rank,$teacher->academic_rank_id, ['class' => 'form-control select2']) !!}
-                                                    @if ($errors->has('academic_rank_id'))
-                                                        <span class="help-block">
-                                            <strong>{{ $errors->first('academic_rank_id') }}</strong>
-                                        </span>
-                                                    @endif
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group {{ $errors->has('birthdate') ? ' has-error' : '' }}">
-                                                {!! Form::label('birthdate', trans('general.birthdate'), ['class' => 'control-label col-sm-3']) !!}
-                                                <div class="col-sm-8">
-                                                    {!! Form::text('birthdate', null, ['class' => 'form-control ltr']) !!}
-                                                    @if ($errors->has('birthdate'))
-                                                        <span class="help-block">
-                                                            <strong>{{ $errors->first('birthdate') }}</strong>
-                                                        </span>
-                                                    @endif
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group {{ $errors->has('marital_status') ? ' has-error' : '' }}">
-                                                {!! Form::label('marital_status', trans('general.marital_status'), ['class' => 'control-label col-sm-3']) !!}
-                                                <div class="col-sm-8">
-                                                    {!! Form::select('marital_status', ['married' => trans('general.married'),  'single' => trans('general.single')], null, ['class' => 'form-control', 'placeholder' => trans('general.select')]) !!}
-                                                    @if ($errors->has('marital_status'))
-                                                        <span class="help-block">
-                                                            <strong>{{ $errors->first('marital_status') }}</strong>
+                                                            <strong>{{ $errors->first('semester') }}</strong>
                                                         </span>
                                                     @endif
                                                 </div>
@@ -165,81 +95,70 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <div class="form-group {{ $errors->has('province') ? ' has-error' : '' }}">
-                                                {!! Form::label('province', trans('general.province'), ['class' => 'control-label col-sm-3']) !!}
+                                            <div class="form-group {{ $errors->has('subject') ? ' has-error' : '' }}">
+                                                {!! Form::label('subject', trans('general.subject'), ['class' => 'control-label col-sm-3']) !!}
                                                 <div class="col-sm-8">
-                                                    {!! Form::select('province', $provinces, null, ['class' => 'form-control']) !!}
-                                                    @if ($errors->has('province'))
+                                                    {!! Form::select('subject', $subjects, null, ['class' => 'form-control select2']) !!}
+                                                    @if ($errors->has('subject'))
                                                         <span class="help-block">
-                                                            <strong>{{ $errors->first('province') }}</strong>
+                                                            <strong>{{ $errors->first('subject') }}</strong>
                                                         </span>
+                                                    @endif
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group {{ $errors->has('teacher') ? ' has-error' : '' }}">
+                                                {!! Form::label('teacher', trans('general.teacher'), ['class' => 'control-label col-sm-3']) !!}
+                                                <div class="col-sm-8">
+                                                    {!! Form::select('teacher', $teachers, null, ['class' => 'form-control select2 ']) !!}
+                                                    @if ($errors->has('teacher'))
+                                                        <span class="help-block">
+                                                            <strong>{{ $errors->first('teacher') }}</strong>
+                                                         </span>
+                                                    @endif
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group {{ $errors->has('group') ? ' has-error' : '' }}">
+                                                {!! Form::label('group', trans('general.group'), ['class' => 'control-label col-sm-3']) !!}
+                                                <div class="col-sm-8">
+                                                    {!! Form::select('group', $groups, null, ['class' => 'form-control select2']) !!}
+                                                    @if ($errors->has('group'))
+                                                        <span class="help-block">
+                                                            <strong>{{ $errors->first('group') }}</strong>
+                                                         </span>
                                                     @endif
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                     <hr>
-                                    <div class="row">                        
-                                        <div class="col-md-6">
-                                            <div class="form-group {{ $errors->has('phone') ? ' has-error' : '' }}">
-                                                {!! Form::label('phone', trans('general.phone'), ['class' => 'control-label col-sm-3']) !!}
-                                                <div class="col-sm-8">
-                                                    {!! Form::text('phone', null, ['class' => 'form-control ltr']) !!}
-                                                    @if ($errors->has('phone'))
-                                                        <span class="help-block">
-                                                            <strong>{{ $errors->first('phone') }}</strong>
-                                                        </span>
-                                                    @endif                                                                                                   
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group {{ $errors->has('email') ? ' has-error' : '' }}">
-                                                {!! Form::label('email', trans('general.email'), ['class' => 'control-label col-sm-3']) !!}
-                                                <div class="col-sm-8">
-                                                    {!! Form::text('email', null, ['class' => 'form-control ltr']) !!}
-                                                    @if ($errors->has('email'))
-                                                        <span class="help-block">
-                                                            <strong>{{ $errors->first('email') }}</strong>
-                                                        </span>
-                                                    @endif                                                                                                   
-                                                </div>
+                                    <div class="form-actions fluid">
+                                        <div class="row">
+                                            <div class="col-md-offset-2 col-md-8">
+                                                <button type="submit"
+                                                        class="btn green">{{ trans('general.save') }}</button>
+                                                <a href="{{ route('courses.index') }}"
+                                                   class="btn default">{{ trans('general.cancel') }}</a>
                                             </div>
                                         </div>
                                     </div>
-                                <hr>
-                                <div class="form-actions fluid">
-                                    <div class="row">
-                                        <div class="col-md-offset-2 col-md-8">
-                                            <button type="submit" class="btn green">{{ trans('general.save') }}</button>
-                                            <a href="{{ route('teachers.index') }}" class="btn default">{{ trans('general.cancel') }}</a>
-                                        </div>
-                                    </div>
-                                </div>                            
-                                {!! Form::close() !!}
-                            <!-- END FORM-->
+                                    {!! Form::close() !!}
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
+                <!-- END PROFILE CONTENT -->
             </div>
         </div>
-        <!-- END PROFILE CONTENT -->
     </div>
-</div>
-<!-- END PAGE BASE CONTENT -->
-    
+    <!-- END PAGE BASE CONTENT -->
+
 @endsection('content')
-
-@push('styles')
-    <link href="{{ asset('css/profile-rtl.min.css') }}" rel="stylesheet">     
-@endpush
-
-@push('scripts')
-<script>
-    $(function () {
-        $('.select2').change(function () {
-            $('.select2-ajax').val(null).trigger('change');
-        })
-    })
-</script>
-@endpush
