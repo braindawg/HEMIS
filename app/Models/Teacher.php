@@ -28,4 +28,9 @@ class Teacher extends Model
     {
         return $this->name." ".$this->last_name;
     }
+
+    public function courses()
+    {
+        return $this->hasMany(\App\Models\Course::class);
+    }
 }

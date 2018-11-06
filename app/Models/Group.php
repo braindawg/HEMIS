@@ -18,4 +18,9 @@ class Group extends Model
     {
         return $this->hasMany(\App\Models\Student::class)->orderBy('name');
     }
+
+    public function courses()
+    {
+        return $this->hasMany(\App\Models\Course::class);
+    }
 }

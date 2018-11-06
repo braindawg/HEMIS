@@ -25,4 +25,11 @@ class Subject extends Model
     {
         return $this->belongsTo(\App\Models\Department::class);
     }
+
+    public function courses()
+    {
+        return $this->hasMany(\App\Models\Course::class);
+    }
+
+
 }
