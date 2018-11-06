@@ -3,7 +3,7 @@
     <div class="row">
         <div class="col-md-12">
             <div class="portlet light">
-                <div class="portlet-title pull-right">
+                <div class="portlet-title">
                     <a href="{{ route('issues.create') }}" class="btn btn-info"><i class="icon-plus"></i> {{ trans('general.create_issue') }} </a>
                     <div class="tools"></div>
                 </div>
@@ -38,13 +38,13 @@
                                         </div>
                                         <div class="col-md-2">
                                             <tr>
-                                                @if($issue->user_id == Auth::user()->id)
+                                                @if($issue->isOwner())
                                                     <td>
                                                         <a href="{{ route('issues.edit', $issue )}}" class="btn btn-outline btn-circle btn-xs blue">
                                                             <i class="fa fa-edit"></i></a>
                                                     </td>
                                                 @endif
-                                                @if($issue->user_id == Auth::user()->id || Auth::user()->hasRolle('super-admin'))
+                                                @if($issue->isOwner() or auth()->user()->can('delete-issues'))
                                                     <td>
                                                         <form action="{{ route('issues.destroy' , $issue ) }}" method="post" style="display:inline">
                                                             <input type="hidden" name="_method" value="DELETE" />

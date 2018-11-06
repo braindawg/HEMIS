@@ -19,10 +19,11 @@ class Department extends Model
         parent::boot();
 
         static::addGlobalScope('department', function ( $query) {
+            
             //if user assigned to departments filter else not filter
-            if (!auth()->guest() and !auth()->user()->allUniversities() and auth()->user()->departments->count()) {
-                
-                $query->whereIn($query->getQuery()->from . '.id',  auth()->user()->departments->pluck('id'));
+            if (! auth()->guest() and ! auth()->user()->allUniversities() and auth()->user()->departments->count()) {
+               
+                $query->whereIn('departments.id',  auth()->user()->departments->pluck('id'));
    
             }
         });
