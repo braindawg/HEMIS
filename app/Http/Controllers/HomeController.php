@@ -44,22 +44,24 @@ class HomeController extends Controller
         
         $allDepartments = Department::get();
 
-        $allStudents = Student::count();
-
+        $allStudents = Student::where('kankor_year', 1397)->count();
 
 
         $totalStudentsByStatus = Student::select(\DB::raw('count(students.id) as students_count'),'status_id as status')
+            ->where('kankor_year', 1397)
             ->groupBy('status_id')
             ->get();
 
         $provinces = Student::select('provinces.name as province', \DB::raw('count(students.id) as count'))
         ->leftJoin('provinces', 'provinces.id', '=', 'students.province')
         ->groupBy('provinces.name')
+        ->where('kankor_year', 1397)
         ->withoutGlobalScopes()
         ->get();
         
         $universities = Student::leftJoin('universities', 'universities.id', '=', 'university_id')
             ->select('universities.name', \DB::raw('count(students.id) as count'))
+            ->where('kankor_year', 1397)
             ->groupBy('universities.name')
             ->with('university')
             ->withoutGlobalScopes()
@@ -75,6 +77,7 @@ class HomeController extends Controller
         $provinceStudentsInUnis = Student::leftJoin('universities', 'universities.id', '=', 'university_id')
             ->select('universities.name', \DB::raw('count(students.id) as std_count'))
             ->where('province', $city->id)
+            ->where('kankor_year', 1397)
             ->orderBy('std_count', 'asc')
             ->groupBy('universities.name')
             ->withoutGlobalScopes()
@@ -85,6 +88,7 @@ class HomeController extends Controller
         $uniStudentsFromProvinces = Student::leftJoin('provinces', 'provinces.id', '=', 'province')
             ->select('provinces.name', \DB::raw('count(students.id) as std_count'))
             ->where('university_id', $university->id)
+            ->where('kankor_year', 1397)
             ->orderBy('std_count', 'asc')
             ->groupBy('provinces.name')
             ->withoutGlobalScopes()
@@ -122,6 +126,7 @@ class HomeController extends Controller
             $provinceStudentsInUnis = Student::leftJoin('universities', 'universities.id', '=', 'university_id')
                 ->select('universities.name', \DB::raw('count(students.id) as std_count'))
                 ->where('province', $request->pro)
+                ->where('kankor_year', 1397)
                 ->orderBy('std_count', 'asc')
                 ->groupBy('universities.name')
                 ->withoutGlobalScopes()
@@ -141,6 +146,7 @@ class HomeController extends Controller
                 $uniStudentsFromProvinces = Student::leftJoin('provinces', 'provinces.id', '=', 'province')
                     ->select('provinces.name', \DB::raw('count(students.id) as std_count'))
                     ->where('university_id', $request->uni)
+                    ->where('kankor_year', 1397)
                     ->orderBy('std_count', 'asc')
                     ->groupBy('provinces.name')
                     ->withoutGlobalScopes()

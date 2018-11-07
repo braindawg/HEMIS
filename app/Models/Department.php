@@ -51,6 +51,8 @@ class Department extends Model
 
     public function studentsByStatus()
     {
-        return $this->students()->select('department_id', 'status_id', \DB::raw('COUNT(students.id) as students_count'))->groupBy('department_id', 'status_id');
+        return $this->students()->select('department_id', 'status_id', \DB::raw('COUNT(students.id) as students_count'))
+            ->where('kankor_year', 1397)
+            ->groupBy('department_id', 'status_id');
     }
 }
