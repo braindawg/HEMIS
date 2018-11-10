@@ -45,9 +45,8 @@ class CourseController extends Controller
         return view('course.create', [
             'title' => trans('general.courses'),
             'description' => trans('general.create_course'),
-            'subjects' => Subject::pluck('title', 'id'),
+            'departments' => Department::pluck('name', 'id'),
             'teachers' => Teacher::pluck('name', 'id'),
-            'groups' => Group::pluck('name', 'id'),
            'department' => old('department') != '' ? Department::where('id', old('department'))->pluck('name', 'id') : []
         ]);
     }
@@ -80,9 +79,9 @@ class CourseController extends Controller
             'year' => $request->year,
             'half_year' => $request->half_year,
             'semester' => $request->semester,
-            'subject' => $request->subject,
-            'teacher' => $request->teacher,
-            'group' => $request->group,
+            'subject_id' => $request->subject,
+            'teacher_id' => $request->teacher,
+            'group_id' => $request->group,
             'university_id' => \Auth::user()->university_id,
             'department_id' => $request->department,
         ]);
@@ -108,11 +107,12 @@ class CourseController extends Controller
         return view('course.edit', [
             'title' => trans('general.courses'),
             'description' => trans('general.edit_course'),
-            'subjects' => Subject::pluck('title', 'id'),
-            'teachers' => Teacher::pluck('name', 'id'),
-            'groups' => Group::pluck('name', 'id'),
             'course' => $course,
-            'department' => old('department') != '' ? Department::where('id', old('department'))->pluck('name', 'id') : []
+            'department' => Department::pluck('name', 'id'),
+            'department' => old('department') != '' ? Department::where('id', old('department'))->pluck('name', 'id') : $course->department()->pluck('name', 'id'),
+            'group' => old('group') != '' ? Group::where('id', old('group'))->pluck('name', 'id') : $course->group()->pluck('name', 'id'),
+            'subject' => old('subject') != '' ? Subject::where('id', old('subject'))->pluck('title', 'id') : $course->subject()->pluck('title', 'id'),
+            'teacher' => old('teacher') != '' ? Teacher::where('id', old('teacher'))->pluck('name', 'id') : $course->teacher()->pluck('name', 'id'),
         ]);
 
     }
@@ -127,11 +127,7 @@ class CourseController extends Controller
     public function update(Request $request, $course)
     {
         $validatedData = $request->validate([
-            'code' => [
-                'required',
-                Rule::unique('courses')->whereNull('deleted_at')
-            ],
-
+            'code' => 'required',
             'year' => 'required',
             'semester' => 'required',
             'half_year' => 'required',
@@ -145,9 +141,9 @@ class CourseController extends Controller
             'year' => $request->year,
             'half_year' => $request->half_year,
             'semester' => $request->semester,
-            'subject' => $request->subject,
-            'teacher' => $request->teacher,
-            'group' => $request->group,
+            'subject_id' => $request->subject,
+            'teacher_id' => $request->teacher,
+            'group_id' => $request->group,
             'university_id' => \Auth::user()->university_id,
             'department_id' => $request->department,
         ]);
@@ -167,6 +163,6 @@ class CourseController extends Controller
     {
         $course->delete();
 
-        return redirect(route('course.index'));
+        return redirect(route('courses.index'));
     }
 }

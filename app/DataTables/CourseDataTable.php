@@ -18,9 +18,9 @@ class CourseDataTable extends DataTable
         return datatables($query)
             ->addColumn('action', function ($course) {
                 $html = '';
-
+//                    if(auth::user()->can('edit-course')){
                     $html .= '<a href="'.route('courses.edit', $course).'" class="btn btn-success btn-xs" target="new"><i class="icon-pencil"></i></a>';
-
+//                    }
                     $html .= '<form action="'. route('courses.destroy', $course) .'" method="post" style="display:inline">
                             <input type="hidden" name="_method" value="DELETE" />
                             <input type="hidden" name="_token" value="'.csrf_token().'" />
@@ -53,9 +53,9 @@ class CourseDataTable extends DataTable
                 'universities.name as university',
                 'departments.name as department'
             )
-            ->leftJoin('subjects', 'subjects.id', '=', 'courses.subject')
-            ->leftJoin('teachers', 'teachers.id', '=', 'courses.teacher')
-            ->leftJoin('groups', 'groups.id', '=', 'group')
+            ->leftJoin('subjects', 'subjects.id', '=', 'courses.subject_id')
+            ->leftJoin('teachers', 'teachers.id', '=', 'courses.teacher_id')
+            ->leftJoin('groups', 'groups.id', '=', 'group_id')
             ->leftJoin('universities', 'universities.id', '=', 'courses.university_id')
             ->leftJoin('departments', 'departments.id', '=', 'courses.department_id');
 
