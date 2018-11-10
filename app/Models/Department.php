@@ -19,10 +19,11 @@ class Department extends Model
         parent::boot();
 
         static::addGlobalScope('department', function ( $query) {
+            
             //if user assigned to departments filter else not filter
-            if (!auth()->guest() and !auth()->user()->allUniversities() and auth()->user()->departments->count()) {
-                
-                $query->whereIn($query->getQuery()->from . '.id',  auth()->user()->departments->pluck('id'));
+            if (! auth()->guest() and ! auth()->user()->allUniversities() and auth()->user()->departments->count()) {
+               
+                $query->whereIn('departments.id',  auth()->user()->departments->pluck('id'));
    
             }
         });
@@ -50,6 +51,8 @@ class Department extends Model
 
     public function studentsByStatus()
     {
-        return $this->students()->select('department_id', 'status_id', \DB::raw('COUNT(students.id) as students_count'))->groupBy('department_id', 'status_id');
+        return $this->students()->select('department_id', 'status_id', \DB::raw('COUNT(students.id) as students_count'))
+            ->where('kankor_year', 1397)
+            ->groupBy('department_id', 'status_id');
     }
 }

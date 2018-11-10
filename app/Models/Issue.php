@@ -2,11 +2,11 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
+use App\Traits\Attachable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Carbon\Carbon;
-use App\Traits\Attachable;
 
 class Issue extends Model
 {
@@ -15,8 +15,6 @@ class Issue extends Model
     protected $table = "issues";
     protected $guarded = [];
 
-
-    
     public function date()
     {
         Carbon::setLocale('fa');
@@ -32,5 +30,11 @@ class Issue extends Model
     {
         return $this->hasMany(\App\Models\IssueComment::class);
     }
+
+    public function isOwner()
+    {
+        return auth()->user()->id == $this->user_id;
+    }
+
 }
     

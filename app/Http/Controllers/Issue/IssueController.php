@@ -9,41 +9,26 @@ use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Maklad\Permission\Models\Role;
 use App\Http\Controllers\Controller;
-use App\DataTables\IssueDataTable;
-use Maklad\Permission\Models\Permission;
 use Illuminate\Support\Facades\Storage;
-use Auth;
-use App;
-
+use Maklad\Permission\Models\Permission;
 
 class IssueController extends Controller
 {
-    public function __construct()
-    {        
-        //  $this->middleware('permission:view-teacher', ['only' => ['index', 'show']]);
-        //  $this->middleware('permission:create-teacher', ['only' => ['create','store']]);
-        //  $this->middleware('permission:edit-teacher', ['only' => ['edit','update']]);
-        //  $this->middleware('permission:delete-teacher', ['only' => ['destroy']]);
-    }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(IssueDataTable $dataTable)
+    public function index()
     {
-        $issues = Issue::latest('created_at')->paginate(10);
-        return $dataTable->render('issues.index', [
+        return view('issues.index', [
             'title' => trans('general.issue'),
             'description' => trans('general.issue_list'),
-            ], compact('issues'));
+            'issues' => Issue::latest('created_at')->paginate(10)
+        ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function create()
     {
         return view('issues.create', [
@@ -52,17 +37,16 @@ class IssueController extends Controller
         ]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
 
-     public function show($issue){
+    public function show($issue)
+    {
         return view('issues.show', [
-            'title' => trans('general.issue_description'),],compact('issue'));
-     }
+            'title' => trans('general.issue_description'),
+            'issue' => $issue
+        ]);
+    }
+
+
     public function store(Request $request)
     {
         $validatedData = $request->validate([
@@ -72,7 +56,7 @@ class IssueController extends Controller
         ]);
 
         $files = $request->file('file');
-        $user_id = Auth::user()->id;
+        $user_id = auth()->user()->id;
 
         $issue = Issue::create([
             'title' => $request->title,
@@ -97,7 +81,7 @@ class IssueController extends Controller
      */
     public function edit($issue){
 
-        if(Auth::user()->id == $issue->user_id) {
+        if(auth()->user()->id == $issue->user_id) {
 
             return view('issues.edit', [
                 'title' => trans('general.issue'),
@@ -106,7 +90,7 @@ class IssueController extends Controller
             ]);
 
         }else {
-            App::abort(503);
+            \App::abort(503);
         }
     }
 
@@ -126,7 +110,7 @@ class IssueController extends Controller
         ]);
 
         $files = $request->file('file');
-        $user_id = Auth::user()->id;
+        $user_id = auth()->user()->id;
 
         $issue->update([
             'title' => $request->title,

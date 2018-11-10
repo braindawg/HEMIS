@@ -22,6 +22,13 @@
         </a>       
     </li>
 
+    <li class="nav-item start {{ request()->is('issues*') ? 'active' : '' }}">
+        <a href="{{ route('issues.index') }}" class="nav-link nav-toggle">
+            <i class="icon-question"></i>            
+            <span class="title">{{ trans('general.issue') }}</span>         
+        </a>       
+    </li>
+
     @if (auth()->user()->can(['view-university']))
     <li class="nav-item start {{ request()->is('universities*') ? 'active' : '' }}">
         <a href="#" class="nav-link nav-toggle">
@@ -276,6 +283,7 @@
         </ul>
     </li>
     @endif
+    
     <li class="nav-item start {{ request()->is('support') ? 'active' : '' }}">
         <a href="{{ route('support') }}" class="nav-link nav-toggle">
             <i class="icon-earphones-alt"></i>            

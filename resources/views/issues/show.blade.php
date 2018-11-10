@@ -31,10 +31,13 @@
                                         <div class="media-body">
                                             <h4 class="media-heading">
                                                 {{--Comment Delete Section should only visible to Admin user--}}
+                                                @if ($comment->isOwner() or auth()->user()->can('delete-issues-comment'))
                                                 <div>
-                                                    <h4 style="padding-right: 20px;"><i id="{{$comment->id}}" onclick="deletecomment(this.id)" class="fa fa-times btn-xs pull-right" title="Delete Comment" style="cursor: pointer"></i>
+                                                    <h4 style="padding-right: 20px;">
+                                                        <i id="{{$comment->id}}" onclick="deletecomment(this.id)" class="fa fa-times btn-xs pull-right" title="Delete Comment" style="cursor: pointer"></i>
                                                     </h4>
                                                 </div>
+                                                @endif
                                                 {{--End delete Section--}}
                                                 <span class="font-blue" style="font-size: 16px;">{{$comment->user->name}}</span></h4>{!! $comment->comment !!}
                                             &nbsp;&nbsp;<span class="c-date" style="font-size: 11px; color: #0d638f">زمان نظر:{{$comment->date()}}</span>
@@ -62,8 +65,9 @@
         </div>
     </div>
 @endsection('content')
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+
+@push('scripts')
 <script src="https://js.pusher.com/4.3/pusher.min.js"></script>
 <script src="{{ asset('js/comment.js') }}"></script>
-
+@endpush
 
