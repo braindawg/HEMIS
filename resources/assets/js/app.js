@@ -65,7 +65,7 @@ var App = function() {
         language: "fa",
         ajax: {
             url: function (params) {                
-                return '/api/subjects';
+                return '/api/subjects' + ($(".select2-subjects").attr('remote-param') ? '/' + $($(".select2-subjects").attr('remote-param')).val() : '');
             },            
             dataType: 'json',
             delay: 250,
@@ -82,7 +82,32 @@ var App = function() {
             cache: true
         },
         allowClear: true,
-        minimumInputLength: 2
+        // minimumInputLength: 2
+    });
+
+
+    $(".select2-groups").select2({
+        language: "fa",
+        ajax: {
+            url: function (params) {
+                return '/api/groups'+ ($(".select2-groups").attr('remote-param') ? '/' + $($(".select2-groups").attr('remote-param')).val() : '');
+            },
+            dataType: 'json',
+            delay: 250,
+            data: function(params) {
+                return {
+                    q: params.term
+                };
+            },
+            processResults: function(data) {
+                return {
+                    results: data
+                };
+            },
+            cache: true
+        },
+        allowClear: true,
+       // minimumInputLength: 2
     });
 
 
@@ -90,7 +115,7 @@ var App = function() {
         language: "fa",
         ajax: {
             url: function (params) {                
-                return '/api/teachers';
+                return '/api/teachers' + ($(".select2-teachers").attr('remote-param') ? '/' + $($(".select2-teachers").attr('remote-param')).val() : '');
             },            
             dataType: 'json',
             delay: 250,
@@ -107,7 +132,7 @@ var App = function() {
             cache: true
         },
         allowClear: true,
-        minimumInputLength: 2
+        // minimumInputLength: 2
     });
 
     window.select2ProvincesOptions = {

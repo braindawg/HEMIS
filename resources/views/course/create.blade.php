@@ -26,7 +26,7 @@
                         <div class="form-group {{ $errors->has('department') ? ' has-error' : '' }}">
                             {!! Form::label('department', trans('general.department'), ['class' => 'control-label col-sm-3']) !!}
                             <div class="col-sm-8">
-                                {!! Form::select('department',$department, null, ['class' => 'form-control select2-ajax', 'remote-url' => route('api.departments')]) !!}
+                                {!! Form::select('department',$departments, null, ['class' => 'form-control select2']) !!}
                                 @if ($errors->has('department'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('department') }}</strong>
@@ -87,7 +87,7 @@
                         <div class="form-group {{ $errors->has('subject') ? ' has-error' : '' }}">
                             {!! Form::label('subject', trans('general.subject'), ['class' => 'control-label col-sm-3']) !!}
                             <div class="col-sm-8">
-                                {!! Form::select('subject', $subjects, null, ['class' => 'form-control select2']) !!}
+                                {!! Form::select('subject',[], null, ['class' => 'form-control select2-subjects', 'remote-url' => route('api.subjects'), 'remote-param' => 'select[name="department"]']) !!}
                                 @if ($errors->has('subject'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('subject') }}</strong>
@@ -117,7 +117,7 @@
                         <div class="form-group {{ $errors->has('group') ? ' has-error' : '' }}">
                             {!! Form::label('group', trans('general.group'), ['class' => 'control-label col-sm-3']) !!}
                             <div class="col-sm-8">
-                                {!! Form::select('group', $groups, null, ['class' => 'form-control select2']) !!}
+                                {!! Form::select('group', [], null, ['class' => 'form-control select2-groups','remote-param' => 'select[name="department"]']) !!}
                                 @if ($errors->has('group'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('group') }}</strong>

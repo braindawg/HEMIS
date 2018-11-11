@@ -24,8 +24,9 @@ Route::group(['middleware' => 'auth'], function() {
     Route::group(['namespace' => 'Api'], function() { 
         Route::get('api/students', "StudentsController")->name('api.students');// Filter is on Model
         Route::get('api/provinces', "ProvinceController")->name('api.provinces');
-        Route::get('api/subjects', "SubjectsController")->name('api.subjects');// Filter is on Model
-        Route::get('api/teachers', "TeachersController")->name('api.teachers');// Filter is on Model
+        Route::get('api/subjects/{department?}', "SubjectsController")->name('api.subjects');// Filter is on Model
+        Route::get('api/groups/{department?}', "GroupsController")->name('api.groups');// Filter is on Model
+        Route::get('api/teachers{university?}', "TeachersController")->name('api.teachers');// Filter is on Model
         Route::get('api/departments/{university?}', "DepartmentsController")->name('api.departments');
     });
     

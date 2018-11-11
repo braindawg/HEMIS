@@ -19,9 +19,9 @@ class CreateCoursesTable extends Migration
             $table->integer('year');
             $table->string('half_year');
             $table->integer('semester');
-            $table->integer('subject');
-            $table->integer('teacher');
-            $table->integer('group');
+            $table->integer('subject_id');
+            $table->integer('teacher_id');
+            $table->integer('group_id');
             $table->integer('university_id');
             $table->integer('department_id');
             $table->timestamps();
