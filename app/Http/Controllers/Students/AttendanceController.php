@@ -26,7 +26,11 @@ class AttendanceController extends Controller
 
     public function show(Request $request)
     {
-        $department = Department::find($request->department);
+        $this->validate($request, [
+            'department' => 'required'
+        ]);
+
+        $department = Department::find($request->department);        
 
         $pdf = PDF::loadView('attendance.show', compact('department', 'request'), [], [
             'format' => 'A4-L'
