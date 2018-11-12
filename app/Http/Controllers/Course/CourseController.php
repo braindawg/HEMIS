@@ -48,7 +48,7 @@ class CourseController extends Controller
             'description' => trans('general.create_course'),
             'departments' => Department::pluck('name', 'id'),
             'teachers' => Teacher::pluck('name', 'id'),
-           'department' => old('department') != '' ? Department::where('id', old('department'))->pluck('name', 'id') : []
+            'department' => old('department') != '' ? Department::where('id', old('department'))->pluck('name', 'id') : []
         ]);
     }
 
@@ -61,12 +61,10 @@ class CourseController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-
             'code' => [
                 'required',
                 Rule::unique('courses')->whereNull('deleted_at')
             ],
-
             'year' => 'required',
             'semester' => 'required',
             'half_year' => 'required',
@@ -75,23 +73,27 @@ class CourseController extends Controller
             'group' => 'required'
         ]);
 
-        $course = Course::create([
-            'code' => $request->code,
-            'year' => $request->year,
-            'half_year' => $request->half_year,
-            'semester' => $request->semester,
-            'subject_id' => $request->subject,
-            'teacher_id' => $request->teacher,
-            'group_id' => $request->group,
-            'university_id' => \Auth::user()->university_id,
-            'department_id' => $request->department,
-        ]);
+        \DB::transaction(function () use ($request) {
+            $department = Department::find($request->department);
+
+            $course = Course::create([
+                'code' => $request->code,
+                'year' => $request->year,
+                'half_year' => $request->half_year,
+                'semester' => $request->semester,
+                'subject_id' => $request->subject,
+                'teacher_id' => $request->teacher,
+                'group_id' => $request->group,
+                'university_id' => $department->university_id,
+                'department_id' => $department->id,
+            ]);
 
 
-        //Course-student
-        $course->students()->sync($course->group->students->pluck('id'));
+            //Course-student
+            $course->students()->sync($course->group->students->pluck('id'));
+        });
 
-        if($request->next == 1){
+        if ($request->has('next')) {
 
             return redirect()->back();
 
@@ -166,7 +168,10 @@ class CourseController extends Controller
      */
     public function destroy($course)
     {
-        $course->delete();
+        \DB::transaction(function () use ($course) {
+            $course->students()->sync([]);
+            $course->delete();
+        });
 
         return redirect(route('courses.index'));
     }

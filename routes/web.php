@@ -88,11 +88,10 @@ Route::group(['middleware' => 'auth'], function() {
     });
 
     Route::group(['namespace' => 'Course'], function() {
-        Route::resource('/courses', 'CourseController');
-
-        Route::get('course/attendance/{course}/', 'AttendanceController@index')->name('attendance.create');
-        Route::delete('course/attendance/{course}/', 'AttendanceController@removeStudent')->name('attendance.student.remove');
-        Route::get('course/attendance/print/{course}/', 'AttendanceController@printAttendance')->name('course.attendance.print');
+        Route::get('courses/{course}/list', 'AttendanceController@list')->name('attendance.create');        
+        Route::get('courses/{course}/attendance', 'AttendanceController@print')->name('course.attendance.print');
+        Route::delete('courses/{course}/remove-student', 'AttendanceController@removeStudent')->name('attendance.student.remove');
+        Route::resource('courses', 'CourseController');
     });
 
     Route::resource('/teachers', 'TeachersController');

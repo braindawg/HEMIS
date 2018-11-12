@@ -95,8 +95,8 @@
                 <div class="page-head portlet" style="padding-right:20px;">
                     <!-- BEGIN PAGE TITLE -->
                     <div class="page-title">
-                        <h1>{{ $title or "" }} 
-                            <small>{{ $description or "" }}</small>
+                        <h1>{{ $title ?? "" }} 
+                            <small>{{ $description ?? "" }}</small>
                         </h1>
                     </div>
                     <!-- END PAGE TITLE -->
