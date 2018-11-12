@@ -11,8 +11,10 @@
         "khill/lavacharts": "3.0.*",
         "lab404/laravel-impersonate": "^1.2",
         "laravel/framework": "5.7.*",
+        "laravel/nova": "*",
         "laravel/tinker": "~1.0",
         "laravelcollective/html": "^5.4.0",
+        "maatwebsite/laravel-nova-excel": "^1.1",
         "niklasravnsborg/laravel-pdf": "^2.0",
         "pusher/pusher-php-server": "^3.2",
         "spatie/laravel-permission": "^2.15",
@@ -67,5 +69,13 @@
         "preferred-install": "dist",
         "sort-packages": true,
         "optimize-autoloader": true
-    }
+    },
+    "repositories": [
+        {
+            "type": "path",
+            "url": "./nova"
+        }
+    ],
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }
