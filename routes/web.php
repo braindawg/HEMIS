@@ -53,8 +53,6 @@ Route::group(['middleware' => 'auth'], function() {
         Route::patch('/students/{student}/updateStatus', 'StudentsController@updateStatus')->name('students.updateStatus');
         Route::get('/students/{student}/card', 'StudentCardController@index')->name('students.card');
 
-        Route::get('/attendance', 'AttendanceController@index')->name('attendance.create');
-        Route::get('/attendance/show', 'AttendanceController@show')->name('attendance.show');
 
         Route::resource('/transfers', 'TransfersController');
         Route::resource('/dropouts', 'DropoutsController');
@@ -91,6 +89,10 @@ Route::group(['middleware' => 'auth'], function() {
 
     Route::group(['namespace' => 'Course'], function() {
         Route::resource('/courses', 'CourseController');
+
+        Route::get('course/attendance/{course}/', 'AttendanceController@index')->name('attendance.create');
+        Route::delete('course/attendance/{course}/', 'AttendanceController@removeStudent')->name('attendance.student.remove');
+        Route::get('course/attendance/print/{course}/', 'AttendanceController@printAttendance')->name('course.attendance.print');
     });
 
     Route::resource('/teachers', 'TeachersController');
