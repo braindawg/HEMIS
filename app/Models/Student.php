@@ -40,6 +40,10 @@ class Student extends Model
     {
         return $this->hasMany(\App\Models\Relative::class);
     }
+    public function courses()
+    {
+        return $this->belongsToMany(\App\Models\Course::class,'course_student');
+    }
 
     public function originalProvince()
     {

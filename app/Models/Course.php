@@ -34,7 +34,9 @@ class Course extends Model
     {
         return $this->belongsTo(\App\Models\Group::class);
     }
-
-
+    public function students()
+    {
+        return $this->belongsToMany(\App\Models\Student::class)->orderBy('name');
+    }
 
 }

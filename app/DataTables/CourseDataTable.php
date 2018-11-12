@@ -18,10 +18,15 @@ class CourseDataTable extends DataTable
         return datatables($query)
             ->addColumn('action', function ($course) {
                 $html = '';
-//                    if(auth::user()->can('edit-course')){
+
+//              if(auth::user()->can('edit-course')){
                     $html .= '<a href="'.route('courses.edit', $course).'" class="btn btn-success btn-xs" target="new"><i class="icon-pencil"></i></a>';
-//                    }
-                    $html .= '<form action="'. route('courses.destroy', $course) .'" method="post" style="display:inline">
+//              }
+//                if (auth()->user()->can('group-view-list') or 1) {
+                    $html .= '<a href="'.route('attendance.create', $course).'" class="btn btn-primary btn-xs" title="'.trans('general.list').'"><i class="icon-list"></i></a>';
+//                }
+
+                $html .= '<form action="'. route('courses.destroy', $course) .'" method="post" style="display:inline">
                             <input type="hidden" name="_method" value="DELETE" />
                             <input type="hidden" name="_token" value="'.csrf_token().'" />
                             <button type="submit" class="btn btn-xs btn-danger" onClick="doConfirm()" ><i class="fa fa-trash"></i></button>

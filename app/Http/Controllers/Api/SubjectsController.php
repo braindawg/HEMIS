@@ -8,14 +8,17 @@ use App\Http\Controllers\Controller;
 
 class SubjectsController extends Controller
 {
-    public function __invoke(Request $request)
+    public function __invoke(Request $request,$department = null)
     {        
-        $subjects =  Subject::select('id', 'name as text');
-        
+        $subjects =  Subject::select('id', 'title as text');
+
+        if ($department) {
+            $subjects->where('department_id', $department->id);
+        }
         if ($request->q != '') {
-            $subjects->where('name', 'like', '%'.$request->q.'%');
+            $subjects->where('title', 'like', '%'.$request->q.'%');
         }
                 
-        return $subjects->get();
+        return $subjects->take(5)->get();
     }
 }

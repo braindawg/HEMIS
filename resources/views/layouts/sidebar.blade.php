@@ -98,12 +98,12 @@
             </li>
             @endif
             <hr>
-            <li class="nav-item {{ request()->is('attendance') ? 'active' : '' }}">
-                <a href="{{ route('attendance.create') }}" class="nav-link ">
-                    <i class="icon-printer"></i>
-                    <span class="title">{{ trans('general.print_attendance') }}</span>
-                </a>
-            </li>
+            {{--<li class="nav-item {{ request()->is('attendance') ? 'active' : '' }}">--}}
+                {{--<a href="{{ route('attendance.create') }}" class="nav-link ">--}}
+                    {{--<i class="icon-printer"></i>--}}
+                    {{--<span class="title">{{ trans('general.print_attendance') }}</span>--}}
+                {{--</a>--}}
+            {{--</li>--}}
 
         </ul>
     </li>

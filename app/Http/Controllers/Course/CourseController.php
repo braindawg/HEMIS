@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use App\DataTables\CourseDataTable;
 use App\Http\Controllers\Controller;
+use App\Models\StudentAttendanceGroup;
 
 class CourseController extends Controller
 {
@@ -85,6 +86,10 @@ class CourseController extends Controller
             'university_id' => \Auth::user()->university_id,
             'department_id' => $request->department,
         ]);
+
+
+        //Course-student
+        $course->students()->sync($course->group->students->pluck('id'));
 
         if($request->next == 1){
 
