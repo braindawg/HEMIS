@@ -48,7 +48,9 @@ class CourseController extends Controller
             'description' => trans('general.create_course'),
             'departments' => Department::pluck('name', 'id'),
             'teachers' => Teacher::pluck('name', 'id'),
-            'department' => old('department') != '' ? Department::where('id', old('department'))->pluck('name', 'id') : []
+            'department' => old('department') != '' ? Department::where('id', old('department'))->pluck('name', 'id') : [],
+            'subject' => old('subject') != '' ? Subject::where('id', old('subject'))->pluck('title', 'id') : [],
+            'group' => old('group') != '' ? Group::where('id', old('group'))->pluck('name', 'id') : []
         ]);
     }
 
