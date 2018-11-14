@@ -90,6 +90,7 @@ Route::group(['middleware' => 'auth'], function() {
     Route::group(['namespace' => 'Course'], function() {
         Route::get('courses/{course}/list', 'AttendanceController@list')->name('attendance.create');        
         Route::get('courses/{course}/attendance', 'AttendanceController@print')->name('course.attendance.print');
+        Route::get('courses/{course}/scores-sheet', 'ScoreSheetController@print')->name('course.scoresSheet.print');
         Route::delete('courses/{course}/remove-student', 'AttendanceController@removeStudent')->name('attendance.student.remove');
         Route::resource('courses', 'CourseController');
     });

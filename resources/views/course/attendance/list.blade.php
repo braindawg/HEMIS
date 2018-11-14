@@ -5,7 +5,8 @@
         <div class="portlet-title" style="border: 0">
 
             <a href="{{ route('courses.index') }}" class="btn btn-default"><i class="icon-arrow-right"></i> {{ trans('general.back') }}</a>
-            <a href="{{ route('course.attendance.print', $course ) }}" class="btn btn-default"><i class="fa fa-print"></i> {{ trans('general.print') }}</a>
+            <a href="{{ route('course.attendance.print', $course ) }}" class="btn btn-default" target="new"><i class="fa fa-print"></i> {{ trans('general.print_attendance') }}</a>
+            <a href="{{ route('course.scoresSheet.print', $course ) }}" class="btn btn-default" target="new"><i class="fa fa-print"></i> {{ trans('general.print_scores_sheet') }}</a>
 
             <div class="tools"> </div>
         </div>

@@ -231,7 +231,6 @@ return [
     'next' => 'صنف جدید',
 
 
-
-
-
+    'print_attendance' => 'پرینت حاضری',
+    'print_scores_sheet' => 'پرینت شقه',
 ];
