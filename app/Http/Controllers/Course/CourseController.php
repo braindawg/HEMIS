@@ -17,10 +17,10 @@ class CourseController extends Controller
 {
     public function __construct()
     {        
-        //  $this->middleware('permission:view-course', ['only' => ['index', 'show']]);        
-        //  $this->middleware('permission:create-course', ['only' => ['create','store']]);
-        //  $this->middleware('permission:edit-course', ['only' => ['edit','update', 'updateStatus']]);
-        //  $this->middleware('permission:delete-course', ['only' => ['destroy']]);
+         $this->middleware('permission:view-course', ['only' => ['index', 'show']]);        
+         $this->middleware('permission:create-course', ['only' => ['create','store']]);
+         $this->middleware('permission:edit-course', ['only' => ['edit','update', 'updateStatus']]);
+         $this->middleware('permission:delete-course', ['only' => ['destroy']]);
     }
     /**
      * Display a listing of the resource.
