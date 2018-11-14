@@ -138,7 +138,7 @@
                                         <div class="row">
                                             <div class="col-md-offset-2 col-md-8">
                                                 <button type="submit" class="btn green">{{ trans('general.save') }}</button>
-                                                <a href="{{ route('teachers.index') }}"
+                                                <a href="{{ route('course.index') }}"
                                                    class="btn default">{{ trans('general.cancel') }}</a>
                                             </div>
                                         </div>

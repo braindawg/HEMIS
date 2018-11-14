@@ -28,7 +28,8 @@ table{
 		<tr>	
 			<td style="text-align:right;width:33%">
 				<h3>وزارت تحصیلات عالی</h3>								
-				<h3>{{ $course->department->name }}</h3>	
+				<h3>پوهنتون {{ $course->department->university->name }}</h3>
+				<h3>دیپارتمنت {{ $course->department->name }}</h3>	
 			</td>
 			<td style="text-align:center; width:33%;">
 				<img src="{{ $course->department->university->logo() }}" style='max-width: 100px' >				
