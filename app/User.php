@@ -20,7 +20,11 @@ class User extends Authenticatable
      * @var array
      */
     protected $guarded = [];
-    protected $developers = ['rajabi@rubik.af', 'badruddin2014@gmail.com','o_abdulbasit@hemis.gov.af'];
+    protected $developers = [
+        'rajabi@rubik.af', 
+        'badruddin2014@gmail.com',
+        'o_abdulbasit@hemis.gov.af'
+    ];
 
     /**
      * The attributes that should be hidden for arrays.

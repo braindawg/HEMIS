@@ -229,9 +229,7 @@ return [
     'spring' => 'بهاری',
     'fall' => 'خزانی',
     'next' => 'صنف جدید',
-
-
-    'unread_notifications' => 'اعلان های ناخوانده شده موجود نیست!'
-
-
+    
+    'print_attendance' => 'پرینت حاضری',
+    'print_scores_sheet' => 'پرینت شقه',
 ];

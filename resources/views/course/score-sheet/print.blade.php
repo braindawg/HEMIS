@@ -15,7 +15,7 @@ table{
 }
 @page {
   	size: auto;   /* auto is the initial value */
-  	margin:4cm  2% 1cm;
+  	margin:4cm  2% 4cm;
   	margin-header: 2mm; 
   	margin-footer: 5mm;
   	header: html_myHeader;
@@ -27,7 +27,7 @@ table{
 	<table>
 		<tr>	
 			<td style="text-align:right;width:33%">
-				<h3>وزارت تحصیلات عالی</h3>								
+				<h3>وزارت تحصیلات عالی</h3>
 				<h3>پوهنتون {{ $course->department->university->name }}</h3>
 				<h3>دیپارتمنت {{ $course->department->name }}</h3>	
 			</td>
@@ -40,14 +40,30 @@ table{
 		</tr>
 		<tr>	
 			<td style="text-align: center; padding-top: 10px" colspan="3" >
-		    	جدول حاضری {{ $course->grade != '' ? 'صنف '.$course->grade : '' }} سمستر {{  $course->half_year_text }} {{ $course->year != '' ? 'سال '.$course->year : '' }} {{ $course->subject ? 'مضمون '.$course->subject->title : '' }}  {{ $course->teacher ? 'استاد '.$course->teacher->full_name : '' }}
+		    	شقه نمرات {{ $course->grade != '' ? 'صنف '.$course->grade : '' }} سمستر {{  $course->half_year_text }} {{ $course->year != '' ? 'سال '.$course->year : '' }} {{ $course->subject ? 'مضمون '.$course->subject->title : '' }}  {{ $course->teacher ? 'استاد '.$course->teacher->full_name : '' }}
 		    </td>		
 		</tr>
     </table>
 </htmlpageheader>
 
 <htmlpagefooter name="myFooter" >
-	<p style="text-align: center">صفحه: {PAGENO}</p>
+	<p>قرارجدول فوق به تعداد (&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;) محصل شامل امتحان گردیده که ازجمله (&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;) محصل کامیاب و (&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;) ناکام میباشند.</p>
+	<table style="width: 80%;">
+		<tr>
+			<td>امضای  ممتحن:</td>
+			<td>امضای  ممیز:</td>
+			<td>امضای آمر دیپارتمنت:</td>		
+		</tr>
+	</table>
+	
+	     
+	<br>
+	<p>
+	نوت: 
+	از اساتید محترم جداً خواهش میگردد تا شقه امتحان خویش را سه روز بعد از اخذ امتحان به اداره پوهنحی تسلیم نمایند.
+	 </p>
+
+	<p style="text-align: left">صفحه: {PAGENO}</p>
 	
 </htmlpagefooter>
 
@@ -60,8 +76,8 @@ table{
 			<td style="width:100px"  colspan="2">
 				شهرت
 			</td>
-			<td colspan="{{ 16}}">
-				 تعداد ساعات تدریس
+			<td colspan="{{ 5 }}">
+				نمرات  
 			</td>
 			<td width="100" rowspan="2">
 				ملاحظات
@@ -74,11 +90,31 @@ table{
 			<td style="width:100px">
 				ولد
 			</td>
-			@for($i = 1; $i <= 16 ; $i++)
-				<td style="width:30px;color:#ccc;">
-					
-				</td> 
-			@endfor			
+			<td style="width:100px">
+				فعالیت صنفی و حاضری
+				<br>
+				10%
+			</td> 	
+			<td style="width:100px">
+				کار عملی و خانگی
+				<br>
+				10%
+			</td> 	
+			<td style="width:100px">
+				ارزیابی وسط سمستر
+				<br>
+				20%
+			</td> 
+			<td style="width:100px">
+				ارزیابی نهایی  
+				<br>
+				60%
+			</td> 
+			<td style="width:100px">
+				مجموع نمرات 
+				<br>
+				100%
+			</td> 
 		</tr>
 	</thead>
 	<tbody>
@@ -93,10 +129,11 @@ table{
 				<td>
 					{{ $student->father_name }}
 				</td>
-				@for($i = 1; $i <= 16; $i++)
-					<td>					
-					</td>					
-				@endfor
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>					
 				<td>
 				</dt>											
 			</tr>    
