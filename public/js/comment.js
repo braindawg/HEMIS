@@ -1,10 +1,3 @@
-//instantiate a Pusher object with our Credential's key
-var pusher = new Pusher('8efcd40da836cc793efa', {
-    cluster: 'ap2',
-    forceTLS: true,
-    encrypted: false
-});
-
 //Subscribe to the channel we specified in our Laravel Event
 var channel = pusher.subscribe('isssuecomment');
 

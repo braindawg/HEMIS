@@ -125,11 +125,15 @@
 <script src="../assets/global/plugins/excanvas.min.js"></script> 
 <![endif]-->
 
- 
+    <script src="https://js.pusher.com/4.3/pusher.min.js"></script>
     <script>
-    
-
         var BaseUrl = "{{ url('') }}"
+
+        var pusher = new Pusher("{{ env('PUSHER_APP_KEY') }}", {
+            cluster: 'ap2',
+            forceTLS: true,
+            encrypted: false
+        });
 
         function doConfirm() {
             if (!confirm("آیا مایل به پیشروی هستید؟")) {
@@ -161,13 +165,15 @@
  	  </script>
 
     <script>
-            $('.counter').counterUp({
-                    delay: 10,
-                    time: 1000
-                });
-        
-    
+    $('.counter').counterUp({
+        delay: 10,
+        time: 1000
+    });
     </script>
+
+    
+    
+    <script src="{{ asset('js/notification.js') }}" type="text/javascript"></script>
 
     @stack('scripts')
 
