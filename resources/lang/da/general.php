@@ -239,6 +239,7 @@ return [
     'chance_three' => ' چانس سه 100%',
     'save_scores' => 'ثبت نمرات',
 
+    
     'print_attendance' => 'پرینت حاضری',
     'print_scores_sheet' => 'پرینت شقه',
 ];

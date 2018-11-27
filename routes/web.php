@@ -106,11 +106,16 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('/download/{file}','SystemDownloadController@download')->name('noticeboards.download');
     Route::get('/deletefile/{file}','FilesDeleteController@deleteFiles')->name('deletefile');
     
-    //advertisement document files link
+    //attachments link
     Route::get('getAttachment/{file_name}', function($filename){
         $path = storage_path('app').'/attachments/'.$filename;
         $image = \File::get($path);
         $mime = \File::mimeType($path);
         return \Response::make($image, 200)->header('Content-Type', $mime);
     });
+
+    Route::get('makeNotificationAsRead', function () {    
+        auth()->user()->unreadNotifications->markAsRead();
+    });
 });
+ 

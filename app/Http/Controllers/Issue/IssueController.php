@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Issue;
 
 use App\User;
 use App\Models\Issue;
+use App\Events\IssueNotificationEvent;
 use App\Models\Attachment;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
@@ -11,6 +12,7 @@ use Maklad\Permission\Models\Role;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
 use Maklad\Permission\Models\Permission;
+use App\Notifications\IssueCreatedNotication;
 
 class IssueController extends Controller
 {
@@ -55,6 +57,9 @@ class IssueController extends Controller
             'file.*' => 'mimes:jpeg,png,bmp,jpg:max:10000',
         ]);
 
+
+        \DB::transaction(function () use ($request) {
+            
         $files = $request->file('file');
         $user_id = auth()->user()->id;
 
@@ -70,6 +75,25 @@ class IssueController extends Controller
                 $issue->uploadFile($file);
             }
         }
+
+        //notificaton will send to Admin users
+
+        $users = User::where('university_id', -1)->get();
+
+        foreach($users as $user){
+
+            $user->notify(new IssueCreatedNotication($issue));
+        }
+
+        // issue will fire through an event
+
+        $user = User::find(auth()->user()->id);
+
+        $message = "سوال جدید را اضافه...";
+        event(new IssueNotificationEvent($issue, $user, $message));
+
+    });
+
 
         return redirect(route('issues.index'));
     }
@@ -90,6 +114,7 @@ class IssueController extends Controller
             ]);
 
         }else {
+
             \App::abort(503);
         }
     }
