@@ -312,6 +312,3 @@ Carbon::setLocale('fa');
     </div>
     <!-- END HEADER INNER -->
 </div>
-    
-    <script src="https://js.pusher.com/4.3/pusher.min.js"></script>
-    <script src="{{ asset('js/notification.js') }}" type="text/javascript"></script>

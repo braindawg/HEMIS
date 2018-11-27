@@ -22,9 +22,9 @@ class StudentsDataTable extends DataTable
             ->addColumn('action', function ($student) {
                 $html = '';
 
-                if ($student->editable) {
-                    $html .= '<a href="'.route('students.card', $student).'" class="btn btn-info btn-xs" target="new">کارت</a>';
-                }
+                
+                $html .= '<a href="'.route('students.card', $student).'" class="btn btn-info btn-xs" target="new">کارت</a>';
+                
                 
                 $html .= '<a href="'.route('students.show', $student).'" class="btn btn-primary btn-xs" target="new"><i class="icon-printer"></i></a>';
                 

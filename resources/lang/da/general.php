@@ -229,6 +229,16 @@ return [
     'spring' => 'بهاری',
     'fall' => 'خزانی',
     'next' => 'صنف جدید',
+
+    'homework' => 'کار خانگی 10%',
+    'classwork' => 'فعالیت صنفی  10%',
+    'midterm' => ' امتحان وسط سمستر 20%',
+    'final' => 'امتحان فاینل  60%',
+    'total' => 'مجموع  100%',
+    'chance_two' => 'چانس دو  100%',
+    'chance_three' => ' چانس سه 100%',
+    'save_scores' => 'ثبت نمرات',
+
     
     'print_attendance' => 'پرینت حاضری',
     'print_scores_sheet' => 'پرینت شقه',

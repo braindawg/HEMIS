@@ -67,7 +67,6 @@
 @endsection('content')
 
 @push('scripts')
-<script src="https://js.pusher.com/4.3/pusher.min.js"></script>
 <script src="{{ asset('js/comment.js') }}"></script>
 @endpush
 

@@ -9,6 +9,17 @@ use Laravel\Nova\Http\Requests\NovaRequest;
 
 class Department extends Resource
 {
+    use \Insenseanalytics\LaravelNovaPermission\PermissionsBasedAuthTrait;
+
+    public static $permissionsForAbilities = [
+        'viewAny' => 'view-department',
+        'view' => 'view-department',
+        'create' => 'create-department',
+        'update' => 'edit-department',
+        'delete' => 'delete-department',
+        'restore' => 'delete-department',
+        'forceDelete' => 'delete-department',
+    ];
     /**
      * The model the resource corresponds to.
      *

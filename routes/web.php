@@ -48,6 +48,7 @@ Route::group(['middleware' => 'auth'], function() {
         Route::get('/students/groups/{group}/list', 'Groups\GroupListController@index')->name('groups.list');
         Route::post('/students/groups/{group}/list', 'Groups\GroupListController@addStudent')->name('groups.student.add');
         Route::delete('/students/groups/{group}/list', 'Groups\GroupListController@removeStudent')->name('groups.student.remove');
+        
 
         Route::resource('/students', 'StudentsController');
         Route::patch('/students/{student}/updateStatus', 'StudentsController@updateStatus')->name('students.updateStatus');
@@ -88,10 +89,14 @@ Route::group(['middleware' => 'auth'], function() {
     });
 
     Route::group(['namespace' => 'Course'], function() {
+       
         Route::get('courses/{course}/list', 'AttendanceController@list')->name('attendance.create');        
         Route::get('courses/{course}/attendance', 'AttendanceController@print')->name('course.attendance.print');
         Route::get('courses/{course}/scores-sheet', 'ScoreSheetController@print')->name('course.scoresSheet.print');
         Route::delete('courses/{course}/remove-student', 'AttendanceController@removeStudent')->name('attendance.student.remove');
+        
+        Route::post('courses/{course}/store-scores', 'ScoresController')->name('scores.store');
+
         Route::resource('courses', 'CourseController');
     });
 

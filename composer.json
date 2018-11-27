@@ -8,6 +8,7 @@
         "php": ">=7.1.3",
         "doctrine/dbal": "^2.8",
         "fideloper/proxy": "^4.0",
+        "insenseanalytics/laravel-nova-permission": "^0.1.1",
         "khill/lavacharts": "3.0.*",
         "lab404/laravel-impersonate": "^1.2",
         "laravel/framework": "5.7.*",
