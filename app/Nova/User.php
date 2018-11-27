@@ -9,16 +9,29 @@ use Laravel\Nova\Fields\Gravatar;
 use Laravel\Nova\Fields\Password;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\BelongsToMany;
+use Laravel\Nova\Fields\MorphToMany;
 use Maatwebsite\LaravelNovaExcel\Actions\DownloadExcel;
 
 class User extends Resource
 {
+    use \Insenseanalytics\LaravelNovaPermission\PermissionsBasedAuthTrait;
+
+    public static $permissionsForAbilities = [
+        'viewAny' => 'view-user',
+        'view' => 'view-user',
+        'create' => 'create-user',
+        'update' => 'edit-user',
+        'delete' => 'delete-user',
+        'restore' => 'delete-user',
+        'forceDelete' => 'delete-user',
+    ];
+    
     /**
      * The model the resource corresponds to.
      *
      * @var string
      */
-    public static $model = 'App\\User';
+    public static $model = 'App\User';
 
     /**
      * The single value that should be used to represent the resource when being displayed.
@@ -73,7 +86,10 @@ class User extends Resource
             
             BelongsTo::make('University')->searchable(),
 
-            BelongsToMany::make('Departments')
+            BelongsToMany::make('Departments'),
+
+            MorphToMany::make('Roles', 'roles', \Insenseanalytics\LaravelNovaPermission\Role::class),
+            MorphToMany::make('Permissions', 'permissions', \Insenseanalytics\LaravelNovaPermission\Permission::class)->searchable(),
         ];
     }
 

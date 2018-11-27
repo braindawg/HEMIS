@@ -4,7 +4,10 @@ namespace App\Providers;
 
 use Laravel\Nova\Nova;
 use Laravel\Nova\Cards\Help;
+use App\Nova\Metrics\DropoutCount;
+use App\Nova\Metrics\DropoutsPerDay;
 use Illuminate\Support\Facades\Gate;
+use App\Nova\Metrics\StudentsPerUniversity;
 use Laravel\Nova\NovaApplicationServiceProvider;
 
 class NovaServiceProvider extends NovaApplicationServiceProvider
@@ -54,7 +57,10 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     protected function cards()
     {
         return [
-            new Help,
+            (new DropoutsPerDay)->width('full'),
+            (new DropoutCount)->width('1/2'),
+            (new StudentsPerUniversity)->width('1/2')
+            //new Help,
         ];
     }
 
@@ -65,7 +71,9 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
      */
     public function tools()
     {
-        return [];
+        return [
+            \Insenseanalytics\LaravelNovaPermission\LaravelNovaPermission::make(),
+        ];
     }
 
     /**

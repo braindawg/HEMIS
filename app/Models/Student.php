@@ -28,31 +28,31 @@ class Student extends Model
     
     public function department()
     {
-        return $this->belongsTo(\App\Models\Department::class);
+        return $this->belongsTo(Department::class);
     }
     
     public function status()
     {
-        return $this->belongsTo(\App\Models\StudentStatus::class);
+        return $this->belongsTo(StudentStatus::class);
     }
 
     public function relatives()
     {
-        return $this->hasMany(\App\Models\Relative::class);
+        return $this->hasMany(Relative::class);
     }
     public function courses()
     {
-        return $this->belongsToMany(\App\Models\Course::class,'course_student');
+        return $this->belongsToMany(Course::class,'course_student');
     }
 
     public function originalProvince()
     {
-        return $this->belongsTo(\App\Models\Province::class, 'province');
+        return $this->belongsTo(Province::class, 'province');
     }
 
     public function currentProvince()
     {
-        return $this->belongsTo(\App\Models\Province::class, 'province_current');
+        return $this->belongsTo(Province::class, 'province_current');
     }
 
     public function photo()
@@ -67,5 +67,15 @@ class Student extends Model
     public function getFullNameAttribute()
     {
         return $this->name." ".$this->last_name;
+    }
+
+    public function scores()
+    {
+        return $this->hasMany(Score::class);
+    }
+
+    public function score()
+    {
+        return $this->hasOne(Score::class);//->where('course_id', $courseId)
     }
 }

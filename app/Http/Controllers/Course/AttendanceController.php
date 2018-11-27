@@ -2,13 +2,20 @@
 
 namespace App\Http\Controllers\Course;
 
+use App\Models\Course;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 class AttendanceController extends Controller
 {
-    public function list($course)
+    public function list(Course $course)
     {
+        $course = $course->with(['students' => function ($students) use ($course) {
+            $students->with(['score' => function ($score) use ($course) {
+                $score->where('course_id', $course->id);
+            }]);
+        }])->first();
+
         return view('course.attendance.list', [
             'title' => trans('general.attendance'),
             'description' => trans('general.create_attendance'),
@@ -25,9 +32,12 @@ class AttendanceController extends Controller
         return $pdf->stream($course->code.'.pdf');
     }
 
-    public function removeStudent(Request $request, $course){
-
-        $course->students()->detach($request->student_id);
+    public function removeStudent(Request $request, $course)
+    {
+        \DB::transaction(function () use ($request, $course) {
+            $course->students()->detach($request->student_id);
+            $course->scores()->where('student_id', $request->student_id)->delete();     
+        });
 
         return redirect()->back();
     }

@@ -16,27 +16,27 @@ class Course extends Model
 
     public function department()
     {
-        return $this->belongsTo(\App\Models\Department::class);
+        return $this->belongsTo(Department::class);
     }
 
     public function subject()
     {
-        return $this->belongsTo(\App\Models\Subject::class);
+        return $this->belongsTo(Subject::class);
     }
 
     public function teacher()
     {
-        return $this->belongsTo(\App\Models\Teacher::class);
+        return $this->belongsTo(Teacher::class);
     }
 
     public function group()
     {
-        return $this->belongsTo(\App\Models\Group::class);
+        return $this->belongsTo(Group::class);
     }
 
     public function students()
     {
-        return $this->belongsToMany(\App\Models\Student::class)->orderBy('name');
+        return $this->belongsToMany(Student::class)->orderBy('name');
     }
 
     public function getGradeAttribute()
@@ -51,4 +51,8 @@ class Course extends Model
         return trans('general.'.$this->half_year);
     }
 
+    public function scores()
+    {
+        return $this->hasMany(Score::class);
+    }
 }

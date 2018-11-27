@@ -9,6 +9,18 @@ use Laravel\Nova\Http\Requests\NovaRequest;
 
 class University extends Resource
 {
+    use \Insenseanalytics\LaravelNovaPermission\PermissionsBasedAuthTrait;
+
+    public static $permissionsForAbilities = [
+        'viewAny' => 'view-university',
+        'view' => 'view-university',
+        'create' => 'create-university',
+        'update' => 'edit-university',
+        'delete' => 'delete-university',
+        'restore' => 'delete-university',
+        'forceDelete' => 'delete-university',
+    ];
+
     /**
      * The model the resource corresponds to.
      *
