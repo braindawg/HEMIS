@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Issue;
 use App\Events\IssueNotificationEvent;
+use App\Events\IssueCommentEvent;
 use App\Models\Issue;
 use App\Models\IssueComment;
 use Illuminate\Http\Request;
@@ -20,25 +21,28 @@ class CommentsController extends Controller
 
         $message= $request->message;
         $issue_id= $request->issue;
-        $user = auth()->user()->id;
+        $current_user = auth()->user()->id;
 
         $comment = IssueComment::create ([
             'comment' => $message,
             'issue_id' => $issue_id,
-            'user_id' => $user,
+            'user_id' => $current_user,
         ]);
 
         if($comment){
 
-            //notificaton will send to who create isssue
+            $current_user = User::find($current_user);
+            event(new IssueCommentEvent($comment, $current_user));
 
+            //notificaton will send to who create isssue
             $issue = Issue::findOrFail($issue_id);
+            $user = $issue->user_id;
             $user = User::find($user);
 
             $user->notify(new IssueCreatedNotication($issue));
 
             $message = "به سوال شما جواب ....";
-            event(new IssueNotificationEvent($issue, $user , $message));
+            event(new IssueNotificationEvent($issue, $current_user , $message));
 
         }
     });

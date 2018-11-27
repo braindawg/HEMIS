@@ -33,9 +33,7 @@ class IssueCommentEvent  implements ShouldBroadcast
         $this->user =$user;
         $this->date = $comment->date();
         $this->url ="/getAttachment/user.png";
-        if($user->hasRole('super-admin')){
         $this->adminUser = 1;
-        }
     }
 
     /**
