@@ -42,7 +42,25 @@
     </div>
 
 </div>
-
+<div class="row">
+    <div class="col-md-12">
+        <div class="portlet">
+            <div class="portlet-title">
+                <div class="col-md-1 col-sm-2">
+                    <h3 style="text-align: left">سال:</h3>
+                </div>
+                <div class="col-md-3 col-sm-4">
+                    <select onchange = "kankorYear(this.value)" name="kankor" id="kankor" class="form-control" style="width: 80% !important; margin-top:16px;"onChange="getUniSpecData(this.value, 'province-specific')">
+                        <option>{{$current_kankor_year}}</option>                       
+                        @foreach($kankor_years as $kankor_year)
+                        <option>{{$kankor_year->kankor_year}}</option>
+                       @endforeach
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <div class="row">
     <div class="col-md-12">
         <div class="portlet">
@@ -58,7 +76,7 @@
                                     enabled: false
                         },
                         title: {
-                            text: 'تعداد محصلین براساس وضعیت در هر پوهنتون - 1397'
+                            text: 'تعداد محصلین براساس وضعیت در هر پوهنتون - {{$current_kankor_year}}'
                         },
                         xAxis: {
                             categories: [@foreach($studentsByStatus as $category)
@@ -146,7 +164,7 @@
                                 type: 'pie'
                             },
                             title: {
-                                text: 'تعداد کامیاب کانکور بر اساس ولایات - 1397'
+                                text: 'تعداد کامیاب کانکور بر اساس ولایات - {{$current_kankor_year}}'
                             },
                             credits:{
                                 enabled: false
@@ -193,7 +211,7 @@
                                 type: 'pie'
                             },
                             title: {
-                                text: 'تعداد کامیاب کانکور بر اساس پوهنتون ها - 1397'
+                                text: 'تعداد کامیاب کانکور بر اساس پوهنتون ها - {{$current_kankor_year}}'
                             },
                             credits:{
                                 enabled: false
@@ -416,3 +434,19 @@
 <script src="{{ asset('js/ajaxCharts.js') }}" type="text/javascript"></script>
 
 @endsection
+
+
+
+@push('scripts')
+
+    <script>
+        function kankorYear(value){
+            
+            var year = value;
+
+            window.location.href = window.location.origin + "/home/" + year;
+
+        }
+    </script>
+    
+@endpush
