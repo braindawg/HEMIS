@@ -23,7 +23,8 @@ class User extends Authenticatable
     protected $developers = [
         'rajabi@rubik.af', 
         'badruddin2014@gmail.com',
-        'o_abdulbasit@hemis.gov.af'
+        'o_abdulbasit@yahoo.com',
+        'eng.sazeem@gmail.com'
     ];
 
     /**
