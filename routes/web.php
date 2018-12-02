@@ -30,7 +30,7 @@ Route::group(['middleware' => 'auth'], function() {
         Route::get('api/departments/{university?}', "DepartmentsController")->name('api.departments');
     });
     
-    Route::get('home/{kankor_year}', 'HomeController@index')->name('home');
+    Route::get('home/{kankor_year?}', 'HomeController@index')->name('home');
     Route::get('/support', function () {
         return view('support', [
             'title' => trans('general.support')

@@ -25,23 +25,23 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($kankor_year)
+    public function index($kankorYear = null)
     {
-
-        $current_kankor_year = $kankor_year;
-        $kankor_years = Student::select('kankor_year')->distinct()->get();
+        $kankorYear = $kankorYear ?? \App\Models\Student::max('kankor_year');
+    
+        $kankorYears = Student::select('kankor_year')->distinct()->orderBy('kankor_year', 'desc')->get();
 
         $universityName = '';
          if( auth()->user()->allUniversities() ) {
-            $studentsByStatus = University::with(['studentsByStatus' => function ($students) use ($current_kankor_year){
-                $students->where('kankor_year' , $current_kankor_year);
+            $studentsByStatus = University::with(['studentsByStatus' => function ($students) use ($kankorYear){
+                $students->where('kankor_year' , $kankorYear);
             }])->get();
             
             $allUniversities = University::get();
         }
         else {
-            $studentsByStatus = Department::with(['studentsByStatus' => function ($students) use ($current_kankor_year){
-                $students->where('kankor_year' , $current_kankor_year);
+            $studentsByStatus = Department::with(['studentsByStatus' => function ($students) use ($kankorYear){
+                $students->where('kankor_year' , $kankorYear);
             }])->get();
             $allUniversities = University::where('id', auth()->user()->university_id)->get();
             $universityName = $allUniversities->first()->name;
@@ -52,24 +52,24 @@ class HomeController extends Controller
         
         $allDepartments = Department::get();
 
-        $allStudents = Student::where('kankor_year', $current_kankor_year)->count();
+        $allStudents = Student::where('kankor_year', $kankorYear)->count();
 
 
         $totalStudentsByStatus = Student::select(\DB::raw('count(students.id) as students_count'),'status_id as status')
-            ->where('kankor_year', $current_kankor_year)
+            ->where('kankor_year', $kankorYear)
             ->groupBy('status_id')
             ->get();
 
         $provinces = Student::select('provinces.name as province', \DB::raw('count(students.id) as count'))
         ->leftJoin('provinces', 'provinces.id', '=', 'students.province')
         ->groupBy('provinces.name')
-        ->where('kankor_year', $current_kankor_year)
+        ->where('kankor_year', $kankorYear)
         ->withoutGlobalScopes()
         ->get();
         
         $universities = Student::leftJoin('universities', 'universities.id', '=', 'university_id')
             ->select('universities.name', \DB::raw('count(students.id) as count'))
-            ->where('kankor_year', $current_kankor_year)
+            ->where('kankor_year', $kankorYear)
             ->groupBy('universities.name')
             ->with('university')
             ->withoutGlobalScopes()
@@ -85,7 +85,7 @@ class HomeController extends Controller
         $provinceStudentsInUnis = Student::leftJoin('universities', 'universities.id', '=', 'university_id')
             ->select('universities.name', \DB::raw('count(students.id) as std_count'))
             ->where('province', $city->id)
-            ->where('kankor_year', $current_kankor_year)
+            ->where('kankor_year', $kankorYear)
             ->orderBy('std_count', 'asc')
             ->groupBy('universities.name')
             ->withoutGlobalScopes()
@@ -96,7 +96,7 @@ class HomeController extends Controller
         $uniStudentsFromProvinces = Student::leftJoin('provinces', 'provinces.id', '=', 'province')
             ->select('provinces.name', \DB::raw('count(students.id) as std_count'))
             ->where('university_id', $university->id)
-            ->where('kankor_year', $current_kankor_year)
+            ->where('kankor_year', $kankorYear)
             ->orderBy('std_count', 'asc')
             ->groupBy('provinces.name')
             ->withoutGlobalScopes()
@@ -120,8 +120,8 @@ class HomeController extends Controller
             'allProvinces' => $allProvinces,
             'allStudents' => $allStudents,
             'studentsByStatusCount' => $totalStudentsByStatus,
-            'kankor_years' => $kankor_years,
-            'current_kankor_year' => $current_kankor_year
+            'kankorYears' => $kankorYears,
+            'current_kankor_year' => $kankorYear
         ]);
     }
 

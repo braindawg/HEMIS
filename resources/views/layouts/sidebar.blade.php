@@ -16,7 +16,7 @@
     @endif 
 
     <li class="nav-item start {{ request()->is('home') ? 'active' : '' }}">
-    <a href="{{ route('home', \App\Models\Student::max('kankor_year')) }}" class="nav-link nav-toggle">
+    <a href="{{ route('home') }}" class="nav-link nav-toggle">
             <i class="icon-home"></i>
             <span class="title">{{ trans('general.dashboard') }}</span>         
         </a>       

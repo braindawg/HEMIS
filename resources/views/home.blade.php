@@ -51,10 +51,10 @@
                 </div>
                 <div class="col-md-3 col-sm-4">
                     <select onchange = "kankorYear(this.value)" name="kankor" id="kankor" class="form-control" style="width: 80% !important; margin-top:16px;"onChange="getUniSpecData(this.value, 'province-specific')">
-                        <option>{{$current_kankor_year}}</option>                       
-                        @foreach($kankor_years as $kankor_year)
-                        <option>{{$kankor_year->kankor_year}}</option>
-                       @endforeach
+                                              
+                        @foreach($kankorYears as $year)
+                        <option {{ $current_kankor_year == $year->kankor_year ? 'selected' : '' }}>{{$year->kankor_year}}</option>
+                        @endforeach
                     </select>
                 </div>
             </div>

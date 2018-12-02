@@ -242,4 +242,6 @@ return [
     
     'print_attendance' => 'پرینت حاضری',
     'print_scores_sheet' => 'پرینت شقه',
+
+    'unread_notifications' => '',
 ];
