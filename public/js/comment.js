@@ -11,7 +11,6 @@ function addComment(data) {
     var date = data.date;
     var comment = data.comment.comment;
     var id = data.comment.id;
-    var url = data.url;
     var adminUser = data.adminUser;
     var mycomment = "";
     if(adminUser == 1)
@@ -53,7 +52,7 @@ function message(issueID) {
             cache: false,
             url: '/store-comment',
             data: {'issue': issue, 'message': message},
-            success: function () {
+            success: function () { 
                 $('#commet_loading').css('display', 'none');
             }
         });

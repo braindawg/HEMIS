@@ -316,6 +316,9 @@
             <span class="title">{{ trans('general.support') }}</span>         
         </a>       
     </li>
+     <!-- activity log -->
+
+      <!-- end activity log -->
     @if (0)
     <li class="heading">
         <h3 class="uppercase">Features</h3>

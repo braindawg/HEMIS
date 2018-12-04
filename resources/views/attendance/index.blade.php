@@ -42,7 +42,7 @@
                             <div class="form-group {{ $errors->has('hours') ? ' has-error' : '' }}">
                                 {!! Form::label('hours', trans('general.hours'), ['class' => 'control-label col-sm-3']) !!}                                
                                 <div class="col-sm-9">
-                                    {!! Form::number('hours', 16, ['class' => 'form-control ltr', 'min' => 1, 'max' => '20']) !!}     
+                                    {!! Form::number('hours', 16, ['class' => 'form-control ltr', 'min' => 1, 'max' => '20']) !!}
                                     @if ($errors->has('hours'))
                                         <span class="help-block">
                                             <strong>{{ $errors->first('hours') }}</strong>
@@ -57,7 +57,7 @@
                             <div class="form-group {{ $errors->has('grade') ? ' has-error' : '' }}">
                                 {!! Form::label('grade', trans('general.grade'), ['class' => 'control-label col-sm-3']) !!}                                
                                 <div class="col-sm-9">
-                                    {!! Form::text('grade', null, ['class' => 'form-control']) !!}     
+                                    {!! Form::text('grade', null, ['class' => 'form-control']) !!}
                                     @if ($errors->has('grade'))
                                         <span class="help-block">
                                             <strong>{{ $errors->first('grade') }}</strong>
@@ -87,7 +87,7 @@
                             <div class="form-group {{ $errors->has('subject') ? ' has-error' : '' }}">
                                 {!! Form::label('subject', trans('general.subject'), ['class' => 'control-label col-sm-3']) !!}                                
                                 <div class="col-sm-9">
-                                    {!! Form::text('subject', null, ['class' => 'form-control']) !!}     
+                                    {!! Form::text('subject', null, ['class' => 'form-control']) !!}
                                     @if ($errors->has('subject'))
                                         <span class="help-block">
                                             <strong>{{ $errors->first('subject') }}</strong>
@@ -102,12 +102,12 @@
                             <div class="form-group {{ $errors->has('teacher') ? ' has-error' : '' }}">
                                 {!! Form::label('teacher', trans('general.teacher'), ['class' => 'control-label col-sm-3']) !!}                                
                                 <div class="col-sm-9">
-                                    {!! Form::text('teacher', null, ['class' => 'form-control']) !!}     
+                                    {!! Form::text('teacher', null, ['class' => 'form-control']) !!}
                                     @if ($errors->has('teacher'))
                                         <span class="help-block">
                                             <strong>{{ $errors->first('teacher') }}</strong>
                                         </span>
-                                    @endif                                                                                                   
+                                    @endif
                                 </div>
                             </div>
                         </div>

@@ -17,7 +17,7 @@ use Maklad\Permission\Models\Permission;
 class TeachersController extends Controller
 {
     public function __construct()
-    {        
+    {
          $this->middleware('permission:view-teacher', ['only' => ['index', 'show']]);
          $this->middleware('permission:create-teacher', ['only' => ['create','store']]);
          $this->middleware('permission:edit-teacher', ['only' => ['edit','update']]);
@@ -29,7 +29,7 @@ class TeachersController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(TeachersDataTable $dataTable)
-    {        
+    {
         return $dataTable->render('teachers.index', [
             'title' => trans('general.teachers'),
             'description' => trans('general.teachers_list')
@@ -48,7 +48,9 @@ class TeachersController extends Controller
             'description' => trans('general.create_teacher'),
             'universities' => University::pluck('name', 'id'),
             'provinces' => Province::pluck('name','id'),
-            'teacher_academic_rank' => TeacherAcademicRank::pluck('title', 'id')
+            'teacher_academic_rank' => TeacherAcademicRank::pluck('title', 'id'),
+            'department' => old('department') != '' ? Department::where('id', old('department'))->pluck('name', 'id') : []
+
         ]);
     }
 
@@ -68,7 +70,7 @@ class TeachersController extends Controller
             'university' =>'required',
             'academic_rank_id' =>'required',
         ]);
-    
+
         $teacher = Teacher::create([
             'name' => $request->name,
             'last_name' => $request->last_name,
@@ -81,6 +83,7 @@ class TeachersController extends Controller
             'email' => $request->email,
             'degree' => $request->degree,
             'academic_rank_id' => $request->academic_rank_id,
+            'department_id' => $request->department,
             'university_id' => $request->university
         ]);
 
@@ -120,7 +123,7 @@ class TeachersController extends Controller
             'email' => 'required|email',
             'university' =>'required',
         ]);
-        
+
         $teacher->update([
             'name' => $request->name,
             'last_name' => $request->last_name,
@@ -133,6 +136,7 @@ class TeachersController extends Controller
             'email' => $request->email,
             'degree' => $request->degree,
             'academic_rank_id' => $request->academic_rank_id,
+            'department_id' => $request->department,
             'university_id' => $request->university
         ]);
 
@@ -148,7 +152,7 @@ class TeachersController extends Controller
     public function destroy($teacher)
     {
         \DB::transaction(function () use ($teacher){
-            
+
             $teacher->delete();
 
         });

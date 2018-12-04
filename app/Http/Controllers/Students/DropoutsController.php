@@ -57,7 +57,8 @@ class DropoutsController extends Controller
         \DB::transaction(function () use ($request){
             
             $student = Student::find($request->student_id);
-            
+
+            dd($request->student_id);
             $dropouts = Dropout::create([
                 'student_id' => $request->student_id,
                 'note' => $request->note,

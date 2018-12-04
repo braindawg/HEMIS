@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use Carbon\Carbon;
 use \App\Models\Province;
 use \App\Models\Department;
@@ -22,103 +21,10 @@ use DateTime;
 use App\User;
 use Carbon\CarbonPeriod;
 
-class HomeController extends Controller
+class ActivityController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index($kankorYear = null)
-    {
-        $kankorYear = $kankorYear ?? \App\Models\Student::max('kankor_year');
-    
-        $kankorYears = Student::select('kankor_year')->distinct()->orderBy('kankor_year', 'desc')->get();
+    public function index(){
 
-        $universityName = '';
-         if( auth()->user()->allUniversities() ) {
-            $studentsByStatus = University::with(['studentsByStatus' => function ($students) use ($kankorYear){
-                $students->where('kankor_year' , $kankorYear);
-            }])->get();
-            
-            $allUniversities = University::get();
-        }
-        else {
-            $studentsByStatus = Department::with(['studentsByStatus' => function ($students) use ($kankorYear){
-                $students->where('kankor_year' , $kankorYear);
-            }])->get();
-            $allUniversities = University::where('id', auth()->user()->university_id)->get();
-            $universityName = $allUniversities->first()->name;
-        }
-
-        //this query returns some basic states such as total universities, departments, students count by status
-        $allProvinces = Province::get();
-        
-        $allDepartments = Department::get();
-
-        $allStudents = Student::where('kankor_year', $kankorYear)->count();
-
-
-        $totalStudentsByStatus = Student::select(\DB::raw('count(students.id) as students_count'),'status_id as status')
-            ->where('kankor_year', $kankorYear)
-            ->groupBy('status_id')
-            ->get();
-
-        $provinces = Student::select('provinces.name as province', \DB::raw('count(students.id) as count'))
-        ->leftJoin('provinces', 'provinces.id', '=', 'students.province')
-        ->groupBy('provinces.name')
-        ->where('kankor_year', $kankorYear)
-        ->withoutGlobalScopes()
-        ->get();
-        
-        $universities = Student::leftJoin('universities', 'universities.id', '=', 'university_id')
-            ->select('universities.name', \DB::raw('count(students.id) as count'))
-            ->where('kankor_year', $kankorYear)
-            ->groupBy('universities.name')
-            ->with('university')
-            ->withoutGlobalScopes()
-            ->get();
-
-        // to take the first city for province data manipulation
-        $city = $allProvinces->first();
-
-        // to take the first university for university data manipulation
-        $university = $allUniversities->first();
-
-        // this query is used to fetch students of a specific city in all the universities
-        $provinceStudentsInUnis = Student::leftJoin('universities', 'universities.id', '=', 'university_id')
-            ->select('universities.name', \DB::raw('count(students.id) as std_count'))
-            ->where('province', $city->id)
-            ->where('kankor_year', $kankorYear)
-            ->orderBy('std_count', 'asc')
-            ->groupBy('universities.name')
-            ->withoutGlobalScopes()
-            ->get();
-
-
-        //  This query is used to fetch data of a specific university grouped by provinces
-        $uniStudentsFromProvinces = Student::leftJoin('provinces', 'provinces.id', '=', 'province')
-            ->select('provinces.name', \DB::raw('count(students.id) as std_count'))
-            ->where('university_id', $university->id)
-            ->where('kankor_year', $kankorYear)
-            ->orderBy('std_count', 'asc')
-            ->groupBy('provinces.name')
-            ->withoutGlobalScopes()
-            ->get(); 
-
-        $statuses = \DB::table('student_statuses')->orderBy('id', 'desc')->get();
-
-        
-        //  line chart backend code for User
         $dates = collect();
         $day = array();
         foreach( range( -7, 0 ) AS $i )
@@ -308,89 +214,135 @@ class HomeController extends Controller
         
         $Subject[Carbon::parse($key)->format('m-d')] = $value;
     }
+
+    $universities = University::all();
+
+    return view('layouts.activity_chart', [
+        'title' => trans('general.activity'),
+        'allUniversities' => $universities,
+        'users' => $User,
+        'teachers' => $Teacher,
+        'subjects' => $Subject,
+        'Courses' => $Course,
+        'Leaves' => $Leaves,
+        'Dropouts' => $Dropout,
+        'Taransfers' => $Taransfer,
+        'Announcements' => $Announcement,
+        'Groups' => $Group,
+        'dates' => $dates
+    ]);
+    }
+
+    
+ public function getActivityByUniversity(Request $request)
+ {
+
+   $diff = Carbon::parse($request->startdate)->diffInDays(Carbon::parse($request->enddate));
+    
+     $dates = collect();
+     $day = array();
+     foreach( range( $diff, 0 ) AS $i )
+     {
+        //echo "i am i ".$i."<br>";
+         $date = Carbon::parse($request->startdate)->addDays( $i )->format( 'M-d' );
+        // echo "i am date ".$date."<br>";
+         $day[] = Carbon::parse($request->startdate)->addDays( $i )->format( 'd' );
+         //echo "i am date ".$date."<br>";
+         $dates->put( $date, 0);//create an array that key is date and assign zero to its value
+     }
+    
+ 
+     // for users
+     ///////////////////////////////////***************************************************** */
+     $users = User::where( 'created_at', '>=',Carbon::parse($request->startdate) )
+     ->where( 'created_at', '<=',Carbon::parse($request->enddate) )
+     ->where('university_id',$request->universities)
+     ->groupBy( 'date' )
+     ->orderBy( 'date' )
+     ->get( [
+             DB::raw( 'DATE( created_at ) as date' ),
+              DB::raw( 'COUNT( * ) as "count"' )
+             ] )->pluck( 'count', 'date' );
    
-
-// end line chart backend code for subject 
-        return view('home', [
-            'title' => trans('general.dashboard'),
-            'statuses' => $statuses,
-            'city' => $city->name,
-            'provinces' => $provinces,
-            'uniName' => $university->name,
-            'universityName' => $universityName,
-            'universities' => $universities,
-            'studentsByStatus' => $studentsByStatus,
-            'uniSpecStudents' => $provinceStudentsInUnis,
-            'proSpecStudents' => $uniStudentsFromProvinces,
-            'allUniversities' => $allUniversities,
-            'allDepartments' => $allDepartments,
-            'allProvinces' => $allProvinces,
-            'allStudents' => $allStudents,
-            'studentsByStatusCount' => $totalStudentsByStatus,
-            'kankorYears' => $kankorYears,
-            'current_kankor_year' => $kankorYear,
-            'users' => $User,
-            'teachers' => $Teacher,
-            'subjects' => $Subject,
-            'Courses' => $Course,
-            'Leaves' => $Leaves,
-            'Dropouts' => $Dropout,
-            'Taransfers' => $Taransfer,
-            'Announcements' => $Announcement,
-            'Groups' => $Group,
-            'dates' => $dates
-        ]);
-    }
+$users = $dates->merge( $users );
+$user = array();
 
 
-    public function updateData(Request $request) {
-        
-        // Check if the request is made to fetch province specific data
-        if($request->pro) {
+foreach ($users as $key => $value) {
+ $user[Carbon::parse($key)->format('m-d')] = $value;
+ //$user[$key] = $value;
+}
+//////////////////////////////////************************************************ */
 
-        // this query is used to fetch students of a specific city in all the universities
 
-            $provinceStudentsInUnis = Student::leftJoin('universities', 'universities.id', '=', 'university_id')
-                ->select('universities.name', \DB::raw('count(students.id) as std_count'))
-                ->where('province', $request->pro)
-                ->where('kankor_year', 1397)
-                ->orderBy('std_count', 'asc')
-                ->groupBy('universities.name')
-                ->withoutGlobalScopes()
-                ->get();
+ // line chart backend code for teachers
+    //first create an array that has 12 index  and assign it to 0    
+        $teachers = Teacher::where( 'created_at', '>=', Carbon::parse($request->startdate) )
+            ->where( 'created_at', '<=', Carbon::parse($request->enddate) )
+            ->where('university_id', $request->universities)
+            ->groupBy( 'date' )
+            ->orderBy( 'date' )
+            ->get( [
+                DB::raw( 'DATE( created_at ) as date' ),
+                DB::raw( 'COUNT( * ) as "count"' )
+                ] )->pluck( 'count', 'date' );
 
-            $meta = Province::select('name')->where('id',$request->pro)->get();
-        
+        // Merge the two collections; any results in `$users` will overwrite the zero-value in `$dates`yz
+        $teachers = $dates->merge( $teachers );
+        $Teacher = array();
 
-            return response()->json(array('specData'=> $provinceStudentsInUnis, 'meta' => $meta), 200);
-
+        foreach ($teachers as $key => $value) {
+            
+            $Teacher[Carbon::parse($key)->format('m-d')] = $value;
         }
+    // end line chart backend code for teachers 
 
-        // Check if the request is made to fetch university specific data
-        if($university_id) {
 
-                //  This query is used to fetch data of a specific university grouped by provinces
-                $uniStudentsFromProvinces = Student::leftJoin('provinces', 'provinces.id', '=', 'province')
-                    ->select('provinces.name', \DB::raw('count(students.id) as std_count'))
-                    ->where('university_id', $university_id)
-                    ->where('kankor_year', 1397)
-                    ->orderBy('std_count', 'asc')
-                    ->groupBy('provinces.name')
-                    ->withoutGlobalScopes()
-                    ->get();
+    //line chart backend code for Courses
+    //first create an array that has 12 index  and assign it to 0   
+        $courses = Course::where( 'created_at', '>=',Carbon::parse($request->startdate) )
+            ->where( 'created_at', '<=',Carbon::parse($request->enddate) )
+            ->where('university_id',$request->universities)
+            ->groupBy( 'date' )
+            ->orderBy( 'date' )
+            ->get( [
+                DB::raw( 'DATE( created_at ) as date' ),
+                DB::raw( 'COUNT( * ) as "count"' )
+                ] )->pluck( 'count', 'date' );
 
-                $meta = University::select('name')->where('id',$university_id)->get();
+            // Merge the two collections; any results in `$users` will overwrite the zero-value in `$dates`yz
+            $courses = $dates->merge( $courses );
+            $course = array();
+
+            foreach ($courses as $key => $value) {
                 
+                $course[Carbon::parse($key)->format('m-d')] = $value;
+            }
+    // end line chart backend code for Cours  
 
+    // line chart backend code for subject
+    //first create an array that has 12 index  and assign it to 0    
+        $subjects = subject::where( 'created_at', '>=',Carbon::parse($request->startdate) )
+        ->where( 'created_at', '<=',Carbon::parse($request->enddate) )
+        ->where('university_id',$request->universities)
+        ->groupBy( 'date' )
+            ->orderBy( 'date' )
+            ->get( [
+                DB::raw( 'DATE( created_at ) as date' ),
+                DB::raw( 'COUNT( * ) as "count"' )
+                ] )
+            ->pluck( 'count', 'date' );
 
-                return response()->json(array('specData'=> $uniStudentsFromProvinces, 'meta' => $meta), 200);
-
-        } else {
-
-            return response()->json('Request could not be processed', 404);
+        // Merge the two collections; any results in `$users` will overwrite the zero-value in `$dates`yz
+        $subjects = $dates->merge( $subjects );
+        $subject = array();
+        foreach ($subjects as $key => $value) {
+            
+            $subject[Carbon::parse($key)->format('d')] = $value;
         }
-    }
 
+$uniname = University::find($request->universities)->name;
+return view('layouts.activity_chart', compact('user','allUniversities','Teacher','course','uniname','dates','diff', 'subject'));  
+ }
 
 }
- 

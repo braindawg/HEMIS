@@ -19,7 +19,6 @@
 
     <link href="{{ asset('css/all.css') }}" rel="stylesheet">
     <link href="{{ asset('css/summernote/dist/summernote.css')}}" rel="stylesheet" type="text/css" />
-
     <link rel="shortcut icon" href="favicon.ico" />
 
 
@@ -170,11 +169,7 @@
         time: 1000
     });
     </script>
-
-    
-    
     <script src="{{ asset('js/notification.js') }}" type="text/javascript"></script>
-
     @stack('scripts')
 
 </body>

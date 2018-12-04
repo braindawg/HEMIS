@@ -13,6 +13,7 @@ var App = function() {
         allowClear: true
     });
 
+
     $(".select2-ajax").select2({
         language: "fa",
         ajax: {

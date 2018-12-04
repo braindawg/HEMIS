@@ -105,6 +105,10 @@ Route::group(['middleware' => 'auth'], function() {
     Route::post('/universityupdate', 'HomeController@updateData');
     Route::get('/download/{file}','SystemDownloadController@download')->name('noticeboards.download');
     Route::get('/deletefile/{file}','FilesDeleteController@deleteFiles')->name('deletefile');
+
+    
+    Route::get('/Activity','ActivityController@index');
+    Route::Post('/getActivityByUniversity','ActivityController@getActivityByUniversity')->name('home.getActivityByUniversity');
     
     //attachments link
     Route::get('getAttachment/{file_name}', function($filename){

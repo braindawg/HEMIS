@@ -12,7 +12,7 @@ function addIssue(data) {
     var title = data.title;
     var url = data.url;
     var attachIssue = "";
-    var attachIssue =  $("<li style ='background-color: #F0FFF0; margin-top:15px;' ><a target ='_blank' href="+ url +"><span style = 'display: block; margin-right: 20px;'><span style ='font-size: 13px; font-weight: 600;color: #5b9bd1' >" + name +" <span style = 'font-size: 11px; font-weight: 300; color:gray'> " + data.message +" </span> </span><span style ='font-size: 12px; margin-left:20px; font-weight: 400; opacity: .5; float: left;'> "+ date +" </span></span> <span style = 'display: block !important; font-size: 12px; line-height: 1.3; margin-right: 26px; font-family: margin-bottom: 0px; Montserrat,nazanin !important;'>" +title +"</span></a></li><hr style = 'opacity: .5;'>");
+    var attachIssue =  $("<li onclick='makeNotificationAsRead()' style ='background-color: #F0FFF0; margin-top:15px;' ><a target ='_blank' href="+ url +"><span style = 'display: block; margin-right: 20px;'><span style ='font-size: 13px; font-weight: 600;color: #5b9bd1' >" + name +" <span style = 'font-size: 11px; font-weight: 300; color:gray'> " + data.message +" </span> </span><span style ='font-size: 12px; margin-left:20px; font-weight: 400; opacity: .5; float: left;'> "+ date +" </span></span> <span style = 'display: block !important; font-size: 12px; line-height: 1.3; margin-right: 26px; font-family: margin-bottom: 0px; Montserrat,nazanin !important;'>" +title +"</span></a></li><hr style = 'opacity: .5;'>");
     
     setInList(attachIssue,data,'notification');
 }

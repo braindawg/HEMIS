@@ -80,6 +80,6 @@ mix.styles([
     .scripts([        
         'resources/assets/js/jquery.dataTables.min.js',
         'resources/assets/js/dataTables.buttons.min.js',        
-    ], 'public/js/datatables.js');
+    ], 'public/js/datatables.js')
    
 //.sass('resources/assets/sass/app.scss', 'public/css');

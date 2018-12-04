@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Students\Groups;
 
 use App\Models\Group;
+use App\Models\Subject;
 use App\Models\University;
 use App\Models\Department;
 use Illuminate\Http\Request;
