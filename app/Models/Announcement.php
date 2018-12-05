@@ -12,8 +12,19 @@ use App\Traits\Attachable;
 class Announcement extends Model
 {
     use SoftDeletes,Attachable;
+
     protected $table = "announcements";
     protected $guarded = [];
+	private $dom;
+
+    function __construct(array $attributes = array())
+    {
+        parent::__construct($attributes);
+
+    	$this->dom = new \DomDocument('1.0', 'UTF-8');
+    	libxml_use_internal_errors(true); //turn off invalid html warning, it is a common problem
+    }
+
     public function attachment()
     {
         return $this->hasMany('\App\Models\Attachment', 'model_record_id');
@@ -25,20 +36,32 @@ class Announcement extends Model
         return  Carbon::parse($this->created_at)->diffForHumans();
     }
 
-    public function noticeboardView()
+    public function visits()
     {
-        return $this->hasMany(\App\Models\NoticeboardView::class);
+        return $this->hasMany(NoticeboardView::class);
     }
 
-    public function userView($announcement_id,$user_id)
+    public function visited()
     {
-       $checkuser = NoticeboardView::where('user_id',$user_id)->where('announcement_id',$announcement_id)->get();
+        return $this->visits()->where('user_id', auth()->user()->id)->exists();
+    }
 
-           if($checkuser ){
-               return 1;
-           } else {
-               return 0;
-           }
+    public function visit()
+    {
+        return $this->visits()->create(['user_id' => auth()->user()->id]);
+    }
+
+    public function excerpt($limit = 260, $post_fix = ' ...')
+    {
+    	//$this->dom->loadHtml(mb_convert_encoding($this->body, 'HTML-ENTITIES', 'UTF-8'), LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
+        $this->dom->loadHtml(mb_convert_encoding($this->body, 'HTML-ENTITIES', 'UTF-8'));
+
+    	return str_limit($this->dom->textContent, $limit, $post_fix);
+    }
+
+    public function href()
+    {
+        return route('announcements.show', $this->id);
     }
 }
     

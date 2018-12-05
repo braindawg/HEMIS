@@ -57,14 +57,11 @@
                 </div>  
             </div>
         </div>
-
-        
-      <!-- user seen table -->
         <div class="col-md-5">
             <div class="portlet">
                 <div class="portlet-title">
                     <div class="caption" >
-                            <h3 style ="margin-right:20px; text-align:center">{{trans('general.noticeboard_view')}}</h3>  
+                        <h3 style ="margin-right:20px; text-align:center">{{trans('general.noticeboard_view')}}</h3>  
                     </div>              
                     <div class="portlet-body">
                         <div class="table-scrollable">
@@ -76,11 +73,11 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @if($announcement->noticeboardView()->count()>0)
-                                    @foreach($announcement->noticeboardView as $view)
+                                    @if($announcement->visits()->count()>0)
+                                    @foreach($announcement->visits as $visit)
                                     <tr>
-                                        <td>{{$view->user->name}}</td>
-                                        <td>{{$view->date()}}</td>
+                                        <td>{{$visit->user->name}}</td>
+                                        <td>{{$visit->date()}}</td>
                                     </tr>
                                     @endforeach
                                     @else
@@ -93,6 +90,9 @@
                 </div>  
             </div>
         </div>
+    </div>
+      <!-- user seen table -->
+        
     
 
     

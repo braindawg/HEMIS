@@ -4,24 +4,28 @@
     <div class="todo-container">
         <div class="row">
             <div class="col-md-12">
-                <ul class="todo-projects-container">
-                    <?php 
-                    foreach($announcements as $announcement)
-                    {      
-                        $body_text= $announcement->body;
-                        $body_text =str_limit($body_text, 400,'...');
-                        ?>
+                <ul class="todo-projects-container">                 
+                @foreach($announcements as $announcement)      
                     <li class="todo-projects-item noticeboar_list">
-                    @if($announcement->userView($announcement->id,\Auth::user()->id)==1 )
-                        <h3>{{$announcement->title}}</h3>
-                    @else
-                        <h3>{{$announcement->title}} &nbsp;&nbsp; <span class="badge badge-danger"> جدید </span></h3>
-                    @endif
+                        <h3>
+                            <a href="{{ $announcement->href() }}">
+                            {{$announcement->title}} 
+                            @if(! $announcement->visited())
+                            &nbsp;&nbsp; <span class="badge badge-danger"> جدید </span>
+                            @endif
+                            </a>
+                        </h3>                    
                         <p>تاریخ نشر:{{ $announcement->date()}}</p>
-                        <p>{!!$body_text!!} <span><a href="{{URL::to('/announcements/'.$announcement->id)}}"><span style = "font-size : 13px">...بیشتر بخواند</span></a></span> </p>
+                        <p>
+                            {!! $announcement->excerpt(400) !!}
+                        </p>
+                        <a href="{{ $announcement->href() }}" style = "font-size : 13px">
+                            مشاهده اعلان 
+                        </a>
+                        
                     </li>
                     <hr>
-                    <?php }?>
+                @endforeach
                 </ul>   
                 <div class="pagination">
                     <?php echo $announcements->links(); ?>

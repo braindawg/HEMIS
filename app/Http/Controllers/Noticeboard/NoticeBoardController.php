@@ -10,10 +10,10 @@ use App\Http\Controllers\Controller;
 class NoticeBoardController extends Controller
 {
     public function show()
-    {
-        $announcements=Announcement::latest('created_at')->paginate(5);
+    {   
         return view('announcements.noticeboard_list', [
             'title' => trans('general.noticeboard'),
-        ],compact('announcements'));
+            'announcements' => Announcement::latest('created_at')->paginate(5)
+        ]);
     }
 }
