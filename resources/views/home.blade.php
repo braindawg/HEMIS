@@ -428,6 +428,278 @@
     </div>
 </div>
 
+<div class="row">
+    <div class="col-md-12">
+        <div class="portlet">
+            <div class="portlet-title">
+                <div class="col-md-1 col-sm-2">
+                    <h3 style="text-align: left">فعالیت ها </h3>
+                </div>
+            
+            </div>
+            <div id="mycontainer" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+          
+            <script type="text/javascript">
+                
+Highcharts.chart('mycontainer', {
+    chart: {
+        type: 'spline'
+     },
+    title: {
+        text: 'گراف فعالیت های ۳۰ روز گذشته'
+    },
+    subtitle: {
+        text: ''
+    },
+    xAxis: {
+        categories: [
+         @foreach($dates as $d)
+         {{ $d.','}}         
+          @endforeach 
+        ]
+         
+    },
+    yAxis: {
+        title: {
+            text: ' آمار فعالیت ها'
+        },
+        labels: {
+            formatter: function () {
+                return this.value ;
+            }
+        }
+    },
+    tooltip: {
+        crosshairs: true,
+        shared: false
+    },
+    plotOptions: {
+        spline: {
+            marker: {
+                radius: 4,
+                lineColor: '#666666',
+                lineWidth: 1
+            }
+        }
+    },
+    series: [
+        {
+            // LINE CHART FOR ANNOUNCEMENTS
+            name: ' تبلیغات',
+            marker: {
+                symbol: 'Circle'
+            },
+            data: [{
+                y:{{reset($Announcements)}},
+                marker: {
+                    symbol: ' '
+                }
+            },
+            // loadAnnouncements data 
+
+            <?php array_shift($Announcements)?>
+            @foreach($Announcements as $Announcement)
+            {{$Announcement.','}}         
+            @endforeach  
+            ]
+            
+        },// END OF COURSES LINE ANNOUNCEMENTS
+
+        {
+            // LINE CHART FOR ANNOUNCEMENTS
+            name: ' گروپ ها',
+            marker: {
+                symbol: 'Circle'
+            },
+            data: [{
+                y:{{reset($Groups)}},
+                marker: {
+                    symbol: ' '
+                }
+            },
+            // loadAnnouncements data 
+
+            <?php array_shift($Groups)?>
+            @foreach($Groups as $Group)
+            {{$Group.','}}         
+            @endforeach  
+            ]
+        
+        },// END OF COURSES LINE ANNOUNCEMENTS
+     
+    {
+
+            // LEAVES LINE
+
+            name: 'تاجیلی ها',
+            marker: {
+                symbol: 'Circle'
+            },
+            data: [{
+                y:{{reset($Leaves)}},
+                marker: {
+                    symbol: ' '
+                }
+            },
+
+            // load leaves data 
+            <?php array_shift($Leaves)?>
+            @foreach($Leaves as $Leave)
+            {{$Leave.','}}         
+            @endforeach  
+            ]
+     },// END leaves LINE
+
+    {
+
+        // LINE CHART FOR DROPOUTS
+        name: ' منفکی ها',
+        marker: {
+            symbol: 'Circle'
+        },
+        data: [{
+            y:{{reset($Dropouts)}},
+            marker: {
+                symbol: ' '
+            }
+        },
+        // load DROPOUT data 
+
+        <?php array_shift($Dropouts)?>
+         @foreach($Dropouts as $Dropout)
+         {{$Dropout.','}}         
+        @endforeach  
+        ]
+        
+    },// END OF COURSES LINE DROPOUTS
+
+    {
+        // LINE CHART FOR TARANSFERS
+        name: ' تبدیلی ها',
+        marker: {
+            symbol: 'Circle'
+        },
+        data: [{
+            y:{{reset($Taransfers)}},
+            marker: {
+                symbol: ' '
+            }
+        },
+        // load TARANSFER data 
+
+        <?php array_shift($Taransfers)?>
+         @foreach($Taransfers as $Transfer)
+         {{$Transfer.','}}         
+        @endforeach  
+        ]
+        
+    },// END OF COURSES LINE TARANSFERS
+
+
+
+
+    {
+        // LINE CHART FOR COURSES
+        name: 'صنف ها ',
+        marker: {
+            symbol: 'Circle'
+        },
+        data: [{
+            y:{{reset($Courses)}},
+            marker: {
+                symbol: ' '
+            }
+        },
+        // load subject data 
+
+        <?php array_shift($Courses)?>
+         @foreach($Courses as $Course)
+         {{$Course.','}}         
+        @endforeach  
+        ]
+        
+    },// END OF COURSES LINE CHART
+
+        
+    {
+        // SUNJECT LINE
+        name: 'مضامین',
+        marker: {
+            symbol: 'Circle'
+        },
+        data: [{
+            y:{{reset($subjects)}},
+            marker: {
+                symbol: ' '
+            }
+        },
+        // load subject data 
+
+        <?php array_shift($subjects)?>
+         @foreach($subjects as $subject)
+         {{$subject.','}}         
+        @endforeach  
+        ]
+        
+    },// END SUBJECT LINE CHART
+
+    {
+         //  LINE CHART FOR TEACHER
+        name: 'استادها',
+        marker: {
+            symbol: 'Circle'
+        },
+        data: [{
+            y:{{reset($teachers)}},
+            marker: {
+                symbol: ''
+            }
+        }, 
+          // LOAD DATA
+      <?php
+     array_shift($teachers) ;
+     ?>
+         @foreach($teachers as $teacher)
+         {{$teacher.','}}
+         @endforeach
+          ]
+        // END TEACHER LINE CHART
+    },
+
+    {
+         // USERS LINE CAHRT
+        name: 'کاربر',
+        marker: {
+            symbol: 'Circle'
+        },
+        data: [{
+          
+           y:{{reset($users)}},
+            marker: {
+                symbol: ''
+            }
+        },  
+        // LOAD DATA
+     <?php
+     array_shift($users) ;
+     ?>
+         @foreach($users as $user)
+        {{$user.','}} 
+        @endforeach
+        
+     ]
+
+    }// END USERS LINE CAHRT
+
+    ]
+});
+            </script>
+        </div>
+    </div>
+</div>
+
+
+
 @endif
 
 <!-- Ajax methdd to update data on province change for the province specific column chart -->
