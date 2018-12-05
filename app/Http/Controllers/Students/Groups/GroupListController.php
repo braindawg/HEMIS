@@ -11,9 +11,9 @@ class GroupListController extends Controller
 {
     public function __construct()
     {        
-        // $this->middleware('permission:group-view-list', ['only' => ['index', 'show']]);        
-        // $this->middleware('permission:group-add-student', ['only' => ['create','store']]);
-        // $this->middleware('permission:group-remove-student', ['only' => ['destroy']]);
+        $this->middleware('permission:group-view-list', ['only' => ['index', 'show']]);        
+        $this->middleware('permission:group-add-student', ['only' => ['create','store']]);
+        $this->middleware('permission:group-remove-student', ['only' => ['destroy']]);
     }
     /**
      * Display a listing of the resource.

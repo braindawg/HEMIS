@@ -4,9 +4,9 @@
     <div class="portlet light bordered">
         <div class="portlet-title">
             <a href="{{ route('curriculum.departments', $university) }}" class="btn btn-default"><i class="icon-arrow-right"></i> {{ trans('general.departments_list') }}</a>
-            <!-- can ('create-user') -->
+            @can('create-curriculum')
             <a href="{{ route('subjects.create', [$university, $department]) }}" class="btn btn-primary"><i class="icon-plus"></i> {{ trans('general.create_subject') }} </a>
-            <!-- endcan -->
+            @endcan
         
             <div class="tools"> </div>
         </div>

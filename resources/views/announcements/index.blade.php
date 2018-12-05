@@ -8,7 +8,9 @@
             </div>
         @endif
         <div class="portlet-title">
+            @can('create-announcement')
             <a href="{{ route('announcements.create') }}" class="btn btn-info"><i class="icon-plus"></i> {{ trans('general.create_noticeboard') }} </a>
+            @endcan
             <div class="tools"> </div>
         </div>
         <div class="portlet-body">

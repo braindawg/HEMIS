@@ -12,7 +12,13 @@
         </div>
         <div class="portlet-body">
 
+            @if(auth()->user()->can('edit-course'))
             {!! Form::open(['route' => ['scores.store', $course], 'method' => 'post', 'class' => 'form-horizontal']) !!} 
+            @else
+            <div class="form-horizontal">
+            @endif
+            
+         
             
             {!! Form::hidden('course[course_id]', $course->id) !!}
             {!! Form::hidden('course[subject_id]', $course->subject_id) !!}
@@ -33,7 +39,9 @@
                     <th>{{ trans('general.total') }}</th>
                     <th>{{ trans('general.chance_two') }}</th>
                     <th>{{ trans('general.chance_three') }}</th>
+                    @can('edit-course')
                     <th>{{ trans('general.delete') }}</th>
+                    @endcan
                 </tr>
                 @foreach($course->students as $student)                    
                     <tr>
@@ -63,32 +71,36 @@
                         <td>
                             <input type="number" class="form-control score-input" name="scores[{{ $student->id }}][chance_three]" min="0" max="100" value="{{ $student->score->chance_three ?? ''  }}">
                         </td>
-                        
+                        @can('edit-course')
                         <td>
-                        <a href="javascript:;" 
-                            onclick="event.preventDefault();
-                            if(confirm('آیا مایل به پیشروی هستید؟')){
-                            document.getElementById('student-id-field').value='{{ $student->id }}';
-                            document.getElementById('delete-form').submit();}" 
-                            class="dropdown-toggle" 
-                            title="{{ trans('general.logout') }}">
+                            <a href="javascript:;" 
+                                onclick="event.preventDefault();
+                                if(confirm('آیا مایل به پیشروی هستید؟')){
+                                document.getElementById('student-id-field').value='{{ $student->id }}';
+                                document.getElementById('delete-form').submit();}" 
+                                class="dropdown-toggle" 
+                                title="{{ trans('general.logout') }}">
 
-                            <i class="fa fa-remove"></i>                           
-                        </a>  
-                    
+                                <i class="fa fa-remove"></i>                           
+                            </a>
                         </td>
+                        @endcan
                     </tr>
                 @endforeach
             </table>
             </div>
+            @if(auth()->user()->can('edit-course'))
             <div class="form-actions fluid">
                 <div class="row">
                     <div class="col-md-11">
-                        <button type="submit" class="btn btn-primary pull-right">{{ trans('general.save_scores') }}</button>                        
+                        <button type="submit" class="btn btn-primary">{{ trans('general.save_scores') }}</button>                        
                     </div>
                 </div>
-            </div>                   
+            </div>                 
             {!! Form::close()  !!}
+            @else
+            </div>            
+            @endif
         </div>
     </div>
 
@@ -106,4 +118,15 @@
             width: 80px;
         }
     </style>
+@endpush
+
+
+@push('scripts')
+@if(! auth()->user()->can('edit-course'))
+<script>
+    $(function () {
+        $('input["number"]').attr('disabled', 'disabled')
+    })
+</script>
+@endif
 @endpush

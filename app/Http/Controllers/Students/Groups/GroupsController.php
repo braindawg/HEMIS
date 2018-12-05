@@ -15,6 +15,7 @@ class GroupsController extends Controller
     {        
         $this->middleware('permission:view-group', ['only' => ['index', 'show']]);        
         $this->middleware('permission:create-group', ['only' => ['create','store']]);
+        $this->middleware('permission:edit-group', ['only' => ['create','store']]);
         $this->middleware('permission:delete-group', ['only' => ['destroy']]);
     }
     /**
