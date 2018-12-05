@@ -6,14 +6,14 @@
         </a>       
     </li>
 
-    @if (auth()->user()->can(['view-announcement']))
+    @can(['view-announcement'])
     <li class="nav-item start {{ request()->is('announcements') ? 'active' : '' }}">
         <a href="{{ route('announcements.index') }}" class="nav-link nav-toggle">
             <i class="icon-list"></i>
             <span class="title">{{ trans('general.announcements_list') }}</span>         
         </a>       
     </li>
-    @endif 
+    @endcan
 
     <li class="nav-item start {{ request()->is('home') ? 'active' : '' }}">
     <a href="{{ route('home') }}" class="nav-link nav-toggle">

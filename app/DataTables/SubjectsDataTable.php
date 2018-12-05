@@ -24,13 +24,19 @@ class SubjectsDataTable extends DataTable
             })
             ->addColumn('action', function ($subject) {
                 $html = '';
-                $html .= '<a href="'.route('subjects.edit', [$subject->university_id, $subject->department_id, $subject->id]).'" class="btn btn-success btn-xs"><i class="icon-pencil"></i></a>';
-                $html .= '<form action="'. route('subjects.destroy', [$subject->university_id, $subject->department_id, $subject->id]) .'" method="post" style="display:inline">
+
+                if (auth()->user()->can('edit-curriculum')) {
+                    $html .= '<a href="'.route('subjects.edit', [$subject->university_id, $subject->department_id, $subject->id]).'" class="btn btn-success btn-xs"><i class="icon-pencil"></i></a>';
+                }
+
+                if (auth()->user()->can('delete-curriculum')) {
+                    $html .= '<form action="'. route('subjects.destroy', [$subject->university_id, $subject->department_id, $subject->id]) .'" method="post" style="display:inline">
                             <input type="hidden" name="_method" value="DELETE" />
                             <input type="hidden" name="_token" value="'.csrf_token().'" />
                             <button type="submit" class="btn btn-xs btn-danger" onClick="doConfirm()"><i class="icon-trash"></i></button>
                         </form>';
-
+                }
+                
                 return $html;
             });
     }

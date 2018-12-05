@@ -18,14 +18,21 @@ class NoticeBoardDataTable extends DataTable
         return datatables($query)
             ->addColumn('action', function ($announcement) {
                 $html = '';
+
                     $html .= '<a href="'.route('announcements.show', $announcement).'" class="btn btn-success btn-xs" target="new"><i class="fa fa-eye"></i></a>';                   
-                    $html .= '<a href="'.route('announcements.edit', $announcement).'" class="btn btn-success btn-xs" target="new"><i class="icon-pencil"></i></a>';
-                    // $html .= '<a href="'.route('noticeboards.download', $announcement).'" class="btn btn-success btn-xs" target="new"><i class="fa fa-download"></i></a>';                   
-                    $html .= '<form action="'. route('announcements.destroy', $announcement) .'" method="post" style="display:inline">
+                    
+                    if (auth()->user()->can('edit-announcement')) {
+                        $html .= '<a href="'.route('announcements.edit', $announcement).'" class="btn btn-success btn-xs" target="new"><i class="icon-pencil"></i></a>';
+                    }
+                    
+                    if (auth()->user()->can('delete-announcement')) {
+                        $html .= '<form action="'. route('announcements.destroy', $announcement) .'" method="post" style="display:inline">
                             <input type="hidden" name="_method" value="DELETE" />
                             <input type="hidden" name="_token" value="'.csrf_token().'" />
                             <button type="submit" class="btn btn-xs btn-danger" onClick="doConfirm()"><i class="fa fa-trash"></i></button>
-                        </form>';                            
+                        </form>';
+                    }
+                                                
                 return $html;
             })
             ->rawColumns(['action']);

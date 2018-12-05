@@ -19,11 +19,13 @@ class DropoutsDataTable extends DataTable
             ->addColumn('action', function ($dropouts) {
                 $html = '';
                 
+                if (auth()->user()->can('delete-dropout')) {
                     $html .= '<form action="'. route('dropouts.destroy', $dropouts) .'" method="post" style="display:inline">
                             <input type="hidden" name="_method" value="DELETE" />
                             <input type="hidden" name="_token" value="'.csrf_token().'" />
                             <button type="submit" class="btn btn-xs btn-danger" onClick="doConfirm()" style="margin-top: 5px"><i class="fa fa-trash"></i></button>
                         </form>';
+                }      
                             
                 return $html;
             })

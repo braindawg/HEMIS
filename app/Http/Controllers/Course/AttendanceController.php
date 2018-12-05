@@ -8,6 +8,12 @@ use App\Http\Controllers\Controller;
 
 class AttendanceController extends Controller
 {
+    public function __construct()
+    {        
+        $this->middleware('permission:edit-course', ['only' => ['removeStudent']]);
+        $this->middleware('permission:view-course', ['only' => ['list', 'print']]);
+    }
+
     public function list(Course $course)
     {
         $course = $course->with(['students' => function ($students) use ($course) {

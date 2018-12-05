@@ -19,12 +19,14 @@ class LeavesDataTable extends DataTable
             ->addColumn('action', function ($leave) {
                 $html = '';
                 
+                if (auth()->user()->can('delete-leave')) {
                     $html .= '<form action="'. route('leaves.destroy', $leave) .'" method="post" style="display:inline">
                             <input type="hidden" name="_method" value="DELETE" />
                             <input type="hidden" name="_token" value="'.csrf_token().'" />
                             <button type="submit" class="btn btn-xs btn-danger" onClick="doConfirm()" style="margin-top: 5px"><i class="fa fa-trash"></i></button>
                         </form>';
-                            
+                }
+                                                
                 return $html;
             })
             ->rawColumns(['action']);

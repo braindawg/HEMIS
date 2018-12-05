@@ -19,11 +19,14 @@ class TransfersDataTable extends DataTable
             ->addColumn('action', function ($transfer) {
                 $html = '';
                 
+                if (auth()->user()->can('delete-transfer')) {
                     $html .= '<form action="'. route('transfers.destroy', $transfer) .'" method="post" style="display:inline">
-                            <input type="hidden" name="_method" value="DELETE" />
-                            <input type="hidden" name="_token" value="'.csrf_token().'" />
-                            <button type="submit" class="btn btn-xs btn-danger" onClick="doConfirm()" style="margin-top: 5px"><i class="fa fa-trash"></i></button>
-                        </form>';
+                        <input type="hidden" name="_method" value="DELETE" />
+                        <input type="hidden" name="_token" value="'.csrf_token().'" />
+                        <button type="submit" class="btn btn-xs btn-danger" onClick="doConfirm()" style="margin-top: 5px"><i class="fa fa-trash"></i></button>
+                    </form>';
+                }
+                    
                             
                 return $html;
             })

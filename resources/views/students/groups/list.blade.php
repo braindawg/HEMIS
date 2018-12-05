@@ -16,7 +16,9 @@
                     <th>{{ trans('general.name') }}</th>
                     <th>{{ trans('general.father_name') }}</th>
                     <th>{{ trans('general.kankor_year') }}</th>
+                    @can('group-remove-student')
                     <th>{{ trans('general.delete') }}</th>
+                    @endcan
                 </tr>
                 @foreach($group->students as $student)
                 <tr>
@@ -25,18 +27,21 @@
                     <td>{{ $student->name }}</td>
                     <td>{{ $student->father_name }}</td>
                     <td>{{ $student->kankor_year }}</td>
+                    @can('group-remove-student')
                     <td>
                         {!! Form::open(['route' => ['groups.student.remove', $group], 'method' => 'delete', 'class' => 'form-horizontal']) !!}
                             <input type="hidden" name="student_id" value="{{ $student->id }}">
                             <button type="submit" class="btn btn-xs btn-danger" onClick="doConfirm()"><i class="fa fa-remove"></i></button>
                         {!! Form::close() !!}
                     </td>
+                    @endcan
                 </tr>
                 @endforeach
             </table>
         </div>
     </div>
 
+    @can('group-add-student')
     <div class="row">
         <div class="col-md-6">
             <div class="portlet box">
@@ -78,7 +83,7 @@
 
         <div class="col-md-6">
             <div class="portlet box">
-            <div class="portlet-title" style="color: #000">
+                <div class="portlet-title" style="color: #000">
                    <h4>{{ trans('general.add_student_by_department') }}</h4>
                 </div>
                 <div class="portlet-body">
@@ -116,14 +121,15 @@
                                     </div>
                                 </div>
                             </div>
-</div>
-                        <div class="form-actions fluid">
-                            <div class="row">
-                                <div class="col-md-offset-3 col-md-7">
-                                    <button type="submit" class="btn green">{{ trans('general.add') }}</button>
-                                </div>
+                        </div>
+                    </div>
+                    <div class="form-actions fluid">
+                        <div class="row">
+                            <div class="col-md-offset-3 col-md-7">
+                                <button type="submit" class="btn green">{{ trans('general.add') }}</button>
                             </div>
                         </div>
+                    </div>
                     {!! Form::close() !!}
                     <!-- END FORM-->
                 </div>
@@ -131,5 +137,6 @@
 
         </div>
     </div>
+    @endcan
 
 @endsection

@@ -19,7 +19,7 @@ class GroupsDataTable extends DataTable
             ->addColumn('action', function ($group) {
                 $html = '';
 
-                if (auth()->user()->can('group-view-list') or 1) {
+                if (auth()->user()->can('group-view-list')) {
                     $html .= '<a href="'.route('groups.list', $group).'" class="btn btn-primary btn-xs" title="'.trans('general.list').'"><i class="icon-list"></i></a>';
                 }
                 
