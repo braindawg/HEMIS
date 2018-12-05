@@ -244,6 +244,6 @@ return [
     'print_scores_sheet' => 'پرینت شقه',
 
     'unread_notifications' => '',
-    'activity' => 'فعالیت های',
+    'activity' => 'گراف فعالیت های',
     'activity_show' => 'نمایش'
 ];

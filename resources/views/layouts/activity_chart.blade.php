@@ -10,50 +10,55 @@
                 <div class="col-md-1 col-sm-4">
                     <h3 style="text-align: left">پوهنتون:</h3>
                 </div>
-                {!! Form::open(['route' => 'home.getActivityByUniversity', 'method' => 'post']) !!}  
-                <div class="col-md-3 col-sm-4">
-                    <select name="universities" id="" class="form-control" style="width: 80% !important; margin-top:16px;"  >
+                <div class="col-md-2 col-sm-4">
+                    <select name="university" id="university" class="form-control" style=" margin-top:16px;"  >
+                    @if($uniname == "")
+                    <option value="0">تمام پوهنتون ها</option>
+                    @else
+                    <option value="{{$university_id}}">{{$uniname}}</option>
+                    @endif
                     @foreach($allUniversities as $university)
-                        <option value="{{ $university->id }}">{{ $university->name }}</option>
+                        <option value ="{{ $university->id }}">{{ $university->name }}</option>
                         @endforeach
+                        <option value="0">تمام پوهنتون ها</option>
                     </select>
+
+                </div>
+                <div class="col-md-1 col-sm-4">
+                    <h3 style="text-align: left">از تاریخ</h3>
+                </div>
+               
+                <div class="col-md-2 col-sm-4">
+                <br>
+                <div  class="input-group date  datepic" data-date-format="yyyy-mm-dd">
+                            <input class="form-control timepicker" name="startdate" id = "startdate" type="text" readonly style=""  />
+                            <span class="input-group-addon">
+                            <i class="glyphicon glyphicon-calendar"></i>
+                            </span>
+                        </div>
+                </div>
+                <div class="col-md-1 col-sm-4">
+                    <h3 style="text-align: left">الی تاریخ</h3>
+                </div>
+               
+                <div class="col-md-2 col-sm-4">
+                <br>
+                <div  class="input-group date  datepic" data-date-format="yyyy-mm-dd">
+                            <input class="form-control timepicker" name="enddate" id = "enddate" type="text" readonly  />
+                            <span class="input-group-addon">
+                            <i class="glyphicon glyphicon-calendar"></i>
+                            </span>
+                        </div>
                 </div>
 
-               
-               
-                    <div class="form-group col-md-3">
-                        <label>Start Date: </label>
-                        <div  class="input-group date  datepic" data-date-format="yyyy-mm-dd">
-                            <input class="form-control timepicker" name="startdate" type="text" readonly  />
-                            <span class="input-group-addon">
-                            <i class="glyphicon glyphicon-calendar"></i>
-                            </span>
-                        </div>
-                        
-                    </div>
-                    <div class="form-group col-md-3" >
-                        <label>End Date: </label>
-                        <div  class="input-group date  datepic" data-date-format="yyyy-mm-dd">
-                            <input class="form-control timepicker" name="enddate" type="text" readonly />
-                            <span class="input-group-addon">
-                            <i class="glyphicon glyphicon-calendar"></i>
-                            </span>
-                        </div>
-                        
-                    </div>
-                    
-         
-                
                 <div class="col-md-1 col-sm-2">
                     <br>
-                    <button type="submit" class="btn green">show</button>
+                    <button type="button" class="btn green" onclick = "getUniversityActivity()">{{trans('general.activity_show')}}</button>
                 </div>
-
-  {!! Form::close() !!}
-  
-
             </div>
-            <div id="activity-chart" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+            <br>
+            <br>
+            <div id="activity-chart" style="min-width: 310px; height: 400px; margin: 0 auto;"></div>
         </div>
         <script type="text/javascript">  
             Highcharts.chart('activity-chart', {
@@ -61,7 +66,7 @@
                     type: 'spline'
                 },
                 title: {
-                    text: 'گراف فعالیت های ۷ روز گذشته'
+                    text: 'گراف فعالیت های'+{{$diff}}+' روز گذشته'
                 },
                 subtitle: {
                     text: ''
@@ -101,28 +106,36 @@
                     }
                 },
                 series: [
+                    @php
+                    if($groups)
+                    {
+                    @endphp
                 {
-            // LINE CHART FOR ANNOUNCEMENTS
+            // LINE CHART FOR GROUPS
             name: ' گروپ ها',
             marker: {
                 symbol: 'Circle'
             },
             data: [{
-                y:{{reset($Groups)}},
+                y:{{reset($groups)}},
                 marker: {
                     symbol: ' '
                 }
             },
             // loadAnnouncements data 
 
-            <?php array_shift($Groups)?>
-            @foreach($Groups as $Group)
-            {{$Group.','}}         
+            <?php array_shift($groups)?>
+            @foreach($groups as $group)
+            {{$group.','}}         
             @endforeach  
             ]
             
-        },// END OF COURSES LINE ANNOUNCEMENTS
-        
+        },// END OF COURSES LINE GROUPS
+        @php
+         }
+        if($leaves)
+        {
+        @endphp
         {
 
             // LEAVES LINE
@@ -132,66 +145,76 @@
                 symbol: 'Circle'
             },
             data: [{
-                y:{{reset($Leaves)}},
+                y:{{reset($leaves)}},
                 marker: {
                     symbol: ' '
                 }
             },
 
             // load leaves data 
-            <?php array_shift($Leaves)?>
-            @foreach($Leaves as $Leave)
-            {{$Leave.','}}         
+            <?php array_shift($leaves)?>
+            @foreach($leaves as $leave)
+            {{$leave.','}}         
             @endforeach  
             ]
         },// END leaves LINE
-
+        @php
+            }   
+            if($dropouts)
+            {
+        @endphp
         {
 
             // LINE CHART FOR DROPOUTS
-            name: ' ?منفکی ها',
+            name: ' منفکی ها',
             marker: {
                 symbol: 'Circle'
             },
             data: [{
-                y:{{reset($Dropouts)}},
+                y:{{reset($dropouts)}},
                 marker: {
                     symbol: ' '
                 }
             },
             // load DROPOUT data 
 
-            <?php array_shift($Dropouts)?>
-            @foreach($Dropouts as $Dropout)
-            {{$Dropout.','}}         
+            <?php array_shift($dropouts)?>
+            @foreach($dropouts as $dropout)
+            {{$dropout.','}}         
             @endforeach  
             ]
             
         },// END OF COURSES LINE DROPOUTS
-
+        @php
+        }
+        if($transfers)
         {
+        @endphp
+                {
             // LINE CHART FOR TARANSFERS
             name: ' تیدیلی ها',
             marker: {
                 symbol: 'Circle'
             },
             data: [{
-                y:{{reset($Taransfers)}},
+                y:{{reset($transfers)}},
                 marker: {
                     symbol: ' '
                 }
             },
             // load TARANSFER data 
 
-            <?php array_shift($Taransfers)?>
-            @foreach($Taransfers as $Transfer)
-            {{$Transfer.','}}         
+            <?php array_shift($transfers)?>
+            @foreach($transfers as $transfer)
+            {{$transfer.','}}         
             @endforeach  
             ]
             
         },// END OF COURSES LINE TARANSFERS
 
-
+            @php
+            }
+            @endphp
 
 
         {
@@ -201,16 +224,16 @@
                 symbol: 'Circle'
             },
             data: [{
-                y:{{reset($Courses)}},
+                y:{{reset($courses)}},
                 marker: {
                     symbol: ' '
                 }
             },
             // load subject data 
 
-            <?php array_shift($Courses)?>
-            @foreach($Courses as $Course)
-            {{$Course.','}}         
+            <?php array_shift($courses)?>
+            @foreach($courses as $course)
+            {{$course.','}}         
             @endforeach  
             ]
             
@@ -273,49 +296,40 @@
      y:{{reset($users)}},
      marker: {
         symbol: ''
-    }
-},  
-// LOAD DATA
-<?php
-array_shift($users) ;
-?>
-@foreach($users as $user)
-{{$user.','}} 
-@endforeach
+            }
+        },  
+        // LOAD DATA
+        <?php
+        array_shift($users) ;
+        ?>
+        @foreach($users as $user)
+        {{$user.','}} 
+        @endforeach
 
-]
+        ]
 
-}// END USERS LINE CAHRT
+        }// END USERS LINE CAHRT
 
-]
-});
+        ]
+        });
+             </script>
+          </div>
+         </div>
+        </div>
 
-
-</script>
-
-</div>
-</div>
-</div>
-
-
-
-
-<!-- Ajax methdd to update data on province change for the province specific column chart -->
-<script src="{{ asset('js/ajaxCharts.js') }}" type="text/javascript"></script>
 
 @endsection
-
-
-
 @push('scripts')
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.js"></script>
 <script>
-    function kankorYear(value){
-        
-        var year = value;
+    function getUniversityActivity(){
 
-        window.location.href = window.location.origin + "/home/" + year;
+        var university = document.getElementById('university').value;
+        var startdate = document.getElementById('startdate').value;
+        var enddate = document.getElementById('enddate').value;
+
+        window.location.href = window.location.origin + "/Activity/" + university +'/' + startdate + '/' + enddate;
 
     }
 
@@ -327,6 +341,7 @@ array_shift($users) ;
   });
 
 </script>
+<script>
 
 
 @endpush

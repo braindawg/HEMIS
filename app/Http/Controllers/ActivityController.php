@@ -2,12 +2,9 @@
 
 namespace App\Http\Controllers;
 use Carbon\Carbon;
-use \App\Models\Province;
-use \App\Models\Department;
 use \App\Models\Student;
 use \App\Models\University;
 use Illuminate\Http\Request;
-use \App\Models\StudentStatus;
 use \App\Models\subject;
 use \App\Models\Course;
 use \App\Models\Leave;
@@ -23,294 +20,125 @@ use Carbon\CarbonPeriod;
 
 class ActivityController extends Controller
 {
-    public function index(){
+    public function index($university = null , $startdate =null , $enddate =null){
 
+        $uniname = "";
+        $user = null;
+        $teacher = null;
+        $subject = null;
+        $course = null;
+        $dropout = null;
+        $group = null;
+        $leave = null;
+        $transfer = null;
+        $dates = null;
+        $diff = 7;
+        $university_id = null;
+
+        $allUniversities = University::all();
         $dates = collect();
         $day = array();
-        foreach( range( -7, 0 ) AS $i )
-        {
-            $date = Carbon::now()->addDays( $i )->format( 'M-d' );
-            $day[] = Carbon::now()->addDays( $i )->format( 'd' );
-            $dates->put( $date, 0);//create an array that key is date and assign zero to its value
-        }
 
+        if($university == null){
 
-    $Users = User::where( 'created_at', '>=', Carbon::now()->subDays(7))
-        ->groupBy( 'date' )
-        ->orderBy( 'date' )
-        ->get( [
-        DB::raw( 'DATE( created_at ) as date' ),
-        DB::raw( 'COUNT( * ) as "count"' )
-        ] )->pluck( 'count', 'date' );
-                
-  // Merge the two collections; any results in `$users` will overwrite the zero-value in `$dates`yz
-    $Users = $dates->merge( $Users );
-    $User = array();
-
-    foreach ($Users as $key => $value) {
-    $User[Carbon::parse($key)->format('m-d')] = $value;
-    }
-// end line chart backend code for User
-       
-
-//line chart backend code for Leaves
-    $Leave = Leave::where( 'created_at', '>=',  Carbon::now()->subDays(7))
-        ->groupBy( 'date' )
-        ->orderBy( 'date' )
-        ->get( [
-            DB::raw( 'DATE( created_at ) as date' ),
-            DB::raw( 'COUNT( * ) as "count"' )
-        ] )->pluck( 'count', 'date' );
-
-    // Merge the two collections; any results in `$users` will overwrite the zero-value in `$dates`yz
-    $Leave = $dates->merge( $Leave );
-    $Leaves = array();
-
-    foreach ($Leave as $key => $value) {
-        $Leaves[Carbon::parse($key)->format('m-d')] = $value;
-    }
-//line chart backend code for Leaves
-
-//line chart backend code for Taransfers
-    $Taransfers = Transfer::where( 'created_at', '>=',  Carbon::now()->subDays(7))
-        ->groupBy( 'date' )
-        ->orderBy( 'date' )
-        ->get( [
-            DB::raw( 'DATE( created_at ) as date' ),
-            DB::raw( 'COUNT( * ) as "count"' )
-            ] )->pluck( 'count', 'date' );
-
-        // Merge the two collections; any results in `$users` will overwrite the zero-value in `$dates`yz
-        $Taransfers = $dates->merge( $Taransfers );
-        $Taransfer = array();
-
-        foreach ($Taransfers as $key => $value) {
-            
-            $Taransfer[Carbon::parse($key)->format('m-d')] = $value;
-        }
-
-        
- 
-
-// end line chart backend code for Taransfer
-
-//line chart backend code for Dropout
-
-    $Dropouts = Dropout::where( 'created_at', '>=',  Carbon::now()->subDays(7))
-        ->groupBy( 'date' )
-        ->orderBy( 'date' )
-        ->get( [
-            DB::raw( 'DATE( created_at ) as date' ),
-            DB::raw( 'COUNT( * ) as "count"' )
-            ] )->pluck( 'count', 'date' );
-
-        // Merge the two collections; any results in `$users` will overwrite the zero-value in `$dates`yz
-        $Dropouts = $dates->merge( $Dropouts );
-        $Dropout = array();
-
-        foreach ($Dropouts as $key => $value) {
-            
-            $Dropout[Carbon::parse($key)->format('m-d')] = $value;
-        }
-// end line chart backend code for Dropout 
-
-
-//line chart backend code for GROUP
-//first create an array that has 12 index  and assign it to 0    
-    $Groups = Group::where( 'created_at', '>=',  Carbon::now()->subDays(7))
-        ->groupBy( 'date' )
-        ->orderBy( 'date' )
-        ->get( [
-            DB::raw( 'DATE( created_at ) as date' ),
-            DB::raw( 'COUNT( * ) as "count"' )
-            ] )->pluck( 'count', 'date' );
-
-    // Merge the two collections; any results in `$users` will overwrite the zero-value in `$dates`yz
-    $Groups = $dates->merge( $Groups );
-    $Group = array();
-
-    foreach ($Groups as $key => $value) {
-        
-        $Group[Carbon::parse($key)->format('m-d')] = $value;
-    }
-
-// end line chart backend code for GROUP 
-
-//line chart backend code for Announcements
-    $Announcements = Announcement::where( 'created_at', '>=',  Carbon::now()->subDays(7))
-        ->groupBy( 'date' )
-        ->orderBy( 'date' )
-        ->get( [
-            DB::raw( 'DATE( created_at ) as date' ),
-            DB::raw( 'COUNT( * ) as "count"' )
-            ] )->pluck( 'count', 'date' );
-
-            // Merge the two collections; any results in `$users` will overwrite the zero-value in `$dates`yz
-            $Announcements = $dates->merge( $Announcements );
-            $Announcement = array();
-
-            foreach ($Announcements as $key => $value) {
-                
-                $Announcement[Carbon::parse($key)->format('m-d')] = $value;
+            foreach( range( -7, 0 ) AS $i )
+            {
+                $date = Carbon::now()->addDays( $i )->format( 'M-d' );
+                $day[] = Carbon::now()->addDays( $i )->format( 'd' );
+                $dates->put( $date, 0);//create an array that key is date and assign zero to its value
             }
 
-// end line chart backend code for Announcements
 
-//line chart backend code for Courses
-//first create an array that has 12 index  and assign it to 0   
-    $Courses = Course::where( 'created_at', '>=',  Carbon::now()->subDays(7))
-        ->groupBy( 'date' )
-        ->orderBy( 'date' )
-        ->get( [
-            DB::raw( 'DATE( created_at ) as date' ),
-            DB::raw( 'COUNT( * ) as "count"' )
-            ] )->pluck( 'count', 'date' );
+            $users = User::where( 'created_at', '>=', Carbon::now()->subDays(7))
+                ->groupBy( 'date' )
+                ->orderBy( 'date' )
+                ->get( [
+                    DB::raw( 'DATE( created_at ) as date' ),
+                    DB::raw( 'COUNT( * ) as "count"' )
+                    ] )->pluck( 'count', 'date' );
+                        
+            $users = $dates->merge( $users );
+            $user = array();
 
-        // Merge the two collections; any results in `$users` will overwrite the zero-value in `$dates`yz
-        $Courses = $dates->merge( $Courses );
-        $Course = array();
 
-        foreach ($Courses as $key => $value) {
-            
-            $Course[Carbon::parse($key)->format('m-d')] = $value;
-        }
-// end line chart backend code for Cours  
-
-// line chart backend code for teachers
-//first create an array that has 12 index  and assign it to 0    
-    $Teachers = Teacher::where( 'created_at', '>=',  Carbon::now()->subDays(7))
-        ->groupBy( 'date' )
-        ->orderBy( 'date' )
-        ->get( [
-            DB::raw( 'DATE( created_at ) as date' ),
-            DB::raw( 'COUNT( * ) as "count"' )
-            ] )->pluck( 'count', 'date' );
-
-    // Merge the two collections; any results in `$users` will overwrite the zero-value in `$dates`yz
-    $Teachers = $dates->merge( $Teachers );
-    $Teacher = array();
-
-    foreach ($Teachers as $key => $value) {
+            foreach ($users as $key => $value) {
+                $user[Carbon::parse($key)->format('m-d')] = $value;
+            }
         
-        $Teacher[Carbon::parse($key)->format('m-d')] = $value;
-    }
-// end line chart backend code for teachers 
+            $leaves = Leave::where( 'created_at', '>=',  Carbon::now()->subDays(7))
+                ->groupBy( 'date' )
+                ->orderBy( 'date' )
+                ->get( [
+                    DB::raw( 'DATE( created_at ) as date' ),
+                    DB::raw( 'COUNT( * ) as "count"' )
+                    ] )->pluck( 'count', 'date' );
 
-// line chart backend code for subject
-//first create an array that has 12 index  and assign it to 0    
-     $Subjects = subject::where( 'created_at', '>=',  Carbon::now()->subDays(7))
-        ->groupBy( 'date' )
-        ->orderBy( 'date' )
-        ->get( [
-            DB::raw( 'DATE( created_at ) as date' ),
-            DB::raw( 'COUNT( * ) as "count"' )
-            ] )
-        ->pluck( 'count', 'date' );
-
-    // Merge the two collections; any results in `$users` will overwrite the zero-value in `$dates`yz
-    $Subjects = $dates->merge( $Subjects );
-    $Subject = array();
-    foreach ($Subjects as $key => $value) {
-        
-        $Subject[Carbon::parse($key)->format('m-d')] = $value;
-    }
-
-    $universities = University::all();
-
-    return view('layouts.activity_chart', [
-        'title' => trans('general.activity'),
-        'allUniversities' => $universities,
-        'users' => $User,
-        'teachers' => $Teacher,
-        'subjects' => $Subject,
-        'Courses' => $Course,
-        'Leaves' => $Leaves,
-        'Dropouts' => $Dropout,
-        'Taransfers' => $Taransfer,
-        'Announcements' => $Announcement,
-        'Groups' => $Group,
-        'dates' => $dates
-    ]);
-    }
-
-    
- public function getActivityByUniversity(Request $request)
- {
-
-   $diff = Carbon::parse($request->startdate)->diffInDays(Carbon::parse($request->enddate));
-    
-     $dates = collect();
-     $day = array();
-     foreach( range( $diff, 0 ) AS $i )
-     {
-        //echo "i am i ".$i."<br>";
-         $date = Carbon::parse($request->startdate)->addDays( $i )->format( 'M-d' );
-        // echo "i am date ".$date."<br>";
-         $day[] = Carbon::parse($request->startdate)->addDays( $i )->format( 'd' );
-         //echo "i am date ".$date."<br>";
-         $dates->put( $date, 0);//create an array that key is date and assign zero to its value
-     }
-    
- 
-     // for users
-     ///////////////////////////////////***************************************************** */
-     $users = User::where( 'created_at', '>=',Carbon::parse($request->startdate) )
-     ->where( 'created_at', '<=',Carbon::parse($request->enddate) )
-     ->where('university_id',$request->universities)
-     ->groupBy( 'date' )
-     ->orderBy( 'date' )
-     ->get( [
-             DB::raw( 'DATE( created_at ) as date' ),
-              DB::raw( 'COUNT( * ) as "count"' )
-             ] )->pluck( 'count', 'date' );
-   
-$users = $dates->merge( $users );
-$user = array();
+            $leaves = $dates->merge( $leaves );
+            $leave = array();
 
 
-foreach ($users as $key => $value) {
- $user[Carbon::parse($key)->format('m-d')] = $value;
- //$user[$key] = $value;
-}
-//////////////////////////////////************************************************ */
+            foreach ($leaves as $key => $value) {
+                $leave[Carbon::parse($key)->format('m-d')] = $value;
+            }
 
+            $transfers = Transfer::where( 'created_at', '>=',  Carbon::now()->subDays(7))
+                ->groupBy( 'date' )
+                ->orderBy( 'date' )
+                ->get( [
+                    DB::raw( 'DATE( created_at ) as date' ),
+                    DB::raw( 'COUNT( * ) as "count"' )
+                    ] )->pluck( 'count', 'date' );
 
- // line chart backend code for teachers
-    //first create an array that has 12 index  and assign it to 0    
-        $teachers = Teacher::where( 'created_at', '>=', Carbon::parse($request->startdate) )
-            ->where( 'created_at', '<=', Carbon::parse($request->enddate) )
-            ->where('university_id', $request->universities)
-            ->groupBy( 'date' )
-            ->orderBy( 'date' )
-            ->get( [
-                DB::raw( 'DATE( created_at ) as date' ),
-                DB::raw( 'COUNT( * ) as "count"' )
-                ] )->pluck( 'count', 'date' );
+            $transfers = $dates->merge( $transfers );
+            $transfer = array();
 
-        // Merge the two collections; any results in `$users` will overwrite the zero-value in `$dates`yz
-        $teachers = $dates->merge( $teachers );
-        $Teacher = array();
-
-        foreach ($teachers as $key => $value) {
+            foreach ($transfers as $key => $value) {
+                
+                $transfer[Carbon::parse($key)->format('m-d')] = $value;
+            }
             
-            $Teacher[Carbon::parse($key)->format('m-d')] = $value;
-        }
-    // end line chart backend code for teachers 
+
+            $dropouts = Dropout::where( 'created_at', '>=',  Carbon::now()->subDays(7))
+                ->groupBy( 'date' )
+                ->orderBy( 'date' )
+                ->get( [
+                    DB::raw( 'DATE( created_at ) as date' ),
+                    DB::raw( 'COUNT( * ) as "count"' )
+                    ] )->pluck( 'count', 'date' );
+
+            $dropouts = $dates->merge( $dropouts );
+            $dropout = array();
+
+            foreach ($dropouts as $key => $value) {
+                
+                $dropout[Carbon::parse($key)->format('m-d')] = $value;
+            }
+
+            $groups = Group::where( 'created_at', '>=',  Carbon::now()->subDays(7))
+                ->groupBy( 'date' )
+                ->orderBy( 'date' )
+                ->get( [
+                    DB::raw( 'DATE( created_at ) as date' ),
+                    DB::raw( 'COUNT( * ) as "count"' )
+                    ] )->pluck( 'count', 'date' );
 
 
-    //line chart backend code for Courses
-    //first create an array that has 12 index  and assign it to 0   
-        $courses = Course::where( 'created_at', '>=',Carbon::parse($request->startdate) )
-            ->where( 'created_at', '<=',Carbon::parse($request->enddate) )
-            ->where('university_id',$request->universities)
-            ->groupBy( 'date' )
-            ->orderBy( 'date' )
-            ->get( [
-                DB::raw( 'DATE( created_at ) as date' ),
-                DB::raw( 'COUNT( * ) as "count"' )
-                ] )->pluck( 'count', 'date' );
+            $groups = $dates->merge( $groups );
+            $group = array();
 
-            // Merge the two collections; any results in `$users` will overwrite the zero-value in `$dates`yz
+            foreach ($groups as $key => $value) {
+                
+                $group[Carbon::parse($key)->format('m-d')] = $value;
+            }
+
+            $courses = Course::where( 'created_at', '>=',  Carbon::now()->subDays(7))
+                ->groupBy( 'date' )
+                ->orderBy( 'date' )
+                ->get( [
+                    DB::raw( 'DATE( created_at ) as date' ),
+                    DB::raw( 'COUNT( * ) as "count"' )
+                    ] )->pluck( 'count', 'date' );
+
             $courses = $dates->merge( $courses );
             $course = array();
 
@@ -318,31 +146,356 @@ foreach ($users as $key => $value) {
                 
                 $course[Carbon::parse($key)->format('m-d')] = $value;
             }
-    // end line chart backend code for Cours  
 
-    // line chart backend code for subject
-    //first create an array that has 12 index  and assign it to 0    
-        $subjects = subject::where( 'created_at', '>=',Carbon::parse($request->startdate) )
-        ->where( 'created_at', '<=',Carbon::parse($request->enddate) )
-        ->where('university_id',$request->universities)
-        ->groupBy( 'date' )
-            ->orderBy( 'date' )
-            ->get( [
-                DB::raw( 'DATE( created_at ) as date' ),
-                DB::raw( 'COUNT( * ) as "count"' )
-                ] )
-            ->pluck( 'count', 'date' );
 
-        // Merge the two collections; any results in `$users` will overwrite the zero-value in `$dates`yz
-        $subjects = $dates->merge( $subjects );
-        $subject = array();
-        foreach ($subjects as $key => $value) {
+            $teachers = Teacher::where( 'created_at', '>=',  Carbon::now()->subDays(7))
+                ->groupBy( 'date' )
+                ->orderBy( 'date' )
+                ->get( [
+                    DB::raw( 'DATE( created_at ) as date' ),
+                    DB::raw( 'COUNT( * ) as "count"' )
+                    ] )->pluck( 'count', 'date' );
+
+            $teachers = $dates->merge( $teachers );
+            $teacher = array();
+
+            foreach ($teachers as $key => $value) {
+                
+                $teacher[Carbon::parse($key)->format('m-d')] = $value;
+            }
+
+
+            $subjects = subject::where( 'created_at', '>=',  Carbon::now()->subDays(7))
+                ->groupBy( 'date' )
+                ->orderBy( 'date' )
+                ->get( [
+                    DB::raw( 'DATE( created_at ) as date' ),
+                    DB::raw( 'COUNT( * ) as "count"' )
+                    ] )
+                ->pluck( 'count', 'date' );
+
+            $subjects = $dates->merge( $subjects );
+            $subject = array();
+                
+            foreach ($subjects as $key => $value) {
+                
+                $subject[Carbon::parse($key)->format('m-d')] = $value;
+            }
+
+        }else if($university == "0"){
             
-            $subject[Carbon::parse($key)->format('d')] = $value;
-        }
+            $diff = Carbon::parse($startdate)->diffInDays(Carbon::parse($enddate));
 
-$uniname = University::find($request->universities)->name;
-return view('layouts.activity_chart', compact('user','allUniversities','Teacher','course','uniname','dates','diff', 'subject'));  
- }
+            foreach( range( $diff, 0 ) AS $i )
+            {
+            
+                $date = Carbon::parse($startdate)->addDays( $i )->format( 'M-d' );
+                $day[] = Carbon::parse($startdate)->addDays( $i )->format( 'd' );
 
+                $dates->put( $date, 0);
+            }
+            
+            $users = User::where( 'created_at', '>=',Carbon::parse($startdate) )
+                ->where( 'created_at', '<=',Carbon::parse($enddate) )
+                ->groupBy( 'date' )
+                ->orderBy( 'date' )
+                ->get( [
+                    DB::raw( 'DATE( created_at ) as date' ),
+                    DB::raw( 'COUNT( * ) as "count"' )
+                    ] )->pluck( 'count', 'date' );
+                    
+                    $users = $dates->merge( $users );
+                    $user = array();
+
+
+                    foreach ($users as $key => $value) {
+
+                    $user[Carbon::parse($key)->format('m-d')] = $value;
+                    }
+
+
+            $leaves = Leave::where( 'created_at', '>=',Carbon::parse($startdate) )
+                ->where( 'created_at', '<=',Carbon::parse($enddate) )
+                    ->groupBy( 'date' )
+                    ->orderBy( 'date' )->get( [
+                        DB::raw( 'DATE( created_at ) as date' ),
+                        DB::raw( 'COUNT( * ) as "count"' )
+                        ] )->pluck( 'count', 'date' );
+
+            $leaves = $dates->merge( $leaves );
+            $leave = array();
+
+            foreach ($leaves as $key => $value) {
+
+            $leave[Carbon::parse($key)->format('m-d')] = $value;
+            
+            }
+            
+            $transfers = Transfer::where( 'created_at', '>=',Carbon::parse($startdate) )
+                ->where( 'created_at', '<=',Carbon::parse($enddate) )
+                ->groupBy( 'date' )
+                ->orderBy( 'date' )
+                ->get( [
+                    DB::raw( 'DATE( created_at ) as date' ),
+                    DB::raw( 'COUNT( * ) as "count"' )
+                    ] )->pluck( 'count', 'date' );
+
+            $transfers = $dates->merge( $transfers );
+            $transfer = array();
+
+            foreach ($transfers as $key => $value) {
+                
+                $transfer[Carbon::parse($key)->format('m-d')] = $value;
+            }
+            
+
+            $dropouts = Dropout::where( 'created_at', '>=',Carbon::parse($startdate) )
+                ->where( 'created_at', '<=',Carbon::parse($enddate) )
+                ->where('university_id',$university)
+                ->groupBy( 'date' )
+                ->orderBy( 'date' )
+                ->get( [
+                    DB::raw( 'DATE( created_at ) as date' ),
+                    DB::raw( 'COUNT( * ) as "count"' )
+                    ] )->pluck( 'count', 'date' );
+
+            $dropouts = $dates->merge( $dropouts );
+            $dropout = array();
+
+            foreach ($dropouts as $key => $value) {
+                
+            $dropout[Carbon::parse($key)->format('m-d')] = $value;
+            }
+
+            $groups = Group::where( 'created_at', '>=',Carbon::parse($startdate) )
+                ->where( 'created_at', '<=',Carbon::parse($enddate) )
+                ->groupBy( 'date' )
+                ->orderBy( 'date' )
+                ->get( [
+                    DB::raw( 'DATE( created_at ) as date' ),
+                    DB::raw( 'COUNT( * ) as "count"' )
+                    ] )->pluck( 'count', 'date' );
+
+            $groups = $dates->merge( $groups );
+            $group = array();
+
+            foreach ($groups as $key => $value) {
+                
+            $group[Carbon::parse($key)->format('m-d')] = $value;
+            } 
+
+            $teachers = Teacher::where( 'created_at', '>=', Carbon::parse($startdate) )
+                ->where( 'created_at', '<=', Carbon::parse($enddate) )
+                ->groupBy( 'date' )
+                ->orderBy( 'date' )
+                ->get( [
+                    DB::raw( 'DATE( created_at ) as date' ),
+                    DB::raw( 'COUNT( * ) as "count"' )
+                    ] )->pluck( 'count', 'date' );
+
+            $teachers = $dates->merge( $teachers );
+            $teacher = array();
+
+            foreach ($teachers as $key => $value) {
+                
+            $teacher[Carbon::parse($key)->format('m-d')] = $value;
+            }
+
+            $courses = Course::where( 'created_at', '>=',Carbon::parse($startdate) )
+                ->where( 'created_at', '<=',Carbon::parse($enddate) )
+                ->groupBy( 'date' )
+                ->orderBy( 'date' )
+                ->get( [
+                    DB::raw( 'DATE( created_at ) as date' ),
+                    DB::raw( 'COUNT( * ) as "count"' )
+                    ] )->pluck( 'count', 'date' );
+
+            $courses = $dates->merge( $courses );
+            $course = array();
+
+            foreach ($courses as $key => $value) {
+                
+            $course[Carbon::parse($key)->format('m-d')] = $value;
+            }   
+        
+            $subjects = subject::where( 'created_at', '>=',Carbon::parse($startdate) )
+            ->where( 'created_at', '<=',Carbon::parse($enddate) )
+            ->groupBy( 'date' )
+                ->orderBy( 'date' )
+                ->get( [
+                    DB::raw( 'DATE( created_at ) as date' ),
+                    DB::raw( 'COUNT( * ) as "count"' )
+                    ] )->pluck( 'count', 'date' );
+
+            $subjects = $dates->merge( $subjects );
+            $subject = array();
+
+            foreach ($subjects as $key => $value) {
+                
+            $subject[Carbon::parse($key)->format('m-d')] = $value;
+            }
+        } else { // start of else condition
+
+                $university_id = $university;
+                $diff = Carbon::parse($startdate)->diffInDays(Carbon::parse($enddate));
+
+                foreach( range( $diff, 0 ) AS $i )
+                {
+                
+                    $date = Carbon::parse($startdate)->addDays( $i )->format( 'M-d' );
+                    $day[] = Carbon::parse($startdate)->addDays( $i )->format( 'd' );
+
+                    $dates->put( $date, 0);
+                }
+                
+                $users = User::where( 'created_at', '>=',Carbon::parse($startdate) )
+                    ->where( 'created_at', '<=',Carbon::parse($enddate) )
+                    ->where('university_id',$university)
+                    ->groupBy( 'date' )
+                    ->orderBy( 'date' )
+                    ->get( [
+                        DB::raw( 'DATE( created_at ) as date' ),
+                        DB::raw( 'COUNT( * ) as "count"' )
+                        ] )->pluck( 'count', 'date' );
+                        
+                        $users = $dates->merge( $users );
+                        $user = array();
+
+
+                        foreach ($users as $key => $value) {
+
+                        $user[Carbon::parse($key)->format('m-d')] = $value;
+                        }
+
+
+                $leaves = Leave::where( 'created_at', '>=',Carbon::parse($startdate) )
+                    ->where( 'created_at', '<=',Carbon::parse($enddate) )
+                    ->where('university_id',$university)
+                        ->groupBy( 'date' )
+                        ->orderBy( 'date' )->get( [
+                            DB::raw( 'DATE( created_at ) as date' ),
+                            DB::raw( 'COUNT( * ) as "count"' )
+                            ] )->pluck( 'count', 'date' );
+
+                $leaves = $dates->merge( $leaves );
+                $leave = array();
+
+                foreach ($leaves as $key => $value) {
+
+                $leave[Carbon::parse($key)->format('m-d')] = $value;
+                
+                }
+
+                $dropouts = Dropout::where( 'created_at', '>=',Carbon::parse($startdate) )
+                    ->where( 'created_at', '<=',Carbon::parse($enddate) )
+                    ->where('university_id',$university)
+                    ->groupBy( 'date' )
+                    ->orderBy( 'date' )
+                    ->get( [
+                        DB::raw( 'DATE( created_at ) as date' ),
+                        DB::raw( 'COUNT( * ) as "count"' )
+                        ] )->pluck( 'count', 'date' );
+
+                $dropouts = $dates->merge( $dropouts );
+                $dropout = array();
+
+                foreach ($dropouts as $key => $value) {
+                    
+                $dropout[Carbon::parse($key)->format('m-d')] = $value;
+                }
+
+                $groups = Group::where( 'created_at', '>=',Carbon::parse($startdate) )
+                    ->where( 'created_at', '<=',Carbon::parse($enddate) )
+                    ->where('university_id',$university)
+                    ->groupBy( 'date' )
+                    ->orderBy( 'date' )
+                    ->get( [
+                        DB::raw( 'DATE( created_at ) as date' ),
+                        DB::raw( 'COUNT( * ) as "count"' )
+                        ] )->pluck( 'count', 'date' );
+
+                $groups = $dates->merge( $groups );
+                $group = array();
+
+                foreach ($groups as $key => $value) {
+                    
+                $group[Carbon::parse($key)->format('m-d')] = $value;
+                } 
+
+                $teachers = Teacher::where( 'created_at', '>=', Carbon::parse($startdate) )
+                    ->where( 'created_at', '<=', Carbon::parse($enddate) )
+                    ->where('university_id', $university)
+                    ->groupBy( 'date' )
+                    ->orderBy( 'date' )
+                    ->get( [
+                        DB::raw( 'DATE( created_at ) as date' ),
+                        DB::raw( 'COUNT( * ) as "count"' )
+                        ] )->pluck( 'count', 'date' );
+
+                $teachers = $dates->merge( $teachers );
+                $teacher = array();
+
+                foreach ($teachers as $key => $value) {
+                    
+                $teacher[Carbon::parse($key)->format('m-d')] = $value;
+                }
+
+                $courses = Course::where( 'created_at', '>=',Carbon::parse($startdate) )
+                    ->where( 'created_at', '<=',Carbon::parse($enddate) )
+                    ->where('university_id',$university)
+                    ->groupBy( 'date' )
+                    ->orderBy( 'date' )
+                    ->get( [
+                        DB::raw( 'DATE( created_at ) as date' ),
+                        DB::raw( 'COUNT( * ) as "count"' )
+                        ] )->pluck( 'count', 'date' );
+
+                $courses = $dates->merge( $courses );
+                $course = array();
+
+                foreach ($courses as $key => $value) {
+                    
+                $course[Carbon::parse($key)->format('m-d')] = $value;
+                }   
+            
+                $subjects = subject::where( 'created_at', '>=',Carbon::parse($startdate) )
+                ->where( 'created_at', '<=',Carbon::parse($enddate) )
+                ->where('university_id',$university)
+                ->groupBy( 'date' )
+                    ->orderBy( 'date' )
+                    ->get( [
+                        DB::raw( 'DATE( created_at ) as date' ),
+                        DB::raw( 'COUNT( * ) as "count"' )
+                        ] )->pluck( 'count', 'date' );
+
+                $subjects = $dates->merge( $subjects );
+                $subject = array();
+
+                foreach ($subjects as $key => $value) {
+                    
+                $subject[Carbon::parse($key)->format('m-d')] = $value;
+                }
+
+                $uniname = University::find($university_id)->name;
+
+        }//end of else condition
+
+       // dd($leave);
+            return view('layouts.activity_chart', [
+                'title' => trans('general.activity'). $diff . 'روزه'. $uniname ,
+                'allUniversities' => $allUniversities,
+                'users' => $user,
+                'teachers' => $teacher,
+                'subjects' => $subject,
+                'courses' => $course,
+                'leaves' => $leave,
+                'dropouts' => $dropout,
+                'transfers' => $transfer,
+                'groups' => $group,
+                'dates' => $dates,
+                'diff'=> $diff,
+                'uniname' => $uniname,
+                'university_id' => $university_id,
+            ]);
+    }
 }
