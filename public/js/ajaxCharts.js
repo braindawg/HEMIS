@@ -45,9 +45,6 @@ function getUniSpecData(university, container) {
     });
 }
 
-
-// this method is used to generate university activity for specific anterwal of time
-
 // This method is used to generate bar column chart on the @data fed to it
 
 function generateBarChart(data, container) {
@@ -182,4 +179,3 @@ function generateBarChart(data, container) {
 
     Highcharts.chart(json);
 }
-

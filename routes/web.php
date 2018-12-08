@@ -107,7 +107,7 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('/deletefile/{file}','FilesDeleteController@deleteFiles')->name('deletefile');
 
 
-    Route::get('/Activity/{university_id?}/{startdate?}/{enddate?}','ActivityController@index')->name('activity');
+    Route::get('/activity/{university_id?}/{startdate?}/{enddate?}','ActivityController@index')->name('activity');
 
     
     //attachments link

@@ -329,7 +329,7 @@
         var startdate = document.getElementById('startdate').value;
         var enddate = document.getElementById('enddate').value;
 
-        window.location.href = window.location.origin + "/Activity/" + university +'/' + startdate + '/' + enddate;
+        window.location.href = window.location.origin + "/activity/" + university +'/' + startdate + '/' + enddate;
 
     }
 

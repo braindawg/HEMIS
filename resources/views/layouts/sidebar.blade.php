@@ -310,15 +310,25 @@
     </li>
     @endif
     
+     <!-- activity log -->
+
+
+<li class="nav-item start {{ request()->is('activity') ? 'active' : '' }}">
+        <a href="{{ route('activity') }}" class="nav-link nav-toggle">
+        <i class="fa fa-bar-chart-o"> </i>
+            <span class="text-muted">{{ trans('general.activity') }}</span>      
+        </a>       
+    </li>
+
+
+      <!-- end activity log -->
     <li class="nav-item start {{ request()->is('support') ? 'active' : '' }}">
         <a href="{{ route('support') }}" class="nav-link nav-toggle">
             <i class="icon-earphones-alt"></i>            
             <span class="title">{{ trans('general.support') }}</span>         
         </a>       
     </li>
-     <!-- activity log -->
-
-      <!-- end activity log -->
+    
     @if (0)
     <li class="heading">
         <h3 class="uppercase">Features</h3>
