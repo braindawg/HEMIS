@@ -5,7 +5,7 @@ use Carbon\Carbon;
 use \App\Models\Student;
 use \App\Models\University;
 use Illuminate\Http\Request;
-use \App\Models\subject;
+use \App\Models\Subject;
 use \App\Models\Course;
 use \App\Models\Leave;
 use \App\Models\Dropout;
@@ -165,7 +165,7 @@ class ActivityController extends Controller
             }
 
 
-            $subjects = subject::where( 'created_at', '>=',  Carbon::now()->subDays(7))
+            $subjects = Subject::where( 'created_at', '>=',  Carbon::now()->subDays(7))
                 ->groupBy( 'date' )
                 ->orderBy( 'date' )
                 ->get( [

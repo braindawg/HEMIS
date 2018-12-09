@@ -111,7 +111,7 @@ class CourseDataTable extends DataTable
                     ->addAction(['title' => trans('general.action'), 'width' => '100px'])
 
         ->parameters(array_merge($this->getBuilderParameters([]), [
-        'dom'          => 'Brtip',
+      //  'dom'          => 'Brtip',
         'initComplete' => "function (settings, data) {
                             emptyValue = '';
                             table = this
