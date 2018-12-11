@@ -154,9 +154,9 @@ return [
     'note' => 'نوت',
     'from_department' => 'از دیپارتمنت',
     'to_department' => 'به دیپارتمنت',
-    'barchart_yaxis_title' => 'أمار شاګردها کامیاب',
-    'chart_yaxis_title_full' => 'أمار شاګردها کامیاب و شامل پوهنتون',
-    'barchart_series_name' => 'تعداد شاګردان',
+    'barchart_yaxis_title' => 'أمار محصلین کامیاب',
+    'chart_yaxis_title_full' => 'أمار محصلین کامیاب و شامل پوهنتون',
+    'barchart_series_name' => 'تعداد محصلین',
 
 
     'dropouts' => 'منفکی ها',
