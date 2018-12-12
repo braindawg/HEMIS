@@ -96,8 +96,14 @@ Route::group(['middleware' => 'auth'], function() {
         Route::delete('courses/{course}/remove-student', 'AttendanceController@removeStudent')->name('attendance.student.remove');
         
         Route::post('courses/{course}/store-scores', 'ScoresController')->name('scores.store');
+        Route::post('courses/{course}/store-coursetime','CourseTimeController@store')->name('coursetime.store');
+        Route::get('courses/{coursetime}/delete-coursetime', 'CourseTimeController@delete');
+        Route::get('courses/{coursetime}/edit-coursetime', 'CourseTimeController@edit');
+        Route::post('courses/{coursetime}/update-coursetime', 'CourseTimeController@update')->name('coursetime.update');
+
 
         Route::resource('courses', 'CourseController');
+
     });
 
     Route::resource('/teachers', 'TeachersController');

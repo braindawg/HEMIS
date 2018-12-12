@@ -55,4 +55,9 @@ class Course extends Model
     {
         return $this->hasMany(Score::class);
     }
+
+    public function courseTimes()
+    {
+        return $this->hasMany(CourseTime::class);
+    }
 }

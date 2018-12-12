@@ -11,7 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use App\DataTables\CourseDataTable;
 use App\Http\Controllers\Controller;
-use App\Models\StudentAttendanceGroup;
+use App\Models\Day;
 
 class CourseController extends Controller
 {
@@ -113,6 +113,7 @@ class CourseController extends Controller
      */
     public function edit($course)
     {
+        // dd($course->courseTimes->day);
         return view('course.edit', [
             'title' => trans('general.courses'),
             'description' => trans('general.edit_course'),
@@ -122,6 +123,7 @@ class CourseController extends Controller
             'group' => old('group') != '' ? Group::where('id', old('group'))->pluck('name', 'id') : $course->group()->pluck('name', 'id'),
             'subject' => old('subject') != '' ? Subject::where('id', old('subject'))->pluck('title', 'id') : $course->subject()->pluck('title', 'id'),
             'teacher' => old('teacher') != '' ? Teacher::where('id', old('teacher'))->pluck('name', 'id') : $course->teacher()->pluck('name', 'id'),
+            'days' => Day::pluck('day','id'),
         ]);
 
     }

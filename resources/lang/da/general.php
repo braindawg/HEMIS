@@ -245,5 +245,15 @@ return [
 
     'unread_notifications' => '',
     'activity' => 'گراف فعالیت ها',
-    'activity_show' => 'نمایش'
+    'activity_show' => 'نمایش',
+    
+    'actions' => 'اقدامات',
+    'edit' => 'تصحیح',
+    'time' => 'تایم ',
+    'location' => 'موقعیت صنف',
+    'day' => 'روز',
+    'new_time' => 'تایم جدید',
+    'edit_coursetime' => 'تصحیح تایم صنف',
+    'coursetime' => 'تایم صنف ها',
+
 ];
