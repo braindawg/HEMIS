@@ -19,20 +19,18 @@ class ScoresController extends Controller
             'scores.*.final' => 'numeric|integer|min:0|max:100', 
         ]);*/
 
+        if( is_array($request->scores )) {
 
-        //dd($request->all());
+            \DB::transaction(function () use ($request) {
+                foreach($request->scores as $studentId => $score) {
 
-        \DB::transaction(function () use ($request) {
-            foreach($request->scores as $studentId => $score) {
-
-           
-
-                Score::updateOrCreate(
-                    array_merge($request->course, ['student_id' => $studentId]),
-                    $score
-                );
-            }
-        });
+                    Score::updateOrCreate(
+                        array_merge($request->course, ['student_id' => $studentId]),
+                        $score
+                    );
+                }
+            });
+        }
 
         return redirect()->back();
     }
