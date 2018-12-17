@@ -17,10 +17,11 @@ class AttendanceController extends Controller
     public function list(Course $course)
     {
         $course = $course->with(['students' => function ($students) use ($course) {
-            $students->with(['score' => function ($score) use ($course) {
-                $score->where('course_id', $course->id);
+            $students->with(['scores' => function ($scores) use ($course){
+            $scores->where('course_id', $course->id);            
             }]);
-        }])->first();
+        }])->where('courses.id' , $course->id)->first();
+        
 
         return view('course.attendance.list', [
             'title' => trans('general.attendance'),

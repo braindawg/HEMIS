@@ -40,8 +40,8 @@ class GroupsController extends Controller
     public function create()
     {
         return view('students.groups.create', [
-            'title' => trans('general.leaves'),
-            'description' => trans('general.new_leaves'),
+            'title' => trans('general.groups'),
+            'description' => trans('general.new_group'),
             'universities' => University::pluck('name', 'id'),
             'department' => old('department') != '' ? Department::where('id', old('department'))->pluck('name', 'id') : []
         ]);
