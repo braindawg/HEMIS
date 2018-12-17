@@ -172,6 +172,7 @@ return [
     'leave_year' => 'سال تاجیلی',
     'create_leave' => 'تاجیلی جدید',
     'leaves_list' => 'لیست تاجیلی ها',
+    'end_leave' => 'ختم تاجیلی',
 
     'print_attendance' => 'پرینت حاضری',
     'attendance' => 'حاضری',
@@ -246,4 +247,5 @@ return [
     'unread_notifications' => '',
     'activity' => 'گراف فعالیت ها',
     'activity_show' => 'نمایش'
+    
 ];

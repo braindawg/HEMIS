@@ -25,6 +25,13 @@ class LeavesDataTable extends DataTable
                             <input type="hidden" name="_token" value="'.csrf_token().'" />
                             <button type="submit" class="btn btn-xs btn-danger" onClick="doConfirm()" style="margin-top: 5px"><i class="fa fa-trash"></i></button>
                         </form>';
+
+                        
+                }
+                if (auth()->user()->can('create-leave')) {
+                    $html .='<a href="'.route('leaves.edit',$leave).'" class="btn btn-xs btn-success" style="margin-top: 5px"><i class="fa fa-edit"></i></a>';
+
+                        
                 }
                                                 
                 return $html;
@@ -45,6 +52,7 @@ class LeavesDataTable extends DataTable
             'students.form_no',
             'students.name',
             'leaves.leave_year',
+            'leaves.end_leave',
             'students.father_name as father_name',
             'note'
             )
@@ -78,6 +86,7 @@ class LeavesDataTable extends DataTable
             'name'            => ['name' => 'students.name', 'title' => trans('general.name')],
             'father_name'     => ['name' => 'students.father_name', 'title' => trans('general.father_name')],
             'leave_year'     =>  ['name' => 'leaves.form_no', 'title' => trans('general.leave_year')],
+            'end_leave'     =>  ['name' => 'leaves.form_no', 'title' => trans('general.end_leave')],
             'note'            => ['name' => 'leaves.note', 'title' => trans('general.note'), 'sortable' => false, 'searchable' => false]
         ];
     }

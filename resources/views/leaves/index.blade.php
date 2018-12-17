@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+
     <div class="portlet light bordered card">
         @if (session('message'))
             <div class="alert alert-success">
@@ -18,6 +19,10 @@
         {!! $dataTable->table() !!}
         </div>
     </div>
+  @php
+  $url=route('leaves.create');
+  echo $url;
+  @endphp
 @endsection
 
 @push('styles')

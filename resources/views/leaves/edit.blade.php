@@ -1,17 +1,19 @@
 @extends('layouts.app')
 
+
 @section('content')
     <div class="portlet box">        
         <div class="portlet-body">
-            <!-- BEGIN FORM-->            
-            {!! Form::open(['route' => 'leaves.store', 'method' => 'post', 'class' => 'form-horizontal']) !!}
+            <!-- BEGIN FORM-->     
+             {!! Form::model($leave, ['route' => ['leaves.update', $leave], 'method' => 'patch', 'class' => 'form-horizontal']) !!}                 
+           
                 <div class="form-body" id="app">
                     <div class="row">
                         <div class="col-md-6 col-md-offset-1">
                             <div class="form-group {{ $errors->has('student_id') ? ' has-error' : '' }}">
                                 {!! Form::label('student_id', trans('general.student'), ['class' => 'control-label col-sm-3']) !!}                                
                                 <div class="col-sm-9">
-                                    {!! Form::select('student_id',[], null, ['class' => 'form-control select2-students']) !!}
+                                    {!! Form::select('student_id', [], null, ['class' => 'form-control select2-students']) !!}
                                     @if ($errors->has('student_id'))
                                         <span class="help-block">
                                             <strong>{{ $errors->first('student_id') }}</strong>
@@ -36,7 +38,21 @@
                         </div>
                     </div>
                     </div>
-
+                    
+                    <div class="row">
+                    <div class="col-md-6 col-md-offset-1">
+                        <div class="form-group {{ $errors->has('end_leave') ? ' has-error' : '' }}">
+                            {!! Form::label('last_name', trans('general.end_leave'), ['class' => 'control-label col-sm-3']) !!}
+                            <div class="col-sm-9">
+                                {!! Form::text('end_leave', '', ['class' => 'form-control']) !!}
+                                @if ($errors->has('end_leave'))
+                                    <span class="help-block">
+                                            <strong>{{ $errors->first('end_leave') }}</strong>
+                                        </span>
+                                @endif
+                            </div>
+                        </div>
+                    </div>
                     <div class="row">
                         <div class="col-md-6 col-md-offset-1">
                             <div class="form-group {{ $errors->has('note') ? ' has-error' : '' }}">
@@ -66,4 +82,14 @@
             <!-- END FORM-->
         </div>
     </div>
+   
 @endsection('content')
+
+
+@push('scripts')
+<script src="https://code.jquery.com/jquery-3.3.1.js" type="text/javascript"></script>
+    
+@endpush
+
+
+

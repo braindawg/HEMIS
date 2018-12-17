@@ -74,6 +74,29 @@ class LeavesController extends Controller
 
         return redirect(route('leaves.index'));
     }
+   public function edit(Leave $leave)
+   {
+    return view('leaves.edit', [
+        'title' => trans('general.leaves'),
+        'description' => trans('general.end_leave'),
+        'leave'=>$leave
+        
+    ]);
+   }
+   public function update(Request $request,Leave $leave)
+   {
+       
+    $leave->update($request->all()); 
+    if($leave->end_leave!=null)
+    {
+        $leave->student->update([
+            'status_id' => 2
+        ]);
+
+    }
+   
+    return redirect(route('leaves.index'));
+   }
     
     /**
      * Remove the specified resource from storage.
