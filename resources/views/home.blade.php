@@ -17,7 +17,7 @@
     </div>
     <div class="col-md-3 col-sm-6">
          <div class="portlet text-center" style ="border-bottom: 2px solid #28A744;">
-            <h3>تعداد پوهنځی ها</h3>
+            <h3>تعداد دیپارتمنت ها</h3>
             <hr>
             <h1 class = "counter">{{ count($allDepartments) }}</h1>
         </div>
