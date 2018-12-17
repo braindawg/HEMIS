@@ -19,10 +19,6 @@
         {!! $dataTable->table() !!}
         </div>
     </div>
-  @php
-  $url=route('leaves.create');
-  echo $url;
-  @endphp
 @endsection
 
 @push('styles')

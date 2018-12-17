@@ -76,10 +76,13 @@ class LeavesController extends Controller
     }
    public function edit(Leave $leave)
    {
+    
+
     return view('leaves.edit', [
         'title' => trans('general.leaves'),
         'description' => trans('general.end_leave'),
-        'leave'=>$leave
+        'leave' => $leave ,
+        'student' => $leave->student->pluck('name' , 'id'),
         
     ]);
    }
@@ -87,7 +90,8 @@ class LeavesController extends Controller
    {
        
     $leave->update($request->all()); 
-    if($leave->end_leave!=null)
+
+    if( $leave->end_leave != null)
     {
         $leave->student->update([
             'status_id' => 2

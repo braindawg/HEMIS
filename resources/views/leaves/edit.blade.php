@@ -13,7 +13,7 @@
                             <div class="form-group {{ $errors->has('student_id') ? ' has-error' : '' }}">
                                 {!! Form::label('student_id', trans('general.student'), ['class' => 'control-label col-sm-3']) !!}                                
                                 <div class="col-sm-9">
-                                    {!! Form::select('student_id', [], null, ['class' => 'form-control select2-students']) !!}
+                                    {!! Form::select('student_id', $student , null, ['class' => 'form-control select2-students']) !!}
                                     @if ($errors->has('student_id'))
                                         <span class="help-block">
                                             <strong>{{ $errors->first('student_id') }}</strong>
@@ -42,9 +42,9 @@
                     <div class="row">
                     <div class="col-md-6 col-md-offset-1">
                         <div class="form-group {{ $errors->has('end_leave') ? ' has-error' : '' }}">
-                            {!! Form::label('last_name', trans('general.end_leave'), ['class' => 'control-label col-sm-3']) !!}
+                            {!! Form::label('end_leave', trans('general.end_leave'), ['class' => 'control-label col-sm-3']) !!}
                             <div class="col-sm-9">
-                                {!! Form::text('end_leave', '', ['class' => 'form-control']) !!}
+                                {!! Form::text('end_leave', null , ['class' => 'form-control']) !!}
                                 @if ($errors->has('end_leave'))
                                     <span class="help-block">
                                             <strong>{{ $errors->first('end_leave') }}</strong>
