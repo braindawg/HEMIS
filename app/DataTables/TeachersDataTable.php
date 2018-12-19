@@ -50,7 +50,7 @@ class TeachersDataTable extends DataTable
                 'teachers.father_name',
                 'teachers.phone',
                 'universities.name as university',
-                'teachers.grandfather_name',
+                'teachers.last_name',
                 'teachers.university_id'
             )
             ->leftJoin('provinces', 'provinces.id', '=', 'teachers.province')
@@ -82,8 +82,8 @@ class TeachersDataTable extends DataTable
     {
         return [
             'name'       => ['name' => 'teachers.name','title' => trans('general.name')],
+            'last_name' => ['title' => trans('general.last_name')],
             'father_name'      => ['title' => trans('general.father_name')],
-            'grandfather_name' => ['title' => trans('general.grandfather_name')],
             'phone'            => [ 'title' => trans('general.phone')],
             'university'       => ['name' => 'universities.name','title' => trans('general.university')],
         ];
