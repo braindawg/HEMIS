@@ -35,6 +35,19 @@
                                         @else
                                             {!! Form::hidden('university', $teacher->university_id) !!}
                                         @endif
+                                        <div class="col-md-6">
+                                            <div class="form-group {{ $errors->has('department') ? ' has-error' : '' }}">
+                                                {!! Form::label('department', trans('general.department'), ['class' => 'control-label col-sm-3']) !!}
+                                                <div class="col-sm-8">
+                                                    {!! Form::select('department', $department, null, ['class' => 'form-control select2-ajax', 'remote-url' => route('api.departments')]) !!}
+                                                    @if ($errors->has('department'))
+                                                        <span class="help-block">
+                                                            <strong>{{ $errors->first('department') }}</strong>
+                                                        </span>
+                                                    @endif
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-md-6">

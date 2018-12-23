@@ -103,7 +103,9 @@ class TeachersController extends Controller
             'teacher' => $teacher,
             'universities' => University::pluck('name', 'id'),
             'provinces' =>Province::pluck('name','id'),
-            'teacher_academic_rank' => TeacherAcademicRank::pluck('title', 'id')
+            'teacher_academic_rank' => TeacherAcademicRank::pluck('title', 'id'),
+            'department' => old('department') != '' ? Department::where('id', old('department'))->pluck('name', 'id') : $teacher->department()->pluck('name', 'id'),
+
         ]);
     }
 

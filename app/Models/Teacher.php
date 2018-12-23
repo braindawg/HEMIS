@@ -33,4 +33,8 @@ class Teacher extends Model
     {
         return $this->hasMany(\App\Models\Course::class);
     }
+    public function department(){
+        
+        return $this->belongsTo(\App\Models\department::class);
+    }
 }

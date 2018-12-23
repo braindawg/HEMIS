@@ -48,6 +48,10 @@ class Department extends Model
     {
         return $this->hasMany(\App\Models\Course::class);
     }
+    public function teachers()
+    {
+        return $this->hasMany(\App\Models\Teacher::class);
+    }
 
     public function studentsByStatus()
     {
