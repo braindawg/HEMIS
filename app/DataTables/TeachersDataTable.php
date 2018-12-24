@@ -81,10 +81,10 @@ class TeachersDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            'name'       => ['name' => 'teachers.name','title' => trans('general.name')],
-            'last_name' => ['title' => trans('general.last_name')],
-            'father_name'      => ['title' => trans('general.father_name')],
-            'phone'            => [ 'title' => trans('general.phone')],
+            'name'             => ['name' => 'teachers.name','title' => trans('general.name')],
+            'last_name'        => ['name' => 'teachers.last_name', 'title' => trans('general.last_name')],
+            'father_name'      => ['name' => 'teachers.father_name', 'title' => trans('general.father_name')],
+            'phone'            => [ 'name' => 'teachers.phone' ,'title' => trans('general.phone')],
             'university'       => ['name' => 'universities.name','title' => trans('general.university')],
         ];
     }
