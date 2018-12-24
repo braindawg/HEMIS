@@ -17,23 +17,39 @@ class CourseDataTable extends DataTable
     {
         return datatables($query)
             ->addColumn('action', function ($course) {
-                $html = '';
 
-                if(auth()->user()->can('edit-course')){
-                    $html .= '<a href="'.route('courses.edit', $course).'" class="btn btn-success btn-xs" target="new"><i class="icon-pencil"></i></a>';
-                }
-                
-                if (auth()->user()->can('view-course')) {
-                    $html .= '<a href="'.route('attendance.create', $course).'" class="btn btn-primary btn-xs" title="'.trans('general.list').'"><i class="icon-list"></i></a>';
-                }
 
-                if (auth()->user()->can('delete-course')) {
-                    $html .= '<form action="'. route('courses.destroy', $course) .'" method="post" style="display:inline">
+                $html = '<div class="btn-group">
+                        <a class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown" href="javascript:;" aria-expanded="false">';     
+                        $html .= trans('general.action').'
+                            <i class="fa fa-angle-down"></i>
+                            </a>
+                            <ul class="dropdown-menu pull-right">';
+                        if(auth()->user()->can('edit-course')){
+                            $html .= '<li><a href="'. route('courses.edit', $course) .'"  target="new"> <i class="fa fa-pencil"></i> '. trans("general.edit") .' </a></li>';
+
+                        }   
+
+                        if (auth()->user()->can('view-course')) {
+                            $html .= '<li><a href="'. route('attendance.create', $course) .'"  target="new"> <i class="fa fa-list"></i> '. trans("general.list") .' </a></li>';    
+                        }
+
+                        if (auth()->user()->can('view-course')) {
+                            $html .= '<li><a href="'. route('courses.edit', $course) .'"  target="new"> <i class="fa fa-clock-o"></i> '. trans("general.time") .' </a></li>';    
+                        }
+
+
+
+                        if (auth()->user()->can('delete-course')) {
+                            $html .= '<li><form action="'. route('courses.destroy', $course) .'" method="post" style="display:inline">
                                 <input type="hidden" name="_method" value="DELETE" />
                                 <input type="hidden" name="_token" value="'.csrf_token().'" />
-                                <button type="submit" class="btn btn-xs btn-danger" onClick="doConfirm()" ><i class="fa fa-trash"></i></button>
-                            </form>';
-                }
+                                <button type="submit" style ="color:red" class="btn btn-link" onClick="doConfirm()"><i class="fa fa-trash" style="color:red"></i> '.trans("general.delete").' </button>
+                            </form></li>';
+                        }
+
+                        $html .= '</ul>
+                        </div>';
 
                 return $html;
             })
