@@ -90,7 +90,7 @@
 				<td  style="text-align:right;width:33%;vertical-align:top;">
 					<br>
 					<br>
-					<p>پوهنحی: <span style="font-size: 12px">{{ $student->department->name ?? '' }}</span></p>					
+					<p>پوهنحی: <span style="font-size: 12px">{{ $student->kankor_result ?? '' }}</span></p>					
 					
 					<br>
 					<p>
