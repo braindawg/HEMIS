@@ -5,7 +5,11 @@
 <div class="row">
     <div class="col-md-3 col-sm-6">
         <div class="portlet text-center" style ="border-bottom: 2px solid #e05038;">
+            @if( auth()->user()->allUniversities())
             <h3>تعداد پوهنتون ها</h3>
+            @else
+            <h3> پوهنتون </h3>
+            @endif
             <hr>
             @if( auth()->user()->allUniversities())
                 <h1 class = "counter">{{ count($allUniversities) }}</h1>
