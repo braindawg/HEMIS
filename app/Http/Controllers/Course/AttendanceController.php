@@ -18,7 +18,7 @@ class AttendanceController extends Controller
     {
         $course = $course->with(['students' => function ($students) use ($course) {
             $students->with(['score' => function ($scores) use ($course){
-            $scores->where('course_id', $course->id);            
+                $scores->where('course_id', $course->id);            
             }]);
         }])->where('courses.id' , $course->id)->first();
 
@@ -34,7 +34,7 @@ class AttendanceController extends Controller
     {
         $pdf = \PDF::loadView('course.attendance.print', compact('course'), [], [
             'format' => 'A4-L'
-            ]);
+        ]);
 
         return $pdf->stream($course->code.'.pdf');
     }

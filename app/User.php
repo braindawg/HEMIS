@@ -20,6 +20,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $guarded = [];
+    
     protected $developers = [
         'rajabi@rubik.af', 
         'badruddin2014@gmail.com',

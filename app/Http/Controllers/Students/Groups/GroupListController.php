@@ -42,9 +42,7 @@ class GroupListController extends Controller
             ]);
     
             Student::where('id', $request->student_id)
-            ->update([
-                'group_id' => $group->id
-            ]);
+                ->update(['group_id' => $group->id]);
 
         } elseif ($request->has('department_id')) {
 
@@ -56,9 +54,7 @@ class GroupListController extends Controller
             Student::where([
                 'department_id' => $request->department_id,
                 'kankor_year' => $request->kankor_year,
-            ])->update([
-                'group_id' => $group->id
-            ]);
+            ])->update(['group_id' => $group->id]);
 
         }
 
