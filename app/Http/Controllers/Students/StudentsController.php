@@ -143,6 +143,8 @@ class StudentsController extends Controller
             'father_name_eng' => $request->father_name_eng,
             'grandfather_name_eng' => $request->grandfather_name_eng,
             'department_eng' => $request->department_eng,
+
+            'department_id' => $request->department,
         ]);        
 
         if ($request->has('print')) {
