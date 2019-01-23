@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Teachers;
 
 use App\User;
 use App\Models\Teacher;
@@ -13,6 +13,8 @@ use Maklad\Permission\Models\Role;
 use App\Models\TeacherAcademicRank;
 use App\DataTables\TeachersDataTable;
 use Maklad\Permission\Models\Permission;
+use App\Http\Controllers\Controller;
+
 
 class TeachersController extends Controller
 {
@@ -69,6 +71,8 @@ class TeachersController extends Controller
             'email' => 'required|email|unique:teachers',
             'university' =>'required',
             'academic_rank_id' =>'required',
+            'password' => 'required|confirmed'            
+
         ]);
 
         $teacher = Teacher::create([
@@ -78,9 +82,11 @@ class TeachersController extends Controller
             'grandfather_name' => $request->grandfather_name,
             'birthdate' => $request->birthdate,
             'marital_status' => $request->marital_status,
+            'gender' => $request->gender,
             'province' => $request->province,
             'phone' => $request->phone,
             'email' => $request->email,
+            'password' => $request->password ?? null,
             'degree' => $request->degree,
             'academic_rank_id' => $request->academic_rank_id,
             'department_id' => $request->department,
@@ -124,6 +130,7 @@ class TeachersController extends Controller
             'phone' => 'required',
             'email' => 'required|email',
             'university' =>'required',
+            'password' => 'nullable|confirmed'  
         ]);
 
         $teacher->update([
@@ -133,9 +140,11 @@ class TeachersController extends Controller
             'grandfather_name' => $request->grandfather_name,
             'birthdate' => $request->birthdate,
             'marital_status' => $request->marital_status,
+            'gender' => $request->gender,
             'province' => $request->province,
             'phone' => $request->phone,
             'email' => $request->email,
+            'password' => $request->password ?? null,
             'degree' => $request->degree,
             'academic_rank_id' => $request->academic_rank_id,
             'department_id' => $request->department,
