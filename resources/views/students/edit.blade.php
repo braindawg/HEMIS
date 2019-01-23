@@ -24,15 +24,25 @@
                 <!-- SIDEBAR BUTTONS -->               
                 <!-- END SIDEBAR BUTTONS -->
                 <!-- SIDEBAR MENU -->
+                <br>
                 <div class="profile-usermenu">
+
                     <ul class="nav">
-                        <li class="active">
-                            <a href="javascript:;">
-                                {{ trans('general.student_information') }} 
-                            </a>
+                        <li>                    
+                            <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"> {{ trans('general.downloads') }}</a>
+                            <ul class="dropdown-menu" role="menu">
+                            @foreach($files as $file)
+                                <li>
+                                    <a href="{{ route('students.downloads.download', ['student' => $student, 'file' => substr($file->getFileName(), 0, -10)]) }}"  target="new">
+                                    {{ implode(explode('-', substr($file->getFileName(), 0, -10)), ' ') }} 
+                                    </a>
+                                </li>
+                            @endforeach
+                            </ul>
                         </li>
                     </ul>
                 </div>
+                
                 <!-- END MENU -->
             </div>
             <!-- END PORTLET MAIN -->

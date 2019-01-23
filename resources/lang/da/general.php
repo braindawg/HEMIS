@@ -257,5 +257,10 @@ return [
     'new_time' => 'تایم جدید',
     'edit_coursetime' => 'تصحیح تایم صنف',
     'coursetime' => 'تایم صنف ها',
+    'gender' => 'جنسیت',
+    'Male' => 'مرد',
+    'Female' => 'زن',
+    'student-confirm' => 'تصدیق تحصیلی',
+    'downloads' => 'دانلود ها',
 
 ];

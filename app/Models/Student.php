@@ -7,8 +7,10 @@ use App\Traits\UseByDepartment;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Foundation\Auth\Teacher as Authenticatable;
 
-class Student extends Model
+
+class Student extends Authenticatable
 {
     use SoftDeletes, UseByUniversity, UseByDepartment;
 
