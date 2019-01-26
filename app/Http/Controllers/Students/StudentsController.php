@@ -10,6 +10,7 @@ use Illuminate\Validation\Rule;
 use Maklad\Permission\Models\Role;
 use App\Http\Controllers\Controller;
 use App\DataTables\StudentsDataTable;
+use Illuminate\Support\Facades\File;
 use Maklad\Permission\Models\Permission;
 
 class StudentsController extends Controller
@@ -96,12 +97,19 @@ class StudentsController extends Controller
             abort(404);
         }
 
+        $files = [];
+
+        if (file_exists( resource_path ("views/pdf/students/downloads") )) {
+            $files = File::allFiles( resource_path ("views/pdf/students/downloads"));
+        }
+
         return view('students.edit', [
             'title' => trans('general.students'),
             'description' => trans('general.edit_student'),
             'student' => $student,
             'universities' => University::pluck('name', 'id'),
-            'statuses' => StudentStatus::whereIn('id', [1, 2])->pluck('title', 'id')
+            'statuses' => StudentStatus::whereIn('id', [1, 2])->pluck('title', 'id'),
+            'files' => $files
         ]);
     }
 
@@ -143,6 +151,8 @@ class StudentsController extends Controller
             'father_name_eng' => $request->father_name_eng,
             'grandfather_name_eng' => $request->grandfather_name_eng,
             'department_eng' => $request->department_eng,
+
+            'department_id' => $request->department,
         ]);        
 
         if ($request->has('print')) {

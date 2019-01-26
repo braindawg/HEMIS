@@ -47,6 +47,9 @@ Route::group(['middleware' => 'auth'], function() {
         Route::patch('/students/{student}/updateStatus', 'StudentsController@updateStatus')->name('students.updateStatus');
         Route::get('/students/{student}/card', 'StudentCardController@index')->name('students.card');
 
+        Route::get('{student}/downloads', 'StudentDownloadController@index')->name('students.downloads');
+        Route::get('{student}/downloads/{file}', 'StudentDownloadController@show')->name('students.downloads.download');
+
 
         Route::resource('/transfers', 'TransfersController');
         Route::resource('/dropouts', 'DropoutsController');
@@ -97,7 +100,12 @@ Route::group(['middleware' => 'auth'], function() {
 
     });
 
-    Route::resource('/teachers', 'TeachersController');
+    Route::group(['namespace' => 'Teachers'], function(){
+
+        Route::resource('/teachers', 'TeachersController');
+    });
+
+
     Route::post('/cityupdate', 'HomeController@updateData');
     Route::post('/universityupdate', 'HomeController@updateData');
     Route::get('/download/{file}','SystemDownloadController@download')->name('noticeboards.download');

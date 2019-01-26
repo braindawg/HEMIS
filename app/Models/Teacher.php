@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use App\Traits\UseByUniversity;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Builder;
@@ -16,6 +15,10 @@ class Teacher extends Authenticatable
 
     protected $guarded = [];
     protected $dates = ['deleted_at'];
+    
+    protected $hidden = [
+        'password', 'remember_token',
+    ];
 
 
     public function setPasswordAttribute($value)

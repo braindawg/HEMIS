@@ -71,6 +71,9 @@ class TeachersDataTable extends DataTable
                     ->minifiedAjax()
                     ->addAction(['title' => trans('general.action'), 'width' => '70px'])
                     ->parameters($this->getBuilderParameters());
+                    // ->parameters([ 'dom' => 'Bfrtip',
+                    // 'buttons' => ['csv', 'excel', 'print'],
+                    // ]);
     }
 
     /**
