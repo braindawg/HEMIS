@@ -1,0 +1,30 @@
+<?php
+
+namespace App\Http\Controllers\Auth;
+
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
+
+class TeacherLoginController extends Controller
+{
+    use AuthenticatesUsers;
+
+    protected $guard = 'teacher';
+    protected $redirectTo = '/noticeboard';
+
+    public function __construct()
+    {
+        $this->middleware('guest')->except('logout');
+    }
+
+    public function showLoginForm()
+    {
+        return view('auth.login', ['guard' => $this->guard]);
+    }
+
+    protected function guard()
+    {
+        return auth()->guard($this->guard);
+    }
+}

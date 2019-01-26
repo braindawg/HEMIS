@@ -1,21 +1,14 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
-Route::get('/', function () {    
+Route::get('/', function () {  
+    dd(auth()->user());  
     return redirect('/login');
 });
 
 Auth::routes();
+
+Route::get('teacher/login', 'Auth\TeacherLoginController@showLoginForm');
+Route::post('teacher/login', 'Auth\TeacherLoginController@login')->name('teacher.login');
 
 Route::group(['middleware' => 'auth'], function() { 
 
@@ -60,8 +53,6 @@ Route::group(['middleware' => 'auth'], function() {
         Route::resource('/leaves', 'LeavesController', ['parameters' => [
             'leaves' => 'leave'
         ]]);
-
-        
     });
 
     Route::group(['namespace' => 'Universities'], function() {
@@ -93,14 +84,14 @@ Route::group(['middleware' => 'auth'], function() {
         Route::get('courses/{course}/list', 'AttendanceController@list')->name('attendance.create');        
         Route::get('courses/{course}/attendance', 'AttendanceController@print')->name('course.attendance.print');
         Route::get('courses/{course}/scores-sheet', 'ScoreSheetController@print')->name('course.scoresSheet.print');
-        Route::delete('courses/{course}/remove-student', 'AttendanceController@removeStudent')->name('attendance.student.remove');
+        Route::post('courses/{course}/add-student', 'AttendanceController@addStudent')->name('attendance.student.add');
+        Route::delete('courses/{course}/remove-student', 'AttendanceController@removeStudent')->name('attendance.student.remove'); 
         
         Route::post('courses/{course}/store-scores', 'ScoresController')->name('scores.store');
         Route::post('courses/{course}/store-coursetime','CourseTimeController@store')->name('coursetime.store');
         Route::get('courses/{coursetime}/delete-coursetime', 'CourseTimeController@delete');
         Route::get('courses/{coursetime}/edit-coursetime', 'CourseTimeController@edit');
         Route::post('courses/{coursetime}/update-coursetime', 'CourseTimeController@update')->name('coursetime.update');
-
 
         Route::resource('courses', 'CourseController');
 
@@ -112,9 +103,7 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('/download/{file}','SystemDownloadController@download')->name('noticeboards.download');
     Route::get('/deletefile/{file}','FilesDeleteController@deleteFiles')->name('deletefile');
 
-
     Route::get('/activity/{university_id?}/{startdate?}/{enddate?}','ActivityController@index')->name('activity');
-
     
     //attachments link
     Route::get('getAttachment/{file_name}', function($filename){

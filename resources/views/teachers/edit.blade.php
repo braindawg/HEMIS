@@ -205,6 +205,21 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="row">                        
+                                        <div class="col-md-6">
+                                            <div class="form-group {{ $errors->has('password') ? ' has-error' : '' }}">
+                                                {!! Form::label('password', trans('general.password'), ['class' => 'control-label col-sm-3']) !!}
+                                                <div class="col-sm-8">
+                                                    {!! Form::text('password', null, ['class' => 'form-control ltr']) !!}
+                                                    @if ($errors->has('password'))
+                                                        <span class="help-block">
+                                                            <strong>{{ $errors->first('password') }}</strong>
+                                                        </span>
+                                                    @endif                                                                                                   
+                                                </div>
+                                            </div>
+                                        </div>                                        
+                                    </div>
                                 <hr>
                                 <div class="form-actions fluid">
                                     <div class="row">

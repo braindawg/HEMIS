@@ -3,16 +3,27 @@
 namespace App\Models;
 
 use App\Traits\UseByUniversity;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class Teacher extends Model
+class Teacher extends Authenticatable
 {
-    use SoftDeletes, UseByUniversity;
+    use SoftDeletes, Notifiable, UseByUniversity;
 
     protected $guarded = [];
     protected $dates = ['deleted_at'];
+
+
+    public function setPasswordAttribute($value)
+    {           
+        if ($value != '') {
+            $this->attributes['password'] = Hash::make($value);
+        }        
+    }
 
     public function teacherAcademic()
     {
@@ -35,6 +46,6 @@ class Teacher extends Model
     }
     public function department(){
         
-        return $this->belongsTo(\App\Models\department::class);
+        return $this->belongsTo(\App\Models\Department::class);
     }
 }
