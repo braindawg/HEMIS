@@ -26,7 +26,8 @@ class AttendanceController extends Controller
         return view('course.attendance.list', [
             'title' => trans('general.attendance'),
             'description' => trans('general.create_attendance'),
-            'course' => $course
+            'course' => $course,
+            'department' => old('department') != '' ? Department::where('id', old('department'))->pluck('name', 'id') : []
         ]);
     }
 
@@ -37,6 +38,17 @@ class AttendanceController extends Controller
         ]);
 
         return $pdf->stream($course->code.'.pdf');
+    }
+
+    public function addStudent(Request $request, $course)
+    {
+        $request->validate([            
+            'student_id' => 'required'
+        ]);
+
+        $course->students()->attach($request->student_id);   
+
+        return redirect()->back();
     }
 
     public function removeStudent(Request $request, $course)

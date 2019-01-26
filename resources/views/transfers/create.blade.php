@@ -86,7 +86,8 @@
 <script>
     $(function () {
         $('.select2').change(function () {
-            $('.select2-ajax').val(null).trigger('change');
+            $('.select2-ajax').val(null)
+            $('.select2-ajax').trigger('change');
         })
     })
 </script>

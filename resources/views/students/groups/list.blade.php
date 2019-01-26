@@ -89,40 +89,40 @@
                 <div class="portlet-body">
                     <!-- BEGIN FORM-->            
                     {!! Form::open(['route' => ['groups.student.add', $group], 'method' => 'post', 'class' => 'form-horizontal']) !!}
-                        <div class="form-body" id="app">
-                            {!! Form::hidden('university', $group->university_id) !!}
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group {{ $errors->has('department_id') ? ' has-error' : '' }}">
-                                        {!! Form::label('department_id', trans('general.department'), ['class' => 'control-label col-sm-3']) !!}                                
-                                        <div class="col-sm-7">
-                                            {!! Form::select('department_id', $department, null, ['class' => 'form-control select2-ajax', 'remote-url' => route('api.departments'), 'remote-param' => '[name="university"]']) !!}
-                                            @if ($errors->has('department_id'))
-                                                <span class="help-block">
-                                                    <strong>{{ $errors->first('department_id') }}</strong>
-                                                </span>
-                                            @endif                                                                                                   
-                                        </div>
+                    <div class="form-body" id="app">
+                        {!! Form::hidden('university', $group->university_id) !!}
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group {{ $errors->has('department_id') ? ' has-error' : '' }}">
+                                    {!! Form::label('department_id', trans('general.department'), ['class' => 'control-label col-sm-3']) !!}                                
+                                    <div class="col-sm-7">
+                                        {!! Form::select('department_id', $department, null, ['class' => 'form-control select2-ajax', 'remote-url' => route('api.departments'), 'remote-param' => '[name="university"]']) !!}
+                                        @if ($errors->has('department_id'))
+                                            <span class="help-block">
+                                                <strong>{{ $errors->first('department_id') }}</strong>
+                                            </span>
+                                        @endif                                                                                                   
                                     </div>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group {{ $errors->has('kankor_year') ? ' has-error' : '' }}">
-                                        {!! Form::label('kankor_year', trans('general.kankor_year'), ['class' => 'control-label col-sm-3']) !!}
-                                        <div class="col-sm-7">
-                                            {!! Form::number('kankor_year', null, ['class' => 'form-control ltr']) !!}
-                                            @if ($errors->has('kankor_year'))
-                                                <span class="help-block">
-                                                    <strong>{{ $errors->first('kankor_year') }}</strong>
-                                                </span>
-                                            @endif
-                                        </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group {{ $errors->has('kankor_year') ? ' has-error' : '' }}">
+                                    {!! Form::label('kankor_year', trans('general.kankor_year'), ['class' => 'control-label col-sm-3']) !!}
+                                    <div class="col-sm-7">
+                                        {!! Form::number('kankor_year', null, ['class' => 'form-control ltr']) !!}
+                                        @if ($errors->has('kankor_year'))
+                                            <span class="help-block">
+                                                <strong>{{ $errors->first('kankor_year') }}</strong>
+                                            </span>
+                                        @endif
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    
                     <div class="form-actions fluid">
                         <div class="row">
                             <div class="col-md-offset-3 col-md-7">
@@ -134,7 +134,6 @@
                     <!-- END FORM-->
                 </div>
             </div>
-
         </div>
     </div>
     @endcan

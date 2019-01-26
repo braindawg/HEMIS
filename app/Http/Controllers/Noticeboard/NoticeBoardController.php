@@ -11,6 +11,7 @@ class NoticeBoardController extends Controller
 {
     public function show()
     {   
+        //dd(auth()->user());
         return view('announcements.noticeboard_list', [
             'title' => trans('general.noticeboard'),
             'announcements' => Announcement::latest('created_at')->paginate(5)
