@@ -1,14 +1,18 @@
 <?php
 
-Route::get('/', function () {  
-    dd(auth()->user());  
-    return redirect('/login');
+Route::get('/', function () {
+    //return redirect('/login');
 });
 
 Auth::routes();
 
-Route::get('teacher/login', 'Auth\TeacherLoginController@showLoginForm');
-Route::post('teacher/login', 'Auth\TeacherLoginController@login')->name('teacher.login');
+// Route::get('teacher/login', 'Auth\TeacherLoginController@showLoginForm');
+// Route::post('teacher/login', 'Auth\TeacherLoginController@login')->name('teacher.login');
+
+// Route::get('teacher/', function () {
+//     dd(auth()->guard('teacher')->user());
+//     echo "Teacher Loged in!";
+// });
 
 Route::group(['middleware' => 'auth'], function() { 
 
