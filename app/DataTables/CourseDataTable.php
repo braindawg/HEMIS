@@ -38,8 +38,6 @@ class CourseDataTable extends DataTable
                             $html .= '<li><a href="'. route('courses.edit', $course) .'"  target="new"> <i class="fa fa-clock-o"></i> '. trans("general.time") .' </a></li>';    
                         }
 
-
-
                         if (auth()->user()->can('delete-course')) {
                             $html .= '<li><form action="'. route('courses.destroy', $course) .'" method="post" style="display:inline">
                                 <input type="hidden" name="_method" value="DELETE" />
@@ -82,7 +80,8 @@ class CourseDataTable extends DataTable
             ->leftJoin('teachers', 'teachers.id', '=', 'courses.teacher_id')
             ->leftJoin('groups', 'groups.id', '=', 'group_id')
             ->leftJoin('universities', 'universities.id', '=', 'courses.university_id')
-            ->leftJoin('departments', 'departments.id', '=', 'courses.department_id');
+            ->leftJoin('departments', 'departments.id', '=', 'courses.department_id')
+            ->withCount('students');
 
 
 
@@ -190,6 +189,7 @@ class CourseDataTable extends DataTable
             'subject'     => [ 'name' => 'subjects.title', 'title' => trans('general.subject')],
             'teacher'     => [ 'name' => 'teachers.name', 'title' => trans('general.teacher')],
             'group'     => [ 'name' => 'groups.name', 'title' => trans('general.group')],
+            'students_count' => ['name' => 'students_count', 'title' => trans('general.students_count'), 'searchable' => false, 'orderable' => false],
             'department'    => ['name' => 'departments.name', 'title' => trans('general.department')],
             'university' => ['name' => 'universities.name', 'title' => trans('general.university')],
         ];

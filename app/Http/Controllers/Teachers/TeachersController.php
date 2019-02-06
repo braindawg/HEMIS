@@ -90,7 +90,8 @@ class TeachersController extends Controller
             'degree' => $request->degree,
             'academic_rank_id' => $request->academic_rank_id,
             'department_id' => $request->department,
-            'university_id' => $request->university
+            'university_id' => $request->university,
+            'password' => $request->password ?? null,
         ]);
 
         return redirect(route('teachers.index'));
@@ -148,7 +149,8 @@ class TeachersController extends Controller
             'degree' => $request->degree,
             'academic_rank_id' => $request->academic_rank_id,
             'department_id' => $request->department,
-            'university_id' => $request->university
+            'university_id' => $request->university,
+            'password' => $request->password ?? null,
         ]);
 
         return redirect(route('teachers.index'))->with('message', 'اطلاعات '.$teacher->name.' موفقانه آبدیت شد.');

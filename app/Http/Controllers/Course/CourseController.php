@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers\Course;
 
-use App\Models\Course;
+use App\Models\Day;
 use App\Models\Group;
+use App\Models\Course;
 use App\Models\Subject;
 use App\Models\Teacher;
 use App\Models\Department;
@@ -11,7 +12,6 @@ use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use App\DataTables\CourseDataTable;
 use App\Http\Controllers\Controller;
-use App\Models\Day;
 
 class CourseController extends Controller
 {
@@ -160,7 +160,6 @@ class CourseController extends Controller
         ]);
 
         return redirect(route('courses.index'));
-
     }
 
 

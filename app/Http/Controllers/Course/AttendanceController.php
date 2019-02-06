@@ -18,7 +18,7 @@ class AttendanceController extends Controller
     {
         $course = $course->with(['students' => function ($students) use ($course) {
             $students->with(['score' => function ($scores) use ($course){
-            $scores->where('course_id', $course->id);            
+                $scores->where('course_id', $course->id);            
             }]);
         }])->where('courses.id' , $course->id)->first();
 
@@ -26,7 +26,8 @@ class AttendanceController extends Controller
         return view('course.attendance.list', [
             'title' => trans('general.attendance'),
             'description' => trans('general.create_attendance'),
-            'course' => $course
+            'course' => $course,
+            'department' => old('department') != '' ? Department::where('id', old('department'))->pluck('name', 'id') : []
         ]);
     }
 
@@ -34,9 +35,20 @@ class AttendanceController extends Controller
     {
         $pdf = \PDF::loadView('course.attendance.print', compact('course'), [], [
             'format' => 'A4-L'
-            ]);
+        ]);
 
         return $pdf->stream($course->code.'.pdf');
+    }
+
+    public function addStudent(Request $request, $course)
+    {
+        $request->validate([            
+            'student_id' => 'required'
+        ]);
+
+        $course->students()->attach($request->student_id);   
+
+        return redirect()->back();
     }
 
     public function removeStudent(Request $request, $course)

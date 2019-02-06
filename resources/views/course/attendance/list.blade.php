@@ -18,8 +18,6 @@
             <div class="form-horizontal">
             @endif
             
-         
-            
             {!! Form::hidden('course[course_id]', $course->id) !!}
             {!! Form::hidden('course[subject_id]', $course->subject_id) !!}
             {!! Form::hidden('course[semester]', $course->semester) !!}
@@ -103,6 +101,48 @@
             @endif
         </div>
     </div>
+
+    @if(auth()->user()->can('edit-course'))
+    <div class="row">
+        <div class="col-md-6">
+            <div class="portlet box">
+                <div class="portlet-title" style="color: #000">
+                   <h4>{{ trans('general.add_student_individually') }}</h4>
+                </div>
+                <div class="portlet-body">
+                    <!-- BEGIN FORM-->            
+                    {!! Form::open(['route' => ['attendance.student.add', $course], 'method' => 'post', 'class' => 'form-horizontal']) !!}
+                        <div class="form-body" id="app">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group {{ $errors->has('student_id') ? ' has-error' : '' }}">
+                                        {!! Form::label('student_id', trans('general.new_student'), ['class' => 'control-label col-sm-3']) !!}                                
+                                        <div class="col-sm-7">
+                                            {!! Form::select('student_id', [], null, ['class' => 'form-control select2-students', 'placeholder' => trans('general.select')]) !!}
+                                            @if ($errors->has('student_id'))
+                                                <span class="help-block">
+                                                    <strong>{{ $errors->first('student_id') }}</strong>
+                                                </span>
+                                            @endif                                                                                                   
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-actions fluid">
+                            <div class="row">
+                                <div class="col-md-offset-3 col-md-6">
+                                    <button type="submit" class="btn green">{{ trans('general.add') }}</button>
+                                </div>
+                            </div>
+                        </div>
+                    {!! Form::close() !!}
+                    <!-- END FORM-->
+                </div>
+            </div>
+        </div>
+    </div>
+    @endif
 
     {!! Form::open(['route' => ['attendance.student.remove', $course], 'method' => 'delete', 'id' => 'delete-form', 'class' => 'form-horizontal', 'style' => 'display: none']) !!}
         <input type="hidden" id="student-id-field" name="student_id" >

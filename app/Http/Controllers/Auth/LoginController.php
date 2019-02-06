@@ -20,6 +20,8 @@ class LoginController extends Controller
 
     use AuthenticatesUsers;
 
+    protected $guard = 'web';
+
     /**
      * Where to redirect users after login.
      *
@@ -37,6 +39,10 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
+    public function showLoginForm()
+    {
+        return view('auth.login', ['guard' => $this->guard]);
+    }
 
     protected function credentials($request)
     {

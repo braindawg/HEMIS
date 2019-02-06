@@ -2,20 +2,17 @@
 
 namespace App\Models;
 
-use Illuminate\Support\Facades\Hash;
-use Spatie\Permission\Traits\HasRoles;
 use App\Traits\UseByUniversity;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
-use Lab404\Impersonate\Models\Impersonate;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Foundation\Auth\Teacher as Authenticatable;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class Teacher extends Authenticatable
 {
-    use SoftDeletes, UseByUniversity, Notifiable, SoftDeletes, HasRoles, Impersonate;
-
+    use SoftDeletes, Notifiable, UseByUniversity;
 
     protected $guarded = [];
     protected $dates = ['deleted_at'];
@@ -23,6 +20,13 @@ class Teacher extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function setPasswordAttribute($value)
+    {           
+        if ($value != '') {
+            $this->attributes['password'] = Hash::make($value);
+        }        
+    }
 
     public function teacherAcademic()
     {
@@ -32,13 +36,6 @@ class Teacher extends Authenticatable
     public function province()
     {
         return $this->belongsTo(\App\Models\Province::class, 'province');
-    }
-
-    public function setPasswordAttribute($value)
-    {           
-        if ($value != '') {
-            $this->attributes['password'] = Hash::make($value);
-        }        
     }
     
     public function getFullNameAttribute()
@@ -50,8 +47,9 @@ class Teacher extends Authenticatable
     {
         return $this->hasMany(\App\Models\Course::class);
     }
-    public function department(){
-        
-        return $this->belongsTo(\App\Models\department::class);
+
+    public function department()
+    {    
+        return $this->belongsTo(\App\Models\Department::class);
     }
 }

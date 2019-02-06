@@ -126,8 +126,8 @@
                                                     {!! Form::select('academic_rank_id', $teacher_academic_rank,$teacher->academic_rank_id, ['class' => 'form-control select2']) !!}
                                                     @if ($errors->has('academic_rank_id'))
                                                         <span class="help-block">
-                                            <strong>{{ $errors->first('academic_rank_id') }}</strong>
-                                        </span>
+                                                            <strong>{{ $errors->first('academic_rank_id') }}</strong>
+                                                        </span>
                                                     @endif
                                                 </div>
                                             </div>
@@ -223,33 +223,33 @@
                                     <hr>
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <div class="form-group {{ $errors->has('password') ? ' has-error' : '' }}">
-                                                {!! Form::label('password', trans('general.password'), ['class' => 'control-label col-sm-3']) !!}
-                                                <div class="col-sm-8">
-                                                    {!! Form::password('password', null, ['class' => 'form-control ltr']) !!}
-                                                    @if ($errors->has('password'))
-                                                        <span class="help-block">
-                                                                <strong>{{ $errors->first('password') }}</strong>
-                                                            </span>
-                                                    @endif
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-6">
                                             <div class="form-group {{ $errors->has('password_confirmation') ? ' has-error' : '' }}">
                                                 {!! Form::label('password_confirmation', trans('general.password_confirmation'), ['class' => 'control-label col-sm-3']) !!}
                                                 <div class="col-sm-8">
                                                     {!! Form::password('password_confirmation', null, ['class' => 'form-control ltr']) !!}
                                                     @if ($errors->has('password_confirmation'))
                                                         <span class="help-block">
-                                                                <strong>{{ $errors->first('password_confirmation') }}</strong>
-                                                            </span>
+                                                            <strong>{{ $errors->first('password_confirmation') }}</strong>
+                                                        </span>
                                                     @endif
                                                 </div>
                                             </div>
                                         </div>
+                                    </div>
+                                    <div class="row">                        
+                                        <div class="col-md-6">
+                                            <div class="form-group {{ $errors->has('password') ? ' has-error' : '' }}">
+                                                {!! Form::label('password', trans('general.password'), ['class' => 'control-label col-sm-3']) !!}
+                                                <div class="col-sm-8">
+                                                    {!! Form::text('password', null, ['class' => 'form-control ltr']) !!}
+                                                    @if ($errors->has('password'))
+                                                        <span class="help-block">
+                                                            <strong>{{ $errors->first('password') }}</strong>
+                                                        </span>
+                                                    @endif                                                                                                   
+                                                </div>
+                                            </div>
+                                        </div>                                        
                                     </div>
                                 <hr>
                                 <div class="form-actions fluid">

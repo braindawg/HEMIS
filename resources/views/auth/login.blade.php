@@ -31,7 +31,7 @@
         <div class="user-login-5">
             <div class="row bs-reset">
                 <div class="col-md-4 login-container bs-reset">
-                    <img class="login-logo login-6" src="img/hemis-logo.png" />
+                    <img class="login-logo login-6" src="{{ asset('img/hemis-logo.png') }}" />
                     <div class="login-content">
                         
                         <h3>{{ trans('general.hemis') }}</h3>
@@ -47,7 +47,7 @@
                                 <strong>{{ $errors->first('email') }}</strong>
                             </div>
                         @endif
-                        <form method="POST" action="{{ route('login') }}" class="login-form" >
+                        <form method="POST" action="{{ $guard == 'teacher' ? route('teacher.login') : route('login') }}" class="login-form" >
                             {{ csrf_field() }}
                             <input type="hidden" name="form" value="login">
                             <div class="row">                            

@@ -27,7 +27,6 @@ class GroupsDataTable extends DataTable
                     $html .= '<a href="'.route('groups.edit', $group).'" class="btn btn-success btn-xs"><i class="icon-pencil"></i></a>';
                 }
                 
-
                 if (auth()->user()->can('delete-group') and ! $group->students()->exists()) {
                     $html .= '<form action="'. route('groups.destroy', $group) .'" method="post" style="display:inline">
                             <input type="hidden" name="_method" value="DELETE" />
@@ -36,7 +35,6 @@ class GroupsDataTable extends DataTable
                         </form>';
                 } 
                 
-
                 return $html;
             });
     }
@@ -74,7 +72,7 @@ class GroupsDataTable extends DataTable
     protected function getColumns()
     {
         $columns = [            
-            'name'     => ['title' => trans('general.name')],            
+            'name'     => ['name' => 'groups.name', 'title' => trans('general.name')],            
             'description' => ['title' => trans('general.description')],
             'department.name' => ['name' => 'department.name', 'title' => trans('general.department')]
         ];
@@ -83,7 +81,7 @@ class GroupsDataTable extends DataTable
             $columns['university.name'] = ['name' => 'university.name', 'title' => trans('general.university')];
         }
 
-        $columns['students_count'] = ['name' => 'students_count', 'title' => trans('general.students_count'), 'searchabel' => false, 'orderable' => false];
+        $columns['students_count'] = ['name' => 'students_count', 'title' => trans('general.students_count'), 'searchable' => false, 'orderable' => false];
 
 
         return $columns;
