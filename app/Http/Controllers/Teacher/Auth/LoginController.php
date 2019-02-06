@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\TeacherControllers\Auth;
+namespace App\Http\Controllers\Teacher\Auth;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;

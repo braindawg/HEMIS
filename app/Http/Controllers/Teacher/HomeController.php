@@ -1,16 +1,15 @@
 <?php
 
-namespace App\Http\Controllers\Noticeboard;
+namespace App\Http\Controllers\Teacher;
 
-use Illuminate\Http\Request;
 use App\Models\Announcement;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-
-class NoticeBoardController extends Controller
+class HomeController extends Controller
 {
-    public function show()
-    {   
+    public function __invoke()
+    {  
         return view('announcements.noticeboard_list', [
             'title' => trans('general.noticeboard'),
             'announcements' => Announcement::latest('created_at')->paginate(5)

@@ -6,6 +6,7 @@
         </a>       
     </li>
 
+    @if(auth('user')->check())
     @can(['view-announcement'])
     <li class="nav-item start {{ request()->is('announcements') ? 'active' : '' }}">
         <a href="{{ route('announcements.index') }}" class="nav-link nav-toggle">
@@ -320,8 +321,16 @@
         </a>       
     </li>
     @endcan
+    @endif
 
-
+    @if(auth('teacher')->check())
+    <li class="nav-item start {{ request()->is('support') ? 'active' : '' }}">
+        <a href="{{ route('support') }}" class="nav-link nav-toggle">
+            <i class="icon-earphones-alt"></i>            
+            <span class="title">Teacher {{ trans('general.courses') }}</span>         
+        </a>       
+    </li>
+    @endif
       <!-- end activity log -->
     <li class="nav-item start {{ request()->is('support') ? 'active' : '' }}">
         <a href="{{ route('support') }}" class="nav-link nav-toggle">
