@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Traits\UseByUniversity;
 use App\Traits\UseByDepartment;
+use App\Traits\Downloadble;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -12,7 +13,7 @@ use Illuminate\Foundation\Auth\Teacher as Authenticatable;
 
 class Student extends Authenticatable
 {
-    use SoftDeletes, UseByUniversity, UseByDepartment;
+    use SoftDeletes, UseByUniversity, UseByDepartment, Downloadble;
 
     protected $guarded = [];
     protected $dates = ['deleted_at'];

@@ -59,47 +59,41 @@ class LeavesController extends Controller
             
             $student = Student::find($request->student_id);
             
-            $leaves = Leave::create([
+            $leave = Leave::create([
                 'student_id' => $request->student_id,
                 'leave_year' => $request->leave_year,
+                'semister' => $request->semister,
                 'note' => $request->note,
                 'university_id' => $student->university_id
             ]);
 
-            $student->update([
-                'status_id' => 4,
-            ]);
+            //will update after admin approve
+            // $student->update([
+            //     'status_id' => 4,
+            // ]);
+            $leave->download($student , 'درخواست-تاجیلی', $request);
+
             
         });
 
         return redirect(route('leaves.index'));
     }
-   public function edit(Leave $leave)
-   {
-    
 
-    return view('leaves.edit', [
-        'title' => trans('general.leaves'),
-        'description' => trans('general.end_leave'),
-        'leave' => $leave ,
-        'student' => $leave->student->pluck('name' , 'id'),
-        
-    ]);
+   public function edit($leave)
+   {
+
+        if( $leave->approved == false )
+        {
+            $leave->update([
+                'approved' => true
+            ]);
+        }
+
+        return redirect(route('leaves.index'));
+
    }
-   public function update(Request $request,Leave $leave)
+   public function update()
    {
-       
-    $leave->update($request->all()); 
-
-    if( $leave->end_leave != null)
-    {
-        $leave->student->update([
-            'status_id' => 2
-        ]);
-
-    }
-   
-    return redirect(route('leaves.index'));
    }
     
     /**

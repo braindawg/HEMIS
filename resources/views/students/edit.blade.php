@@ -28,17 +28,10 @@
                 <div class="profile-usermenu">
 
                     <ul class="nav">
-                        <li>                    
-                            <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"> {{ trans('general.downloads') }}</a>
-                            <ul class="dropdown-menu" role="menu">
-                            @foreach($files as $file)
-                                <li>
-                                    <a href="{{ route('students.downloads.download', ['student' => $student, 'file' => substr($file->getFileName(), 0, -10)]) }}"  target="new">
-                                    {{ implode(explode('-', substr($file->getFileName(), 0, -10)), ' ') }} 
-                                    </a>
-                                </li>
-                            @endforeach
-                            </ul>
+                        <li class="active">
+                            <a href="{{ route('student.form', $student)}}">
+                                {{ trans('general.student_form_generator') }} 
+                            </a>
                         </li>
                     </ul>
                 </div>

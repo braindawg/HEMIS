@@ -1,10 +1,11 @@
+
 <?php
 
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddEndLeaveToLeaves extends Migration
+class AddApprovedToDropouts extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +14,8 @@ class AddEndLeaveToLeaves extends Migration
      */
     public function up()
     {
-        Schema::table('leaves', function ($table) {
-            $table->boolean('end_leave')->after('Leave_year')->default(false);
+        Schema::table('dropouts', function ($table) {
+            $table->boolean('approved')->after('note')->default(false);
         });
     }
 
@@ -25,8 +26,8 @@ class AddEndLeaveToLeaves extends Migration
      */
     public function down()
     {
-        Schema::table('leaves', function ($table) {
-            $table->dropColumn('end_leave');
+        Schema::table('dropouts', function ($table) {
+            $table->dropColumn('approved');
         });
     }
 }

@@ -97,19 +97,12 @@ class StudentsController extends Controller
             abort(404);
         }
 
-        $files = [];
-
-        if (file_exists( resource_path ("views/pdf/students/downloads") )) {
-            $files = File::allFiles( resource_path ("views/pdf/students/downloads"));
-        }
-
         return view('students.edit', [
             'title' => trans('general.students'),
             'description' => trans('general.edit_student'),
             'student' => $student,
             'universities' => University::pluck('name', 'id'),
             'statuses' => StudentStatus::whereIn('id', [1, 2])->pluck('title', 'id'),
-            'files' => $files
         ]);
     }
 

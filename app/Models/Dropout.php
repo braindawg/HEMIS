@@ -5,11 +5,12 @@ namespace App\Models;
 use App\Traits\UseByUniversity;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
+use App\Traits\Downloadble;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Dropout extends Model
 {
-    use SoftDeletes, UseByUniversity;
+    use SoftDeletes, UseByUniversity, Downloadble;
 
     protected $guarded = [];
 

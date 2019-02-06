@@ -22,21 +22,35 @@
                         </div>
                     </div>
                     <div class="row">
-                    <div class="col-md-6 col-md-offset-1">
-                        <div class="form-group {{ $errors->has('leave_year') ? ' has-error' : '' }}">
-                            {!! Form::label('last_name', trans('general.leave_year'), ['class' => 'control-label col-sm-3']) !!}
-                            <div class="col-sm-9">
-                                {!! Form::text('leave_year', null, ['class' => 'form-control']) !!}
-                                @if ($errors->has('leave_year'))
-                                    <span class="help-block">
-                                            <strong>{{ $errors->first('leave_year') }}</strong>
-                                        </span>
-                                @endif
+                        <div class="col-md-6 col-md-offset-1">
+                            <div class="form-group {{ $errors->has('leave_year') ? ' has-error' : '' }}">
+                                {!! Form::label('year', trans('general.leave_year'), ['class' => 'control-label col-sm-3']) !!}
+                                <div class="col-sm-9">
+                                    {!! Form::text('leave_year', null, ['class' => 'form-control']) !!}
+                                    @if ($errors->has('leave_year'))
+                                        <span class="help-block">
+                                                <strong>{{ $errors->first('leave_year') }}</strong>
+                                            </span>
+                                    @endif
+                                </div>
                             </div>
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="col-md-6 col-md-offset-1">
+                            <div class="form-group {{ $errors->has('semister') ? ' has-error' : '' }}">
+                                {!! Form::label('semister', trans('general.semister'), ['class' => 'control-label col-sm-3']) !!}
+                                <div class="col-sm-9">
+                                    {!! Form::number('semister', null, ['class' => 'form-control', 'min' => '1', 'max' => "8"]) !!}
+                                    @if ($errors->has('semister'))
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('semister') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
                     </div>
-
                     <div class="row">
                         <div class="col-md-6 col-md-offset-1">
                             <div class="form-group {{ $errors->has('note') ? ' has-error' : '' }}">

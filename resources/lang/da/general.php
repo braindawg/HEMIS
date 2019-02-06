@@ -1,6 +1,7 @@
 <?php
 return [
     'hemis' => 'سیستم مدیریت اطلاعات وزارت تحصیلات عالی',
+    'MOHE' => 'وزارت تحصیلات عالی',
     'dashboard' => 'آمار احصائیه',
     'logout' => 'خروج',    
     'submit' => 'ارسال',
@@ -39,6 +40,7 @@ return [
     'students_list' => ' لیست محصلان',
     'create_student' => 'محصل جدید',
     'edit_student' => 'تصحیح محصل',
+    'student_name' => ' اسم محصل',
 
     'teachers' => 'استادها',
     'teachers_list' => ' لیست استادها',
@@ -88,7 +90,7 @@ return [
     'fame' => 'شهرت',
     
     'tazkira_information' => 'معلومات تذکره',
-    'general_number' => 'نمبر عمومی',
+    'general_number' => ' نمبر عمومی تذکره',
     'volume' => 'جلد',
     'page' => 'صفحه',
     'registration_number' => 'شماره ثبت',
@@ -145,6 +147,7 @@ return [
     'print' => 'پرینت',
     'widow' => 'مطلقه',
     'all_options' => 'همه موارد',
+    'faculty' => ' پوهنځی',
 
     'transfers' => 'تبدیلی ها',
     'new_transfer' => 'تبدیلی جدید',
@@ -154,6 +157,7 @@ return [
     'note' => 'نوت',
     'from_department' => 'از دیپارتمنت',
     'to_department' => 'به دیپارتمنت',
+    'to_department_detailse' => 'به دیپارتمنت که میخواهد تبیدل شوید',
     'barchart_yaxis_title' => 'أمار محصلین کامیاب',
     'chart_yaxis_title_full' => 'أمار محصلین کامیاب و شامل پوهنتون',
     'barchart_series_name' => 'تعداد محصلین',
@@ -262,5 +266,87 @@ return [
     'Female' => 'زن',
     'student-confirm' => 'تصدیق تحصیلی',
     'downloads' => 'دانلود ها',
+    'dropout_year' => ' سال منفکی',
+    'semister' => ' سمستر',
+    'approved_leave' => ' تاید تاجیل',
+    'approved_dropout' => ' تاید منفکی',
+
+
+
+    //student form
+    'student_form_generator' => ' ایجاد فورم ها ',
+    'generate_form' => ' ایجاد فورم  ',
+
+    //transfer
+    'transfer_form' => ' فورم درخواست برای تبدیلی  ',
+    'ministry_title' => ' وزارت تحصیلات افغانستان ',
+    'to_universityـofficial' => ' بریاست محترم پوهنتون ',
+    'to_facultyـofficial' => ' بریاست محترم پوهنځی ',
+    'form_text_for_student' => 'اینجانب که شهرتم در فوق ذکر شده ٫ بدون قلم خوردگی ترتیب وصحت است٫ امید در قسمت تبدیلی ام به مرجع مربوطه هدایت فرموده ممنون سازید .',
+    'with_respect' => 'با احترام ',
+    'transfer_student_affair_text' => 'لطفا جدول را خانه پوری نموده ومعلومات دقیق ومستند را با مسولیت به این مرجع ارایه نماید. ',
+    'student_affair_name' => '  معاون امور محصلان ',
+    'student_affair_authority' => '  معاونیت امور محصلان ',
+    'faculty_information_about_student' => '    معلومات پوهنځی در مورد محصل ',
+    'is_transfer' => 'قبلا تبدیلی دارد ویا خیر ',
+    'resolve_transfer' => 'قبلا شمولیت مجدد دارد ',
+    'accept_or_refuse' => 'موافقه وعدم موافغه ',
+    'faculty_affair_re_name_sign' => '  اسم وامضا مدیر تدریسی پوهنځی ',
+    'faculty_chairman_name_sign' => 'اسم٫ مهر وامضا ریسی پوهنځی ',
+    'to_university_board' => 'بمقام محترم ریاست پوهنتون  ',
+    'to_faculty_board' => 'بریاست محترم پوهنځی  ',
+    'transfer_to_deparment_approve_request' => 'لطفا در مورد جذب محصل مذکور نظر موافقه وعدم موافقه ابراز نظر نماید.  ',
+    'faculty_opinion' => '  نظر پوهنځی ',
+    'faculty_chairman_name_sign_only' => 'اسم وامضا ریسی پوهنځی ',
+    'final_decision_of_board' => ' فیصله نهایی کمیسون تبدیلی ها ',
+    'member_of_decision_board' => ' عضو کمیسون ',
+    'transfer_confirmation' => '  ملاحظه شد مقام ریاست پوهنتون/ موسسه تحصلات عالی ',
+    'sign_stamp_date' => '  مهر تاریخ وامضا ',
+
+    //disclaimer
+    'disclaimer_form' => '  فورم رفع مسولیت محصل  ',
+    'disclaimer_form' => '  فورم رفع مسولیت محصل  ',
+    'number' => ' شماره  ',
+    'refrence' => ' مرجع  ',
+    'aknowledge_disaknowledge' => ' تصدیق مسولیت وعدم مسولیت  ',
+    'hostel_administration' => '  مدیریت عمومی لیلیه  ',
+    'bookstore_administration' => '  امریت عمومی کتابخانه  ',
+    'IT_administration' => ' مرکز تکنالوجی معلومات(IT)  ',
+    'relate_department' => 'دیپارتمنت مربوطه  ',
+    'faculty_aknowledgment' => ' تصدیق ریاست پوهنځی  ',
+    'disclaimer_confirmation' => '  از مراجع محترم فوق الذکر خواهشمندیم به روبت اسناد از چگونگی فراغت ٫ مسولیت ورفع  مسولیت محصل مذکوربدین اداره اطمینان داده ممنون سازند. ',
+
+
+    //REInvolvement request
+    'Involvement_request' => ' فورم درخواست مجدد شمولیت  ',
+    'my_self' => ' اینجانب  ',
+    'my_father_name' => ' فرزند  ',
+    'year_of_study' => ' سال تحصیلی  ',
+    'due_to' => 'نسبت',
+    'could_not_carry_on' => 'تحصلات خویش را ادامه داده نتوانستم',
+    'reinvolvement_request_from_student' => 'خواهشمندیم عنوانی مرجع مربوط امر شمولیت مجدد را عنایت فرموده ممنون سازید.',
+    'request_to_faculty_for_reinvo' => 'در مورد موضوع که در عقب صفحه است معلومات دقیق ومستند ارایه نمایید',
+    'if_student_has_leave_or_transfer_before' => 'در صورتیکه تاجیل گرفته ویا تبدیل شده باشد فوتوکاپی مکتوب ضمیمه نماید.',
+    'reason_of_difference' => 'دلیل انفکاک موقت',
+    'does_student_enro' => '  ثبت نام نموده یا خیر',
+    'reason_of_difference' => 'دلیل انفکاک موقت',
+    'reinvo_confirmation' => '  هدایت مقام ریاست پوهنتون/ موسسه تحصلات عالی در زمینه: ',
+
+
+
+
+
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+
 
 ];

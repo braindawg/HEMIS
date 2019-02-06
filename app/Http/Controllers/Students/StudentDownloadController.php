@@ -24,7 +24,7 @@ class StudentDownloadController extends Controller
     
     public function show($student, $fileName)
     {                        
-        // dd($student, $fileName);
+        //  dd($student, $fileName);
 
         $pdf = PDF::loadView('pdf.students.downloads.'.$fileName, compact('student'), [], [            
             'title' => implode(explode('-', $fileName), ' ')

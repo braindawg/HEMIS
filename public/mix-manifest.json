@@ -4,6 +4,5 @@
     "/css/login.css": "/css/login.css",
     "/js/all.js": "/js/all.js",
     "/js/login.js": "/js/login.js",
-    "/js/datatables.js": "/js/datatables.js",
-    "/js/datarange.js": "/js/datarange.js"
+    "/js/datatables.js": "/js/datatables.js"
 }

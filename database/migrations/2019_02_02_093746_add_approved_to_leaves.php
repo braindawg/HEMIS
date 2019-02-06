@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddEndLeaveToLeaves extends Migration
+class AddApprovedToLeaves extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +14,7 @@ class AddEndLeaveToLeaves extends Migration
     public function up()
     {
         Schema::table('leaves', function ($table) {
-            $table->boolean('end_leave')->after('Leave_year')->default(false);
+            $table->boolean('approved')->after('note')->default(false);
         });
     }
 
@@ -26,7 +26,7 @@ class AddEndLeaveToLeaves extends Migration
     public function down()
     {
         Schema::table('leaves', function ($table) {
-            $table->dropColumn('end_leave');
+            $table->dropColumn('approved');
         });
     }
 }

@@ -6,12 +6,12 @@
             <!-- BEGIN FORM-->            
             {!! Form::open(['route' => 'dropouts.store', 'method' => 'post', 'class' => 'form-horizontal']) !!}
                 <div class="form-body" id="app">
-                    <div class="row">
+                <div class="row">
                         <div class="col-md-6 col-md-offset-1">
                             <div class="form-group {{ $errors->has('student_id') ? ' has-error' : '' }}">
                                 {!! Form::label('student_id', trans('general.student'), ['class' => 'control-label col-sm-3']) !!}                                
                                 <div class="col-sm-9">
-                                    {!! Form::select('student_id', [], null, ['class' => 'form-control select2-students']) !!}
+                                    {!! Form::select('student_id',[], null, ['class' => 'form-control select2-students']) !!}
                                     @if ($errors->has('student_id'))
                                         <span class="help-block">
                                             <strong>{{ $errors->first('student_id') }}</strong>
@@ -21,7 +21,36 @@
                             </div>
                         </div>
                     </div>
-
+                    <div class="row">
+                        <div class="col-md-6 col-md-offset-1">
+                            <div class="form-group {{ $errors->has('dropout_year') ? ' has-error' : '' }}">
+                                {!! Form::label('dropout_year', trans('general.dropout_year'), ['class' => 'control-label col-sm-3']) !!}
+                                <div class="col-sm-9">
+                                    {!! Form::number('year', null, ['class' => 'form-control']) !!}
+                                    @if ($errors->has('year'))
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('year') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 col-md-offset-1">
+                            <div class="form-group {{ $errors->has('semister') ? ' has-error' : '' }}">
+                                {!! Form::label('semister', trans('general.semister'), ['class' => 'control-label col-sm-3']) !!}
+                                <div class="col-sm-9">
+                                    {!! Form::number('semister', null, ['class' => 'form-control', 'min' => '1', 'max' => "8"]) !!}
+                                    @if ($errors->has('semister'))
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('semister') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <div class="row">
                         <div class="col-md-6 col-md-offset-1">
                             <div class="form-group {{ $errors->has('note') ? ' has-error' : '' }}">

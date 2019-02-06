@@ -58,20 +58,41 @@ class DropoutsController extends Controller
             
             $student = Student::find($request->student_id);
 
-            dd($request->student_id);
-            $dropouts = Dropout::create([
+            $dropout = Dropout::create([
                 'student_id' => $request->student_id,
+                'year' => $request->year,
+                'semister' => $request->semister,
                 'note' => $request->note,
                 'university_id' => $student->university_id
             ]);
 
-            $student->update([
-                'status_id' => 3,
-            ]);
+            // will update after admin approved
+            // $student->update([
+            //     'status_id' => 3,
+            // ]);
 
+             $dropout->download($student , 'درخواست-منفکی', $request);
+            
         });
 
         return redirect(route('dropouts.index'));
+    }
+
+    public function edit($dropout)
+    {
+ 
+         if( $dropout->approved == false )
+         {
+             $dropout->update([
+                 'approved' => true
+             ]);
+         }
+ 
+         return redirect(route('dropouts.index'));
+ 
+    }
+    public function update()
+    {
     }
     
     /**
