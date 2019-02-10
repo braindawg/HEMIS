@@ -8,10 +8,8 @@ use App\Traits\Downloadble;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Foundation\Auth\Teacher as Authenticatable;
 
-
-class Student extends Authenticatable
+class Student extends Model
 {
     use SoftDeletes, UseByUniversity, UseByDepartment, Downloadble;
 
