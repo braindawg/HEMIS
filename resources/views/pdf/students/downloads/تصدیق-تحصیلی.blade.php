@@ -88,7 +88,7 @@
 				<hr>
 				<td style="text-align:center;width:33%;vertical-align:top;">
 					<img src="{{ asset('img/wezarat-logo.jpg') }}"  style="max-width: 80px"/>
-					<p style="margin-top:5px;font-size: 14px">د لوړو زده کړو وزارت</p>				
+					<p style="margin-top:5px;font-size: 14px">{{trans('general.ministry_title')}}</p>				
 					<p style="margin-top:5px;">پوهنتون {{ $student->university->name }}</p>
 					<p style="margin-top:5px;">دیپارتمنت : {{ $student->department->name }}</p>				
 				</td>	
@@ -102,8 +102,8 @@
 		<br>
 		<br>
 		<p style="text-align: justify">	 	
-		بدینوسیله تصدیق می شود اینکه محترم {{ $student->name }} فرزند {{ $student->father_name }} دارای ای دی نمبر
-	 	{{ $student->form_no }} محصل سمستر {{$request->semister}}  پوهنتون {{ $student->university->name }}  رشته {{ $student->department->name }} این پوهنتون بوده و در سمستر جاری مشغول تحصیل می باشد.
+		{{trans('general.this_will_be_varified')}} {{ $student->name }} فرزند {{ $student->father_name }} {{trans('general.having_of_id_number')}}
+	 	{{ $student->form_no }}  {{trans('general.student_of_semister')}} {{$request->semister}}  پوهنتون {{ $student->university->name }}  {{trans('general.feild')}} {{ $student->department->name }} {{trans('general.current_university_and_department')}}.
 	</p>
 		<br>
 	<h3 style="text-align:center">مصطفی نوری <br/>آمر امور محصلان</h3>

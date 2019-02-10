@@ -4,7 +4,7 @@
     <div class="portlet box">        
         <div class="portlet-body">
             <!-- BEGIN FORM-->            
-             {!! Form::model($student, ['route' => ['student.generate_form', $student], 'method' => 'POST', 'class' => 'form-horizontal']) !!}                 
+             {!! Form::model($student, ['route' => ['student.generate-form', $student], 'method' => 'POST', 'class' => 'form-horizontal']) !!}                 
             
                 <div class="form-body" id="app">
                     <div class="row">

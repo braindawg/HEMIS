@@ -1,13 +1,14 @@
 <?php
 
 namespace App\Models;
-
+use App\Traits\Downloadble;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Transfer extends Model
 {
+    use Downloadble;
     protected $guarded = [];
 
     public function fromDepartment()

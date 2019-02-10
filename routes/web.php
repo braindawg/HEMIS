@@ -60,11 +60,11 @@ Route::group(['middleware' => 'auth'], function() {
         Route::resource('/leaves', 'LeavesController', ['parameters' => [
             'leaves' => 'leave'
         ]]);
-        Route::get('leaves/{leave}/end_leave' , 'EndLeaveController@index')->name('leaves.end_leave');
+        Route::get('leaves/{leave}/end-leave' , 'EndLeaveController@index')->name('leaves.end_leave');
 
         //students forms
-        Route::get('students/{student}/student_form' , 'StudentFormsController@index')->name('student.form');
-        Route::post('students/{student}/generate_form' , 'StudentFormsController@generateForm')->name('student.generate_form');
+        Route::get('students/{student}/student-form' , 'StudentFormsController@index')->name('student.form');
+        Route::post('students/{student}/generate-form' , 'StudentFormsController@generateForm')->name('student.generate-form');
         
 
         

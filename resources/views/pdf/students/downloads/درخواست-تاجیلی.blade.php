@@ -85,7 +85,7 @@
 				</td>		
 				<td style="text-align:center;width:33%;vertical-align:top;">
 					<img src="{{ asset('img/wezarat-logo.jpg') }}"  style="max-width: 80px"/>
-					<p style="margin-top:5px;font-size: 14px">د لوړو زده کړو وزارت</p>				
+					<p style="margin-top:5px;font-size: 14px">{{trans('general.ministry_title')}}</p>				
 					<p style="margin-top:5px;">پوهنتون {{ $student->university->name }}</p>
 					<p style="margin-top:5px;">دیپارتمنت : {{ $student->department->name }}</p>				
 				</td>	
@@ -97,7 +97,7 @@
 		<table class="table" style="margin-top: 20px">
 			<tr>
                  <td>
-                     بریاست محترم پوهنتون {{$student->university->name}}!
+                     {{trans('general.to_universityـofficial')}} {{$student->university->name}}!
                 </td>
                 <br>
                 <br>
@@ -106,30 +106,30 @@
 				<td style="padding: 0">
 					<table class="table inner-table">
 						<tr>
-							<td class="bg-grey" style = "width:200px">نوم / نام</td>
+							<td class="bg-grey" style = "width:200px">{{trans('general.name')}}</td>
 							<td>{{ $student->getFullNameAttribute() }}</td>
 						</tr>
                         <tr>
-							<td class="bg-grey">دپلار نوم /  نام پدر</td>
+							<td class="bg-grey">{{trans('general.father_name')}}</td>
 							<td>{{ $student->father_name }}</td>
 						</tr><tr>
-							<td class="bg-grey">دکانکور ایدی / ایدی کانکور</td>
+							<td class="bg-grey">{{trans('general.kankor_id')}}</td>
 							<td>{{ $student->form_no }}</td>
 						</tr><tr>
-							<td class="bg-grey">کانکور نمری / نمره کانکور</td>
+							<td class="bg-grey">{{trans('general.kankor_score')}}</td>
 							<td>{{ $student->kankor_score }}</td>
 						</tr><tr>
-							<td class="bg-grey">پوهنزی دیپارتمنت </td>
-							<td>{{ $student->kankoor_result }}</td>
+							<td class="bg-grey">{{trans('general.feild')}} </td>
+							<td>{{ $student->kankor_result }}</td>
 						</tr><tr>
-							<td class="bg-grey">شمولیت کال / سال شمول</td>
+							<td class="bg-grey">{{trans('general.kankor_year')}}</td>
 							<td>{{ $student->kankor_year }}</td>
 						</tr><tr>
-							<td class="bg-grey"> سمستر</td>
+							<td class="bg-grey"> {{trans('general.semister')}}</td>
 							<td> {{ $request->semister }}</td>
 						</tr><tr>
-							<td class="bg-grey" > تاجیل دلیل/ دلیل تاجیل</td>
-							<td></td>
+							<td class="bg-grey" >  {{trans('general.reason_of_leave')}} </td>
+							<td></td><br><br>
 						</tr>
 					</table>
 				</td>
@@ -139,14 +139,14 @@
 					<table class="table inner-table borderless" style >
 						<tr>
 							<td style= " padding-top: 0px; border:none ; padding-right:10px" >                                                                                                                                               
-								<p>آنچه در فورم ثبت شده ضمیمه  با یک ورق کاپی  تذکره  تابعیت ام صحت دارد .</p>
+								<p>	{{trans('general.student_aknowledgment_to_form')}} .</p>
 							</td><br>
 						</tr>
 						<tr>
-							<td class= "center" style= "border:none ;" ><p>با احترام</p></td>
+							<td class= "center" style= "border:none ;" ><p>{{trans('general.with_respect')}}</p></td>
 						</tr>
 						<tr>
-							<td style= "border:none ; padding-right:20px"><p> دمحصل نوم / اسم محصل :&nbsp; {{$student->getFullNameAttribute()}} &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; امضاّ  :&nbsp;<span>...................<span> &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span> تاریخ : {{jalaliDate()}}</span></p></td><br>
+							<td style= "border:none ; padding-right:20px"><p> {{trans('general.student_name')}} :&nbsp; {{$student->getFullNameAttribute()}} &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; امضاّ  :&nbsp;<span>...................<span> &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span> {{trans('general.date')}} : {{jalaliDate()}}</span></p></td><br>
 						</tr>
 					</table>
 				</td>
@@ -156,14 +156,14 @@
 					<table class="table inner-table borderless" style >
 						<tr>
 							<td style= " padding-top: 0px; border:none ; padding-right:10px" >                                                                                                                                               
-								<p>بریاست محترم پوهنځی: {{$student->department->name}} !</p>
+								<p>{{trans('general.to_facultyـofficial')}}: {{$student->department->name}} !</p>
 							</td>
 						</tr>
 						<tr>
-							<td  style= "border:none ; padding-right:10px" ><p>بملاحظه اسناد ازسوابق وصورت حاضری درخواست کننده معلومات ارایه ودرامور اخذ تاجیل آن ابراز نظر نماید .  با احترام</p></td><br>
+							<td  style= "border:none ; padding-right:10px" ><p>{{trans('general.student_afair_request_to_faculty')}}. &nbsp;&nbsp;{{trans('general.with_respect')}}</p></td><br>
 						</tr>
 						<tr>
-							<td style= "border:none ; padding-right:20px"><p> دمحصلانو عامر  / عامر محصلان :&nbsp; {{$student->getFullNameAttribute()}} &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; امضاّ  :&nbsp;<span>...................<span> &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span> تاریخ : {{jalaliDate()}}</span></p></td><br>
+							<td style= "border:none ; padding-right:20px"><p> {{trans('general.student_affair_name')}} :&nbsp; {{$student->getFullNameAttribute()}} &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; امضاّ  :&nbsp;<span>...................<span> &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span> {{trans('general.date')}} : /&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/</span></p></td><br>
 						</tr>
 					</table>
 				</td>
@@ -173,16 +173,16 @@
 					<table class="table inner-table borderless"  >
 						<tr>
 							<td style= " padding-top: 0px; border:none ; padding-right:10px" >                                                                                                                                               
-								<p>مدیریت تدیریسی درمورد برویت اسناد خویش معلومات ارائه دارید.  </p>
+								<p> {{trans('general.faculty_request_to_department')}}  </p>
 							</td><br>
 						</tr>
 						<tr>
 							<td  style= "border:none ; padding-right:10px" ><p></p><br><br><br></td>
 						</tr>
 						<tr>
-							<td style= "border:none ; padding-right:20px"><p>   پوهنزی ریس  /  ریس پوهنزی :&nbsp; {{$student->getFullNameAttribute()}} &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; امضاّ  :&nbsp;<span>...................<span> &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span> تاریخ : {{jalaliDate()}}</span></p></td><br><br>
+							<td style= "border:none ; padding-right:20px"><p>   {{trans('general.faculty_chairman_name_sign')}}:&nbsp; {{$student->getFullNameAttribute()}} &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; امضاّ  :&nbsp;<span>...................<span> &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>{{trans('general.date')}} : /&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/</span></p></td><br><br>
 						</tr> <tr>
-							<td style= "border:none ; padding-right:20px"><p>     تدریسی مدیر  /  مدیر تدریسی :&nbsp; {{$student->getFullNameAttribute()}} &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; امضاّ  :&nbsp;<span>...................<span> &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span> تاریخ : {{jalaliDate()}}</span></p></td><br>
+							<td style= "border:none ; padding-right:20px"><p>    {{trans('general.faculty_affair_re_name_sign')}} :&nbsp; {{$student->getFullNameAttribute()}} &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; امضاّ  :&nbsp;<span>...................<span> &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>{{trans('general.date')}} : /&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/</span></p></td><br>
 						</tr>
 					</table>
 				</td>
@@ -192,11 +192,11 @@
 					<table class="table inner-table borderless"  >
 						<tr>
 							<td style= " padding-top: 0px; border:none ; padding-right:10px" >                                                                                                                                               
-								<p>منظوری ریاست موسسه تحصیلی :  </p>
+								<p>{{trans('general.university_confirmation')}} :  </p>
 							</td><br>
 						</tr>
 						<tr>
-							<td style= "border:none ; padding-right:20px"><p> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; امضاّ  :&nbsp;<span>...................<span> &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span> تاریخ : {{jalaliDate()}}</span></p></td>
+							<td style= "border:none ; padding-right:20px"><p> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; امضاّ  :&nbsp;<span>...................<span> &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span> {{trans('general.date')}} : /&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/ </span></p></td>
 						</tr>
 					</table>
 				</td>

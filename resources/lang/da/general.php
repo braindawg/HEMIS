@@ -270,6 +270,7 @@ return [
     'semister' => ' سمستر',
     'approved_leave' => ' تاید تاجیل',
     'approved_dropout' => ' تاید منفکی',
+    'approved_transfer' => ' تاید تبدیلی',
 
 
 
@@ -300,7 +301,7 @@ return [
     'faculty_chairman_name_sign_only' => 'اسم وامضا ریسی پوهنځی ',
     'final_decision_of_board' => ' فیصله نهایی کمیسون تبدیلی ها ',
     'member_of_decision_board' => ' عضو کمیسون ',
-    'transfer_confirmation' => '  ملاحظه شد مقام ریاست پوهنتون/ موسسه تحصلات عالی ',
+    'university_confirmation' => '  ملاحظه شد مقام ریاست پوهنتون/ موسسه تحصلات عالی ',
     'sign_stamp_date' => '  مهر تاریخ وامضا ',
 
     //disclaimer
@@ -331,6 +332,26 @@ return [
     'does_student_enro' => '  ثبت نام نموده یا خیر',
     'reason_of_difference' => 'دلیل انفکاک موقت',
     'reinvo_confirmation' => '  هدایت مقام ریاست پوهنتون/ موسسه تحصلات عالی در زمینه: ',
+
+    //student varified form
+    'this_will_be_varified' => 'بدینوسیله تصدیق می شود اینکه محترم',
+    'having_of_id_number' => 'دارای ای دی نمبر',
+    'student_of_semister' => '  محصل سمستر ',
+    'feild' => 'رشته ',
+    'current_university_and_department' => 'این پوهنتون بوده و در سمستر جاری مشغول تحصیل می باشد ',
+
+    //student_leave_form
+    'reason_of_leave' => 'دلیل تاجیل',
+    'student_aknowledgment_to_form' => 'آنچه در فورم ثبت شده ضمیمه  با یک ورق کاپی  تذکره  تابعیت ام صحت دارد',
+    'date' => 'تاریخ ',
+    'student_afair_request_to_faculty' => ' بملاحظه اسناد سوابق وصورت حاضری درخواست کننده معلومات ارایه نماید ',
+    'faculty_request_to_department' => ' مدیریت تدیریسی درمورد برویت اسناد خویش معلومات ارائه دارید  ',
+    //student_dropout_form
+    'dropout_form' => 'فورم درخواست برای منفکی',
+    'reason_of_dropout' => 'دلیل انفکاک از پوهنځی',
+    'student_varification_statment_to_form_data' => 'هـــــــــــــرگاه میان نوشتۂ من در فورم اختلاف ظاهر گـــــــــــــــــــــردد، خود مسۇول آن میباشم . ',
+
+
 
 
 

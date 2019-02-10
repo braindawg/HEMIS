@@ -4,7 +4,7 @@
     <div class="portlet box">        
         <div class="portlet-body">
             <!-- BEGIN FORM-->            
-            {!! Form::open(['route' => 'transfers.store', 'method' => 'post', 'class' => 'form-horizontal']) !!}            
+            {!! Form::open(['route' => 'transfers.store', 'method' => 'post', 'class' => 'form-horizontal', 'target => 'new]) !!}            
                 <div class="form-body" id="app">
                     <div class="row">
                         <div class="col-md-6 col-md-offset-1">
@@ -17,6 +17,21 @@
                                             <strong>{{ $errors->first('student_id') }}</strong>
                                         </span>
                                     @endif                                                                                                   
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 col-md-offset-1">
+                            <div class="form-group {{ $errors->has('semister') ? ' has-error' : '' }}">
+                                {!! Form::label('semister', trans('general.semister'), ['class' => 'control-label col-sm-3']) !!}
+                                <div class="col-sm-9">
+                                    {!! Form::number('semister', null, ['class' => 'form-control', 'min' => '1', 'max' => "8"]) !!}
+                                    @if ($errors->has('semister'))
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('semister') }}</strong>
+                                        </span>
+                                    @endif
                                 </div>
                             </div>
                         </div>

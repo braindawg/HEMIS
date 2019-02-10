@@ -329,7 +329,7 @@
 				</td>
 			</tr>
 		</table>
-		<p>{{trans('general.transfer_confirmation')}}:</p>
+		<p>{{trans('general.university_confirmation')}}:</p>
 		<p>  {{trans('general.sign_stamp_date')}}    :&nbsp; ...........................   &nbsp;<span>...................<span> &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span> تاریخ : / &nbsp;&nbsp;&nbsp;&nbsp;/ &nbsp;&nbsp;&nbsp;&nbsp;/</span></p>
 
     </div>	

@@ -66,19 +66,47 @@ class TransfersController extends Controller
             
             $transfer = Transfer::create([
                 'student_id' => $request->student_id,
+                'semister' => $request->semister,
                 'from_department_id' => $student->department_id, //from studetn existing department
                 'to_department_id' => $request->department_id, //to requested department  
                 'note' => $request->note
             ]);
 
-            $student->update([
-                'university_id' => $request->university_id,
-                'department_id' => $request->department_id
-            ]);
+            //will update after transfer-admin approve
+            // $student->update([
+            //     'university_id' => $request->university_id,
+            //     'department_id' => $request->department_id
+            // ]);
+
+            $transfer->download($student , 'درخواست-تبدیلی', $request);
+
         });
 
         return redirect(route('transfers.index'));
     }
+
+
+    public function edit($transfer)
+    {
+ 
+         if( $transfer->approved == false )
+         {
+             $transfer->update([
+                 'approved' => true
+             ]);
+         }
+
+         $student = Student::find($transfer->student_id);
+
+            $student->update([
+                'university_id' => $transfer->university_id,
+                'department_id' => $transfer->department_id
+            ]);
+ 
+         return redirect(route('transfers.index'));
+ 
+    }
+
     
     /**
      * Remove the specified resource from storage.
