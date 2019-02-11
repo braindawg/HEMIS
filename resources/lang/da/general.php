@@ -112,6 +112,7 @@ return [
     'relatives' => 'اقارب',
     
     'student_address' => 'سکونت محصل',
+    'student_addressـinformation' => ' معلومات درباره سکونت اصلی وفعلی محصل',
     'address' => 'سکونت',
     'address_2' => 'نمبر خانه و کوچه',
     'province' => 'ولایت',
@@ -299,7 +300,7 @@ return [
     'transfer_to_deparment_approve_request' => 'لطفا در مورد جذب محصل مذکور نظر موافقه وعدم موافقه ابراز نظر نماید.  ',
     'faculty_opinion' => '  نظر پوهنځی ',
     'faculty_chairman_name_sign_only' => 'اسم وامضا ریسی پوهنځی ',
-    'final_decision_of_board' => ' فیصله نهایی کمیسون تبدیلی ها ',
+    'final_decision_of_board' => ' فیصله نهایی کمیسون   ',
     'member_of_decision_board' => ' عضو کمیسون ',
     'university_confirmation' => '  ملاحظه شد مقام ریاست پوهنتون/ موسسه تحصلات عالی ',
     'sign_stamp_date' => '  مهر تاریخ وامضا ',
@@ -351,6 +352,32 @@ return [
     'reason_of_dropout' => 'دلیل انفکاک از پوهنځی',
     'student_varification_statment_to_form_data' => 'هـــــــــــــرگاه میان نوشتۂ من در فورم اختلاف ظاهر گـــــــــــــــــــــردد، خود مسۇول آن میباشم . ',
 
+    //hostel_request_form
+    'hostel_form' => 'قورم درخواست شمولیت به لیلیه',
+    'student_current_location' => 'سکونت فعلی',
+    'student_resi_location' => 'سکونت اصلی',
+    'street_home_number' => ' نمبر خانه و کوچه',
+    'village' => '   گذر ',
+    'district' => ' ولسوالی',
+    'location' => ' محصل',
+    'student_study_location' => ' محل تحصیل محصل',
+    'grade10' => 'صنف ده',
+    'grade11' => 'صنف یازده',
+    'grade12' => 'صنف دوازده',
+    'student_father_job_and_job_location' => ' وظیفه ومحل وظیفه پدر محصل',
+    'student_wealth' => 'دارای محصل ',
+    'student_father_wealth' => 'دارای ولی محصل ',
+    'student_husband_wife_wealth' => 'دارای شوهر/خانم محصل ',
+    'student_obligation_for_hostel' => 'تعهد نامه ودرخواست شمولیت به لیلیه پوهنتون ',
+    'student_obligation_statment_for_hostel' => 'انجه در فورم شمولیت لیلیه ثبت شده صحت دارد. هـــــــــــــرگاه میان نوشته من در فورم ثـــــــــــــــبت دارائی و دیگر اسناد رسمی اختلاف ظاهر گـــــــــــــــــــــردد. خود را سزاوار ، اخراج از لیلیه دانسته و پرداخت همه مصارف لیلیه را متقبل میشوم. ',
+    'student_obligation_final_statment_for_hostel' => 'بنآ خواهش میکنم که جهت اعاشه و اباته به مدیریت لیلیه معرفی گردم . ',
+    'faculty_aknowledgment_for_student' => 'تصدیق پوهنځی مربوطه از صورت ثبت نام محصل ', 
+    'student_enrollment' => 'از شمولیت محصل فوق الذکر در گروپ ', 
+    'clarify' => 'تصدیق مینمایم ', 
+    'and' => ' و ', 
+
+    
+    
 
 
 
