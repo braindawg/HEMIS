@@ -11,7 +11,7 @@ class LoginController extends Controller
     use AuthenticatesUsers;
 
     protected $guard = 'teacher';
-    protected $redirectTo = '/teacher';
+    protected $redirectTo = '/teacher/noticeboard';
 
     public function __construct()
     {

@@ -1,6 +1,7 @@
 <ul class="page-sidebar-menu   " data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200">
+    
     <li class="nav-item start {{ request()->is('noticeboard') ? 'active' : '' }}">
-        <a href="{{ route('noticeboard') }}" class="nav-link nav-toggle">
+        <a href="{{ auth('user')->check() ? route('noticeboard') : (auth('teacher')->check() ? route('teacher.noticeboard.index') : '') }}" class="nav-link nav-toggle">
             <i class="icon-list"></i>
             <span class="title">{{ trans('general.noticeboard') }}</span>         
         </a>       
@@ -323,17 +324,8 @@
     @endcan
     @endif
 
-    @if(auth('teacher')->check())
     <li class="nav-item start {{ request()->is('support') ? 'active' : '' }}">
-        <a href="{{ route('support') }}" class="nav-link nav-toggle">
-            <i class="icon-earphones-alt"></i>            
-            <span class="title">Teacher {{ trans('general.courses') }}</span>         
-        </a>       
-    </li>
-    @endif
-      <!-- end activity log -->
-    <li class="nav-item start {{ request()->is('support') ? 'active' : '' }}">
-        <a href="{{ route('support') }}" class="nav-link nav-toggle">
+        <a href="{{ auth('user')->check() ? route('support') : (auth('teacher')->check() ? route('teacher.support') : '') }}" class="nav-link nav-toggle">
             <i class="icon-earphones-alt"></i>            
             <span class="title">{{ trans('general.support') }}</span>         
         </a>       

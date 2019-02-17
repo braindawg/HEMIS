@@ -14,7 +14,7 @@ class AddPasswordToTeachersTable extends Migration
     public function up()
     {
         Schema::table('teachers', function (Blueprint $table) {
-            $table->string('password')->after('department_id');
+           // $table->string('password')->after('department_id');
             $table->rememberToken()->after('password');
         });
     }

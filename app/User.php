@@ -65,9 +65,9 @@ class User extends Authenticatable
         return $this->university_id == -1;
     }
 
-    public function noticeboardView()
+    public function noticeboardVisits()
     {
-        return $this->hasMany(\App\Models\NoticeboardView::class);
+        return $this->morphMany(\App\Models\NoticeboardVisit::class, 'visitable');
     }
 
     public function isDeveloper()

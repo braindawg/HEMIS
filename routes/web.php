@@ -20,6 +20,7 @@ Route::group(['middleware' => 'auth'], function() {
     });
     
     Route::get('home/{kankor_year?}', 'HomeController@index')->name('home');
+    
     Route::get('/support', function () {
         return view('support', [
             'title' => trans('general.support')
@@ -57,10 +58,6 @@ Route::group(['middleware' => 'auth'], function() {
         //students forms
         Route::get('students/{student}/student-form' , 'StudentFormsController@index')->name('student.form');
         Route::post('students/{student}/generate-form' , 'StudentFormsController@generateForm')->name('student.generate-form');
-        
-
-        
-
     });
 
     Route::group(['namespace' => 'Universities'], function() {
@@ -72,6 +69,7 @@ Route::group(['middleware' => 'auth'], function() {
         Route::get('/noticeboard','NoticeBoardController@show')->name('noticeboard');
         Route::resource('/announcements', 'AnnouncementController');
     });
+    
     Route::group(['namespace' => 'Issue'], function() {
         Route::get('/issue-show/{issue}','CommentsController@show')->name('issue-show');
         Route::get('/store-comment','CommentsController@store')->name('store-comment');
@@ -106,10 +104,8 @@ Route::group(['middleware' => 'auth'], function() {
     });
 
     Route::group(['namespace' => 'Teachers'], function(){
-
         Route::resource('/teachers', 'TeachersController');
     });
-
 
     Route::post('/cityupdate', 'HomeController@updateData');
     Route::post('/universityupdate', 'HomeController@updateData');
