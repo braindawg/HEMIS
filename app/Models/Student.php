@@ -79,4 +79,9 @@ class Student extends Model
     {
         return $this->hasOne(Score::class);//->where('course_id', $courseId)
     }
+
+    public function group()
+    {
+        return $this->belongsTo(Group::class);
+    }
 }

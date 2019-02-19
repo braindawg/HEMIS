@@ -93,14 +93,14 @@ Route::group(['middleware' => 'auth'], function() {
         Route::post('courses/{course}/add-student', 'AttendanceController@addStudent')->name('attendance.student.add');
         Route::delete('courses/{course}/remove-student', 'AttendanceController@removeStudent')->name('attendance.student.remove'); 
         
-        Route::post('courses/{course}/store-scores', 'ScoresController')->name('scores.store');
-        Route::post('courses/{course}/store-coursetime','CourseTimeController@store')->name('coursetime.store');
-        Route::get('courses/{coursetime}/delete-coursetime', 'CourseTimeController@delete');
-        Route::get('courses/{coursetime}/edit-coursetime', 'CourseTimeController@edit');
-        Route::post('courses/{coursetime}/update-coursetime', 'CourseTimeController@update')->name('coursetime.update');
+        Route::post('courses/{course}/scores', 'ScoresController')->name('scores.store');
+
+        Route::post('courses/{course}/times','CourseTimeController@store')->name('course.time.store');        
+        Route::get('courses/{course}/times/{courseTime}/edit', 'CourseTimeController@edit')->name('course.time.edit');
+        Route::post('courses/{course}/times/{courseTime}', 'CourseTimeController@update')->name('course.time.update');
+        Route::delete('courses/{course}/times/{courseTime}', 'CourseTimeController@delete')->name('course.time.destroy');
 
         Route::resource('courses', 'CourseController');
-
     });
 
     Route::group(['namespace' => 'Teachers'], function(){

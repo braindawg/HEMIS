@@ -8,7 +8,8 @@
                 <div class="portlet box">
                     <div class="portlet-body">
                     <!-- BEGIN FORM-->
-                    {!! Form::model($course, ['route' => ['courses.update', $course], 'method' => 'patch', 'class' => 'form-horizontal', 'files' => true]) !!}
+                        {!! Form::model($course, ['route' => ['courses.update', $course], 'method' => 'patch', 'class' => 'form-horizontal', 'files' => true]) !!}
+                            {!! Form::hidden('university', $course->university_id) !!}
                             <div class="form-body" id="app">
                                 <div class="row">
                                     <div class="col-md-8">
@@ -24,14 +25,13 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                {!! Form::hidden('university', $course->university_id) !!}
+                                </div>       
                                 <div class="row">
                                     <div class="col-md-8">
                                         <div class="form-group {{ $errors->has('department') ? ' has-error' : '' }}">
                                             {!! Form::label('department', trans('general.department'), ['class' => 'control-label col-sm-2']) !!}
                                             <div class="col-sm-8">
-                                                {!! Form::select('department',$department, null, ['class' => 'form-control select2-ajax' , 'remote-url' => route('api.departments'), 'remote-param' => '[name="university"]'])  !!}
+                                                {!! Form::select('department', $department, null, ['class' => 'form-control select2-ajax' , 'remote-url' => route('api.departments'), 'remote-param' => '[name="university"]'])  !!}
                                                 @if ($errors->has('department'))
                                                     <span class="help-block">
                                                         <strong>{{ $errors->first('department') }}</strong>
@@ -41,7 +41,6 @@
                                         </div>
                                     </div>
                                 </div>
-
                                 <div class="row">
                                     <div class="col-md-8">
                                         <div class="form-group {{ $errors->has('year') ? ' has-error' : '' }}">
@@ -141,15 +140,14 @@
                                                 class="btn default">{{ trans('general.cancel') }}</a>
                                         </div>
                                     </div>
-                                </div>
-                                {!! Form::close() !!}
-                                </div>
+                                </div>                                
                             </div>
-                        </div>
+                        {!! Form::close() !!}
                     </div>
                 </div>
-            <!-- END PROFILE CONTENT -->
-
+            </div>
+        </div>
+        <!-- END PROFILE CONTENT -->
         <div class ="col-md-5">
             <div class="portlet">
                 <div class="portlet-title">
@@ -167,15 +165,24 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                @foreach ($course->courseTimes as $coursetime)
+                                @foreach ($course->courseTimes as $time)
                                     <tr>
-                                        <td> ساعت:  {{ $coursetime->time() }} اتاق {{ $coursetime->location }} </td>
-                                        <td> {{ $coursetime->day->day }} </td>
-                                        <td>
-                                        <a href="{{URL::to('courses/'.$coursetime->id .'/'. 'delete-coursetime')}}"  onClick="doConfirm()"  class="btn red btn-sm btn-outline sbold uppercase">
-                                                <i class="fa fa-trash"></i>  {{trans('general.delete')}} </a>
-                                        <a href="{{URL::to('courses/'.$coursetime->id .'/'. 'edit-coursetime')}}"  class="btn blue btn-sm btn-outline sbold uppercase">
-                                                <i class="fa fa-pencil"></i>  {{trans('general.edit')}} </a>
+                                        <td> 
+                                            ساعت:  {{ $time->time }} اتاق {{ $time->location }} 
+                                        </td>
+                                        <td> 
+                                            {{ $time->day ? $time->day->day : '' }} 
+                                        </td>
+                                        <td>                                        
+                                            <a href="{{ route('course.time.edit', [$course, $time]) }}"  class="btn blue btn-sm btn-outline sbold uppercase">
+                                                <i class="fa fa-pencil"></i>  {{trans('general.edit')}} 
+                                            </a>
+                                            <form action="{{ route('course.time.destroy', [$course, $time]) }}" method="post" style="display:inline">
+                                                <input type="hidden" name="_method" value="DELETE" />
+                                                <input type="hidden" name="_token" value="{{ csrf_token() }}" />
+                                                <button type="submit" style ="color:red" class="btn btn-link" onClick="doConfirm()"><i class="fa fa-trash" style="color:red"></i> {{ trans("general.delete") }}</button>
+                                            </form>
+                                        </td>
                                     </tr> 
                                 @endforeach                                        
                                 </tbody>
@@ -193,7 +200,7 @@
                     </div>
                     <hr>
                     <div class="portlet-body form">
-                    {!! Form::open(['route' => ['coursetime.store', $course], 'method' => 'post', 'class' => 'form-horizontal']) !!} 
+                    {!! Form::open(['route' => ['course.time.store', $course], 'method' => 'post', 'class' => 'form-horizontal']) !!} 
                      <div class="form-body" id="app">
                         <div class="row">
                             <div class="col-md-8 col-md-offset-1">
@@ -215,7 +222,7 @@
                                 <div class="form-group {{ $errors->has('time') ? ' has-error' : '' }}">
                                     {!! Form::label('time', trans('general.time'), ['class' => 'control-label col-sm-3']) !!}
                                     <div class="col-sm-9">
-                                        {!! Form::time('time', null, ['class' => 'form-control']) !!}
+                                        {!! Form::text('time', null, ['class' => 'form-control ltr']) !!}
                                         @if ($errors->has('time'))
                                             <span class="help-block">
                                                     <strong>{{ $errors->first('time') }}</strong>

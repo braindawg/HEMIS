@@ -20,9 +20,9 @@ class CourseTime extends Model
         return $this->belongsTo(Course::class);
     }
 
-    public function time()
-    {   
-        Carbon::setLocale('fa');
-        return  Carbon::parse($this->time)->diffForHumans();
-    }
+    // public function time()
+    // {   
+    //     Carbon::setLocale('fa');
+    //     return  Carbon::parse($this->time)->diffForHumans();
+    // }
 }

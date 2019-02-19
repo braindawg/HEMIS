@@ -1,79 +1,63 @@
 <?php
 
 namespace App\Http\Controllers\Course;
-use App\Http\Controllers\Controller;
+
+use App\Models\Day;
 use App\Models\Course;
 use App\Models\CourseTime;
-use App\Models\Day;
-
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class CourseTimeController extends Controller
 {
-    public function store(Request $request, $course){
-        
-       
+    
+    public function store(Request $request, $course)
+    {
         $validatedData = $request->validate([
-        
             'day' => 'required',
             'time' => 'required',
         ]);
 
-        
-        $coursetime = CourseTime::create([
+        $time = $course->times()->create([
             'time' => $request->time,
             'location' => $request->location,
-            'day_id' => $request->day,
-            'course_id' => $course->id,
+            'day_id' => $request->day
         ]);
         
-        if( $coursetime) {
-
-            return redirect()->back();
-
-        }
-
+        return redirect()->back();
     }
 
-    public function delete($courseTime){
-
-        $coursetime = CourseTime::find($courseTime)->delete();
-
-        if($courseTime){
-
-            return redirect()->back();
-        }
-    }
-
-    public function edit($courseTime){
-        
-        $coursetime = CourseTime::find($courseTime);
-
+    public function edit($course, $time)
+    {
         return view('course.course-time.edit', [
             'title' => trans('general.coursetime'),
             'description' => trans('general.edit_coursetime'),
-            'coursetime' => $coursetime,
+            'coursetime' => $time,
+            'course' => $course,
             'days' => Day::pluck('day','id'),   
         ]);
     }
 
-    public function update(Request $request, $courseTime){
-
+    public function update(Request $request, $course, $time)
+    {
         $validatedData = $request->validate([
-        
             'day' => 'required',
             'time' => 'required',
         ]);
-
-            
-        $coursetime = CourseTime::find($courseTime);
-
-        $coursetime->update([
+       
+        $time->update([
             'time' => $request->time,
-            'location' => $request->location,
             'day_id' => $request->day,
+            'location' => $request->location,
         ]);
 
-        return redirect(route('courses.edit', $coursetime->course));
+        return redirect(route('courses.edit', $course));
+    }
+
+    public function delete(Course $course, CourseTime $time)
+    {
+        $time->delete();
+
+        return redirect()->back();
     }
 }

@@ -14,9 +14,12 @@ Route::group(['middleware' => 'auth:teacher', 'as' => 'teacher.'], function() {
         ->only('index', 'show')
         ->parameters(['noticeboard' => 'announcement']);        
 
-        Route::get('support', function () {
-            return view('support', [
-                'title' => trans('general.support')
-            ]);
-        })->name('support');
+    Route::get('timetable/course', 'Timetable\CourseController')->name('timetable.course');
+        
+    Route::get('support', function () {
+        return view('support', [
+            'title' => trans('general.support')
+        ]);
+    })->name('support');
+
 });
