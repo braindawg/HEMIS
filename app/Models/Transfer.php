@@ -20,4 +20,11 @@ class Transfer extends Model
     {
         return $this->belongsTo(\App\Models\Student::class, 'student_id');
     }
+
+    public function toDepartment(){
+
+        return $this->belongsTo(\App\Models\department::class, 'to_department_id');
+    } 
+    
+    
 }

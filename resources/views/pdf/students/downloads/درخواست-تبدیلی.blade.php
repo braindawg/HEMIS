@@ -139,7 +139,7 @@
 							<td class="bg-grey"  >  {{trans('general.faculty')}}    </td>
 							<td>{{ $student->kankor_result }}</td>
 							<td class="bg-grey" >  {{trans('general.to_department_detailse')}}</td>
-							<td>{{ $request->year }}</td>
+							<td>پوهنتون : {{ $model->toDepartment->university->name }} دیپارتمنت {{ $model->toDepartment->name }}</td>
 						</tr>
 					</table>
 				</td>

@@ -4,7 +4,7 @@
     <div class="portlet box">        
         <div class="portlet-body">
             <!-- BEGIN FORM-->            
-            {!! Form::open(['route' => 'transfers.store', 'method' => 'post', 'class' => 'form-horizontal', 'target => 'new]) !!}            
+            {!! Form::open(['route' => 'transfers.store', 'method' => 'post', 'class' => 'form-horizontal', 'target' => 'new']) !!}            
                 <div class="form-body" id="app">
                     <div class="row">
                         <div class="col-md-6 col-md-offset-1">

@@ -71,7 +71,7 @@ class LeavesController extends Controller
             // $student->update([
             //     'status_id' => 4,
             // ]);
-            $leave->download($student , 'درخواست-تاجیلی', $request);
+            $leave->download($student , 'درخواست-تاجیلی', $request, $leave);
 
             
         });

@@ -71,7 +71,7 @@ class DropoutsController extends Controller
             //     'status_id' => 3,
             // ]);
 
-             $dropout->download($student , 'درخواست-منفکی', $request);
+             $dropout->download($student , 'درخواست-منفکی', $request, $dropout);
             
         });
 

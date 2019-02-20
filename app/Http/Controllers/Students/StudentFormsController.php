@@ -22,8 +22,8 @@ class StudentFormsController extends Controller
     	return view('students.student-forms', compact('student', 'files'));
     }
 
-    public function generateForm(Request $request , $student){
+    public function generateForm(Request $request , $student, $model = null){
         
-        $student->download($student , $request->file , $request);
+        $student->download($student , $request->file , $request, $model);
     }
 }

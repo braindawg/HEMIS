@@ -15,10 +15,10 @@ Trait Downloadble
     * @param  $file file
     * @return void
     */
-    public function download($student, $fileName, $request)
+    public function download($student, $fileName, $request, $model)
     {
-    //  dd($fileName);   
-        $pdf = PDF::loadView('pdf.students.downloads.'.$fileName, compact('student','request'), [], [            
+ 
+        $pdf = PDF::loadView('pdf.students.downloads.'.$fileName, compact('student','request','model'), [], [            
             'title' => implode(explode('-', $fileName), ' ')
         ]);
 

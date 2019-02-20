@@ -78,7 +78,7 @@ class TransfersController extends Controller
             //     'department_id' => $request->department_id
             // ]);
 
-            $transfer->download($student , 'درخواست-تبدیلی', $request);
+            $transfer->download($student , 'درخواست-تبدیلی', $request, $transfer);
 
         });
 
