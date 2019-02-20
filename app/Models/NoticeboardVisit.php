@@ -5,21 +5,27 @@ namespace App\Models;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
-class NoticeboardView extends Model
+class NoticeboardVisit extends Model
 {
-    protected $table ='noticeboard_view';
-    protected $fillable =[
-        'user_id',
-        'announcement_id',
-          ];
+    protected $table ='noticeboard_visits';
+    
+    protected $guarded =[];
+
     public function announcement()
     {
         return $this->belongsTo(\App\Models\Announcement::class);
     }
+
+    public function visitable()
+    {
+        return $this->morphTo();
+    }
+
     public function user()
     {
-        return $this->belongsTo(\App\User::class);
+        return $this->visitable();
     }
+
     public function date()
     {
         Carbon::setLocale('fa');

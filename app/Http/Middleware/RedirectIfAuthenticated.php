@@ -19,16 +19,14 @@ class RedirectIfAuthenticated
     {
         switch ($guard) {
             case 'teacher':
-
                 if (Auth::guard($guard)->check()) {
-                    return redirect('/teacher');
+                    return redirect('/teacher/noticeboard');
                 }
                 break;
                 
-            default:
-            
+            default:            
                 if (Auth::guard($guard)->check()) {
-                    return redirect('/');
+                    return redirect('/noticeboard');
                 }
                 break;
         }

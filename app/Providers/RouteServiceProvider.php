@@ -24,11 +24,11 @@ class RouteServiceProvider extends ServiceProvider
     public function boot()
     {
         parent::boot();
-        Route::model('user', \App\User::class);
+        Route::model('user', \App\User::class);        
         Route::model('issue', \App\Models\Issue::class);
         Route::model('group', \App\Models\Group::class);
         Route::model('leave', \App\Models\Leave::class);
-        Route::model('course', \App\Models\Course::class);
+        Route::model('course', \App\Models\Course::class);        
         Route::model('dropout', \App\Models\Dropout::class);        
         Route::model('teacher', \App\Models\Teacher::class);
         Route::model('subject', \App\Models\Subject::class);
@@ -38,7 +38,8 @@ class RouteServiceProvider extends ServiceProvider
         Route::model('department', \App\Models\Department::class);
         Route::model('role', \Spatie\Permission\Models\Role::class);
         Route::model('announcement', \App\Models\Announcement::class);
-        Route::model('course', \App\Models\Course::class);
+        Route::model('courseTime', \App\Models\CourseTime::class);
+        
     }
 
     /**
@@ -88,7 +89,7 @@ class RouteServiceProvider extends ServiceProvider
     {
         Route::prefix('teacher')
              ->middleware('web')
-             ->namespace('App\Http\TeacherControllers')
+             ->namespace('App\Http\Controllers\Teacher')
              ->group(base_path('routes/teacher.php'));
     }
 }

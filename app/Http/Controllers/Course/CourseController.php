@@ -113,7 +113,7 @@ class CourseController extends Controller
      */
     public function edit($course)
     {
-        // dd($course->courseTimes->day);
+        
         return view('course.edit', [
             'title' => trans('general.courses'),
             'description' => trans('general.edit_course'),

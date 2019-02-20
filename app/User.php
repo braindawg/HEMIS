@@ -25,8 +25,6 @@ class User extends Authenticatable
         'rajabi@rubik.af', 
         'badruddin2014@gmail.com',
         'o_abdulbasit@yahoo.com',
-        'eng.sazeem@gmail.com',
-        'bahir_barak@hemis.edu.af',
     ];
 
     /**
@@ -67,9 +65,9 @@ class User extends Authenticatable
         return $this->university_id == -1;
     }
 
-    public function noticeboardView()
+    public function noticeboardVisits()
     {
-        return $this->hasMany(\App\Models\NoticeboardView::class);
+        return $this->morphMany(\App\Models\NoticeboardVisit::class, 'visitable');
     }
 
     public function isDeveloper()

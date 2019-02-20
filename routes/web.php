@@ -1,18 +1,10 @@
 <?php
 
 Route::get('/', function () {
-    //return redirect('/login');
+    return redirect('/login');
 });
 
 Auth::routes();
-
-// Route::get('teacher/login', 'Auth\TeacherLoginController@showLoginForm');
-// Route::post('teacher/login', 'Auth\TeacherLoginController@login')->name('teacher.login');
-
-// Route::get('teacher/', function () {
-//     dd(auth()->guard('teacher')->user());
-//     echo "Teacher Loged in!";
-// });
 
 Route::group(['middleware' => 'auth'], function() { 
 
@@ -28,6 +20,7 @@ Route::group(['middleware' => 'auth'], function() {
     });
     
     Route::get('home/{kankor_year?}', 'HomeController@index')->name('home');
+    
     Route::get('/support', function () {
         return view('support', [
             'title' => trans('general.support')
@@ -65,10 +58,6 @@ Route::group(['middleware' => 'auth'], function() {
         //students forms
         Route::get('students/{student}/student-form' , 'StudentFormsController@index')->name('student.form');
         Route::post('students/{student}/generate-form' , 'StudentFormsController@generateForm')->name('student.generate-form');
-        
-
-        
-
     });
 
     Route::group(['namespace' => 'Universities'], function() {
@@ -80,6 +69,7 @@ Route::group(['middleware' => 'auth'], function() {
         Route::get('/noticeboard','NoticeBoardController@show')->name('noticeboard');
         Route::resource('/announcements', 'AnnouncementController');
     });
+    
     Route::group(['namespace' => 'Issue'], function() {
         Route::get('/issue-show/{issue}','CommentsController@show')->name('issue-show');
         Route::get('/store-comment','CommentsController@store')->name('store-comment');
@@ -103,21 +93,19 @@ Route::group(['middleware' => 'auth'], function() {
         Route::post('courses/{course}/add-student', 'AttendanceController@addStudent')->name('attendance.student.add');
         Route::delete('courses/{course}/remove-student', 'AttendanceController@removeStudent')->name('attendance.student.remove'); 
         
-        Route::post('courses/{course}/store-scores', 'ScoresController')->name('scores.store');
-        Route::post('courses/{course}/store-coursetime','CourseTimeController@store')->name('coursetime.store');
-        Route::get('courses/{coursetime}/delete-coursetime', 'CourseTimeController@delete');
-        Route::get('courses/{coursetime}/edit-coursetime', 'CourseTimeController@edit');
-        Route::post('courses/{coursetime}/update-coursetime', 'CourseTimeController@update')->name('coursetime.update');
+        Route::post('courses/{course}/scores', 'ScoresController')->name('scores.store');
+
+        Route::post('courses/{course}/times','CourseTimeController@store')->name('course.time.store');        
+        Route::get('courses/{course}/times/{courseTime}/edit', 'CourseTimeController@edit')->name('course.time.edit');
+        Route::post('courses/{course}/times/{courseTime}', 'CourseTimeController@update')->name('course.time.update');
+        Route::delete('courses/{course}/times/{courseTime}', 'CourseTimeController@delete')->name('course.time.destroy');
 
         Route::resource('courses', 'CourseController');
-
     });
 
     Route::group(['namespace' => 'Teachers'], function(){
-
         Route::resource('/teachers', 'TeachersController');
     });
-
 
     Route::post('/cityupdate', 'HomeController@updateData');
     Route::post('/universityupdate', 'HomeController@updateData');

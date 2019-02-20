@@ -52,4 +52,9 @@ class Teacher extends Authenticatable
     {    
         return $this->belongsTo(\App\Models\Department::class);
     }
+
+    public function noticeboardVisits()
+    {
+        return $this->morphMany(\App\Models\NoticeboardVisit::class, 'visitable');
+    }
 }

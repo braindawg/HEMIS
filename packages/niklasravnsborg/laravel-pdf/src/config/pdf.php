@@ -13,7 +13,7 @@ return [
 	'margin_footer'         => 0,
 	'orientation'           => 'P',
 	'directionality'        => 'rtl',
-	'title'                 => 'سیب',
+	'title'                 => 'HEMIS',
 	'author'                => '',
 	'watermark'             => '',
 	'show_watermark'        => false,

@@ -48,15 +48,8 @@ class AnnouncementController extends Controller
         ]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-
-     public function show($announcement)
-     {
+    public function show($announcement)
+    {
         if (! $announcement->visited()) {
             $announcement->visit();
         }
@@ -65,7 +58,8 @@ class AnnouncementController extends Controller
             'title' => trans('general.noticeboard_description'),
             'announcement' => $announcement
         ]);
-     }
+    }
+
     public function store(Request $request)
     {
         $validatedData = $request->validate([

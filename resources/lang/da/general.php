@@ -359,7 +359,7 @@ return [
     'street_home_number' => ' نمبر خانه و کوچه',
     'village' => '   گذر ',
     'district' => ' ولسوالی',
-    'location' => ' محصل',
+    //'location' => ' محصل',
     'student_study_location' => ' محل تحصیل محصل',
     'grade10' => 'صنف ده',
     'grade11' => 'صنف یازده',
@@ -376,25 +376,8 @@ return [
     'clarify' => 'تصدیق مینمایم ', 
     'and' => ' و ', 
 
-    
-    
+    'timetable' => 'تقسیم اوقات', 
 
-
-
-
-
-
-
-    
-
-    
-    
-
-    
-
-    
-
-    
-
+    'none_schedule' => 'فاقد تایم', 
 
 ];

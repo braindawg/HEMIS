@@ -71,8 +71,7 @@ class TeachersController extends Controller
             'email' => 'required|email|unique:teachers',
             'university' =>'required',
             'academic_rank_id' =>'required',
-            'password' => 'required|confirmed'            
-
+            'password' => 'nullable'
         ]);
 
         $teacher = Teacher::create([
@@ -131,7 +130,7 @@ class TeachersController extends Controller
             'phone' => 'required',
             'email' => 'required|email',
             'university' =>'required',
-            'password' => 'nullable|confirmed'  
+            'password' => 'nullable'
         ]);
 
         $teacher->update([

@@ -20,7 +20,7 @@ class LoginController extends Controller
 
     use AuthenticatesUsers;
 
-    protected $guard = 'web';
+    protected $guard = 'user';
 
     /**
      * Where to redirect users after login.
@@ -47,5 +47,10 @@ class LoginController extends Controller
     protected function credentials($request)
     {
         return array_merge($request->only($this->username(), 'password'), ['active' => 1]);
+    }
+
+    protected function guard()
+    {
+        return auth()->guard($this->guard);
     }
 }

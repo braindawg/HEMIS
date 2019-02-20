@@ -60,4 +60,9 @@ class Course extends Model
     {
         return $this->hasMany(CourseTime::class);
     }
+
+    public function times()
+    {
+        return $this->hasMany(CourseTime::class);
+    }
 }

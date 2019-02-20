@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\TeacherControllers\Auth;
+namespace App\Http\Controllers\Teacher\Auth;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -11,7 +11,7 @@ class LoginController extends Controller
     use AuthenticatesUsers;
 
     protected $guard = 'teacher';
-    protected $redirectTo = '/teacher';
+    protected $redirectTo = '/teacher/noticeboard';
 
     public function __construct()
     {

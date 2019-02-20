@@ -1,7 +1,8 @@
 <?php
-use Illuminate\Support\Facades\Storage;
+
 use App\Models\Semester;
 use App\Models\Setting;
+use Illuminate\Support\Facades\Storage;
 
 function userPhoto($user, array $atributes = [])
 {
@@ -114,15 +115,7 @@ function jalaliDate($format = 'Y/m/j', $time = null, $persianNumber = false)
 
 function weekDays()
 {
-  return [
-      'sa' => trans('general.sa'),
-      'su' => trans('general.su'),
-      'mo' => trans('general.mo'),
-      'tu' => trans('general.tu'),
-      'we' => trans('general.we'),
-      'th' => trans('general.th'),
-      'fr' => trans('general.fr'),
-  ];
+  return \DB::table('days')->get();
 }
 
 function getGrades()
