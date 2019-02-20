@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use App\DataTables\CourseDataTable;
 use App\Http\Controllers\Controller;
+use DB;
 
 class CourseController extends Controller
 {
@@ -47,7 +48,7 @@ class CourseController extends Controller
             'title' => trans('general.courses'),
             'description' => trans('general.create_course'),
             'departments' => Department::pluck('name', 'id'),
-            'teachers' => Teacher::pluck('name', 'id'),
+            'teachers' => Teacher::select(DB::Raw('concat_ws(" ",name,last_name) as name'), 'id')->pluck('name','id'),
             'department' => old('department') != '' ? Department::where('id', old('department'))->pluck('name', 'id') : [],
             'subject' => old('subject') != '' ? Subject::where('id', old('subject'))->pluck('title', 'id') : [],
             'group' => old('group') != '' ? Group::where('id', old('group'))->pluck('name', 'id') : []
