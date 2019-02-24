@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
+use App\Traits\Downloadble;
 use App\Traits\UseByUniversity;
 use App\Traits\UseByDepartment;
-use App\Traits\Downloadble;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -73,11 +73,6 @@ class Student extends Model
     public function scores()
     {
         return $this->hasMany(Score::class);
-    }
-
-    public function score()
-    {
-        return $this->hasOne(Score::class);//->where('course_id', $courseId)
     }
 
     public function group()

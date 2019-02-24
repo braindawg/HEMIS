@@ -17,4 +17,9 @@ class Score extends Model
         
         return $total > 0 ? $total : '';
     }
+
+    public function scopeCourseId($query, $courseId)
+    {
+        return $query->where('course_id', $courseId);
+    }
 }

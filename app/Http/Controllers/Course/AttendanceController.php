@@ -17,8 +17,8 @@ class AttendanceController extends Controller
     public function list(Course $course)
     {
         $course = $course->with(['students' => function ($students) use ($course) {
-            $students->with(['score' => function ($scores) use ($course){
-                $scores->where('course_id', $course->id);            
+            $students->with(['scores' => function ($scores) use ($course){
+                $scores->courseId($course->id);
             }]);
         }])->where('courses.id' , $course->id)->first();
 

@@ -41,7 +41,10 @@
                     <th>{{ trans('general.delete') }}</th>
                     @endcan
                 </tr>
-                @foreach($course->students as $student)                    
+                @foreach($course->students as $student)
+                @php                    
+                    $score = $student->scores->first();
+                @endphp                  
                     <tr>
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $student->form_no }}</td>
@@ -49,25 +52,25 @@
                         <td>{{ $student->father_name }}</td>
                         <td>{{ $student->kankor_year }}</td>
                         <td>
-                            <input type="number" class="form-control score-input" name="scores[{{ $student->id }}][homework]" min="0" max="10" value="{{ $student->score->homework ?? ''  }}">
+                            <input type="number" class="form-control score-input" name="scores[{{ $student->id }}][homework]" min="0" max="10" value="{{ $score->homework ?? ''  }}">
                         </td>
                         <td>
-                            <input type="number" class="form-control score-input" name="scores[{{ $student->id }}][classwork]" min="0" max="10" value="{{ $student->score->classwork ?? ''  }}">
+                            <input type="number" class="form-control score-input" name="scores[{{ $student->id }}][classwork]" min="0" max="10" value="{{ $score->classwork ?? ''  }}">
                         </td>
                         <td>
-                            <input type="number" class="form-control score-input" name="scores[{{ $student->id }}][midterm]" min="0" max="20" value="{{ $student->score->midterm ?? ''  }}">
+                            <input type="number" class="form-control score-input" name="scores[{{ $student->id }}][midterm]" min="0" max="20" value="{{ $score->midterm ?? ''  }}">
                         </td>
                         <td>
-                            <input type="number" class="form-control score-input" name="scores[{{ $student->id }}][final]" min="0" max="60" value="{{ $student->score->final ?? ''  }}">
+                            <input type="number" class="form-control score-input" name="scores[{{ $student->id }}][final]" min="0" max="60" value="{{ $score->final ?? ''  }}">
                         </td>
                         <td style="vertical-align: middle">
-                            {{ $student->score->total ?? ''  }}
+                            {{ $score->total ?? ''  }}
                         </td>  
                         <td>
-                            <input type="number" class="form-control score-input" name="scores[{{ $student->id }}][chance_two]" min="0" max="100" value="{{ $student->score->chance_two ?? ''  }}">
+                            <input type="number" class="form-control score-input" name="scores[{{ $student->id }}][chance_two]" min="0" max="100" value="{{ $score->chance_two ?? ''  }}">
                         </td>
                         <td>
-                            <input type="number" class="form-control score-input" name="scores[{{ $student->id }}][chance_three]" min="0" max="100" value="{{ $student->score->chance_three ?? ''  }}">
+                            <input type="number" class="form-control score-input" name="scores[{{ $student->id }}][chance_three]" min="0" max="100" value="{{ $score->chance_three ?? ''  }}">
                         </td>
                         @can('edit-course')
                         <td>
