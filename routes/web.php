@@ -89,7 +89,7 @@ Route::group(['middleware' => 'auth'], function() {
        
         Route::get('courses/{course}/list', 'AttendanceController@list')->name('attendance.create');        
         Route::get('courses/{course}/attendance', 'AttendanceController@print')->name('course.attendance.print');
-        Route::get('courses/{course}/scores-sheet', 'ScoreSheetController@print')->name('course.scoresSheet.print');
+        Route::get('courses/{course}/scores-sheet/{withScores?}', 'ScoreSheetController@print')->name('course.scoresSheet.print');
         Route::post('courses/{course}/add-student', 'AttendanceController@addStudent')->name('attendance.student.add');
         Route::delete('courses/{course}/remove-student', 'AttendanceController@removeStudent')->name('attendance.student.remove'); 
         

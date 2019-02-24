@@ -16,16 +16,11 @@ class AttendanceController extends Controller
 
     public function list(Course $course)
     {
-        $course = $course->with(['students' => function ($students) use ($course) {
-            $students->with(['scores' => function ($scores) use ($course){
-                $scores->courseId($course->id);
-            }]);
-        }])->where('courses.id' , $course->id)->first();
-
+        $course->loadStudentsAndScores();
 
         return view('course.attendance.list', [
             'title' => trans('general.attendance'),
-            'description' => trans('general.create_attendance'),
+            'description' => trans('general.list'),
             'course' => $course,
             'department' => old('department') != '' ? Department::where('id', old('department'))->pluck('name', 'id') : []
         ]);

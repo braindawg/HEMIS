@@ -53,27 +53,6 @@
 			</table>
 		</htmlpageheader>
 
-		<htmlpagefooter name="myFooter" >
-			<p>قرارجدول فوق به تعداد (&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;) محصل شامل امتحان گردیده که ازجمله (&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;) محصل کامیاب و (&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;) ناکام میباشند.</p>
-			<table style="width: 80%;">
-				<tr>
-					<td>امضای  ممتحن:</td>
-					<td>امضای  ممیز:</td>
-					<td>امضای آمر دیپارتمنت:</td>		
-				</tr>
-			</table>
-			
-				
-			<br>
-			<p>
-			نوت: 
-			از اساتید محترم جداً خواهش میگردد تا شقه امتحان خویش را سه روز بعد از اخذ امتحان به اداره پوهنحی تسلیم نمایند.
-			 </p>
-
-			<p style="text-align: left">صفحه: {PAGENO}</p>
-			
-		</htmlpagefooter>
-
 		<table  class="table" >
 			<thead>
 				<tr>
@@ -125,7 +104,16 @@
 				</tr>
 			</thead>
 			<tbody>
+				@php
+					$passed = 0;
+				@endphp
+
 				@foreach($course->students as $student)
+				
+				@php
+					$score = $student->relationLoaded('scores') ? $score = $student->scores->first() : null;
+					$passed += $score->passed ?? 0;
+				@endphp
 					<tr>
 						<td>
 							{{ $loop->iteration }}
@@ -136,17 +124,46 @@
 						<td>
 							{{ $student->father_name }}
 						</td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>					
+						<td>
+							{{ $score->classwork ?? '' }}
+						</td>
+						<td>
+							{{ $score->homework ?? '' }}
+						</td>
+						<td>
+							{{ $score->midterm ?? '' }}
+						</td>
+						<td>
+							{{ $score->final ?? '' }}
+						</td>
+						<td>
+							{{ $score->total ?? '' }}
+						</td>					
 						<td>
 						</dt>											
 					</tr>    
 				@endforeach
-			</tbody>
-			
+			</tbody>			
 		</table>
+
+		<htmlpagefooter name="myFooter" >
+			<p>قرارجدول فوق به تعداد ({{ $course->students->count() }}) محصل شامل امتحان گردیده که ازجمله ({!! $passed > 0 ? $passed : "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" !!}) محصل کامیاب و ({!! $passed > 0 ? $course->students->count() - $passed : "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" !!}) ناکام میباشند.</p>
+			<table style="width: 80%;">
+				<tr>
+					<td>امضای  ممتحن:</td>
+					<td>امضای  ممیز:</td>
+					<td>امضای آمر دیپارتمنت:</td>		
+				</tr>
+			</table>
+			<br>
+			<p>
+			نوت: 
+			از اساتید محترم جداً خواهش میگردد تا شقه امتحان خویش را سه روز بعد از اخذ امتحان به اداره پوهنحی تسلیم نمایند.
+			 </p>
+
+			<p style="text-align: left">صفحه: {PAGENO}</p>
+			
+		</htmlpagefooter>
 	</body>
 </html>
+

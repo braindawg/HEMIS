@@ -65,4 +65,18 @@ class Course extends Model
     {
         return $this->hasMany(CourseTime::class);
     }
+
+    public function loadStudents()
+    {
+        return $this->load('students');
+    }
+
+    public function loadStudentsAndScores()
+    {
+        return $this->load(['students' => function ($students) {
+            $students->with(['scores' => function ($scores) {
+                $scores->courseId($this->id);
+            }]);
+        }]);
+    }
 }

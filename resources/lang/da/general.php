@@ -249,6 +249,7 @@ return [
     
     'print_attendance' => 'پرینت حاضری',
     'print_scores_sheet' => 'پرینت شقه',
+    'print_filled_scores_sheet' => 'پرینت شقه همراه نمرات',
 
     'unread_notifications' => '',
     'activity' => 'گراف فعالیت ها',

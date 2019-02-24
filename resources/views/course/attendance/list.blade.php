@@ -7,6 +7,7 @@
             <a href="{{ route('courses.index') }}" class="btn btn-default"><i class="icon-arrow-right"></i> {{ trans('general.back') }}</a>
             <a href="{{ route('course.attendance.print', $course ) }}" class="btn btn-default" target="new"><i class="fa fa-print"></i> {{ trans('general.print_attendance') }}</a>
             <a href="{{ route('course.scoresSheet.print', $course ) }}" class="btn btn-default" target="new"><i class="fa fa-print"></i> {{ trans('general.print_scores_sheet') }}</a>
+            <a href="{{ route('course.scoresSheet.print', [$course, 1]) }}" class="btn btn-default" target="new"><i class="fa fa-print"></i> {{ trans('general.print_filled_scores_sheet') }}</a>
 
             <div class="tools"> </div>
         </div>
