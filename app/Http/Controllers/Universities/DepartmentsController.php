@@ -57,10 +57,10 @@ class DepartmentsController extends Controller
     public function store(Request $request, $university)
     {
         $validatedData = $request->validate([            
-            'code' => [
+            /* 'code' => [
                 'required', 
                 Rule::unique('departments')->whereNull('deleted_at')
-            ],
+            ], */
             'name' => 'required',
             'faculty' => 'required',
         ]);
@@ -107,10 +107,10 @@ class DepartmentsController extends Controller
     public function update(Request $request, $university, $department)
     {
         $validatedData = $request->validate([
-            'code' => [
+            /* 'code' => [
                 'required', 
                 Rule::unique('departments')->ignore($department->id, '_id')->whereNull('deleted_at')
-            ],
+            ], */
             'name' => 'required',
             'faculty' => 'required',
         ]);

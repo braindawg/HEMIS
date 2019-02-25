@@ -6,7 +6,7 @@
             <!-- BEGIN FORM-->            
             {!! Form::model($department, ['route' => ['departments.update', $university, $department], 'method' => 'patch', 'class' => 'form-horizontal']) !!}            
                 <div class="form-body">
-                <div class="form-group {{ $errors->has('code') ? ' has-error' : '' }}">
+                    <!-- <div class="form-group {{ $errors->has('code') ? ' has-error' : '' }}">
                         {!! Form::label('code', trans('general.code'), ['class' => 'control-label col-sm-3']) !!}                                
                         <div class="col-sm-4">
                             {!! Form::text('code', null, ['class' => 'form-control ltr']) !!}
@@ -16,7 +16,7 @@
                                 </span>
                             @endif                                                                                                   
                         </div>
-                    </div>
+                    </div> -->
                     <div class="form-group {{ $errors->has('name') ? ' has-error' : '' }}">
                         {!! Form::label('name', trans('general.name'), ['class' => 'control-label col-sm-3']) !!}                                
                         <div class="col-sm-4">
