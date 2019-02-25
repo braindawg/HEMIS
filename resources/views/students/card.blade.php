@@ -47,7 +47,7 @@
 	</div>
 
 	<div style="float: right; clear: right; margin-right:73px; margin-top:6px; width: 150px;">
-		{{ $student->department->name ?? '' }}
+		{{ $student->department->faculty ?? '' }}
 	</div>
 
 	<div  style="float: right; clear: right; margin-right:73px; margin-top:5px; width: 150px;">
