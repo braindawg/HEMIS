@@ -47,7 +47,10 @@ class GroupsDataTable extends DataTable
      */
     public function query(Group $model)
     {
-        return $model->select('groups.*')->with(['university', 'department'])->withCount('students');
+        return $model->select('groups.*', 'universities.name as university', 'departments.name as deparmtent')
+            ->leftJoin('departments', 'departments.id', '=', 'department_id')
+            ->leftJoin('universities', 'universities.id', '=', 'groups.university_id')
+            ->withCount('students');
     }
 
     /**
@@ -74,11 +77,11 @@ class GroupsDataTable extends DataTable
         $columns = [            
             'name'     => ['name' => 'groups.name', 'title' => trans('general.name')],            
             'description' => ['title' => trans('general.description')],
-            'department.name' => ['name' => 'department.name', 'title' => trans('general.department')]
+            'department' => ['name' => 'departments.name', 'title' => trans('general.department')]
         ];
 
         if (auth()->user()->allUniversities()) {
-            $columns['university.name'] = ['name' => 'university.name', 'title' => trans('general.university')];
+            $columns['university'] = ['name' => 'universities.name', 'title' => trans('general.university')];
         }
 
         $columns['students_count'] = ['name' => 'students_count', 'title' => trans('general.students_count'), 'searchable' => false, 'orderable' => false];
