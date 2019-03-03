@@ -4,9 +4,10 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="panel panel-default">
+                    @if(0)
                     <div class="panel-heading clearfix">                                            
                         <div class="actions pull-right">
-                            @if(0)
+                            
                             <div class="btn-group">
                                 <a class="btn btn-primary dropdown-toggle btn-xs" data-toggle="dropdown" href="javascript:;" > {{ trans('general.old_semesters') }}: {{ \App\Models\Semester::find($semesterId)->title }}
                                     <i class="fa fa-angle-down"></i>
@@ -27,9 +28,10 @@
                                     @endforeach                                    
                                 </ul>
                             </div
-                            @endif
+                            
                         </div>               
                     </div>
+                    @endif
                     <div class="panel-body">                        
                        <table class="table">                    
                             <tr>                                

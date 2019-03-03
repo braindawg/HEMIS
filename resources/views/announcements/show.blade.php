@@ -40,13 +40,13 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @if($announcement->attachments()->count() > 0)
-                                    @foreach($announcement->attachments as $file)
-                                    <tr>
-                                        <td>{{$file->extension}}</td>
-                                        <td><a href="{{URL::to('download/'.$file->id)}}"><i class="fa fa-download"></i> {{trans('general.download')}} </a></td>
-                                    </tr>
-                                    @endforeach
+                                    @if($announcement->attachments()->exists())
+                                        @foreach($announcement->attachments as $file)
+                                        <tr>
+                                            <td>{{$file->extension}}</td>
+                                            <td><a href="{{URL::to('download/'.$file->id)}}"><i class="fa fa-download"></i> {{trans('general.download')}} </a></td>
+                                        </tr>
+                                        @endforeach
                                     @else
                                         <td>{{trans('general.file_not_attached')}}</td>
                                     @endif                                            
@@ -73,11 +73,11 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @if($announcement->visits()->count()>0)
+                                    @if($announcement->visits()->exists())
                                     @foreach($announcement->visits as $visit)
                                     <tr>
-                                        <td>{{$visit->user->name}}</td>
-                                        <td>{{$visit->date()}}</td>
+                                        <td>{{ $visit->user ? $visit->user->name : '' }}</td>
+                                        <td>{{ $visit->date() }}</td>
                                     </tr>
                                     @endforeach
                                     @else

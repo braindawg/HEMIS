@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class NoticeboardVisit extends Model
 {
     protected $table ='noticeboard_visits';
+    protected $primaryKey = 'id';
     
     protected $guarded =[];
 

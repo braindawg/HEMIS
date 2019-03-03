@@ -30,12 +30,12 @@ class Teacher extends Authenticatable
 
     public function teacherAcademic()
     {
-        return $this->belongsTo(\App\Models\TeacherAcademicRank::class, 'academic_rank_id');
+        return $this->belongsTo(TeacherAcademicRank::class, 'academic_rank_id');
     }
 
     public function province()
     {
-        return $this->belongsTo(\App\Models\Province::class, 'province');
+        return $this->belongsTo(Province::class, 'province');
     }
     
     public function getFullNameAttribute()
@@ -45,16 +45,16 @@ class Teacher extends Authenticatable
 
     public function courses()
     {
-        return $this->hasMany(\App\Models\Course::class);
+        return $this->hasMany(Course::class);
     }
 
     public function department()
     {    
-        return $this->belongsTo(\App\Models\Department::class);
+        return $this->belongsTo(Department::class);
     }
 
     public function noticeboardVisits()
     {
-        return $this->morphMany(\App\Models\NoticeboardVisit::class, 'visitable');
+        return $this->morphMany(NoticeboardVisit::class, 'visitable');
     }
 }

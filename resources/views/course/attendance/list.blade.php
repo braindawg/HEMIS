@@ -54,6 +54,10 @@
 @endpush
 
 @section('content')
+    <div class="alert alert-info">
+        <h4>اساتید گرامی!</h4>
+        <p>لطفا پس از وارد کردن نمره, کلید Enter را بزنید تا نمره ثبت سیستم شود.</p>
+    </div>
     <div class="portlet light bordered">
         <div class="portlet-title" style="border: 0">
 
