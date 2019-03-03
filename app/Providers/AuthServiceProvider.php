@@ -27,7 +27,7 @@ class AuthServiceProvider extends ServiceProvider
 
         //this will give developers full access to system
         Gate::before(function ($user, $ability) {
-            return $user->isDeveloper();
+            return is_a($user, \App\Models\User::class) and $user->isDeveloper();
         });
     }
 }

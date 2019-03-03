@@ -26,7 +26,7 @@ class DropoutsDataTable extends DataTable
                             <button type="submit" class="btn btn-xs btn-danger" onClick="doConfirm()" style="margin-top: 5px"><i class="fa fa-trash"></i></button>
                         </form>';
                 }      
-                if (auth()->user()->can('create-dropout') and $dropouts->approved == false ) {
+                if (auth()->user()->can('approve-dropout') and $dropouts->approved == false ) {
                     $html .='<a href="'.route('dropouts.edit', $dropouts).'" class="btn btn-xs btn-success" onClick="doConfirm()" style="margin-top: 5px" title = "'. trans('general.approved_dropout').' "><i class="fa fa-spinner"></i></a>'; 
                 }
                             

@@ -20,9 +20,6 @@
     <link href="{{ asset('css/all.css') }}" rel="stylesheet">
     <link href="{{ asset('css/summernote/dist/summernote.css')}}" rel="stylesheet" type="text/css" />
     <link rel="shortcut icon" href="favicon.ico" />
-
-
-
     @stack('styles')
     <style>
         .ltr {
@@ -127,7 +124,7 @@
     <script src="https://js.pusher.com/4.3/pusher.min.js"></script>
     <script>
         var BaseUrl = "{{ url('') }}"
-
+        
         var pusher = new Pusher("{{ env('PUSHER_APP_KEY') }}", {
             cluster: 'ap2',
             forceTLS: true,
@@ -149,6 +146,11 @@
     <script src="{{ asset('css/summernote/dist/summernote.js')}}"></script>
     <script>
  	    $(document).ready(function() {
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
  		$('#summernote').summernote({
  		    height: 200,  
  		    toolbar: [

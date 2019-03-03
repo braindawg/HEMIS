@@ -32,11 +32,7 @@ class CourseDataTable extends DataTable
 
                         if (auth()->user()->can('view-course')) {
                             $html .= '<li><a href="'. route('attendance.create', $course) .'"  target="new"> <i class="fa fa-list"></i> '. trans("general.list") .' </a></li>';    
-                        }
-
-                        if (auth()->user()->can('view-course')) {
-                            $html .= '<li><a href="'. route('courses.edit', $course) .'"  target="new"> <i class="fa fa-clock-o"></i> '. trans("general.time") .' </a></li>';    
-                        }
+                        }                       
 
                         if (auth()->user()->can('delete-course')) {
                             $html .= '<li><form action="'. route('courses.destroy', $course) .'" method="post" style="display:inline">

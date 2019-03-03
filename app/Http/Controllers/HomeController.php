@@ -26,7 +26,7 @@ class HomeController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index($kankorYear = null)
-    {
+    {        
         $kankorYear = $kankorYear ?? \App\Models\Student::max('kankor_year');
         
         $kankorYears = Student::select('kankor_year')->distinct()->orderBy('kankor_year', 'desc')->get();

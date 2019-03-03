@@ -26,7 +26,7 @@ class TransfersDataTable extends DataTable
                         <button type="submit" class="btn btn-xs btn-danger" onClick="doConfirm()" style="margin-top: 5px"><i class="fa fa-trash"></i></button>
                     </form>';
                 }
-                if (auth()->user()->can('delete-transfer') and $transfer->approved == false ) {
+                if (auth()->user()->can('approve-transfer') and $transfer->approved == false ) {
                     $html .='<a href="'.route('transfers.edit', $transfer).'" class="btn btn-xs btn-success" onClick="doConfirm()" style="margin-top: 5px" title = "'. trans('general.approved_transfer').' "><i class="fa fa-spinner"></i></a>'; 
                 }
 

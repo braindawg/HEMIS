@@ -74,7 +74,7 @@ return [
     'required_with'        => 'The :attribute field is required when :values is present.',
     'required_with_all'    => 'The :attribute field is required when :values is present.',
     'required_without'     => 'The :attribute field is required when :values is not present.',
-    'required_without_all' => 'The :attribute field is required when none of :values are present.',
+    'required_without_all' => 'فیلد :attribute الزامی است در صورتی که فیلد های  :values خالی باشد.',
     'same'                 => 'The :attribute and :other must match.',
     'size'                 => [
         'numeric' => 'The :attribute must be :size.',
@@ -127,6 +127,12 @@ return [
         'department' => 'دیپارتمنت',
         'father_name' => 'نام پدر',
         'university' => '‍‍‍پوهنتون',
+        'homework' => 'کار خانگی',
+        'classwork' => 'فعالیت صنفی',
+        'midterm' => 'وسط سمستر',
+        'final' => 'امتحان فاینل',
+        'chance_three' => 'چانس سه',
+        'chance_two' => 'چانس دو',
     ],
 
 ];

@@ -33,8 +33,8 @@
                     <div class="panel-body">                        
                        <table class="table">                    
                             <tr>                                
-                                <th style="width:80px">{{ trans('general.none_schedule') }}</th>                                
-                                <td>              
+                                <th style="width:80px; border: 0">{{ trans('general.none_schedule') }}</th>                                
+                                <td style="border: 0">              
                                     <div class="row">
                                         @foreach($unscheduledCourses as $key => $course)
                                         @continue(! $course)                                      
@@ -44,10 +44,9 @@
                                                     <?= $course->subject->title ?> 
                                                 </div>
                                                 <div class="panel-body">
-                                                    <p><span class="font-blue">{{ trans('general.code') }}:</span> <span class="ltr"> <?= $course->code ?></span></p>                                                                                                        
-                                                    <p><span class="font-blue">{{ trans('general.department') }}:</span> <?= $course->department ? $course->department->title : '' ?></p>
-                                                    <p><span class="font-blue">{{ trans('general.student_category') }}:</span> <?= $course->group ? $course->group->title : '' ?></p>
-                                                    <p><span class="font-blue">{{ trans('general.shift') }}:</span> <?= $course->shift ? $course->shift->title : '' ?></p>                                                   
+                                                    <p><span class="font-blue">{{ trans('general.code') }}:</span> <span class="ltr"> <?= $course->code ?></span></p>
+                                                    <p><span class="font-blue">{{ trans('general.department') }}:</span> <?= $course->department ? $course->department->name : '' ?></p>
+                                                    <p><span class="font-blue">{{ trans('general.group') }}:</span> <?= $course->group ? $course->group->name : '' ?></p>                                                    
                                                 </div>
                                             </div>
                                         </div>
@@ -70,10 +69,11 @@
                                                 </div>
                                                 <div class="panel-body">
                                                     <p><span class="font-blue">{{ trans('general.code') }}:</span> <span class="ltr"> <?= $time->course->code ?></span></p>                                                    
-                                                    <p><span class="font-blue">{{ trans('general.location') }}:</span> <?= $time->location ?></p>                                                    
+                                                    <p><span class="font-blue">{{ trans('general.location') }}:</span> <?= $time->location ?></p>
                                                     <p><span class="font-blue">{{ trans('general.time') }}:</span> <?= $time->time ?></p>
                                                     <p><span class="font-blue">{{ trans('general.department') }}:</span> <?= $time->course->department ? $time->course->department->name : '' ?></p>
                                                     <p><span class="font-blue">{{ trans('general.group') }}:</span> <?= $time->course->group ? $time->course->group->name : '' ?></p>
+                                                    <p><span class="font-blue"><a href="{{ route('teacher.timetable.course.list', $time->course) }}" class="btn btn-primary">{{ trans('general.course_list') }}</a></p>
                                                 </div>
                                             </div>
                                         </div>

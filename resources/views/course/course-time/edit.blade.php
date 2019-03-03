@@ -17,7 +17,7 @@
                             <div class="form-group {{ $errors->has('day') ? ' has-error' : '' }}">
                                 {!! Form::label('day', trans('general.day'), ['class' => 'control-label col-sm-3']) !!}                                
                                 <div class="col-sm-9">
-                                    {!! Form::select('day', $days, null, ['class' => 'form-control select2']) !!}
+                                    {!! Form::select('day', $days, $coursetime->day_id, ['class' => 'form-control select2']) !!}
                                     @if ($errors->has('day'))
                                         <span class="help-block">
                                             <strong>{{ $errors->first('day') }}</strong>

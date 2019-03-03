@@ -28,7 +28,7 @@ class LeavesDataTable extends DataTable
 
                         
                 }
-                if (auth()->user()->can('create-leave') and $leave->approved == false ) {
+                if (auth()->user()->can('approve-leave') and $leave->approved == false ) {
                     $html .='<a href="'.route('leaves.edit', $leave).'" class="btn btn-xs btn-success" onClick="doConfirm()" style="margin-top: 5px" title = "'. trans('general.approved_leave').' "><i class="fa fa-spinner"></i></a>'; 
                 }
                 
