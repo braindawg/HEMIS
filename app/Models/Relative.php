@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Builder;
 class Relative extends Model
 {
     
-
+    public $timestamps = false;
     protected $guarded = [];
     
 

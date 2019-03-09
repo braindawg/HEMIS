@@ -72,11 +72,13 @@ class StudentsDataTable extends DataTable
                 'status_id',
                 'students.university_id',
                 'kankor_year',
-                'student_statuses.editable'
+                'student_statuses.editable',
+                'grades.name as grade'
             )
             ->leftJoin('provinces', 'provinces.id', '=', 'students.province')
             ->leftJoin('universities', 'universities.id', '=', 'university_id')
             ->leftJoin('departments', 'departments.id', '=', 'department_id')
+            ->leftJoin('grades', 'grades.id', '=', 'grade_id')
             ->leftJoin('student_statuses', 'student_statuses.id', '=', 'status_id');
 
             
@@ -106,6 +108,9 @@ class StudentsDataTable extends DataTable
 
             if (isset($input['columns'][8]['search']['value']) and $input['columns'][8]['search']['value'] != '')
                 $query->where('kankor_year', 'like', "%".$input['columns'][8]['search']['value']."%");
+            
+            if (isset($input['columns'][9]['search']['value']) and $input['columns'][9]['search']['value'] != '')
+                $query->where('grades.name', 'like', "%".$input['columns'][9]['search']['value']."%");
            
         return $query;
     }
@@ -142,7 +147,7 @@ class StudentsDataTable extends DataTable
                                 var column = this;
                                 var onEvent = 'change';
                                                                                                                     
-                                if(this.index() >= 1 && this.index() <= 8) { 
+                                if(this.index() >= 1 && this.index() <= 9) { 
                                     if (this.index() == 1 || this.index() == 8) {
                                         $('<input class=\"datatable-footer-input ltr \" placeholder=\"'+$(column.header()).text()+'\" name=\"'+ column.index() + '\" value=\"'+ (state ? state.columns[this.index()].search.search : emptyValue) +'\" />').appendTo($(column.footer()).empty())                                        
                                         .on(onEvent, function () {
@@ -187,6 +192,7 @@ class StudentsDataTable extends DataTable
             'department'    => ['name' => 'departments.name', 'title' => trans('general.department')],
             'university' => ['name' => 'universities.name', 'title' => trans('general.university')],
             'kankor_year' => ['title' => trans('general.kankor_year')],
+            'grade_id' => ['data' => 'grade', 'title' => trans('general.grade'), 'searchable' => false],
         ];
     }
 

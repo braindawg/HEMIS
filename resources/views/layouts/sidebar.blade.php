@@ -268,7 +268,7 @@
         </li>
         @endif
 
-        @if (auth()->user()->can(['view-user', 'view-role']))
+        @if (auth()->user()->hasAnyPermission(['view-user', 'view-role']))
         <li class="nav-item start {{ (request()->is('users*') or request()->is('roles*')) ? 'active' : '' }}">
             <a href="javascript:;" class="nav-link nav-toggle">
                 <i class="icon-users"></i>

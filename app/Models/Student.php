@@ -41,6 +41,7 @@ class Student extends Model
     {
         return $this->hasMany(Relative::class);
     }
+    
     public function courses()
     {
         return $this->belongsToMany(Course::class,'course_student');
@@ -78,5 +79,10 @@ class Student extends Model
     public function group()
     {
         return $this->belongsTo(Group::class);
+    }
+
+    public function grade()
+    {
+        return $this->belongsTo(Grade::class);
     }
 }
