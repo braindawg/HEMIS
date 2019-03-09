@@ -135,13 +135,13 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <div class="form-group {{ $errors->has('teacher_type') ? ' has-error' : '' }}">
-                                                {!! Form::label('teacher_type', trans('general.teacher_type'), ['class' => 'control-label col-sm-3']) !!}
+                                            <div class="form-group {{ $errors->has('type') ? ' has-error' : '' }}">
+                                                {!! Form::label('type', trans('general.type'), ['class' => 'control-label col-sm-3']) !!}
                                                 <div class="col-sm-8">
-                                                    {!! Form::select('teacher_type', [ trans('general.permanent') => trans('general.permanent'),  trans('general.temporary')  => trans('general.temporary') , trans('general.honorary') => trans('general.honorary')], null, ['class' => 'form-control', 'placeholder' => trans('general.select')]) !!}
-                                                    @if ($errors->has('teacher_type'))
+                                                    {!! Form::select('type', [ 'permanent' => trans('general.permanent'),  'temporary'  => trans('general.temporary') , 'honorary' => trans('general.honorary')], null, ['class' => 'form-control', 'placeholder' => trans('general.select')]) !!}
+                                                    @if ($errors->has('type'))
                                                         <span class="help-block">
-                                                                <strong>{{ $errors->first('teacher_type') }}</strong>
+                                                                <strong>{{ $errors->first('type') }}</strong>
                                                             </span>
                                                     @endif
                                                 </div>

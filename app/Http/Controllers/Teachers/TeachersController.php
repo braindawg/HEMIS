@@ -71,7 +71,7 @@ class TeachersController extends Controller
             'email' => 'required|email|unique:teachers',
             'university' =>'required',
             'academic_rank_id' =>'required',
-            'teacher_type' =>'required',
+            'type' =>'required',
             'password' => 'nullable'
         ]);
 
@@ -89,7 +89,7 @@ class TeachersController extends Controller
             'password' => $request->password ?? null,
             'degree' => $request->degree,
             'academic_rank_id' => $request->academic_rank_id,
-            'teacher_type' => $request->teacher_type,
+            'type' => $request->type,
             'department_id' => $request->department,
             'university_id' => $request->university,
             'password' => $request->password ?? null,
@@ -150,7 +150,7 @@ class TeachersController extends Controller
             'password' => $request->password ?? null,
             'degree' => $request->degree,
             'academic_rank_id' => $request->academic_rank_id,
-            'teacher_type' => $request->teacher_type,
+            'type' => $request->type,
             'department_id' => $request->department,
             'university_id' => $request->university,
             'password' => $request->password ?? null,

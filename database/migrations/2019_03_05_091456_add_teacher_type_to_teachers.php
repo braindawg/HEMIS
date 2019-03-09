@@ -14,7 +14,7 @@ class AddTeacherTypeToTeachers extends Migration
     public function up()
     {
         Schema::table('teachers', function ($table) {
-            $table->string('teacher_type')->after('academic_rank_id')->default('دایمی');
+            $table->string('type')->after('academic_rank_id')->default('permanent');
         });
     }
 
@@ -26,7 +26,7 @@ class AddTeacherTypeToTeachers extends Migration
     public function down()
     {
         Schema::table('teachers', function ($table) {
-            $table->dropColumn('teacher_type');
+            $table->dropColumn('type');
         });
     }
 }

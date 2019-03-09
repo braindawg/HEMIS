@@ -384,7 +384,7 @@ return [
 
     'none_schedule' => 'فاقد تایم', 
     'course_list' => 'لیست صنف', 
-    'you_do_not_have_the_right_permissin_for_doing_this_action' => 'شما مجاز به انجام این عملیه نمی باشید.'
+    'you_do_not_have_the_right_permissin_for_doing_this_action' => 'شما مجاز به انجام این عملیه نمی باشید.',
 
     'settings' => '  تنظیمات',
     'generate_groups' => 'ساختن گروپ ها'
