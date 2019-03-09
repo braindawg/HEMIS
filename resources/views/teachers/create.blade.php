@@ -126,13 +126,13 @@
                 </div>
                 <div class="row">
                     <div class="col-md-6">
-                        <div class="form-group {{ $errors->has('birthdate') ? ' has-error' : '' }}">
-                            {!! Form::label('birthdate', trans('general.birthdate'), ['class' => 'control-label col-sm-3']) !!}
+                        <div class="form-group {{ $errors->has('teacher_type') ? ' has-error' : '' }}">
+                            {!! Form::label('teacher_type', trans('general.teacher_type'), ['class' => 'control-label col-sm-3']) !!}
                             <div class="col-sm-8">
-                                {!! Form::text('birthdate', null, ['class' => 'form-control ltr']) !!}
-                                @if ($errors->has('birthdate'))
+                                {!! Form::select('teacher_type', [trans('general.permanent') => trans('general.permanent'),  'temporary' => trans('general.temporary') , 'honorary' => trans('general.honorary')], null, ['class' => 'form-control', 'placeholder' => trans('general.select')]) !!}
+                                @if ($errors->has('teacher_type'))
                                     <span class="help-block">
-                                            <strong>{{ $errors->first('birthdate') }}</strong>
+                                            <strong>{{ $errors->first('teacher_type') }}</strong>
                                         </span>
                                 @endif
                             </div>
@@ -154,17 +154,30 @@
                 </div>
                 <div class="row">
                     <div class="col-md-6">
-                            <div class="form-group {{ $errors->has('marital_status') ? ' has-error' : '' }}">
-                                {!! Form::label('gender', trans('general.gender'), ['class' => 'control-label col-sm-3']) !!}
-                                <div class="col-sm-8">
-                                    {!! Form::select('gender', ['Male' => trans('general.Male'),  'Female' => trans('general.Female')], null, ['class' => 'form-control', 'placeholder' => trans('general.select')]) !!}
-                                    @if ($errors->has('gender'))
-                                        <span class="help-block">
-                                                <strong>{{ $errors->first('gender') }}</strong>
-                                            </span>
-                                    @endif
-                                </div>
+                        <div class="form-group {{ $errors->has('birthdate') ? ' has-error' : '' }}">
+                            {!! Form::label('birthdate', trans('general.birthdate'), ['class' => 'control-label col-sm-3']) !!}
+                            <div class="col-sm-8">
+                                {!! Form::text('birthdate', null, ['class' => 'form-control ltr']) !!}
+                                @if ($errors->has('birthdate'))
+                                    <span class="help-block">
+                                            <strong>{{ $errors->first('birthdate') }}</strong>
+                                        </span>
+                                @endif
                             </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group {{ $errors->has('marital_status') ? ' has-error' : '' }}">
+                            {!! Form::label('gender', trans('general.gender'), ['class' => 'control-label col-sm-3']) !!}
+                            <div class="col-sm-8">
+                                {!! Form::select('gender', ['Male' => trans('general.Male'),  'Female' => trans('general.Female')], null, ['class' => 'form-control', 'placeholder' => trans('general.select')]) !!}
+                                @if ($errors->has('gender'))
+                                    <span class="help-block">
+                                            <strong>{{ $errors->first('gender') }}</strong>
+                                        </span>
+                                @endif
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="row">

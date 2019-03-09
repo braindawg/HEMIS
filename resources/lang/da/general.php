@@ -24,7 +24,6 @@ return [
     'create_university' => 'پوهنتون جدید',
     'edit_university' => 'تصحیح پوهنتون',
     'domain' => 'دومین',
-    'faculty' => 'پوهنحی',
     'departments' => 'دیپارتمنت ها',
     'department' => 'دیپارتمنت',
     'departments_list' => 'لیست دیپارتمنت ها',
@@ -50,6 +49,10 @@ return [
     'bachelor' => 'لیسانس',
     'master' => 'ماستر',
     'doctor' => 'دکتور',
+    'teacher_type' => 'نوعه استاد',
+    'permanent' => ' دایمی',
+    'temporary' => ' موفتی',
+    'honorary' => ' افتخاری',
 
     'announcements_list' => ' لیست اعلانات',
     'noticeboard' => ' تابلوی اعلانات',
@@ -113,7 +116,7 @@ return [
     
     'student_address' => 'سکونت محصل',
     'student_addressـinformation' => ' معلومات درباره سکونت اصلی وفعلی محصل',
-    'address' => 'سکونت',
+    'address' => 'ادرس',
     'address_2' => 'نمبر خانه و کوچه',
     'province' => 'ولایت',
     'city' => 'ولسوالی',
@@ -370,7 +373,7 @@ return [
     'student_father_wealth' => 'دارای ولی محصل ',
     'student_husband_wife_wealth' => 'دارای شوهر/خانم محصل ',
     'student_obligation_for_hostel' => 'تعهد نامه ودرخواست شمولیت به لیلیه پوهنتون ',
-    'student_obligation_statment_for_hostel' => 'انجه در فورم شمولیت لیلیه ثبت شده صحت دارد. هـــــــــــــرگاه میان نوشته من در فورم ثـــــــــــــــبت دارائی و دیگر اسناد رسمی اختلاف ظاهر گـــــــــــــــــــــردد. خود را سزاوار ، اخراج از لیلیه دانسته و پرداخت همه مصارف لیلیه را متقبل میشوم. ',
+    'student_obligation_statment_for_hostel' => 'انچه در فورم شمولیت لیلیه ثبت شده صحت دارد. هـــــــــــــرگاه میان نوشته من در فورم ثـــــــــــــــبت دارائی و دیگر اسناد رسمی اختلاف ظاهر گـــــــــــــــــــــردد. خود را سزاوار ، اخراج از لیلیه دانسته و پرداخت همه مصارف لیلیه را متقبل میشوم. ',
     'student_obligation_final_statment_for_hostel' => 'بنآ خواهش میکنم که جهت اعاشه و اباته به مدیریت لیلیه معرفی گردم . ',
     'faculty_aknowledgment_for_student' => 'تصدیق پوهنځی مربوطه از صورت ثبت نام محصل ', 
     'student_enrollment' => 'از شمولیت محصل فوق الذکر در گروپ ', 
@@ -382,5 +385,8 @@ return [
     'none_schedule' => 'فاقد تایم', 
     'course_list' => 'لیست صنف', 
     'you_do_not_have_the_right_permissin_for_doing_this_action' => 'شما مجاز به انجام این عملیه نمی باشید.'
+
+    'settings' => '  تنظیمات',
+    'generate_groups' => 'ساختن گروپ ها'
 
 ];

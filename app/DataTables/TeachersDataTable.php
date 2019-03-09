@@ -49,6 +49,7 @@ class TeachersDataTable extends DataTable
                 'teachers.name',
                 'teachers.father_name',
                 'teachers.phone',
+                'teachers.teacher_type',
                 'universities.name as university',
                 'teachers.last_name',
                 'teachers.university_id'
@@ -88,6 +89,7 @@ class TeachersDataTable extends DataTable
             'last_name'        => ['name' => 'teachers.last_name', 'title' => trans('general.last_name')],
             'father_name'      => ['name' => 'teachers.father_name', 'title' => trans('general.father_name')],
             'phone'            => [ 'name' => 'teachers.phone' ,'title' => trans('general.phone')],
+            'teacher_type'            => [ 'name' => 'teachers.teacher_type' ,'title' => trans('general.teacher_type')],
             'university'       => ['name' => 'universities.name','title' => trans('general.university')],
         ];
     }
