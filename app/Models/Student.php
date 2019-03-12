@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Traits\UseByGrade;
 use App\Traits\Downloadble;
 use App\Traits\UseByUniversity;
 use App\Traits\UseByDepartment;
@@ -11,7 +12,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Student extends Model
 {
-    use SoftDeletes, UseByUniversity, UseByDepartment, Downloadble;
+    use SoftDeletes, UseByUniversity, UseByDepartment, UseByGrade, Downloadble;
 
     protected $guarded = [];
     protected $dates = ['deleted_at'];
@@ -79,10 +80,5 @@ class Student extends Model
     public function group()
     {
         return $this->belongsTo(Group::class);
-    }
-
-    public function grade()
-    {
-        return $this->belongsTo(Grade::class);
     }
 }

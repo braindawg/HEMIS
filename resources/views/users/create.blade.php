@@ -100,6 +100,17 @@
                                                                                                                                
                         </div>
                     </div>
+                    <div class="form-group {{ $errors->has('grade') ? ' has-error' : '' }}">
+                        {!! Form::label('grade', trans('general.grade'), ['class' => 'control-label col-sm-3']) !!}                                
+                        <div class="col-sm-4">
+                            {!! Form::select('grades[]', $grades, null, ['class' => 'form-control select2', "multiple" =>"multiple"]) !!}
+                            
+                                <span class="help-block">
+                                    <strong>در صورت خالی بودن مقطع تحصیلی, تمامی مقاطع تحصیلی قابل دسترس می باشد.</strong>
+                                </span>
+                                                                                                                               
+                        </div>
+                    </div>
 
                     <div class="form-group {{ $errors->has('active') ? ' has-error' : '' }}">
                         {!! Form::label('active', trans('general.status'), ['class' => 'control-label col-sm-3']) !!}                                

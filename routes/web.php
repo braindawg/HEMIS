@@ -17,6 +17,7 @@ Route::group(['middleware' => 'auth'], function() {
         Route::get('api/groups/{department?}', "GroupsController")->name('api.groups');// Filter is on Model
         Route::get('api/teachers{university?}', "TeachersController")->name('api.teachers');// Filter is on Model
         Route::get('api/departments/{university?}', "DepartmentsController")->name('api.departments');
+        Route::get('api/grades', "GradesController")->name('api.grades');
     });
     
     Route::get('home/{kankor_year?}', 'HomeController@index')->name('home');

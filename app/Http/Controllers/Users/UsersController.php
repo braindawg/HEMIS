@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Users;
 
 use App\User;
 use App\Models\Role;
+use App\Models\Grade;
 use App\Models\University;
 use App\Models\Department;
 use Illuminate\Http\Request;
@@ -47,7 +48,8 @@ class UsersController extends Controller
             'description' => trans('general.create_account'),
             'roles' => Role::all(),            
             'universities' => ['-1' => trans('general.all_options')] + University::pluck('name', 'id')->toArray(),
-            'departments' => old('departments') ? Department::whereIn('id', old('departments'))->pluck('name', 'id') : []
+            'departments' => old('departments') ? Department::whereIn('id', old('departments'))->pluck('name', 'id') : [],
+            'grades' => Grade::pluck('name', 'id')
         ]);
     }
 
@@ -67,19 +69,23 @@ class UsersController extends Controller
             'password' => 'required|confirmed'            
         ]);
         
-        $user = User::create([
-            'name' => $request->name,
-            'position' => $request->position,
-            'email' => $request->email,
-            'phone' => $request->phone,
-            'university_id' => $request->university_id ?? null,
-            'password' => $request->password ?? null,
-            'active' => $request->has('active'),
-        ]);
+        \DB::transaction(function () use ($request) {
+            $user = User::create([
+                'name' => $request->name,
+                'position' => $request->position,
+                'email' => $request->email,
+                'phone' => $request->phone,
+                'university_id' => $request->university_id ?? null,
+                'password' => $request->password ?? null,
+                'active' => $request->has('active'),
+            ]);
 
-        $user->roles()->sync($request->roles ?? []);
+            $user->roles()->sync($request->roles ?? []);
 
-        $user->departments()->sync($request->departments ?? []); 
+            $user->departments()->sync($request->departments ?? []); 
+            
+            $user->grades()->sync($request->grades ?? []); 
+        });
 
         return redirect(route('users.index'));
     }
@@ -109,7 +115,8 @@ class UsersController extends Controller
             'user' => $user,
             'roles' => Role::all(),
             'universities' => ['-1' => trans('general.all_options')] + University::pluck('name', 'id')->toArray(),
-            'departments' => old('departments') ? Department::whereIn('id', old('departments'))->pluck('name', 'id') : $user->departments()->pluck('name', 'id')
+            'departments' => old('departments') ? Department::whereIn('id', old('departments'))->pluck('name', 'id') : $user->departments()->pluck('name', 'id'),
+            'grades' => Grade::pluck('name', 'id')
         ]);
     }
 
@@ -134,19 +141,23 @@ class UsersController extends Controller
             'password' => 'nullable|confirmed'            
         ]);
         
-        $user->update([
-            'name' => $request->name,
-            'position' => $request->position,
-            'email' => $request->email,
-            'phone' => $request->phone,
-            'university_id' => $request->university_id ?? null,
-            'password' => $request->password ?? null,
-            'active' => $request->has('active')
-        ]);
+        \DB::transaction(function () use ($user, $request) {
+            $user->update([
+                'name' => $request->name,
+                'position' => $request->position,
+                'email' => $request->email,
+                'phone' => $request->phone,
+                'university_id' => $request->university_id ?? null,
+                'password' => $request->password ?? null,
+                'active' => $request->has('active')
+            ]);
 
-        $user->roles()->sync($request->roles ?? []);
-        
-        $user->departments()->sync($request->departments ?? []);        
+            $user->roles()->sync($request->roles ?? []);
+            
+            $user->departments()->sync($request->departments ?? []);
+
+            $user->grades()->sync($request->grades ?? []);
+        });
 
         return redirect(route('users.index'));
     }
