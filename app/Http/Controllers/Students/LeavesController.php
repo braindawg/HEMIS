@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Students;
 use App\Models\Leave;
 use App\Models\Student;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 use App\DataTables\LeavesDataTable;
 use App\Http\Controllers\Controller;
 
@@ -52,9 +53,13 @@ class LeavesController extends Controller
     {
         $validatedData = $request->validate([            
             'student_id' => 'required',
-            'leave_year' => 'required',
+            'leave_year' =>  [
+                'required',
+                Rule::unique('leaves')->where('student_id', $request->student_id)->where('leave_year', $request->leave_year)->whereNull('deleted_at'),
+            ],
         ]);
 
+        dd($request->all());
         \DB::transaction(function () use ($request){
             
             $student = Student::find($request->student_id);
@@ -67,13 +72,8 @@ class LeavesController extends Controller
                 'university_id' => $student->university_id
             ]);
 
-            //will update after admin approve
-            // $student->update([
-            //     'status_id' => 4,
-            // ]);
-            $leave->download($student , 'درخواست-تاجیلی', $request, $leave);
 
-            
+            $leave->download($student , 'درخواست-تاجیلی', $request, $leave);            
         });
 
         return redirect(route('leaves.index'));

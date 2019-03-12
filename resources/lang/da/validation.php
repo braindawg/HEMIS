@@ -138,6 +138,7 @@ return [
         'student_id' => 'محصل',
         'university_id' => 'پوهنتون',
         'department_id' => 'دیپارتمنت',
+        'leave_year' => 'سال تاجیل',
     ],
 
 ];
