@@ -58,7 +58,7 @@ class TransfersController extends Controller
         $validatedData = $request->validate([            
             'student_id' => 'required',
             'university_id' => 'required',
-            'department_id' => 'required'
+            'department_id' => 'required|valid_destination_department',            
         ]);
 
         \DB::transaction(function () use ($request){
@@ -72,19 +72,12 @@ class TransfersController extends Controller
                 'note' => $request->note
             ]);
 
-            //will update after transfer-admin approve
-            // $student->update([
-            //     'university_id' => $request->university_id,
-            //     'department_id' => $request->department_id
-            // ]);
-
             $transfer->download($student , 'درخواست-تبدیلی', $request, $transfer);
 
         });
 
         return redirect(route('transfers.index'));
     }
-
 
     public function edit($transfer)
     {

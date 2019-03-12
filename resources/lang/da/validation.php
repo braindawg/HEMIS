@@ -87,6 +87,8 @@ return [
     'unique'               => 'این :attribute قبلا ثبت شده است.',
     'uploaded'             => 'The :attribute failed to upload.',
     'url'                  => 'The :attribute format is invalid.',
+    
+    'valid_destination_department' => 'لطفا دیپارتمنتی که محصل به آن می رود را انتخاب کنید.',
 
     /*
     |--------------------------------------------------------------------------
@@ -133,6 +135,9 @@ return [
         'final' => 'امتحان فاینل',
         'chance_three' => 'چانس سه',
         'chance_two' => 'چانس دو',
+        'student_id' => 'محصل',
+        'university_id' => 'پوهنتون',
+        'department_id' => 'دیپارتمنت',
     ],
 
 ];
