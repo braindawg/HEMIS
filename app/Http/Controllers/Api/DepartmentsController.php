@@ -12,8 +12,9 @@ class DepartmentsController extends Controller
     {
         $departments =  Department::select('id', 'name as text');
         
-        if ($university) {
-            $departments->where('university_id', $university->id);
+        if ($university) {            
+            $departments->allUniversities()                
+                ->where('university_id', $university->id);
         }
         
         if ($request->q != '') {

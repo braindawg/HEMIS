@@ -139,6 +139,8 @@ return [
         'university_id' => 'پوهنتون',
         'department_id' => 'دیپارتمنت',
         'leave_year' => 'سال تاجیل',
+        'faculty' => 'پوهنځی',
+        'grade_id' => 'مقطع',
     ],
 
 ];

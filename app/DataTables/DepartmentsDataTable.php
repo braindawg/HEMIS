@@ -41,18 +41,20 @@ class DepartmentsDataTable extends DataTable
     /**
      * Get query source of dataTable.
      *
-     * @param \App\University $model
+     * @param \App\University $department
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function query(Department $model)
+    public function query(Department $department)
     {
-        $model = $model->where('departments.university_id', request()->segment(2))->select('name', 'id');
+        $department = $department->where('departments.university_id', request()->segment(2))
+            ->leftJoin('grades', 'grades.id', '=', 'grade_id')
+            ->select('departments.name as name', 'departments.id', 'grades.name as grade');
 
         if (request()->is('curriculum*')) {
-            $model->withCount('subjects');
+            $department->withCount('subjects');
         }
 
-        return $model;
+        return $department;
     }
 
     /**
@@ -77,7 +79,8 @@ class DepartmentsDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            'name'     => ['title' => trans('general.name')]                    
+            'name'     => ['title' => trans('general.name')],                    
+            'grade'     => [ 'title' => trans('general.grade')]                    
         ];
     }
 

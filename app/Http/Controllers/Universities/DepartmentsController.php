@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Universities;
 
+use App\Models\Grade;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Maklad\Permission\Models\Role;
@@ -9,10 +10,8 @@ use App\Http\Controllers\Controller;
 use Maklad\Permission\Models\Permission;
 use App\DataTables\DepartmentsDataTable;
 
-
 class DepartmentsController extends Controller
 {
-
     public function __construct()
     {        
          $this->middleware('permission:view-department', ['only' => ['index', 'show']]);        
@@ -44,7 +43,8 @@ class DepartmentsController extends Controller
         return view('departments.create', [
             'title' => $university->name,
             'description' => trans('general.create_department'),
-            'university' => $university
+            'university' => $university,
+            'grades' => Grade::pluck('name', 'id')
         ]);
     }
 
@@ -56,13 +56,10 @@ class DepartmentsController extends Controller
      */
     public function store(Request $request, $university)
     {
-        $validatedData = $request->validate([            
-            /* 'code' => [
-                'required', 
-                Rule::unique('departments')->whereNull('deleted_at')
-            ], */
+        $validatedData = $request->validate([
             'name' => 'required',
             'faculty' => 'required',
+            'grade_id' => 'required',
         ]);
         
         $university->departments()->create($validatedData);
@@ -94,6 +91,7 @@ class DepartmentsController extends Controller
             'description' => trans('general.edit_department'),
             'university' => $university,
             'department' => $department,
+            'grades' => Grade::pluck('name', 'id')
         ]);
     }
 
@@ -107,12 +105,9 @@ class DepartmentsController extends Controller
     public function update(Request $request, $university, $department)
     {
         $validatedData = $request->validate([
-            /* 'code' => [
-                'required', 
-                Rule::unique('departments')->ignore($department->id, '_id')->whereNull('deleted_at')
-            ], */
             'name' => 'required',
             'faculty' => 'required',
+            'grade_id' => 'required',
         ]);
         
         $department->update($validatedData);        

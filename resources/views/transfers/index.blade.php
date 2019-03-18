@@ -8,7 +8,7 @@
             </div>
         @endif
         <div class="portlet-title">
-            @can ('create-student')
+            @can ('create-transfer')
             <a href="{{ route('transfers.create') }}" class="btn btn-info"><i class="icon-plus"></i> {{ trans('general.create_transfer') }} </a>
             @endcan
             <div class="tools"> </div>

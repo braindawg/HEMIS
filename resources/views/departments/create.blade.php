@@ -6,17 +6,6 @@
             <!-- BEGIN FORM-->            
             {!! Form::open(['route' => ['departments.store', $university], 'method' => 'post', 'class' => 'form-horizontal']) !!}            
                 <div class="form-body">
-                    <!-- <div class="form-group {{ $errors->has('code') ? ' has-error' : '' }}">
-                        {!! Form::label('code', trans('general.code'), ['class' => 'control-label col-sm-3']) !!}                                
-                        <div class="col-sm-4">
-                            {!! Form::text('code', null, ['class' => 'form-control ltr']) !!}
-                            @if ($errors->has('code'))
-                                <span class="help-block">
-                                    <strong>{{ $errors->first('code') }}</strong>
-                                </span>
-                            @endif                                                                                                   
-                        </div>
-                    </div> -->
                     <div class="form-group {{ $errors->has('name') ? ' has-error' : '' }}">
                         {!! Form::label('name', trans('general.name'), ['class' => 'control-label col-sm-3']) !!}                                
                         <div class="col-sm-4">
@@ -38,7 +27,18 @@
                                 </span>
                             @endif                                                                                                   
                         </div>
-                    </div>                  
+                    </div>                                                                                 
+                    <div class="form-group {{ $errors->has('grade_id') ? ' has-error' : '' }}">
+                        {!! Form::label('grade_id', trans('general.grade'), ['class' => 'control-label col-sm-3']) !!}                                
+                        <div class="col-sm-4">
+                            {!! Form::select('grade_id', $grades, null, ['class' => 'form-control select2', 'placeholder' => trans('general.select')]) !!}
+                            @if ($errors->has('grade_id'))
+                                <span class="help-block">
+                                    <strong>{{ $errors->first('grade_id') }}</strong>
+                                </span>
+                            @endif                                                                                                   
+                        </div>
+                    </div>                                                                         
                 </div>
                 <div class="form-actions fluid">
                     <div class="row">
