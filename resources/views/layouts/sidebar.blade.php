@@ -101,7 +101,7 @@
                 </li>
 
                 <li class="nav-item {{ request()->is('*groups/create') ? 'active' : '' }}">
-                    <a href="{{ route('student.groups.automation') }}" class="nav-link ">
+                    <a href="{{ route('student.groups.all.create') }}" class="nav-link ">
                         <i class="icon-plus"></i>
                         <span class="title">{{ trans('general.create_groups_automatically') }}</span>
                     </a>

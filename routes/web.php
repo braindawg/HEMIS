@@ -34,13 +34,14 @@ Route::group(['middleware' => 'auth'], function() {
     });
 
     Route::group(['namespace' => 'Students'], function() {
-        Route::resource('/students/groups', 'Groups\GroupsController');
+        Route::get('student/groups/create-all','Groups\CreateGroupsController@index')->name('student.groups.all.create');
+        Route::post('student/groups/create-all','Groups\CreateGroupsController@store')->name('student.groups.all.store');
 
+        Route::resource('/students/groups', 'Groups\GroupsController');
         Route::get('/students/groups/{group}/list', 'Groups\GroupListController@index')->name('groups.list');
         Route::post('/students/groups/{group}/list', 'Groups\GroupListController@addStudent')->name('groups.student.add');
         Route::delete('/students/groups/{group}/list', 'Groups\GroupListController@removeStudent')->name('groups.student.remove');
-        Route::get('student/groups/groups-automation','Groups\GroupsAutomationController@index')->name('student.groups.automation');
-        Route::post('student/groups/groups-automation/generate','Groups\GroupsAutomationController@store')->name('student.groups.automation.generate');
+        
 
         
 

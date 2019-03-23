@@ -4,20 +4,27 @@
     <div class="portlet box">        
         <div class="portlet-body">
             <!-- BEGIN FORM-->     
-            <div class="">
-                <p style="color: blue; fo"><strong>نوت : {{trans('general.groups_automation_message')}}</strong></p>
-            </div>       
-            {!! Form::open(['route' => 'student.groups.automation.generate', 'method' => 'post', 'class' => 'form-horizontal']) !!}
+            
+            @if (session('message'))
+                <div class="alert alert-success">
+                    {{ session('message') }}
+                </div>
+            @else
+                <div class="alert alert-info">
+                    <p >نوت : {{trans('general.groups_automation_message')}}</p>
+                </div>
+            @endif
+            {!! Form::open(['route' => 'student.groups.all.create', 'method' => 'post', 'class' => 'form-horizontal']) !!}
                 <div class="form-body" id="app">
                     <div class="row">
                         <div class="col-md-6 col-md-offset-1">
-                            <div class="form-group {{ $errors->has('note') ? ' has-error' : '' }}">
-                                {!! Form::label('note', trans('general.note'), ['class' => 'control-label col-sm-3']) !!}                                
+                            <div class="form-group {{ $errors->has('kankor_year') ? ' has-error' : '' }}">
+                                {!! Form::label('kankor_year', trans('general.kankor_year'), ['class' => 'control-label col-sm-3']) !!}                                
                                 <div class="col-sm-9">
-                                    {!! Form::textarea('note', null, ['class' => 'form-control', 'rows' => 3]) !!}
-                                    @if ($errors->has('note'))
+                                    {!! Form::number('kankor_year', null, ['class' => 'form-control ltr', 'min' => 1390]) !!}
+                                    @if ($errors->has('kankor_year'))
                                         <span class="help-block">
-                                            <strong>{{ $errors->first('note') }}</strong>
+                                            <strong>{{ $errors->first('kankor_year') }}</strong>
                                         </span>
                                     @endif                                                                                                   
                                 </div>
