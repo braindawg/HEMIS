@@ -56,7 +56,9 @@ class UniversitiesController extends Controller
     {
         $validatedData = $request->validate([
             'name' => 'required',
-            'domain' => ''            
+            'domain' => '',           
+            'chairman' => '',           
+            'student_affairs' => ''           
         ]);
         
         $university = University::create($validatedData);
@@ -101,7 +103,9 @@ class UniversitiesController extends Controller
     {
         $validatedData = $request->validate([
             'name' => 'required',
-            'domain' => '',
+            'domain' => '',           
+            'chairman' => '',           
+            'student_affairs' => '' 
         ]);
         
         $university->update($validatedData);        

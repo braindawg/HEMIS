@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddTeacherTypeToTeachers extends Migration
+class RenameSemisterInLeavesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,9 @@ class AddTeacherTypeToTeachers extends Migration
      */
     public function up()
     {
-        Schema::table('teachers', function ($table) {
-            
-            $table->string('type')->after('academic_rank_id')->default('permanent');
+        Schema::table('leaves', function (Blueprint $table) {
 
+            $table->renameColumn('semister', 'semester');
         });
     }
 
@@ -27,8 +26,9 @@ class AddTeacherTypeToTeachers extends Migration
      */
     public function down()
     {
-        Schema::table('teachers', function ($table) {
-            $table->dropColumn('type');
+        Schema::table('leaves', function (Blueprint $table) {
+            
+            $table->renameColumn('semester', 'semister');
         });
     }
 }

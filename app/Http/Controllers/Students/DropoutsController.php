@@ -61,7 +61,7 @@ class DropoutsController extends Controller
             $dropout = Dropout::create([
                 'student_id' => $request->student_id,
                 'year' => $request->year,
-                'semister' => $request->semister,
+                'semester' => $request->semester,
                 'note' => $request->note,
                 'university_id' => $student->university_id
             ]);

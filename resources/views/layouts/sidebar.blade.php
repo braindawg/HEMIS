@@ -1,3 +1,4 @@
+
 <ul class="page-sidebar-menu   " data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200">
     
     <li class="nav-item start {{ request()->is('noticeboard') ? 'active' : '' }}">
@@ -96,6 +97,13 @@
                     <a href="{{ route('groups.create') }}" class="nav-link ">
                         <i class="icon-plus"></i>
                         <span class="title">{{ trans('general.create_group') }}</span>
+                    </a>
+                </li>
+
+                <li class="nav-item {{ request()->is('*groups/create') ? 'active' : '' }}">
+                    <a href="{{ route('student.groups.automation') }}" class="nav-link ">
+                        <i class="icon-plus"></i>
+                        <span class="title">{{ trans('general.create_groups_automatically') }}</span>
                     </a>
                 </li>
                 @endif
@@ -268,7 +276,7 @@
         </li>
         @endif
 
-        @if (auth()->user()->hasAnyPermission(['view-user', 'view-role']))
+        @if (auth()->user()->can(['view-user', 'view-role']))
         <li class="nav-item start {{ (request()->is('users*') or request()->is('roles*')) ? 'active' : '' }}">
             <a href="javascript:;" class="nav-link nav-toggle">
                 <i class="icon-users"></i>
@@ -341,4 +349,12 @@
             <span class="title">{{ trans('general.support') }}</span>         
         </a>       
     </li>
+
+    {{-- <li class="nav-item start {{ request()->is('settings') ? 'active' : '' }}">
+        <a href="{{  route('setting') }}" class="nav-link nav-toggle">
+            <i class="icon-earphones-alt"></i>            
+            <span class="title">{{ trans('general.settings') }}</span>         
+        </a>       
+    </li> --}}
+    
 </ul>

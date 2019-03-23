@@ -46,9 +46,10 @@ class DepartmentsDataTable extends DataTable
      */
     public function query(Department $department)
     {
+
         $department = $department->where('departments.university_id', request()->segment(2))
             ->leftJoin('grades', 'grades.id', '=', 'grade_id')
-            ->select('departments.name as name', 'departments.id', 'grades.name as grade');
+            ->select('departments.name as name', 'departments.id', 'grades.name as grade', 'chairman', 'department_student_affairs');
 
         if (request()->is('curriculum*')) {
             $department->withCount('subjects');
@@ -79,7 +80,9 @@ class DepartmentsDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            'name'     => ['title' => trans('general.name')],                    
+            'name'    => ['title' => trans('general.name')],                   
+            'chairman'     => ['title' => trans('general.faculty_chairman')],                   
+            'department_student_affairs'     => ['title' => trans('general.department_student_affairs')],                                    
             'grade'     => [ 'title' => trans('general.grade')]                    
         ];
     }

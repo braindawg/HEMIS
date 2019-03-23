@@ -4,7 +4,7 @@
     <div class="portlet box">        
         <div class="portlet-body">
             <!-- BEGIN FORM-->            
-            {!! Form::open(['route' => 'dropouts.store', 'method' => 'post', 'class' => 'form-horizontal']) !!}
+            {!! Form::open(['route' => 'dropouts.store', 'method' => 'post', 'class' => 'form-horizontal' , 'target' => 'new']) !!}
                 <div class="form-body" id="app">
                 <div class="row">
                         <div class="col-md-6 col-md-offset-1">
@@ -38,13 +38,13 @@
                     </div>
                     <div class="row">
                         <div class="col-md-6 col-md-offset-1">
-                            <div class="form-group {{ $errors->has('semister') ? ' has-error' : '' }}">
-                                {!! Form::label('semister', trans('general.semister'), ['class' => 'control-label col-sm-3']) !!}
+                            <div class="form-group {{ $errors->has('semester') ? ' has-error' : '' }}">
+                                {!! Form::label('semester', trans('general.semester'), ['class' => 'control-label col-sm-3']) !!}
                                 <div class="col-sm-9">
-                                    {!! Form::number('semister', null, ['class' => 'form-control', 'min' => '1', 'max' => "8"]) !!}
-                                    @if ($errors->has('semister'))
+                                    {!! Form::number('semester', null, ['class' => 'form-control', 'min' => '1', 'max' => "8"]) !!}
+                                    @if ($errors->has('semester'))
                                         <span class="help-block">
-                                            <strong>{{ $errors->first('semister') }}</strong>
+                                            <strong>{{ $errors->first('semester') }}</strong>
                                         </span>
                                     @endif
                                 </div>

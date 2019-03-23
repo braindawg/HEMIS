@@ -43,7 +43,7 @@ class UniversitiesDataTable extends DataTable
      */
     public function query(University $model)
     {
-        return $model->newQuery()->select('id', 'name');
+        return $model->newQuery()->select('id', 'name','chairman','student_affairs');
     }
 
     /**
@@ -68,7 +68,9 @@ class UniversitiesDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            'name'     => ['title' => trans('general.name')]                                
+            'name'     => ['title' => trans('general.name')],                              
+            'chairman'     => ['title' => trans('general.university_chairman')],                              
+            'student_affairs'     => ['title' => trans('general.university_student_affairs')],                              
         ];
     }
 

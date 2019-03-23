@@ -46,8 +46,8 @@
                                 {!! Form::text('name', null, ['class' => 'form-control']) !!}
                                 @if ($errors->has('name'))
                                     <span class="help-block">
-                                            <strong>{{ $errors->first('name') }}</strong>
-                                        </span>
+                                        <strong>{{ $errors->first('name') }}</strong>
+                                    </span>
                                 @endif
                             </div>
                         </div>
@@ -59,8 +59,8 @@
                                 {!! Form::text('last_name', null, ['class' => 'form-control']) !!}
                                 @if ($errors->has('last_name'))
                                     <span class="help-block">
-                                            <strong>{{ $errors->first('last_name') }}</strong>
-                                        </span>
+                                        <strong>{{ $errors->first('last_name') }}</strong>
+                                    </span>
                                 @endif
                             </div>
                         </div>
@@ -75,8 +75,8 @@
                                 {!! Form::text('father_name', null, ['class' => 'form-control']) !!}
                                 @if ($errors->has('father_name'))
                                     <span class="help-block">
-                                            <strong>{{ $errors->first('father_name') }}</strong>
-                                        </span>
+                                        <strong>{{ $errors->first('father_name') }}</strong>
+                                    </span>
                                 @endif
                             </div>
                         </div>
@@ -88,8 +88,8 @@
                                 {!! Form::text('grandfather_name', null, ['class' => 'form-control']) !!}
                                 @if ($errors->has('grandfather_name'))
                                     <span class="help-block">
-                                            <strong>{{ $errors->first('grandfather_name') }}</strong>
-                                        </span>
+                                        <strong>{{ $errors->first('grandfather_name') }}</strong>
+                                    </span>
                                 @endif
                             </div>
                         </div>
@@ -104,8 +104,8 @@
                                 {!! Form::select('degree', ['bachelor' => trans('general.bachelor'),  'master' => trans('general.master'), 'doctor' => trans('general.doctor')], null, ['class' => 'form-control', 'placeholder' => trans('general.select')]) !!}
                                 @if ($errors->has('degree'))
                                     <span class="help-block">
-                                            <strong>{{ $errors->first('degree') }}</strong>
-                                        </span>
+                                        <strong>{{ $errors->first('degree') }}</strong>
+                                    </span>
                                 @endif
                             </div>
                         </div>
@@ -117,8 +117,8 @@
                                 {!! Form::select('academic_rank_id', $teacher_academic_rank, null, ['class' => 'form-control ']) !!}
                                 @if ($errors->has('academic_rank_id'))
                                     <span class="help-block">
-                                            <strong>{{ $errors->first('academic_rank_id') }}</strong>
-                                        </span>
+                                        <strong>{{ $errors->first('academic_rank_id') }}</strong>
+                                    </span>
                                 @endif
                             </div>
                         </div>
@@ -132,8 +132,8 @@
                                 {!! Form::select('type', ['permanent' => trans('general.permanent'),  'temporary' => trans('general.temporary') , 'honorary' => trans('general.honorary')], null, ['class' => 'form-control', 'placeholder' => trans('general.select')]) !!}
                                 @if ($errors->has('type'))
                                     <span class="help-block">
-                                            <strong>{{ $errors->first('type') }}</strong>
-                                        </span>
+                                        <strong>{{ $errors->first('type') }}</strong>
+                                    </span>
                                 @endif
                             </div>
                         </div>
@@ -145,8 +145,8 @@
                                 {!! Form::select('marital_status', ['married' => trans('general.married'),  'single' => trans('general.single')], null, ['class' => 'form-control', 'placeholder' => trans('general.select')]) !!}
                                 @if ($errors->has('marital_status'))
                                     <span class="help-block">
-                                            <strong>{{ $errors->first('marital_status') }}</strong>
-                                        </span>
+                                        <strong>{{ $errors->first('marital_status') }}</strong>
+                                    </span>
                                 @endif
                             </div>
                         </div>
@@ -160,8 +160,8 @@
                                 {!! Form::text('birthdate', null, ['class' => 'form-control ltr']) !!}
                                 @if ($errors->has('birthdate'))
                                     <span class="help-block">
-                                            <strong>{{ $errors->first('birthdate') }}</strong>
-                                        </span>
+                                        <strong>{{ $errors->first('birthdate') }}</strong>
+                                    </span>
                                 @endif
                             </div>
                         </div>
@@ -173,8 +173,8 @@
                                 {!! Form::select('gender', ['Male' => trans('general.Male'),  'Female' => trans('general.Female')], null, ['class' => 'form-control', 'placeholder' => trans('general.select')]) !!}
                                 @if ($errors->has('gender'))
                                     <span class="help-block">
-                                            <strong>{{ $errors->first('gender') }}</strong>
-                                        </span>
+                                        <strong>{{ $errors->first('gender') }}</strong>
+                                    </span>
                                 @endif
                             </div>
                         </div>
@@ -188,8 +188,8 @@
                                 {!! Form::select('province', $provinces, null, ['class' => 'form-control ']) !!}
                                 @if ($errors->has('province'))
                                     <span class="help-block">
-                                            <strong>{{ $errors->first('province') }}</strong>
-                                        </span>
+                                        <strong>{{ $errors->first('province') }}</strong>
+                                    </span>
                                 @endif
                             </div>
                         </div>
@@ -204,8 +204,8 @@
                                 {!! Form::text('phone', null, ['class' => 'form-control ltr']) !!}
                                 @if ($errors->has('phone'))
                                     <span class="help-block">
-                                            <strong>{{ $errors->first('phone') }}</strong>
-                                        </span>
+                                        <strong>{{ $errors->first('phone') }}</strong>
+                                    </span>
                                 @endif
                             </div>
                         </div>
@@ -217,8 +217,8 @@
                                 {!! Form::text('email', null, ['class' => 'form-control ltr']) !!}
                                 @if ($errors->has('email'))
                                     <span class="help-block">
-                                            <strong>{{ $errors->first('email') }}</strong>
-                                        </span>
+                                        <strong>{{ $errors->first('email') }}</strong>
+                                    </span>
                                 @endif
                             </div>
                         </div>
@@ -233,8 +233,8 @@
                                 {!! Form::password('password', null, ['class' => 'form-control ltr']) !!}
                                 @if ($errors->has('password'))
                                     <span class="help-block">
-                                            <strong>{{ $errors->first('password') }}</strong>
-                                        </span>
+                                        <strong>{{ $errors->first('password') }}</strong>
+                                    </span>
                                 @endif
                             </div>
                         </div>
@@ -248,8 +248,8 @@
                                 {!! Form::password('password_confirmation', null, ['class' => 'form-control ltr']) !!}
                                 @if ($errors->has('password_confirmation'))
                                     <span class="help-block">
-                                            <strong>{{ $errors->first('password_confirmation') }}</strong>
-                                        </span>
+                                        <strong>{{ $errors->first('password_confirmation') }}</strong>
+                                    </span>
                                 @endif
                             </div>
                         </div>

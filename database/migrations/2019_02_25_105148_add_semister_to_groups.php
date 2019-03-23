@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddTeacherTypeToTeachers extends Migration
+class AddSemisterToGroups extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,8 @@ class AddTeacherTypeToTeachers extends Migration
      */
     public function up()
     {
-        Schema::table('teachers', function ($table) {
-            
-            $table->string('type')->after('academic_rank_id')->default('permanent');
-
+        Schema::table('groups', function ($table) {
+            $table->integer('semester')->after('name')->default(1);
         });
     }
 
@@ -27,8 +25,8 @@ class AddTeacherTypeToTeachers extends Migration
      */
     public function down()
     {
-        Schema::table('teachers', function ($table) {
-            $table->dropColumn('type');
+        Schema::table('groups', function ($table) {
+            $table->dropColumn('semester');
         });
     }
 }

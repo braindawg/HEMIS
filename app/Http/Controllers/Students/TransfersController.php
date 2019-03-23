@@ -62,11 +62,12 @@ class TransfersController extends Controller
         ]);
 
         \DB::transaction(function () use ($request){
+            
             $student = Student::find($request->student_id);
             
             $transfer = Transfer::create([
                 'student_id' => $request->student_id,
-                'semister' => $request->semister,
+                'semester' => $request->semester,
                 'from_department_id' => $student->department_id, //from studetn existing department
                 'to_department_id' => $request->department_id, //to requested department  
                 'note' => $request->note
@@ -113,7 +114,7 @@ class TransfersController extends Controller
             $transfer->student->update([
                 'university_id' => $transfer->fromDepartment->university_id,
                 'department_id' => $transfer->from_department_id
-            ]);
+            ])->allUniversities();
             $transfer->delete();
         });
 

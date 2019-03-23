@@ -56,9 +56,12 @@ class DepartmentsController extends Controller
      */
     public function store(Request $request, $university)
     {
-        $validatedData = $request->validate([
+
+        $validatedData = $request->validate([            
             'name' => 'required',
-            'faculty' => 'required',
+            'chairman' => '',
+            'department_student_affairs' => '',
+            'faculty' => '',
             'grade_id' => 'required',
         ]);
         
@@ -103,11 +106,14 @@ class DepartmentsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $university, $department)
-    {
+    {          
         $validatedData = $request->validate([
             'name' => 'required',
-            'faculty' => 'required',
+            'chairman' => '',
+            'department_student_affairs' => '',
+            'faculty' => '',
             'grade_id' => 'required',
+
         ]);
         
         $department->update($validatedData);        

@@ -17,6 +17,28 @@
                             @endif                                                                                                   
                         </div>
                     </div>
+                    <div class="form-group {{ $errors->has('chairman') ? ' has-error' : '' }}">
+                        {!! Form::label('chairman', trans('general.university_chairman'), ['class' => 'control-label col-sm-3']) !!}                                
+                        <div class="col-sm-4">
+                            {!! Form::text('chairman', null, ['class' => 'form-control']) !!}     
+                            @if ($errors->has('chairman'))
+                                <span class="help-block">
+                                    <strong>{{ $errors->first('chairman') }}</strong>
+                                </span>
+                            @endif                                                                                                   
+                        </div>
+                    </div>
+                    <div class="form-group {{ $errors->has('student_affairs') ? ' has-error' : '' }}">
+                        {!! Form::label('student_affairs', trans('general.university_student_affairs'), ['class' => 'control-label col-sm-3']) !!}                                
+                        <div class="col-sm-4">
+                            {!! Form::text('student_affairs', null, ['class' => 'form-control']) !!}     
+                            @if ($errors->has('student_affairs'))
+                                <span class="help-block">
+                                    <strong>{{ $errors->first('student_affairs') }}</strong>
+                                </span>
+                            @endif                                                                                                   
+                        </div>
+                    </div>
                     <div class="form-group {{ $errors->has('domain') ? ' has-error' : '' }}">
                         {!! Form::label('domain', trans('general.domain'), ['class' => 'control-label col-sm-3']) !!}                                
                         <div class="col-sm-4">

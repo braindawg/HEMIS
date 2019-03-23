@@ -29,6 +29,10 @@ return [
     'departments_list' => 'لیست دیپارتمنت ها',
     'create_department' => 'دیپارتمنت جدید',
     'edit_department' => 'تصحیح دیپارتمنت',
+    'university_chairman' => 'ریس پوهنتون',
+    'university_student_affairs' => 'آمر امور محصلان',
+    'faculty_chairman' => 'ریس پوهنځی',
+    'department_student_affairs' => 'مدیر تدریسی ',
 
     'users' => 'یوزرها',
     'users_list' => ' لیست یوزرها',
@@ -77,6 +81,8 @@ return [
     'create_group' =>'ایجاد گروپ',
     'edit_group' =>'تصحیح گروپ',
     'description' =>'تشریحات',
+    'create_groups_automatically' => 'ایجاد گروپ به شکل خودکار',
+    'groups_automation_message' => 'با استفاده از این گذینه سیستم بصورت خودکار تمام گروپ های که مربوط یوسر کاربری شما میشود ایجاد میگردد٫ ومحصلین مربوطه هم به ان ضافه میگردد .',
     
     'roles_list' => 'لیست وظایف',
     'roles' => 'وظایف',
@@ -272,7 +278,7 @@ return [
     'student-confirm' => 'تصدیق تحصیلی',
     'downloads' => 'دانلود ها',
     'dropout_year' => ' سال منفکی',
-    'semister' => ' سمستر',
+    'semester' => ' سمستر',
     'approved_leave' => ' تاید تاجیل',
     'approved_dropout' => ' تاید منفکی',
     'approved_transfer' => ' تاید تبدیلی',
@@ -298,12 +304,12 @@ return [
     'resolve_transfer' => 'قبلا شمولیت مجدد دارد ',
     'accept_or_refuse' => 'موافقه وعدم موافغه ',
     'faculty_affair_re_name_sign' => '  اسم وامضا مدیر تدریسی پوهنځی ',
-    'faculty_chairman_name_sign' => 'اسم٫ مهر وامضا ریسی پوهنځی ',
+    'faculty_chairman_name_sign' => 'اسم٫ مهر وامضا ریس پوهنځی ',
     'to_university_board' => 'بمقام محترم ریاست پوهنتون  ',
     'to_faculty_board' => 'بریاست محترم پوهنځی  ',
     'transfer_to_deparment_approve_request' => 'لطفا در مورد جذب محصل مذکور نظر موافقه وعدم موافقه ابراز نظر نماید.  ',
     'faculty_opinion' => '  نظر پوهنځی ',
-    'faculty_chairman_name_sign_only' => 'اسم وامضا ریسی پوهنځی ',
+    'faculty_chairman_name_sign_only' => 'اسم وامضا ریس پوهنځی ',
     'final_decision_of_board' => ' فیصله نهایی کمیسون   ',
     'member_of_decision_board' => ' عضو کمیسون ',
     'university_confirmation' => '  ملاحظه شد مقام ریاست پوهنتون/ موسسه تحصلات عالی ',
@@ -351,6 +357,7 @@ return [
     'date' => 'تاریخ ',
     'student_afair_request_to_faculty' => ' بملاحظه اسناد سوابق وصورت حاضری درخواست کننده معلومات ارایه نماید ',
     'faculty_request_to_department' => ' مدیریت تدیریسی درمورد برویت اسناد خویش معلومات ارائه دارید  ',
+   
     //student_dropout_form
     'dropout_form' => 'فورم درخواست برای منفکی',
     'reason_of_dropout' => 'دلیل انفکاک از پوهنځی',
@@ -363,7 +370,7 @@ return [
     'street_home_number' => ' نمبر خانه و کوچه',
     'village' => '   گذر ',
     'district' => ' ولسوالی',
-    //'location' => ' محصل',
+    'location' => ' محل',
     'student_study_location' => ' محل تحصیل محصل',
     'grade10' => 'صنف ده',
     'grade11' => 'صنف یازده',
@@ -387,6 +394,10 @@ return [
     'you_do_not_have_the_right_permissin_for_doing_this_action' => 'شما مجاز به انجام این عملیه نمی باشید.',
 
     'settings' => '  تنظیمات',
-    'generate_groups' => 'ساختن گروپ ها'
+    'generate_groups' => 'ساختن گروپ ها',
+
+    'select_language' => 'انتخاب زبان',
+    'pashto' => ' پشتو',
+    'dari' => ' دری',
 
 ];

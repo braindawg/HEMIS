@@ -39,6 +39,9 @@ Route::group(['middleware' => 'auth'], function() {
         Route::get('/students/groups/{group}/list', 'Groups\GroupListController@index')->name('groups.list');
         Route::post('/students/groups/{group}/list', 'Groups\GroupListController@addStudent')->name('groups.student.add');
         Route::delete('/students/groups/{group}/list', 'Groups\GroupListController@removeStudent')->name('groups.student.remove');
+        Route::get('student/groups/groups-automation','Groups\GroupsAutomationController@index')->name('student.groups.automation');
+        Route::post('student/groups/groups-automation/generate','Groups\GroupsAutomationController@store')->name('student.groups.automation.generate');
+
         
 
         Route::resource('/students', 'StudentsController');
@@ -80,6 +83,7 @@ Route::group(['middleware' => 'auth'], function() {
     });
 
 
+
     Route::group(['namespace' => 'Curriculum'], function() {
         Route::get('/curriculum', 'UniversitiesController@index')->name('curriculum.universities');
         Route::get('/curriculum/{university}', 'DepartmentsController@index')->name('curriculum.departments');
@@ -114,6 +118,14 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('/deletefile/{file}','FilesDeleteController@deleteFiles')->name('deletefile');
 
     Route::get('/activity/{university_id?}/{startdate?}/{enddate?}','ActivityController@index')->name('activity');
+
+
+    Route::get('setting','SettingController@index')->name('setting');
+
+
+
+
+
     
     //attachments link
     Route::get('getAttachment/{file_name}', function($filename){
@@ -126,5 +138,12 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('makeNotificationAsRead', function () {    
         auth()->user()->unreadNotifications->markAsRead();
     });
+
+    Route::get('/locale/{locale}', function ($locale) {
+        
+        \Session::put('locale' , $locale);
+
+        return redirect()->back();
+    })->name('locale');
 });
  

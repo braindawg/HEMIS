@@ -106,7 +106,7 @@
 	 	{{ $student->form_no }}  {{trans('general.student_of_semister')}} {{$request->semister}}  پوهنتون {{ $student->university->name }}  {{trans('general.feild')}} {{ $student->department->name }} {{trans('general.current_university_and_department')}}.
 	</p>
 		<br>
-	<h3 style="text-align:center">مصطفی نوری <br/>آمر امور محصلان</h3>
+	<h3 style="text-align:center">  <br/>آمر امور محصلان</h3>
 </div>
 </body>
 </html>

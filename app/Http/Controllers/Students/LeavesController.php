@@ -58,8 +58,7 @@ class LeavesController extends Controller
                 Rule::unique('leaves')->where('student_id', $request->student_id)->where('leave_year', $request->leave_year)->whereNull('deleted_at'),
             ],
         ]);
-
-        dd($request->all());
+        
         \DB::transaction(function () use ($request){
             
             $student = Student::find($request->student_id);
@@ -67,11 +66,10 @@ class LeavesController extends Controller
             $leave = Leave::create([
                 'student_id' => $request->student_id,
                 'leave_year' => $request->leave_year,
-                'semister' => $request->semister,
+                'semester' => $request->semester,
                 'note' => $request->note,
                 'university_id' => $student->university_id
             ]);
-
 
             $leave->download($student , 'درخواست-تاجیلی', $request, $leave);            
         });

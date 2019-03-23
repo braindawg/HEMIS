@@ -88,7 +88,7 @@
 					<img src="{{ asset('img/wezarat-logo.jpg') }}"  style="max-width: 80px"/>
 					<p style="margin-top:5px;font-size: 14px">{{trans('general.MOHE')}}</p>				
 					<p style="margin-top:5px;">پوهنتون {{ $student->university->name }}</p>
-					<p style="margin-top:5px;">دیپارتمنت : {{ $student->department->name }}</p>				
+					<p style="margin-top:5px;">دیپارتمنت : {{ $student->department->faculty }}</p>				
 				</td>	
 				<td style="text-align:right;width:33%;padding-right:17%;vertical-align:top;padding-top:1%;" >					
 					<img src="{{ file_exists($student->photo_url) ? asset($student->photo_url) : asset('img/avatar-placeholder.png') }}" style="max-width: 100px">

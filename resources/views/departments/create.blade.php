@@ -16,7 +16,31 @@
                                 </span>
                             @endif                                                                                                   
                         </div>
-                    </div>                  
+                    </div> 
+
+                    <div class="form-group {{ $errors->has('chairman') ? ' has-error' : '' }}">
+                        {!! Form::label('chairman', trans('general.faculty_chairman'), ['class' => 'control-label col-sm-3']) !!}                                
+                        <div class="col-sm-4">
+                            {!! Form::text('chairman', null, ['class' => 'form-control']) !!}     
+                            @if ($errors->has('chairman'))
+                                <span class="help-block">
+                                    <strong>{{ $errors->first('chairman') }}</strong>
+                                </span>
+                            @endif                                                                                                   
+                        </div>
+                    </div>
+                    <div class="form-group {{ $errors->has('department_student_affairs') ? ' has-error' : '' }}">
+                        {!! Form::label('department_student_affairs', trans('general.department_student_affairs'), ['class' => 'control-label col-sm-3']) !!}                                
+                        <div class="col-sm-4">
+                            {!! Form::text('department_student_affairs', null, ['class' => 'form-control']) !!}     
+                            @if ($errors->has('department_student_affairs'))
+                                <span class="help-block">
+                                    <strong>{{ $errors->first('department_student_affairs') }}</strong>
+                                </span>
+                            @endif                                                                                                   
+                        </div>
+                    </div>
+
                     <div class="form-group {{ $errors->has('faculty') ? ' has-error' : '' }}">
                         {!! Form::label('faculty', trans('general.faculty'), ['class' => 'control-label col-sm-3']) !!}                                
                         <div class="col-sm-4">

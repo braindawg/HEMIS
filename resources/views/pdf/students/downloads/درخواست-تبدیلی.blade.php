@@ -138,8 +138,13 @@
 							<td>{{ $request->semister}}</td>
 							<td class="bg-grey"  >  {{trans('general.faculty')}}    </td>
 							<td>{{ $student->kankor_result }}</td>
+							@if($model != null)
 							<td class="bg-grey" >  {{trans('general.to_department_detailse')}}</td>
-							<td>پوهنتون : {{ $model->toDepartment->university->name }} دیپارتمنت {{ $model->toDepartment->name }}</td>
+							<td>پوهنتون : {{ $model->toDepartment->university->name  }} دیپارتمنت {{ $model->toDepartment->name }}</td>
+							@else
+							<td class="bg-grey" >  {{trans('general.to_department_detailse')}}</td>
+							<td>پوهنتون :  دیپارتمنت </td>
+							@endif
 						</tr>
 					</table>
 				</td>
