@@ -78,7 +78,7 @@ class StudentsDataTable extends DataTable
             ->leftJoin('provinces', 'provinces.id', '=', 'students.province')
             ->leftJoin('universities', 'universities.id', '=', 'university_id')
             ->leftJoin('departments', 'departments.id', '=', 'department_id')
-            ->leftJoin('grades', 'grades.id', '=', 'grade_id')
+            ->leftJoin('grades', 'grades.id', '=', 'students.grade_id')
             ->leftJoin('student_statuses', 'student_statuses.id', '=', 'status_id');
 
             

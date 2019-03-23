@@ -64,8 +64,8 @@ class TransfersDataTable extends DataTable
                 
             $query->leftJoin('departments as from', 'from.id', '=' , 'from_department_id')
                 ->leftJoin('departments as to', 'from.id', '=' , 'to_department_id')
-                ->where('from_department.university_id', auth()->user()->university_id)
-                ->orWhere('to_department.university_id', auth()->user()->university_id);                    
+                ->where('from_department.university_id', auth()->user()->university_id);
+                //->orWhere('to_department.university_id', auth()->user()->university_id);                    
         }
 
         return $query;
