@@ -28,12 +28,10 @@
                             <div class="form-group {{ $errors->has('department') ? ' has-error' : '' }}">
                                 {!! Form::label('department', trans('general.department'), ['class' => 'control-label col-sm-3']) !!}
                                 <div class="col-sm-8">
-                                    {!! Form::select('department', $department, null, ['class' => 'form-control select2-ajax', 'remote-url' => route('api.departments')]) !!}
-                                    @if ($errors->has('department'))
-                                        <span class="help-block">
-                                            <strong>{{ $errors->first('department') }}</strong>
-                                        </span>
-                                    @endif
+                                    {!! Form::select('department', $department, null, ['class' => 'form-control select2-ajax', 'remote-url' => route('api.departments')]) !!}                                   
+                                    <span class="help-block">
+                                        <strong>در صورتی که دیپارتمنت مورد نظر در لیست نیست, هیچ گزینه ای را انتخاب نکنید.</strong>
+                                    </span>                                    
                                 </div>
                             </div>
                         </div>
@@ -111,6 +109,21 @@
                         </div>
                     </div>
                     <div class="col-md-6">
+                        <div class="form-group {{ $errors->has('type') ? ' has-error' : '' }}">
+                            {!! Form::label('type', trans('general.type'), ['class' => 'control-label col-sm-3']) !!}
+                            <div class="col-sm-8">
+                                {!! Form::select('type', ['permanent' => trans('general.permanent'),  'temporary' => trans('general.temporary') , 'honorary' => trans('general.honorary'), 'contractual' => trans('general.contractual')], null, ['class' => 'form-control', 'placeholder' => trans('general.select')]) !!}
+                                @if ($errors->has('type'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('type') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+                    </div>                    
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
                         <div class="form-group {{ $errors->has('academic_rank_id') ? ' has-error' : '' }}">
                             {!! Form::label('academic_rank_id', trans('general.academic_rank'), ['class' => 'control-label col-sm-3']) !!}
                             <div class="col-sm-8">
@@ -118,21 +131,6 @@
                                 @if ($errors->has('academic_rank_id'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('academic_rank_id') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="form-group {{ $errors->has('type') ? ' has-error' : '' }}">
-                            {!! Form::label('type', trans('general.type'), ['class' => 'control-label col-sm-3']) !!}
-                            <div class="col-sm-8">
-                                {!! Form::select('type', ['permanent' => trans('general.permanent'),  'temporary' => trans('general.temporary') , 'honorary' => trans('general.honorary')], null, ['class' => 'form-control', 'placeholder' => trans('general.select')]) !!}
-                                @if ($errors->has('type'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('type') }}</strong>
                                     </span>
                                 @endif
                             </div>
@@ -225,36 +223,21 @@
                     </div>
                 </div>
                 <hr>
-                <div class="row">
+                <div class="row">                        
                     <div class="col-md-6">
                         <div class="form-group {{ $errors->has('password') ? ' has-error' : '' }}">
-                            {!! Form::label('password', trans('general.password'), ['class' => 'control-label col-sm-3']) !!}
+                            {!! Form::label('password', trans('general.password'), ['class' => 'control-label col-sm-3']) !!}                                
                             <div class="col-sm-8">
-                                {!! Form::password('password', null, ['class' => 'form-control ltr']) !!}
+                                {!! Form::password('password', ['class' => 'form-control ltr']) !!}     
                                 @if ($errors->has('password'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('password') }}</strong>
                                     </span>
-                                @endif
+                                @endif                                                                                                   
                             </div>
                         </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="form-group {{ $errors->has('password_confirmation') ? ' has-error' : '' }}">
-                            {!! Form::label('password_confirmation', trans('general.password_confirmation'), ['class' => 'control-label col-sm-3']) !!}
-                            <div class="col-sm-8">
-                                {!! Form::password('password_confirmation', null, ['class' => 'form-control ltr']) !!}
-                                @if ($errors->has('password_confirmation'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('password_confirmation') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                    </div>                                        
+                </div>                
                 <hr>
                 <div class="form-actions fluid">
                     <div class="row">

@@ -141,6 +141,7 @@ return [
         'leave_year' => 'سال تاجیل',
         'faculty' => 'پوهنځی',
         'grade_id' => 'مقطع',
+        'type' => 'نوع',
     ],
 
 ];

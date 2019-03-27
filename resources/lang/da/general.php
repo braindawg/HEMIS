@@ -55,8 +55,9 @@ return [
     'doctor' => 'دکتور',
     'teacher_type' => 'نوعه استاد',
     'permanent' => ' دایمی',
-    'temporary' => ' موفتی',
+    'temporary' => ' موقتی',
     'honorary' => ' افتخاری',
+    'contractual' => 'قرار دادی',
 
     'announcements_list' => ' لیست اعلانات',
     'noticeboard' => ' تابلوی اعلانات',

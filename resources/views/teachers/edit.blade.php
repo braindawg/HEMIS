@@ -40,11 +40,9 @@
                                                 {!! Form::label('department', trans('general.department'), ['class' => 'control-label col-sm-3']) !!}
                                                 <div class="col-sm-8">
                                                     {!! Form::select('department', $department, null, ['class' => 'form-control select2-ajax', 'remote-url' => route('api.departments')]) !!}
-                                                    @if ($errors->has('department'))
-                                                        <span class="help-block">
-                                                            <strong>{{ $errors->first('department') }}</strong>
-                                                        </span>
-                                                    @endif
+                                                    <span class="help-block">
+                                                        <strong>در صورتی که دیپارتمنت مورد نظر در لیست نیست, هیچ گزینه ای را انتخاب نکنید.</strong>
+                                                    </span>  
                                                 </div>
                                             </div>
                                         </div>
@@ -120,6 +118,22 @@
                                             </div>
                                         </div>
                                         <div class="col-md-6">
+                                            <div class="form-group {{ $errors->has('type') ? ' has-error' : '' }}">
+                                                {!! Form::label('type', trans('general.type'), ['class' => 'control-label col-sm-3']) !!}
+                                                <div class="col-sm-8">
+                                                    {!! Form::select('type', [ 'permanent' => trans('general.permanent'),  'temporary'  => trans('general.temporary'), 'honorary' => trans('general.honorary'), 'contractual' => trans('general.contractual')], null, ['class' => 'form-control', 'placeholder' => trans('general.select')]) !!}
+                                                    @if ($errors->has('type'))
+                                                        <span class="help-block">
+                                                                <strong>{{ $errors->first('type') }}</strong>
+                                                            </span>
+                                                    @endif
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+                                    <div class="row">
+                                    <div class="col-md-6">
                                             <div class="form-group {{ $errors->has('academic_rank_id') ? ' has-error' : '' }}">
                                                 {!! Form::label('academic_rank', trans('general.academic_rank'), ['class' => 'control-label col-sm-3']) !!}
                                                 <div class="col-sm-8">
@@ -128,21 +142,6 @@
                                                         <span class="help-block">
                                                             <strong>{{ $errors->first('academic_rank_id') }}</strong>
                                                         </span>
-                                                    @endif
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group {{ $errors->has('type') ? ' has-error' : '' }}">
-                                                {!! Form::label('type', trans('general.type'), ['class' => 'control-label col-sm-3']) !!}
-                                                <div class="col-sm-8">
-                                                    {!! Form::select('type', [ 'permanent' => trans('general.permanent'),  'temporary'  => trans('general.temporary') , 'honorary' => trans('general.honorary')], null, ['class' => 'form-control', 'placeholder' => trans('general.select')]) !!}
-                                                    @if ($errors->has('type'))
-                                                        <span class="help-block">
-                                                                <strong>{{ $errors->first('type') }}</strong>
-                                                            </span>
                                                     @endif
                                                 </div>
                                             </div>

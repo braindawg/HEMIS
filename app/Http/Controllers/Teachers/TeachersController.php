@@ -11,10 +11,9 @@ use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Maklad\Permission\Models\Role;
 use App\Models\TeacherAcademicRank;
+use App\Http\Controllers\Controller;
 use App\DataTables\TeachersDataTable;
 use Maklad\Permission\Models\Permission;
-use App\Http\Controllers\Controller;
-
 
 class TeachersController extends Controller
 {
@@ -64,14 +63,16 @@ class TeachersController extends Controller
      */
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
+        $request->validate([
             'name' => 'required|min:3',
             'father_name' => 'required|min:3',
             'phone' => 'required',
             'email' => 'required|email|unique:teachers',
             'university' =>'required',
-            'academic_rank_id' =>'required',
             'type' =>'required',
+            'academic_rank_id' =>   Rule::requiredIf(function () use ($request) {
+                return $request->type != "contractual";
+            }),            
             'password' => 'nullable'
         ]);
 
@@ -126,13 +127,16 @@ class TeachersController extends Controller
      */
     public function update(Request $request, $teacher)
     {
-        $validatedData = $request->validate([
+        $request->validate([
             'name' => 'required|min:3',
             'father_name' => 'required|min:3',
             'phone' => 'required',
             'email' => 'required|email',
             'university' =>'required',
-            'password' => 'nullable'
+            'password' => 'nullable',
+            'academic_rank_id' =>   Rule::requiredIf(function () use ($request) {
+                return $request->type != "contractual";
+            }),
         ]);
         
 
