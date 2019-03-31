@@ -26,8 +26,8 @@ class AuthServiceProvider extends ServiceProvider
         $this->registerPolicies();
 
         //this will give developers full access to system
-        Gate::before(function ($user, $ability) {
-            return is_a($user, \App\Models\User::class) and $user->isDeveloper();
+        Gate::before(function ($user, $ability) {                        
+            return is_a($user, \App\User::class) and $user->isDeveloper();
         });
     }
 }

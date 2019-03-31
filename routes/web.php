@@ -48,6 +48,8 @@ Route::group(['middleware' => 'auth'], function() {
         Route::resource('/students', 'StudentsController');
         Route::patch('/students/{student}/updateStatus', 'StudentsController@updateStatus')->name('students.updateStatus');
         Route::get('/students/{student}/card', 'StudentCardController@index')->name('students.card');
+        Route::get('/students/{student}/photo', 'PhotoController@index')->name('students.photo');
+        Route::put('/students/{student}/photo', 'PhotoController@store')->name('students.photo.update');
 
         Route::get('{student}/downloads', 'StudentDownloadController@index')->name('students.downloads');
         Route::get('{student}/downloads/{file}', 'StudentDownloadController@show')->name('students.downloads.download');

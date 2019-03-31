@@ -9,6 +9,7 @@
         "doctrine/dbal": "^2.8",
         "fideloper/proxy": "^4.0",
         "insenseanalytics/laravel-nova-permission": "^0.1.1",
+        "intervention/image": "^2.4",
         "khill/lavacharts": "3.0.*",
         "lab404/laravel-impersonate": "^1.2",
         "laravel/framework": "5.7.*",

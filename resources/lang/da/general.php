@@ -118,6 +118,7 @@ return [
     'kankor_id' => 'ID کانکور',
     'form_no' => 'ID کانکور',
     'phone' => 'شماره تماس',
+    'photo' => 'عکس',
     'married' => 'متاهل',
     'single' => 'مجرد',
     'relatives' => 'اقارب',
@@ -401,5 +402,5 @@ return [
     'select_language' => 'انتخاب زبان',
     'pashto' => ' پشتو',
     'dari' => ' دری',
-
+    'detail' => 'مشخصات',
 ];

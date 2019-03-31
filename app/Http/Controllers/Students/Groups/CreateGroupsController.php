@@ -56,6 +56,6 @@ class CreateGroupsController extends Controller
             );
         });          
 
-        return redirect()->back()->with(['message', trans('general.groups_had_been_created', ["year" => $request->year])]);
+        return redirect()->back()->with('message', trans('general.groups_had_been_created', ["year" => $request->year]));
     }
 }
