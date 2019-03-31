@@ -92,29 +92,23 @@
                 </li>
                 @endif
 
-                @if (auth()->user()->can(['create-group']))          
+                @if (auth()->user()->can(['create-group']))
                 <li class="nav-item {{ request()->is('*groups/create') ? 'active' : '' }}">
                     <a href="{{ route('groups.create') }}" class="nav-link ">
                         <i class="icon-plus"></i>
                         <span class="title">{{ trans('general.create_group') }}</span>
                     </a>
                 </li>
+                @endif
 
+                @if (auth()->user()->can(['create-all-groups']))
                 <li class="nav-item {{ request()->is('*groups/create') ? 'active' : '' }}">
                     <a href="{{ route('student.groups.all.create') }}" class="nav-link ">
                         <i class="icon-plus"></i>
                         <span class="title">{{ trans('general.create_groups_automatically') }}</span>
                     </a>
-                </li>
+                </li>                                
                 @endif
-                <hr>
-                {{--<li class="nav-item {{ request()->is('attendance') ? 'active' : '' }}">--}}
-                    {{--<a href="{{ route('attendance.create') }}" class="nav-link ">--}}
-                        {{--<i class="icon-printer"></i>--}}
-                        {{--<span class="title">{{ trans('general.print_attendance') }}</span>--}}
-                    {{--</a>--}}
-                {{--</li>--}}
-
             </ul>
         </li>
         @endif

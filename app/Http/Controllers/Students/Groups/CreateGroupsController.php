@@ -11,7 +11,7 @@ class CreateGroupsController extends Controller
 {    
     public function __construct()
     {                     
-        $this->middleware('permission:create-group', ['only' => ['create','store']]);
+        $this->middleware('permission:create-all-groups', ['only' => ['index','store']]);
     }
 
     public function index()
@@ -24,8 +24,7 @@ class CreateGroupsController extends Controller
 
     public function store(Request $request)
     {
-        \DB::transaction(function () use ($request) {
-            
+        \DB::transaction(function () use ($request) {            
             //This query creat groups for student if group with spedified kankor_year and department_id doesn't exists.
             \DB::statement(
                 'INSERT INTO groups (name, kankor_year, description, department_id, university_id) 
@@ -50,12 +49,13 @@ class CreateGroupsController extends Controller
                 JOIN groups ON groups.kankor_year = students.kankor_year 
                     and groups.department_id = students.department_id
                 SET students.group_id = groups.id
-                WHERE students.group_id = ""
-                    and students.kankor_year = ?',
+                WHERE students.group_id is null
+                    and students.kankor_year = ?
+                    and students.stuatus_id = 2',
                 [$request->kankor_year]
             );
         });          
 
-        return redirect()->back()->with('message', trans('general.groups_had_been_created', $request->year));
+        return redirect()->back()->with(['message', trans('general.groups_had_been_created', ["year" => $request->year])]);
     }
 }
