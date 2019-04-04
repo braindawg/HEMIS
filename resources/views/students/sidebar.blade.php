@@ -11,16 +11,16 @@
                 <!-- SIDEBAR USERPIC -->
                 <div class="profile-userpic">                    
                     <a href="{{ auth()->user()->can('update-student-photo') ? route('students.photo', $student) : "#" }}">
-                    <img src="{{ asset($student->photo_url) }}" class="img-responsive" alt=""> 
-                    </a>
+                        <img src="{{ asset($student->photo_url) }}" class="img-responsive" alt=""> 
+                    </a>                    
                 </div>
                 <!-- END SIDEBAR USERPIC -->
                 <!-- SIDEBAR USER TITLE -->
                 <div class="profile-usertitle">
                     <div class="profile-usertitle-name"> {{ $student->name }} </div>
                     <div class="profile-usertitle-job"> {{ $student->form_no }}</div>
-                    <div class="profile-usertitle-job"> {{ $student->department->name ?? '' }}</div>
-                    <div class="profile-usertitle-job"> {{ $student->university->name }}</div>
+                    <div class="profile-usertitle-job"> {{ $student->department ? $student->department->name : '' }}</div>
+                    <div class="profile-usertitle-job"> {{ $student->university ? $student->university->name : '' }}</div>
                 </div>
                 <!-- END SIDEBAR USER TITLE -->
                 <!-- SIDEBAR BUTTONS -->               

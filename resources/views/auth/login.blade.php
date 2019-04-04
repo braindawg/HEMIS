@@ -50,6 +50,15 @@
                         <form method="POST" action="{{ $guard == 'teacher' ? route('teacher.login') : route('login') }}" class="login-form" >
                             {{ csrf_field() }}
                             <input type="hidden" name="form" value="login">
+                            <div class="row" style="margin-bottom: 20px;">
+                                <div class="col-xs-10 col-xs-offset-1">
+                                    <p>نوع یوزر:</p>
+                                    <select name="guard" class="form-control form-control-solid placeholder-no-fix">
+                                        <option value="user">{{ trans('general.user_guard') }}</option>
+                                        <option value="teacher" @if($guard == 'teacher') selected @endif>{{ trans('general.teacher_guard') }}</option>
+                                    </select>                                    
+                                </div>
+                            </div>
                             <div class="row">                            
                                 <div class="col-xs-10 col-xs-offset-1">
                                     <input class="form-control form-control-solid placeholder-no-fix ltr" type="email" name="email" value="{{ old('email') }}" required autofocus placeholder="ایمیل"/>                               
@@ -151,10 +160,17 @@
         <script src="{{ asset('js/all.js') }}" type="text/javascript"></script>
         <script src="{{ asset('js/login.js') }}" type="text/javascript"></script>
         <script>
-        // $(function() {
-        //     $('.login-form').hide();
-        //     $('.forget-form').show();
-        // })
+        $(function() {
+            /* $('.login-form').hide();
+            $('.forget-form').show(); */
+            $('select').change(function () {
+                if ($(this).val() == 'teacher') {
+                    $('.login-form').attr('action', "{{ route('teacher.login') }}")
+                } else {
+                    $('.login-form').attr('action', "{{ route('login') }}")
+                }
+            })
+        })
         </script>
         
     </body>

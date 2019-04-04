@@ -403,4 +403,6 @@ return [
     'pashto' => ' پشتو',
     'dari' => ' دری',
     'detail' => 'مشخصات',
+    'user_guard' => 'کارمند',
+    'teacher_guard' => 'استاد',
 ];
