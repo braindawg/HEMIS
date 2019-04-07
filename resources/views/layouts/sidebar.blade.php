@@ -103,11 +103,22 @@
 
                 @if (auth()->user()->can(['create-all-groups']))
                 <li class="nav-item {{ request()->is('*groups/create') ? 'active' : '' }}">
+
                     <a href="{{ route('student.groups.all.create') }}" class="nav-link ">
                         <i class="icon-plus"></i>
                         <span class="title">{{ trans('general.create_groups_automatically') }}</span>
                     </a>
                 </li>                                
+                @endif
+                @if (auth()->user()->can(['create-user']))   
+                <hr>
+                <li class="nav-item {{ request()->is('report/student') ? 'active' : '' }}">
+                    <a href="{{ route('report.student') }}" class="nav-link ">
+                        <i class="icon-printer"></i>
+                        <span class="title">{{ trans('general.student_report') }}</span>
+                    </a>
+                </li>
+                <hr>
                 @endif
             </ul>
         </li>
@@ -239,7 +250,18 @@
                         <span class="title">{{ trans('general.create_teacher') }}</span>
                     </a>
                 </li>
-                @endif            
+                @endif    
+                
+                @if (auth()->user()->can(['create-teacher']))  
+                <hr>        
+                <li class="nav-item {{ request()->is('report/teacher') ? 'active' : '' }}">
+                    <a href="{{ route('report.teacher') }}" class="nav-link ">
+                        <i class="icon-printer"></i>
+                        <span class="title">{{ trans('general.teacher_report') }}</span>
+                    </a>
+                </li>
+                @endif  
+                <hr>
             </ul>
         </li>
         @endif

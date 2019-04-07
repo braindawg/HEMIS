@@ -402,6 +402,18 @@ return [
     'select_language' => 'انتخاب زبان',
     'pashto' => ' پشتو',
     'dari' => ' دری',
+    'report' => ' گذارش ',
+    'generate_report' => ' ایجاد گذارش',
+    'student_status' => 'حالت محصل',
+    'student_information_report' => ' گذارش عمومی محصلین ',
+    'student_report' => ' گذارش محصلان ',
+    'teacher_report' => ' گذارش استادان',
+
+
+
+
+
+
     'detail' => 'مشخصات',
     'user_guard' => 'کارمند',
     'teacher_guard' => 'استاد',

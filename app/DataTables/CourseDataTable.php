@@ -65,7 +65,7 @@ class CourseDataTable extends DataTable
                 'courses.code',
                 'year',
                 'half_year',
-                'semester',
+                'courses.semester',
                 'subjects.title as subject',
                 'teachers.name as teacher',
                 'groups.name as group',

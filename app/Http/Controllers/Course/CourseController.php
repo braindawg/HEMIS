@@ -66,6 +66,7 @@ class CourseController extends Controller
         $validatedData = $request->validate([
             'code' => [
                 'required',
+                'max:10',
                 Rule::unique('courses')->whereNull('deleted_at')
             ],
             'year' => 'required',
@@ -139,7 +140,7 @@ class CourseController extends Controller
     public function update(Request $request, $course)
     {
         $validatedData = $request->validate([
-            'code' => 'required',
+            'code' => 'required|max:10',
             'year' => 'required',
             'semester' => 'required',
             'half_year' => 'required',

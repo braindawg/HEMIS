@@ -85,6 +85,10 @@ class LeavesController extends Controller
             $leave->update([
                 'approved' => true
             ]);
+
+            $leave->student->update([
+                'status_id' => 4
+            ]);
         }
 
         return redirect(route('leaves.index'));

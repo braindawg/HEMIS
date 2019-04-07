@@ -164,6 +164,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\NovaServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        Maatwebsite\Excel\ExcelServiceProvider::class,
 
     ],
 
@@ -218,6 +219,7 @@ return [
         'DataTables' => Yajra\DataTables\Facades\DataTables::class,
         'PDF' => niklasravnsborg\LaravelPdf\Facades\Pdf::class,
         'Pusher' => Pusher\Pusher::class,
+        'Excel' => Maatwebsite\Excel\Facades\Excel::class,
 
     ],
 

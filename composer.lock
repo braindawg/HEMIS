@@ -4,7 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2544c619b7212a2e3ccdcb6c5a974150",
+
+    "content-hash": "d9cd46e33849db5c311dfd1f00d9f8e1",
     "packages": [
         {
             "name": "cakephp/chronos",
@@ -1691,7 +1692,7 @@
                 {
                     "name": "Luís Otávio Cobucci Oblonczyk",
                     "email": "lcobucci@gmail.com",
-                    "role": "developer"
+                    "role": "Developer"
                 }
             ],
             "description": "A simple library to work with JSON Web Token and JSON Web Signature",
@@ -1787,29 +1788,30 @@
         },
         {
             "name": "maatwebsite/excel",
-            "version": "3.1.6",
+            "version": "3.1.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Maatwebsite/Laravel-Excel.git",
-                "reference": "d5e51dca5ed845c1ce605a7a1d9882d5b57e270d"
+                "reference": "6a66d5af480bd6f46f689b6ebe2e84912694f311"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Maatwebsite/Laravel-Excel/zipball/d5e51dca5ed845c1ce605a7a1d9882d5b57e270d",
-                "reference": "d5e51dca5ed845c1ce605a7a1d9882d5b57e270d",
+                "url": "https://api.github.com/repos/Maatwebsite/Laravel-Excel/zipball/6a66d5af480bd6f46f689b6ebe2e84912694f311",
+                "reference": "6a66d5af480bd6f46f689b6ebe2e84912694f311",
                 "shasum": ""
             },
             "require": {
                 "ext-json": "*",
-                "illuminate/support": "5.5.* || 5.6.* || 5.7.*",
+                "illuminate/support": "5.5.*|5.6.*|5.7.*|5.8.*",
+                "opis/closure": "^3.1",
                 "php": "^7.0",
-                "phpoffice/phpspreadsheet": "^1.4"
+                "phpoffice/phpspreadsheet": "^1.6"
             },
             "require-dev": {
                 "mockery/mockery": "^1.1",
-                "orchestra/database": "^3.6",
-                "orchestra/testbench": "^3.6",
-                "phpunit/phpunit": "^7.0",
+                "orchestra/database": "^3.8",
+                "orchestra/testbench": "^3.8",
+                "phpunit/phpunit": "^8.0",
                 "predis/predis": "^1.1"
             },
             "type": "library",
@@ -1850,7 +1852,7 @@
                 "php",
                 "phpspreadsheet"
             ],
-            "time": "2019-01-30T19:01:33+00:00"
+            "time": "2019-03-18T15:57:28+00:00"
         },
         {
             "name": "maatwebsite/laravel-nova-excel",

@@ -71,6 +71,7 @@ class DropoutsController extends Controller
             //     'status_id' => 3,
             // ]);
 
+
              $dropout->download($student , 'درخواست-منفکی', $request, $dropout);
             
         });
@@ -86,6 +87,10 @@ class DropoutsController extends Controller
              $dropout->update([
                  'approved' => true
              ]);
+
+             $dropout->student->update([
+                'status_id' => 3,
+            ]);
          }
  
          return redirect(route('dropouts.index'));

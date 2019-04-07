@@ -93,9 +93,9 @@ class TransfersDataTable extends DataTable
     protected function getColumns()
     {
         return [            
-            'form_no'         => ['title' => trans('general.form_no')],
-            'name'            => ['title' => trans('general.name')],
-            'father_name'     => ['title' => trans('general.father_name')],
+            'form_no'         => ['name' => 'students.form_no','title' => trans('general.form_no')],
+            'name'            => ['name' => 'students.name','title' => trans('general.name')],
+            'father_name'     => ['name' => 'students.father_name','title' => trans('general.father_name')],
             'from_department' => ['name' => 'from_department.name', 'title' => trans('general.from_department')],
             'to_department'   => ['name' => 'to_department.name', 'title' => trans('general.to_department')],
             'note'            => ['name' => 'transfers.note', 'title' => trans('general.note'), 'sortable' => false, 'searchable' => false]

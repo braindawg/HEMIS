@@ -41,6 +41,9 @@ Route::group(['middleware' => 'auth'], function() {
         Route::get('/students/groups/{group}/list', 'Groups\GroupListController@index')->name('groups.list');
         Route::post('/students/groups/{group}/list', 'Groups\GroupListController@addStudent')->name('groups.student.add');
         Route::delete('/students/groups/{group}/list', 'Groups\GroupListController@removeStudent')->name('groups.student.remove');
+        Route::get('student/groups/groups-automation','Groups\GroupsAutomationController@index')->name('student.groups.automation');
+        Route::post('student/groups/groups-automation/generate','Groups\GroupsAutomationController@store')->name('student.groups.automation.generate');
+
         
 
         
@@ -65,6 +68,9 @@ Route::group(['middleware' => 'auth'], function() {
         //students forms
         Route::get('students/{student}/student-form' , 'StudentFormsController@index')->name('student.form');
         Route::post('students/{student}/generate-form' , 'StudentFormsController@generateForm')->name('student.generate-form');
+
+        
+
     });
 
     Route::group(['namespace' => 'Universities'], function() {
@@ -123,9 +129,25 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('/activity/{university_id?}/{startdate?}/{enddate?}','ActivityController@index')->name('activity');
 
 
-    Route::get('setting','SettingController@index')->name('setting');
+    // Route::get('setting','SettingController@index')->name('setting');
 
 
+    Route::group(['namespace' => 'Reports'], function(){
+
+        //students report
+
+        Route::get('report/student' , 'StudentsReportController@index')->name('report.student');
+        Route::post('report/student/create' , 'StudentsReportController@create')->name('report.student.create');
+
+        //teacher report
+        Route::get('report/teacher' , 'TeachersReportController@index')->name('report.teacher');
+        Route::post('report/teacher/create' , 'TeachersReportController@create')->name('report.teacher.create');
+
+    });
+   
+    
+
+    Route::get('/transcript','TrascriptController@create')->name('transcript');
 
 
 
