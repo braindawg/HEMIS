@@ -26,10 +26,10 @@ class TransfersDataTable extends DataTable
                         <button type="submit" class="btn btn-xs btn-danger" onClick="doConfirm()" style="margin-top: 5px"><i class="fa fa-trash"></i></button>
                     </form>';
                 }
+                
                 if (auth()->user()->can('approve-transfer') and $transfer->approved == false ) {
                     $html .='<a href="'.route('transfers.edit', $transfer).'" class="btn btn-xs btn-success" onClick="doConfirm()" style="margin-top: 5px" title = "'. trans('general.approved_transfer').' "><i class="fa fa-spinner"></i></a>'; 
                 }
-
                             
                 return $html;
             })
@@ -55,17 +55,17 @@ class TransfersDataTable extends DataTable
             'note'
             )
         ->join('students', 'students.id', '=', 'student_id')
+
         ->join('departments as from_department', 'from_department.id', '=', 'from_department_id')
-        ->join('departments as to_department', 'to_department.id', '=', 'to_department_id')
         ->leftJoin('universities as from_university', 'from_university.id', '=', 'from_department.university_id')
+
+        ->join('departments as to_department', 'to_department.id', '=', 'to_department_id')        
         ->leftJoin('universities as to_university', 'to_university.id', '=', 'to_department.university_id');
 
-        if (! auth()->user()->allUniversities()) {
-                
+        if (! auth()->user()->allUniversities()) {                
             $query->leftJoin('departments as from', 'from.id', '=' , 'from_department_id')
                 ->leftJoin('departments as to', 'from.id', '=' , 'to_department_id')
-                ->where('from_department.university_id', auth()->user()->university_id);
-                //->orWhere('to_department.university_id', auth()->user()->university_id);                    
+                ->where('from_department.university_id', auth()->user()->university_id);                                   
         }
 
         return $query;
@@ -79,10 +79,10 @@ class TransfersDataTable extends DataTable
     public function html()
     {
         return $this->builder()
-                    ->columns($this->getColumns())
-                    ->minifiedAjax()
-                    ->addAction(['title' => trans('general.action'), 'width' => '۷0px'])
-                    ->parameters($this->getBuilderParameters());
+            ->columns($this->getColumns())
+            ->minifiedAjax()
+            ->addAction(['title' => trans('general.action'), 'width' => '۷0px'])
+            ->parameters($this->getBuilderParameters());
     }
 
     /**

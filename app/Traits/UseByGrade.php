@@ -12,7 +12,7 @@ trait UseByGrade
         static::addGlobalScope('grade', function ($query) {
 
             //if user assigned to grades filter else not filter
-            if (!auth()->guest() and auth()->user()->grades->count()) {
+            if (auth('user')->check() and auth()->user()->grades->count()) {
                 
                 $query->whereIn($query->getQuery()->from . '.grade_id',  auth()->user()->grades->pluck('id'));
    

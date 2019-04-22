@@ -76,8 +76,8 @@ class CourseDataTable extends DataTable
             ->leftJoin('teachers', 'teachers.id', '=', 'courses.teacher_id')
             ->leftJoin('groups', 'groups.id', '=', 'group_id')
             ->leftJoin('universities', 'universities.id', '=', 'courses.university_id')
-            ->leftJoin('departments', 'departments.id', '=', 'courses.department_id')
-            ->withCount('students');
+            ->leftJoin('departments', 'departments.id', '=', 'courses.department_id');
+            //->withCount('students');
 
 
 
@@ -185,7 +185,7 @@ class CourseDataTable extends DataTable
             'subject'     => [ 'name' => 'subjects.title', 'title' => trans('general.subject')],
             'teacher'     => [ 'name' => 'teachers.name', 'title' => trans('general.teacher')],
             'group'     => [ 'name' => 'groups.name', 'title' => trans('general.group')],
-            'students_count' => ['name' => 'students_count', 'title' => trans('general.students_count'), 'searchable' => false, 'orderable' => false],
+            //'students_count' => ['name' => 'students_count', 'title' => trans('general.students_count'), 'searchable' => false, 'orderable' => false],
             'department'    => ['name' => 'departments.name', 'title' => trans('general.department')],
             'university' => ['name' => 'universities.name', 'title' => trans('general.university')],
         ];
