@@ -3,10 +3,9 @@
 namespace App\Exports;
 
 use App\Models\Student;
-use DB;
-use Maatwebsite\Excel\Concerns\FromCollection;
-use Maatwebsite\Excel\Concerns\FromView;
 use Illuminate\Contracts\View\View;
+use Maatwebsite\Excel\Concerns\FromView;
+use Maatwebsite\Excel\Concerns\FromCollection;
 
 class StudentExports implements FromView 
 {
@@ -15,7 +14,6 @@ class StudentExports implements FromView
     */
     public function view(): View
     {
-
         $students = Student::select( 
             'students.id',
             'students.form_no',
@@ -66,6 +64,10 @@ class StudentExports implements FromView
 
         if (request()->grade != null) {
             $students->where('students.grade_id', '=', request()->grade);
+        }
+        
+        if (request()->gender != null) {
+            $students->where('students.gender', '=', request()->gender);
         }
 
         $students = $students->get();

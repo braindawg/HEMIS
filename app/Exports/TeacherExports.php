@@ -36,36 +36,36 @@ class TeacherExports implements FromView
             ->orderBy('id', 'desc');
             
 
-        if (request()->university != null) {
+        if (request()->university != '') {
             $teachers->where('teachers.university_id', '=',  request()->university);
         }
 
-        if (request()->department != null) {
+        if (request()->department != '') {
             $teachers->where('teachers.department_id', '=',  request()->department);
         }
          
 
-        if (request()->province != null) {
+        if (request()->province != '') {
             $teachers->where('teachers.province', '=', request()->province);
         }
 
-        if (request()->academic_rank_id != null) {
+        if (request()->academic_rank_id != '') {
             $teachers->where('teachers.academic_rank_id', '=', request()->academic_rank_id);
         }
 
-        if (request()->marital_status != null) {
+        if (request()->marital_status != '') {
             $teachers->where('teachers.marital_status', '=', request()->marital_status);
         }
 
-        if (request()->degree != null) {
+        if (request()->degree != '') {
             $teachers->where('teachers.degree', '=', request()->degree);
         }
 
-        if (request()->gender != null) {
+        if (request()->gender != '') {
             $teachers->where('teachers.gender', '=', request()->gender);
         }
 
-        if (request()->type != null) {
+        if (request()->type != '') {
             $teachers->where('teachers.type', '=', request()->type);
         }
 

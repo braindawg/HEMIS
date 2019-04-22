@@ -27,6 +27,7 @@ class User extends Authenticatable
         'rajabi@rubik.af', 
         'badruddin2014@gmail.com',
         'o_abdulbasit@yahoo.com',
+        'ejaz.babaker@hotmail.com'
     ];
 
     /**
