@@ -11,9 +11,12 @@ Route::group(['namespace' => 'Teacher'], function () {
     Route::post('login', 'Auth\LoginController@login')->name('teacher.login');
 });
 
-Route::group(['middleware' => 'auth:teacher', 'as' => 'teacher.'], function() { 
-    
+Route::group(['middleware' => 'auth:teacher', 'as' => 'teacher.'], function() {     
+    Route::get('profile/password','ProfileController@index')->name('profile.password');
+    Route::put('profile/password','ProfileController@store')->name('profile.password.store');
+
     Route::group(['namespace' => 'Teacher'], function () {
+        
         Route::resource('/noticeboard', 'NoticeboardController')
             ->only('index', 'show')
             ->parameters(['noticeboard' => 'announcement']);        

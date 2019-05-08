@@ -7,12 +7,13 @@ use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Notifications\Notifiable;
 use Lab404\Impersonate\Models\Impersonate;
+use Spatie\Activitylog\Traits\CausesActivity;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
-    use Notifiable, SoftDeletes, HasRoles, Impersonate;
+    use Notifiable, SoftDeletes, HasRoles, Impersonate, CausesActivity;
 
     /**
      * The attributes that are mass assignable.

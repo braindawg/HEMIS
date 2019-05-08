@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use \App\Models\Province;
-use \App\Models\Department;
-use \App\Models\Student;
-use \App\Models\University;
+use App\Models\Student;
+use App\Models\Province;
+use App\Models\Department;
+use App\Models\University;
 use Illuminate\Http\Request;
-use \App\Models\StudentStatus;
+use App\Models\StudentStatus;
 
 class HomeController extends Controller
 {
@@ -30,19 +30,15 @@ class HomeController extends Controller
         $kankorYear = $kankorYear ?? \App\Models\Student::max('kankor_year');
         
         $kankorYears = Student::select('kankor_year')->distinct()->orderBy('kankor_year', 'desc')->get();
-
+        $studentsByStatus = Department::with(['studentsByStatus' => function ($students) use ($kankorYear){
+            $students->where('kankor_year' , $kankorYear);
+        }])->get();        
         $universityName = '';
-         if( auth()->user()->allUniversities() ) {
-            $studentsByStatus = University::with(['studentsByStatus' => function ($students) use ($kankorYear){
-                $students->where('kankor_year' , $kankorYear);
-            }])->get();
-            
+
+         if( auth()->user()->allUniversities() ) {                        
             $allUniversities = University::get();
         }
-        else {
-            $studentsByStatus = Department::with(['studentsByStatus' => function ($students) use ($kankorYear){
-                $students->where('kankor_year' , $kankorYear);
-            }])->get();
+        else {            
             $allUniversities = University::where('id', auth()->user()->university_id)->get();
             $universityName = $allUniversities->first()->name;
         }
@@ -55,10 +51,10 @@ class HomeController extends Controller
         $allStudents = Student::where('kankor_year', $kankorYear)->count();
 
 
-        $totalStudentsByStatus = Student::select(\DB::raw('count(students.id) as students_count'),'status_id as status')
+        $totalStudentsByStatus = Student::select(\DB::raw('count(students.id) as students_count'),'status_id')
             ->where('kankor_year', $kankorYear)
             ->groupBy('status_id')
-            ->get();
+            ->get();        
 
         $provinces = Student::select('provinces.name as province', \DB::raw('count(students.id) as count'))
         ->leftJoin('provinces', 'provinces.id', '=', 'students.province')

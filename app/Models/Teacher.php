@@ -8,11 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Spatie\Activitylog\Traits\CausesActivity;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class Teacher extends Authenticatable
 {
-    use SoftDeletes, Notifiable, UseByUniversity;
+    use SoftDeletes, Notifiable, UseByUniversity, CausesActivity;
 
     protected $guarded = [];
     protected $dates = ['deleted_at'];

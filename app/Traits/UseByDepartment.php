@@ -27,7 +27,6 @@ trait UseByDepartment
         return $query->withoutGlobalScope('department');
     }
 
-
     public function department()
     {
         return $this->belongsTo(\App\Models\Department::class);

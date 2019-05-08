@@ -36,12 +36,8 @@
     <div class="col-md-3 col-sm-6">
          <div class="portlet text-center" style ="border-bottom: 2px solid #f2b632;">
             <h3>تعداد  محصلین شامل پوهنتون</h3>
-            <hr>
-            @if(sizeof($studentsByStatusCount) > 1)
-                <h1 class = "counter">{{ $studentsByStatusCount[1]->students_count }}</h1>  
-            @else
-                <h1 class = "counter">0</h1>  
-            @endif
+            <hr>            
+            <h1 class = "counter">{{ $studentsByStatusCount->where('status_id', 2)->first()->students_count }}</h1>              
         </div>
     </div>
 

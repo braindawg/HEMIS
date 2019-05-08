@@ -20,7 +20,7 @@ trait UseByUniversity
         });
 
         static::saving(function (Model $model) {
-            if (!isset($model->university_id)) {
+            if (!isset($model->university_id) and auth()->user()->university_id > 0) {
                 $model->university_id = auth()->user()->university_id;
             }
         });

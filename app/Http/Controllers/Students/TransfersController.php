@@ -55,7 +55,7 @@ class TransfersController extends Controller
      */
     public function store(Request $request)
     {        
-        $validatedData = $request->validate([            
+        $request->validate([            
             'student_id' => 'required',
             'university_id' => 'required',
             'department_id' => 'required|valid_destination_department',            
@@ -109,12 +109,13 @@ class TransfersController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($transfer)
-    {
+    {        
         \DB::transaction(function () use ($transfer){
-            $transfer->student->update([
+            $transfer->student()->allUniversities()->update([
                 'university_id' => $transfer->fromDepartment->university_id,
                 'department_id' => $transfer->from_department_id
-            ])->allUniversities();
+            ]);
+            
             $transfer->delete();
         });
 

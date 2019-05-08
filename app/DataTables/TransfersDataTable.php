@@ -19,7 +19,7 @@ class TransfersDataTable extends DataTable
             ->addColumn('action', function ($transfer) {
                 $html = '';
                 
-                if (auth()->user()->can('delete-transfer')) {
+                if ((auth()->user()->can('delete-transfer') and $transfer->approved == false) or auth()->user()->isDeveloper()) {
                     $html .= '<form action="'. route('transfers.destroy', $transfer) .'" method="post" style="display:inline">
                         <input type="hidden" name="_method" value="DELETE" />
                         <input type="hidden" name="_token" value="'.csrf_token().'" />

@@ -1,5 +1,6 @@
 <?php
 
+
 Route::get('/', function () {
     return redirect('/login');
 });
@@ -7,6 +8,8 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::group(['middleware' => 'auth'], function() { 
+    Route::get('profile/password','ProfileController@index')->name('profile.password');
+    Route::put('profile/password','ProfileController@store')->name('profile.password.store');
 
     Route::impersonate();
 
@@ -44,10 +47,6 @@ Route::group(['middleware' => 'auth'], function() {
         Route::get('student/groups/groups-automation','Groups\GroupsAutomationController@index')->name('student.groups.automation');
         Route::post('student/groups/groups-automation/generate','Groups\GroupsAutomationController@store')->name('student.groups.automation.generate');
 
-        
-
-        
-
         Route::resource('/students', 'StudentsController');
         Route::patch('/students/{student}/updateStatus', 'StudentsController@updateStatus')->name('students.updateStatus');
         Route::get('/students/{student}/card', 'StudentCardController@index')->name('students.card');
@@ -56,7 +55,6 @@ Route::group(['middleware' => 'auth'], function() {
 
         Route::get('{student}/downloads', 'StudentDownloadController@index')->name('students.downloads');
         Route::get('{student}/downloads/{file}', 'StudentDownloadController@show')->name('students.downloads.download');
-
 
         Route::resource('/transfers', 'TransfersController');
         Route::resource('/dropouts', 'DropoutsController');
@@ -68,9 +66,6 @@ Route::group(['middleware' => 'auth'], function() {
         //students forms
         Route::get('students/{student}/student-form' , 'StudentFormsController@index')->name('student.form');
         Route::post('students/{student}/generate-form' , 'StudentFormsController@generateForm')->name('student.generate-form');
-
-        
-
     });
 
     Route::group(['namespace' => 'Universities'], function() {
@@ -91,16 +86,13 @@ Route::group(['middleware' => 'auth'], function() {
         Route::resource('/issues', 'IssueController');
     });
 
-
-
     Route::group(['namespace' => 'Curriculum'], function() {
         Route::get('/curriculum', 'UniversitiesController@index')->name('curriculum.universities');
         Route::get('/curriculum/{university}', 'DepartmentsController@index')->name('curriculum.departments');
         Route::resource('/curriculum/{university}/{department}/subjects', 'SubjectsController');
     });
 
-    Route::group(['namespace' => 'Course'], function() {
-       
+    Route::group(['namespace' => 'Course'], function() {   
         Route::get('courses/{course}/list', 'AttendanceController@list')->name('attendance.create');        
         Route::get('courses/{course}/attendance', 'AttendanceController@print')->name('course.attendance.print');
         Route::get('courses/{course}/scores-sheet/{withScores?}', 'ScoreSheetController@print')->name('course.scoresSheet.print');
@@ -128,29 +120,17 @@ Route::group(['middleware' => 'auth'], function() {
 
     Route::get('/activity/{university_id?}/{startdate?}/{enddate?}','ActivityController@index')->name('activity');
 
-
-    // Route::get('setting','SettingController@index')->name('setting');
-
-
     Route::group(['namespace' => 'Reports'], function(){
-
         //students report
-
         Route::get('report/student' , 'StudentsReportController@index')->name('report.student');
         Route::post('report/student/create' , 'StudentsReportController@create')->name('report.student.create');
 
         //teacher report
         Route::get('report/teacher' , 'TeachersReportController@index')->name('report.teacher');
         Route::post('report/teacher/create' , 'TeachersReportController@create')->name('report.teacher.create');
-
     });
-   
-    
 
     Route::get('/transcript','TrascriptController@create')->name('transcript');
-
-
-
     
     //attachments link
     Route::get('getAttachment/{file_name}', function($filename){

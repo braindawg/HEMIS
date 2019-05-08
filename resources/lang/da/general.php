@@ -412,4 +412,12 @@ return [
     'detail' => 'مشخصات',
     'user_guard' => 'کارمند',
     'teacher_guard' => 'استاد',
+    'profile' => 'پروفایل',
+    'change_password' => 'تغییر پسورد',
+    'new_password' => 'پسورد جدید',
+
+    'score_of_subject_for_student_was_action' => 'نمره مضمون ":subject" برای ":student" :action.',
+    'deleted' => 'حذف شد',
+    'created' => 'ایجاد شد',
+    'updated' => 'آبدیت شد',
 ];

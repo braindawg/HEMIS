@@ -12,17 +12,16 @@
         "intervention/image": "^2.4",
         "khill/lavacharts": "3.0.*",
         "lab404/laravel-impersonate": "^1.2",
-        "laravel/framework": "5.7.*",
-        "laravel/nova": "*",
+        "laravel/framework": "5.8.*",
         "laravel/tinker": "~1.0",
         "laravelcollective/html": "^5.4.0",
         "maatwebsite/excel": "^3.1",
-        "maatwebsite/laravel-nova-excel": "^1.1",
         "niklasravnsborg/laravel-pdf": "^2.0",
         "pusher/pusher-php-server": "^3.2",
+        "spatie/laravel-activitylog": "^3.5",
         "spatie/laravel-permission": "^2.15",
         "yajra/laravel-datatables-buttons": "^4.0",
-        "yajra/laravel-datatables-oracle": "^8.7"
+        "yajra/laravel-datatables-oracle": "~9.0"
     },
     "require-dev": {
         "filp/whoops": "~2.0",

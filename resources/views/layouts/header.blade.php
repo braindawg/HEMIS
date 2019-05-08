@@ -109,15 +109,13 @@ Carbon::setLocale('fa');
                     <!-- BEGIN USER LOGIN DROPDOWN -->
                     <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
                     <li class="dropdown dropdown-user dropdown-dark">
-                        <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+                        <a href="{{ auth('user')->check() ? route('profile.password') : route('teacher.profile.password') }}" class="dropdown-toggle" >
                             <span class="username username-hide-on-mobile"> {{ Auth::user()->name }} </span>
                             <!-- DOC: Do not remove below empty space(&nbsp;) as its purposely used -->
                             <!-- <img alt="" class="img-circle" src="img/avatar9.jpg" />  -->
                         </a>
                         
                     </li>
-
-                    
 
                     @if (auth('user')->check() and auth('user')->user()->isImpersonated())                    
                     <li class="dropdown dropdown-extended dropdown-tasks dropdown-dark" id="header_task_bar">
