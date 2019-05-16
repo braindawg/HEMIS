@@ -116,7 +116,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row">
+                                <!-- <div class="row">
                                     <div class="col-md-8">
                                         <div class="form-group {{ $errors->has('group') ? ' has-error' : '' }}">
                                             {!! Form::label('group', trans('general.group'), ['class' => 'control-label col-sm-2']) !!}
@@ -130,7 +130,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </div> -->
                                 <hr>
                                 <div class="form-actions fluid">
                                     <div class="row">

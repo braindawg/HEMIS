@@ -51,7 +51,7 @@ class CreateGroupsController extends Controller
                 SET students.group_id = groups.id
                 WHERE students.group_id is null
                     and students.kankor_year = ?
-                    and students.stuatus_id = 2',
+                    and students.status_id = 2',
                 [$request->kankor_year]
             );
         });          

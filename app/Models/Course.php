@@ -13,6 +13,7 @@ class Course extends Model
 
     protected $guarded = [];
     protected $dates = ['deleted_at'];
+    public $casts = ['groups' => 'array'];
 
     public function department()
     {

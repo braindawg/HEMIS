@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Course;
 
+use DB;
 use App\Models\Day;
 use App\Models\Group;
 use App\Models\Course;
+use App\Models\Student;
 use App\Models\Subject;
 use App\Models\Teacher;
 use App\Models\Department;
@@ -12,7 +14,6 @@ use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use App\DataTables\CourseDataTable;
 use App\Http\Controllers\Controller;
-use DB;
 
 class CourseController extends Controller
 {
@@ -42,8 +43,7 @@ class CourseController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
-
+    {      
         return view('course.create', [
             'title' => trans('general.courses'),
             'description' => trans('general.create_course'),
@@ -51,7 +51,7 @@ class CourseController extends Controller
             'teachers' => Teacher::select(DB::Raw('concat_ws(" ",name,last_name) as name'), 'id')->pluck('name','id'),
             'department' => old('department') != '' ? Department::where('id', old('department'))->pluck('name', 'id') : [],
             'subject' => old('subject') != '' ? Subject::where('id', old('subject'))->pluck('title', 'id') : [],
-            'group' => old('group') != '' ? Group::where('id', old('group'))->pluck('name', 'id') : []
+            'groups' => old('groups') != '' ? Group::whereIn('id', old('groups'))->pluck('name', 'id') : []
         ]);
     }
 
@@ -63,7 +63,7 @@ class CourseController extends Controller
      */
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
+        $request->validate([
             'code' => [
                 'required',
                 'max:10',
@@ -74,9 +74,9 @@ class CourseController extends Controller
             'half_year' => 'required',
             'subject' => 'required',
             'teacher' => 'required',
-            'group' => 'required'
+            'groups' => 'required|array|min:1'
         ]);
-
+        
         \DB::transaction(function () use ($request) {
             $department = Department::find($request->department);
 
@@ -87,20 +87,16 @@ class CourseController extends Controller
                 'semester' => $request->semester,
                 'subject_id' => $request->subject,
                 'teacher_id' => $request->teacher,
-                'group_id' => $request->group,
+                'groups' => $request->groups,
                 'university_id' => $department->university_id,
                 'department_id' => $department->id,
             ]);
 
-
-            //Course-student
-            $course->students()->sync($course->group->students->pluck('id'));
+            $course->students()->sync(Student::whereIn('group_id', $course->groups)->pluck('id'));
         });
 
         if ($request->has('next')) {
-
             return redirect()->back();
-
         }
 
         return redirect(route('courses.index'));
@@ -145,8 +141,7 @@ class CourseController extends Controller
             'semester' => 'required',
             'half_year' => 'required',
             'subject' => 'required',
-            'teacher' => 'required',
-            'group' => 'required'
+            'teacher' => 'required'
         ]);
 
         $course->update([
@@ -156,7 +151,6 @@ class CourseController extends Controller
             'semester' => $request->semester,
             'subject_id' => $request->subject,
             'teacher_id' => $request->teacher,
-            'group_id' => $request->group,
             'university_id' => \Auth::user()->university_id,
             'department_id' => $request->department,
         ]);

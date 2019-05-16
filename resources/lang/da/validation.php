@@ -143,6 +143,10 @@ return [
         'grade_id' => 'مقطع',
         'type' => 'نوع',
         'photo' => 'عکس',
+        'subject' => 'مضمون',
+        'semester' => 'سمستر',
+        'year' => 'سال',
+        'groups' => 'گروپ ها',
     ],
 
 ];
