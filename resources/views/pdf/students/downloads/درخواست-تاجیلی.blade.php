@@ -156,7 +156,7 @@
 					<table class="table inner-table borderless" style >
 						<tr>
 							<td style= " padding-top: 0px; border:none ; padding-right:10px" >                                                                                                                                               
-								<p>{{trans('general.to_facultyـofficial')}}: {{$student->department->name}} !</p>
+								<p>{{trans('general.to_facultyـofficial')}}: {{$student->department->faculty}} !</p>
 							</td>
 						</tr>
 						<tr>

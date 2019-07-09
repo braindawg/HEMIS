@@ -32,6 +32,7 @@ class StudentExports implements FromView
             'grades.name as grade',
             'student_statuses.title as status'
             )
+            ->leftJoin('groups','students.department_id', '=', 'groups.department_id')->where('groups.kankor_year' , '=', request()->knakor_year)
             ->leftJoin('provinces', 'students.province', '=', 'provinces.id')
             ->leftJoin('student_statuses', 'students.status_id', '=', 'student_statuses.id')
             ->leftJoin('grades', 'students.grade_id', '=', 'grades.id')

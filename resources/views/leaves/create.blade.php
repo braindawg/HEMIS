@@ -71,7 +71,7 @@
                 <div class="form-actions fluid">
                     <div class="row">
                         <div class="col-md-offset-3 col-md-6">
-                            <button type="submit" class="btn green" onClick="$('form').submit();$(this).attr('disabled', 'disabled')">{{ trans('general.save') }}</button>
+                            <button type="submit" class="btn green" >{{ trans('general.save') }}</button>
                             <a href="{{ route('leaves.index') }}" class="btn default">{{ trans('general.cancel') }}</a>
                         </div>
                     </div>

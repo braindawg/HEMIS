@@ -47,7 +47,7 @@
 				</tr>
 				<tr>	
 					<td style="text-align: center; padding-top: 10px" colspan="3" >
-						شقه نمرات {{ $course->grade != '' ? 'صنف '.$course->grade : '' }} سمستر {{  $course->half_year_text }} {{ $course->year != '' ? 'سال '.$course->year : '' }} {{ $course->subject ? 'مضمون '.$course->subject->title : '' }}  {{ $course->teacher ? 'استاد '.$course->teacher->full_name : '' }}
+						شقه نمرات {{ $course->grade != '' ? 'صنف '.$course->grade : '' }} سمستر {{  $course->half_year_text }} {{ $course->year != '' ? 'سال '.$course->year : '' }} {{ $course->subject ? 'مضمون '.$course->subject->title : '' }}  ({{ $course->subject ?  round($course->subject->credits) . 'کریدت' : ""}}) {{ $course->teacher ? 'استاد '.$course->teacher->full_name : '' }}
 					</td>		
 				</tr>
 			</table>

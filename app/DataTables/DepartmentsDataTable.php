@@ -46,12 +46,12 @@ class DepartmentsDataTable extends DataTable
      */
     public function query(Department $department)
     {
-        $model = $model->where('departments.university_id', request()->segment(2))->select('name', 'id','chairman','department_student_affairs');
+        // $model = $model->where('departments.university_id', request()->segment(2))->select('name', 'faculty', 'id','chairman','department_student_affairs');
 
 
         $department = $department->where('departments.university_id', request()->segment(2))
             ->leftJoin('grades', 'grades.id', '=', 'grade_id')
-            ->select('departments.name as name', 'departments.id', 'grades.name as grade', 'chairman', 'department_student_affairs');
+            ->select('departments.name as name', 'departments.id', 'grades.name as grade', 'chairman', 'department_student_affairs','faculty');
 
 
         if (request()->is('curriculum*')) {
@@ -83,10 +83,11 @@ class DepartmentsDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            'name'    => ['title' => trans('general.name')],                   
+            'name'    => ['name' => 'departments.name','title' => trans('general.name')],                   
+            'faculty'    => ['name' => 'departments.faculty','title' => trans('general.faculty')],                   
             'chairman'     => ['title' => trans('general.faculty_chairman')],                   
             'department_student_affairs'     => ['title' => trans('general.department_student_affairs')],                                                      
-            'grade'     => [ 'title' => trans('general.grade')]                    
+            'grade'     => [ 'title' => trans('general.grade'), 'searchable' => false]                    
         ];
     }
 

@@ -367,7 +367,7 @@ return [
     'student_varification_statment_to_form_data' => 'هـــــــــــــرگاه میان نوشتۂ من در فورم اختلاف ظاهر گـــــــــــــــــــــردد، خود مسۇول آن میباشم . ',
 
     //hostel_request_form
-    'hostel_form' => 'قورم درخواست شمولیت به لیلیه',
+    'hostel_form' => 'فورم درخواست شمولیت به لیلیه',
     'student_current_location' => 'سکونت فعلی',
     'student_resi_location' => 'سکونت اصلی',
     'street_home_number' => ' نمبر خانه و کوچه',

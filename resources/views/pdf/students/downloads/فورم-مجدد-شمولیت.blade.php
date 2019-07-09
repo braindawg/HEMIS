@@ -88,7 +88,7 @@
 					<img src="{{ asset('img/wezarat-logo.jpg') }}"  style="max-width: 80px"/>
 					<p style="margin-top:5px;font-size: 14px">{{trans('general.MOHE')}}</p>				
 					<p style="margin-top:5px;">پوهنتون {{ $student->university->name }}</p>
-					<p style="margin-top:5px;">دیپارتمنت : {{ $student->department->faculty }}</p>				
+					<p style="margin-top:5px;">پوهنځی : {{ $student->department->faculty }}</p>				
 				</td>	
 				<td style="text-align:right;width:33%;padding-right:17%;vertical-align:top;padding-top:1%;" >					
 					<img src="{{ file_exists($student->photo_url) ? asset($student->photo_url) : asset('img/avatar-placeholder.png') }}" style="max-width: 100px">
@@ -98,7 +98,7 @@
 		<hr>
 		<h4 style ="padding-right:10px"> {{trans('general.to_university_board')}}{{$student->university->name}}</h4>
 		<p style="text-align: justify; padding-right:10px">
-		{{trans('general.my_self')}}{{$student->getFullNameAttribute()}}{{trans('general.my_father_name')}}{{$student->father_name}}{{trans('general.semister')}}{{$request->semister}}
+		{{trans('general.my_self')}}{{$student->getFullNameAttribute()}}{{trans('general.my_father_name')}}{{$student->father_name}}{{trans('general.semester')}}{{$request->semester}}
 		{{trans('general.year_of_study')}}{{$request->year}} {{trans('general.due_to')}} ( &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
 		 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
 		 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
@@ -109,7 +109,7 @@
 		<p style="text-align: justify; padding-right:10px"> {{trans('general.student_name')}}: {{$student->name}} ....................................... امضا:............................................. تاریخ : /&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;/&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;/ </p>
 	<br>
 	<hr>
-	<h4 style ="padding-right:10px"> {{trans('general.to_faculty_board')}}{{$student->department->name}}</h4>
+	<h4 style ="padding-right:10px"> {{trans('general.to_faculty_board')}}{{$student->department->faculty}}</h4>
 	<p style="text-align: justify; padding-right:10px">{{trans('general.request_to_faculty_for_reinvo')}} &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; {{trans('general.with_respect')}} </p> 
 	<p class="center">{{trans('general.student_affair_name')}}</p>
 	<p style="text-align: justify; padding-right:10px"> {{trans('general.name')}}: ........................................................... امضا:.............................................	.............. تاریخ : /&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;/&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;/ </p>

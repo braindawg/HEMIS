@@ -97,7 +97,7 @@
 		<table class="table" style="margin-top: 20px">
 			<tr>
                  <td>
-				 {{trans('general.to_facultyـofficial')}} {{$student->university->name}}!
+				 {{trans('general.to_universityـofficial')}} {{$student->university->name}}!
                 </td>
                 <br>
                 <br>
@@ -125,8 +125,8 @@
 							<td class="bg-grey">{{trans('general.kankor_year')}}</td>
 							<td>{{ $student->kankor_year }}</td>
 						</tr><tr>
-							<td class="bg-grey"> {{trans('general.semister')}}</td>
-							<td> {{ $request->semister }}</td>
+							<td class="bg-grey"> {{trans('general.semester')}}</td>
+							<td> {{ $request->semester }}</td>
 						</tr><tr>
 							<td class="bg-grey" > {{trans('general.reason_of_dropout')}}</td>
 							<td></td><br><br>
@@ -148,7 +148,7 @@
 							</td><br>
 						</tr>
 						<tr>
-							<td style= "border:none ; padding-right:20px"><p> {{trans('general.student_name')}} :&nbsp; {{$student->getFullNameAttribute()}} &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; امضاّ  :&nbsp;<span>...................<span> &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span> {{trans('general.date')}} : {{jalaliDate()}}</span></p></td><br>
+							<td style= "border:none ; padding-right:20px"><p> {{trans('general.student_name')}} :&nbsp; {{$student->getFullNameAttribute()}} &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; امضاّ  :&nbsp;<span>...................<span> &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span> {{trans('general.date')}} : /&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/ </span></p></td><br>
 						</tr>
 					</table>
 				</td>
@@ -158,7 +158,7 @@
 					<table class="table inner-table borderless" style >
 						<tr>
 							<td style= " padding-top: 0px; border:none ; padding-right:10px" >                                                                                                                                               
-								<p>{{trans('general.to_facultyـofficial')}}: {{$student->department->name}} !</p>
+								<p>{{trans('general.to_facultyـofficial')}}: {{$student->department->faculty}} !</p>
 							</td>
 						</tr>
 						<tr>

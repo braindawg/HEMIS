@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Students;
 use App\Models\Student;
 use App\Models\Transfer;
 use App\Models\University;
+use App\Models\Department;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Maklad\Permission\Models\Role;
@@ -55,7 +56,7 @@ class TransfersController extends Controller
      */
     public function store(Request $request)
     {        
-        $request->validate([            
+        $validatedData = $request->validate([            
             'student_id' => 'required',
             'university_id' => 'required',
             'department_id' => 'required|valid_destination_department',            
@@ -90,11 +91,15 @@ class TransfersController extends Controller
              ]);
          }
 
+        $university = Department::find($transfer->to_department_id);
+        $university_id = $university->university_id;
+
+
          $student = Student::find($transfer->student_id);
 
             $student->update([
-                'university_id' => $transfer->university_id,
-                'department_id' => $transfer->department_id
+                'university_id' => $university_id,
+                'department_id' => $transfer->to_department_id
             ]);
  
          return redirect(route('transfers.index'));
@@ -109,13 +114,12 @@ class TransfersController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($transfer)
-    {        
+    {
         \DB::transaction(function () use ($transfer){
-            $transfer->student()->allUniversities()->update([
+            $transfer->student->update([
                 'university_id' => $transfer->fromDepartment->university_id,
                 'department_id' => $transfer->from_department_id
             ]);
-            
             $transfer->delete();
         });
 
