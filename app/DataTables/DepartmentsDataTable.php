@@ -46,7 +46,7 @@ class DepartmentsDataTable extends DataTable
      */
     public function query(Department $department)
     {
-        // $model = $model->where('departments.university_id', request()->segment(2))->select('name', 'faculty', 'id','chairman','department_student_affairs');
+        $model = $model->where('departments.university_id', request()->segment(2))->select('name', 'faculty', 'id','chairman','department_student_affairs');
 
 
         $department = $department->where('departments.university_id', request()->segment(2))

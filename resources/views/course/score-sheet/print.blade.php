@@ -6,17 +6,17 @@
 			}
 			.table td,.table th{
 				border:1px solid #aaa;
-				padding:5px 0;
+				padding:2px 0;
 				text-align:center;
 				font-size:14px;
 			}
 			table{
 				width:100%;
-				padding:5px 0;
+				padding:2px 0;
 				border-collapse: collapse;
 			}
 			.head td{
-				padding:30px 0;
+				padding:5px 0;
 			}
 			@page {
 				size: auto;   /* auto is the initial value */
