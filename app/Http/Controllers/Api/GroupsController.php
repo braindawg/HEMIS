@@ -12,9 +12,9 @@ class GroupsController extends Controller
     {        
         $groups =  Group::select('id', 'name as text');
 
-        /* if ($department) {
-            $groups->where('department_id', $department->id);
-        } */
+        // if ($department) {
+        //     $groups->where('department_id', $department->id);
+        // }
         if ($request->q != '') {
             $groups->where('name', 'like', '%'.$request->q.'%');
         }

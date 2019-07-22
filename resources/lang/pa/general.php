@@ -404,13 +404,6 @@ return [
     'pashto' => ' پشتو',
     'dari' => ' دری',
 
-    'report' => ' راپور ',
-    'generate_report' => '  راپور جوړ کړئ',
-    'student_status' => ' محصل حالت',
-    'student_information_report' => '   محصلانو عمومی راپور ',
-    'student_report' => '  محصلانو راپور ',
-    'teacher_report' => '    ښوونکو راپور ',
-
 
     
     

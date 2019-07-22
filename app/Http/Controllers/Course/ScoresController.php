@@ -20,12 +20,13 @@ class ScoresController extends Controller
         }
 
         $validator = \Validator::make($request->all(), [            
-            'homework' => 'nullable|numeric|integer|min:0|max:20|required_without_all:classwork,midterm,final,chance_two,chance_three',
-            'classwork' => 'nullable|numeric|integer|min:0|max:20',
-            'midterm' => 'nullable|numeric|integer|min:0|max:30',
-            'final' => 'nullable|numeric|integer|min:0|max:100', 
-            'chance_two' => 'nullable|numeric|integer|min:0|max:100', 
-            'chance_three' => 'nullable|numeric|integer|min:0|max:100', 
+            'homework' => 'nullable|between:0,99.99|min:0|max:20|required_without_all:classwork,midterm,final,chance_two,chance_three,chance_four',
+            'classwork' => 'nullable|between:0,99.99|min:0|max:20',
+            'midterm' => 'nullable|between:0,99.99|min:0|max:30',
+            'final' => 'nullable|between:0,99.99|min:0|max:100', 
+            'chance_two' => 'nullable|between:0,99.99|min:0|max:100', 
+            'chance_three' => 'nullable|between:0,99.99|min:0|max:100', 
+            'chance_four' => 'nullable|between:0,99.99|min:0|max:100', 
         ]);
 
         if ($validator->fails()) {
@@ -55,11 +56,12 @@ class ScoresController extends Controller
             'final' => $request->get('final') != '' ? $request->get('final') : null,
             'chance_two' => ($request->has('chance_two') and $request->get('chance_two') != '') ? $request->get('chance_two') : null,
             'chance_three' => ($request->has('chance_three') and $request->get('chance_three') != '') ? $request->get('chance_three') : null,
+            'chance_four' => ($request->has('chance_four') and $request->get('chance_four') != '') ? $request->get('chance_four') : null,
         ];
 
         $score = \DB::transaction(function () use ($request, $data, $score) {            
             if ($score) {
-                if ($data['homework'] == '' and $data['classwork'] == '' and $data['midterm'] == '' and $data['final'] == '' and $data['chance_two'] == '' and $data['chance_three'] == '') {
+                if ($data['homework'] == '' and $data['classwork'] == '' and $data['midterm'] == '' and $data['final'] == '' and $data['chance_two'] == '' and $data['chance_three'] == '' and $data['chance_four'] == '') {
                     $score->delete();
                 } else {
                     $score->update($data);

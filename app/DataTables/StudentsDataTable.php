@@ -67,6 +67,7 @@ class StudentsDataTable extends DataTable
                 'provinces.name as province_name',
                 'universities.name as university', 
                 'departments.name as department',
+                'departments.faculty as faculty',
                 'student_statuses.title as status',
                 'student_statuses.tag_color as status_color',
                 'status_id',
@@ -95,22 +96,25 @@ class StudentsDataTable extends DataTable
                 $query->where('students.father_name', 'like', "%".$input['columns'][3]['search']['value']."%");
 
             if (isset($input['columns'][4]['search']['value']) and $input['columns'][4]['search']['value'] != '')
-                $query->where('students.grandfather_name', 'like', "%".$input['columns'][4]['search']['value']."%");
+                $query->where('provinces.name', 'like', "%".$input['columns'][4]['search']['value']."%");
 
             if (isset($input['columns'][5]['search']['value']) and $input['columns'][5]['search']['value'] != '')
-                $query->where('provinces.name', 'like', "%".$input['columns'][5]['search']['value']."%");
+                $query->where('departments.name', 'like', "%".$input['columns'][5]['search']['value']."%");
 
             if (isset($input['columns'][6]['search']['value']) and $input['columns'][6]['search']['value'] != '')
-                $query->where('universities.name', 'like', "%".$input['columns'][6]['search']['value']."%");
+                $query->where('departments.faculty', 'like', "%".$input['columns'][6]['search']['value']."%");
 
             if (isset($input['columns'][7]['search']['value']) and $input['columns'][7]['search']['value'] != '')
                 $query->where('universities.name', 'like', "%".$input['columns'][7]['search']['value']."%");
 
             if (isset($input['columns'][8]['search']['value']) and $input['columns'][8]['search']['value'] != '')
-                $query->where('kankor_year', 'like', "%".$input['columns'][8]['search']['value']."%");
-            
+                $query->where('universities.name', 'like', "%".$input['columns'][8]['search']['value']."%");
+
             if (isset($input['columns'][9]['search']['value']) and $input['columns'][9]['search']['value'] != '')
-                $query->where('grades.name', 'like', "%".$input['columns'][9]['search']['value']."%");
+                $query->where('kankor_year', 'like', "%".$input['columns'][9]['search']['value']."%");
+            
+            if (isset($input['columns'][10]['search']['value']) and $input['columns'][10]['search']['value'] != '')
+                $query->where('grades.name', 'like', "%".$input['columns'][10]['search']['value']."%");
            
         return $query;
     }
@@ -187,9 +191,9 @@ class StudentsDataTable extends DataTable
             'form_no'     => ['title' => trans('general.form_no')],
             'name'     => ['title' => trans('general.name')],
             'father_name'     => ['title' => trans('general.father_name')],
-            'grandfather_name'     => ['title' => trans('general.grandfather_name')],
             'province_name'     => [ 'name' => 'provinces.name', 'title' => trans('general.province')],
             'department'    => ['name' => 'departments.name', 'title' => trans('general.department')],
+            'faculty'    => ['name' => 'departments.faculty', 'title' => trans('general.faculty')],
             'university' => ['name' => 'universities.name', 'title' => trans('general.university')],
             'kankor_year' => ['title' => trans('general.kankor_year')],
             'grade_id' => ['data' => 'grade', 'title' => trans('general.grade'), 'searchable' => false],

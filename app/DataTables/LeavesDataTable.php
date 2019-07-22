@@ -88,8 +88,8 @@ class LeavesDataTable extends DataTable
             'form_no'         => ['name' => 'students.form_no', 'title' => trans('general.form_no')],
             'name'            => ['name' => 'students.name', 'title' => trans('general.name')],
             'father_name'     => ['name' => 'students.father_name', 'title' => trans('general.father_name')],
-            'leave_year'     =>  ['name' => 'leaves.form_no', 'title' => trans('general.leave_year')],
-            'end_leave'     =>  ['name' => 'leaves.form_no', 'title' => trans('general.end_leave')],
+            'leave_year'     =>  ['name' => 'leaves.leave_year', 'title' => trans('general.leave_year')],
+            'end_leave'     =>  ['name' => 'leaves.end_leave', 'title' => trans('general.end_leave')],
             'note'            => ['name' => 'leaves.note', 'title' => trans('general.note'), 'sortable' => false, 'searchable' => false]
         ];
     }

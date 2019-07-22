@@ -50,6 +50,17 @@
                             @endif                                                                                                   
                         </div>
                     </div>
+                    <div class="form-group {{ $errors->has('semester') ? ' has-error' : '' }}">
+                        {!! Form::label('semester', trans('general.semester'), ['class' => 'control-label col-sm-3']) !!}
+                        <div class="col-sm-4">
+                            {!! Form::number('semester', null, ['min' => '0','class' => 'form-control'])  !!}
+                            @if ($errors->has('semester'))
+                                <span class="help-block">
+                                    <strong>{{ $errors->first('semester') }}</strong>
+                                    </span>
+                            @endif
+                        </div>
+                    </div>
                     <div class="form-group {{ $errors->has('type') ? ' has-error' : '' }}">
                         {!! Form::label('type', trans('general.type'), ['class' => 'control-label col-sm-3']) !!}                                
                         <div class="col-sm-4">

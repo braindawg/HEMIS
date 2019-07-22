@@ -63,7 +63,6 @@ class DepartmentsController extends Controller
             'department_student_affairs' => '',
             'faculty' => '',
             'grade_id' => 'required',
-
         ]);
         
         $university->departments()->create($validatedData);
@@ -109,13 +108,11 @@ class DepartmentsController extends Controller
     public function update(Request $request, $university, $department)
     {          
         $validatedData = $request->validate([
-
             'name' => 'required',
             'chairman' => '',
             'department_student_affairs' => '',
             'faculty' => '',
             'grade_id' => 'required',
-
 
         ]);
         

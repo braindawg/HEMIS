@@ -45,7 +45,7 @@ var Login = function() {
                 error.insertAfter(element.closest('.input-icon'));
             },
 
-            submitHandler: function(form) {                
+            submitHandler: function(form) {
                 form.submit(); // form validation success, call ajax form submit
             }
         });

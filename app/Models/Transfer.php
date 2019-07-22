@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Models;
-
 use App\Traits\Downloadble;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
@@ -9,7 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Transfer extends Model
 {
-    use Downloadble, SoftDeletes;
+    use Downloadble;
     protected $guarded = [];
 
     public function fromDepartment()
@@ -24,6 +23,8 @@ class Transfer extends Model
 
     public function toDepartment(){
 
-        return $this->belongsTo(\App\Models\department::class, 'to_department_id');
-    }
+        return $this->belongsTo(\App\Models\Department::class, 'to_department_id')->allUniversities();
+    } 
+    
+    
 }

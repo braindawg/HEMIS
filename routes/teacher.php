@@ -32,5 +32,7 @@ Route::group(['middleware' => 'auth:teacher', 'as' => 'teacher.'], function() {
     });
 
     Route::post('timetable/course/{course}/scores', 'Course\ScoresController')->name('scores.store');
+    Route::get('courses/{course}/scores-sheet', 'Course\ScoreSheetController@print')->name('course.scoresSheet.print');
+
 
 });

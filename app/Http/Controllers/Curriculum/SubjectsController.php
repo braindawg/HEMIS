@@ -70,6 +70,7 @@ class SubjectsController extends Controller
             'title' => $request->title, 
             'title_eng' => $request->title_eng,
             'credits' => $request->credits,
+            'semester' => $request->semester,
             'type' => $request->type,
             'active' => $request->has('active'),
         ]);
@@ -126,6 +127,7 @@ class SubjectsController extends Controller
             'title' => $request->title, 
             'title_eng' => $request->title_eng,
             'credits' => $request->credits,
+            'semester' => $request->semester,
             'type' => $request->type,
             'active' => $request->has('active'),
         ]);       

@@ -78,6 +78,7 @@ class SubjectsDataTable extends DataTable
             'title' => ['title' => trans('general.title')],
             'title_eng' => ['title' => trans('general.title_eng')],
             'credits'    => ['title' => trans('general.credits')], 
+            'semester'    => ['title' => trans('general.semester')], 
             'type'    => ['title' => trans('general.type')],
             'active'    => ['title' => trans('general.status')],
         ];

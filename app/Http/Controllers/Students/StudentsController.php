@@ -63,7 +63,6 @@ class StudentsController extends Controller
      */
     public function store(Request $request)
     {        
-        
         $validatedData = $request->validate([            
             'grade' => 'required',
             'department' => 'required',
@@ -181,6 +180,7 @@ class StudentsController extends Controller
      */
     public function update(Request $request, $student)
     {
+
         $validatedData = $request->validate([
             'status' => 'required'            
         ]);
@@ -214,6 +214,19 @@ class StudentsController extends Controller
             'department_id' => $request->department,
         ]);        
 
+        $index = 0;
+
+        foreach ($student->relatives as $relative) {
+            $relative->update([
+                'relation' => $request->relatives[$index]['relation'],
+                'name' => $request->relatives[$index]['name'],
+                'job' => $request->relatives[$index]['job'],
+                'phone' => $request->relatives[$index]['phone'],
+            ]);
+
+            $index ++;
+        }
+
         if ($request->has('print')) {
             return redirect(route('students.show', $student));
         }
@@ -236,9 +249,9 @@ class StudentsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($user)
+    public function destroy($student)
     {
-        $user->delete();
+        $student->delete();
 
         return redirect(route('students.index'));
     }

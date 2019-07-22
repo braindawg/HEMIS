@@ -256,6 +256,7 @@ return [
     'total' => 'مجموع  100%',
     'chance_two' => 'چانس دو  100%',
     'chance_three' => ' چانس سه 100%',
+    'chance_four' => ' چانس چهار 100%',
     'save_scores' => 'ثبت نمرات',
 
     

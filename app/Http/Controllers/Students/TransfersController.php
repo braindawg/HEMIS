@@ -62,6 +62,7 @@ class TransfersController extends Controller
             'department_id' => 'required|valid_destination_department',            
         ]);
 
+
         \DB::transaction(function () use ($request){
             
             $student = Student::find($request->student_id);

@@ -43,7 +43,7 @@ class CreateGroupsController extends Controller
                 [$request->kankor_year, $request->kankor_year]
             );
 
-            // This query assignes students to groups if they group exists and students are not belongs to a group
+            //This query assignes students to groups if they group exists and students are not belongs to a group
             \DB::statement(
                 'UPDATE students 
                 JOIN groups ON groups.kankor_year = students.kankor_year 
@@ -51,12 +51,11 @@ class CreateGroupsController extends Controller
                 SET students.group_id = groups.id
                 WHERE students.group_id is null
                     and students.kankor_year = ?
-                    and students.status_id = 2',
+                    and students.stuatus_id = 2',
                 [$request->kankor_year]
             );
         });          
 
         return redirect()->back()->with('message', trans('general.groups_had_been_created', ["year" => $request->year]));
-
     }
 }

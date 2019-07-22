@@ -20,7 +20,7 @@
 			}
 			@page {
 				size: auto;   /* auto is the initial value */
-				margin:4cm  2% 4cm;
+				margin:4cm  4% 4cm 2%;
 				margin-header: 2mm; 
 				margin-footer: 5mm;
 				header: html_myHeader;
@@ -47,7 +47,7 @@
 				</tr>
 				<tr>	
 					<td style="text-align: center; padding-top: 10px" colspan="3" >
-						شقه نمرات {{ $course->grade != '' ? 'صنف '.$course->grade : '' }} سمستر {{  $course->half_year_text }} {{ $course->year != '' ? 'سال '.$course->year : '' }} {{ $course->subject ? 'مضمون '.$course->subject->title : '' }}  ({{ $course->subject ?  round($course->subject->credits) . 'کریدت' : ""}}) {{ $course->teacher ? 'استاد '.$course->teacher->full_name : '' }}
+						شقه نمرات {{ $course->grade != '' ? 'صنف '.$course->grade : '' }}    چانس{{$request->chance}}  سمستر{{  $course->half_year_text }} {{ $course->year != '' ? 'سال '.$course->year : '' }} {{ $course->subject ? 'مضمون '.$course->subject->title : '' }}  ({{ $course->subject ?  round($course->subject->credits) . 'کریدت' : ""}}) {{ $course->teacher ? 'استاد '.$course->teacher->full_name : '' }}
 					</td>		
 				</tr>
 			</table>
@@ -62,7 +62,7 @@
 					<td style="width:100px"  colspan="2">
 						شهرت
 					</td>
-					<td colspan="{{ 5 }}">
+					<td colspan="{{ ($request->chance == 1) ? 5 : 1 }}">
 						نمرات  
 					</td>
 					<td width="100" rowspan="2">
@@ -76,6 +76,7 @@
 					<td style="width:100px">
 						ولد
 					</td>
+					@if($request->chance == 1)
 					<td style="width:100px">
 						فعالیت صنفی و حاضری
 						<br>
@@ -101,53 +102,114 @@
 						<br>
 						100%
 					</td> 
+					@elseif($request->chance == 2)
+					<td>چانس دو</td>
+					@elseif($request->chance == 3)
+					<td>چانس سه</td>
+					@elseif($request->chance == 4)
+					<td> چانس چهار</td>
+					@endif
 				</tr>
 			</thead>
 			<tbody>
 				@php
 					$passed = 0;
+					$i = 0;
 				@endphp
 
 				@foreach($course->students as $student)
 				
 				@php
-					$score = $student->relationLoaded('scores') ? $score = $student->scores->first() : null;
+					$score = $student->relationLoaded('scores') ? $student->scores->first() : null;
+					
+					$valid = false;
+
+					if ($request->chance == 1)
+						$valid = true;
+
+					if ($request->chance == 2 and $score and $score->validForChanceTwo()) {
+						
+						$valid = true;
+					}
+											
+					if ($request->chance == 3 and $score and $score->validForChanceThree()) {
+						$valid = true;
+					}						
+					
+					if ($request->chance == 4 and $score and $score->validForChanceFour()) {
+						$valid = true;
+					}						
+
+					if(! $valid)
+						continue;
+
 					$passed += $score->passed ?? 0;
 				@endphp
-					<tr>
-						<td>
-							{{ $loop->iteration }}
-						</td>
-						<td>
-							{{ $student->fullName }}
-						</td>						
-						<td>
-							{{ $student->father_name }}
-						</td>
-						<td>
-							{{ $score->classwork ?? '' }}
-						</td>
-						<td>
-							{{ $score->homework ?? '' }}
-						</td>
-						<td>
-							{{ $score->midterm ?? '' }}
-						</td>
-						<td>
-							{{ $score->final ?? '' }}
-						</td>
-						<td>
-							{{ $score->total ?? '' }}
-						</td>					
-						<td>
-						</dt>											
-					</tr>    
+
+				<tr>
+					<td>
+						{{ ++$i }}
+					</td>
+					<td>
+						{{ $student->fullName }}
+					</td>						
+					<td>
+						{{ $student->father_name }}
+					</td>
+					@if($request->chance == 1)
+					<td>
+						@if($request->withScores == 1)
+						{{ $score->classwork ?? '' }}
+						@endif
+					</td>
+					<td>
+						@if($request->withScores == 1)
+						{{ $score->homework ?? '' }}
+						@endif
+					</td>
+					<td>
+						@if($request->withScores == 1)
+						{{ $score->midterm ?? '' }}
+						@endif
+					</td>
+					<td>
+						@if($request->withScores == 1)
+						{{ $score->final ?? '' }}
+						@endif
+					</td>
+					<td>
+						@if($request->withScores == 1)
+						{{ $score->total ?? '' }}
+						@endif
+					</td>					
+					@elseif($request->chance == 2)
+					<td>
+						@if($request->withScores == 1)
+						{{ $score->chance_two ?? '' }}
+						@endif
+					</td>
+					@elseif($request->chance == 3)
+					<td>	
+						@if($request->withScores == 1)
+						{{ $score->chance_three ?? '' }}
+						@endif
+					</td>
+					@elseif($request->chance == 4)
+					<td>
+						@if($request->withScores == 1)
+						{{ $score->chance_four ?? '' }}
+						@endif
+					</td>
+					@endif
+					<td>
+					</dt>											
+				</tr>    
 				@endforeach
 			</tbody>			
 		</table>
 
 		<htmlpagefooter name="myFooter" >
-			<p>قرارجدول فوق به تعداد ({{ $course->students->count() }}) محصل شامل امتحان گردیده که ازجمله ({!! $passed > 0 ? $passed : "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" !!}) محصل کامیاب و ({!! $passed > 0 ? $course->students->count() - $passed : "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" !!}) ناکام میباشند.</p>
+			<p>قرارجدول فوق به تعداد ({{ $i }}) محصل شامل امتحان گردیده که ازجمله ({!! $passed > 0 ? $passed : "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" !!}) محصل کامیاب و ({!! $passed > 0 ? $i - $passed : "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" !!}) ناکام میباشند.</p>
 			<table style="width: 80%;">
 				<tr>
 					<td>امضای  ممتحن:</td>
@@ -162,7 +224,6 @@
 			 </p>
 
 			<p style="text-align: left">صفحه: {PAGENO}</p>
-			
 		</htmlpagefooter>
 	</body>
 </html>

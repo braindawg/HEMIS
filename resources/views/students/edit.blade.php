@@ -436,37 +436,43 @@
                         </div>
                     </div>                        
                 </div>
+                @php
+                   $index = 0; 
+                @endphp
                 @foreach($student->relatives as $relative)
                 <div class="row">                        
                     <div class="col-md-3">
                         <div class="form-group">                                        
                             <div class="col-sm-12">
-                                {!! Form::text('relatives[]["relation"]', $relative->relation, ['class' => 'form-control']) !!}
+                                {!! Form::text("relatives[$index][relation]", $relative->relation, ['class' => 'form-control  editable']) !!}
                             </div>
                         </div>
                     </div>
                     <div class="col-md-3">
                         <div class="form-group">                                        
                             <div class="col-sm-12">
-                                {!! Form::text('relatives[]["name"]', $relative->name, ['class' => 'form-control']) !!}
+                                {!! Form::text("relatives[$index][name]", $relative->name, ['class' => 'form-control  editable']) !!}
                             </div>
                         </div>
                     </div>
                     <div class="col-md-3">
                         <div class="form-group">                                
                             <div class="col-sm-12">
-                                {!! Form::text('relatives[]["job"]', $relative->job, ['class' => 'form-control']) !!}
+                                {!! Form::text("relatives[$index][job]", $relative->job, ['class' => 'form-control  editable']) !!}
                             </div>
                         </div>
                     </div>
                     <div class="col-md-3">
                         <div class="form-group">                                
                             <div class="col-sm-12">
-                                {!! Form::text('relatives[]["phone"]', $relative->phone, ['class' => 'form-control ltr']) !!}
+                                {!! Form::text("relatives[$index][phone]", $relative->phone, ['class' => 'form-control  editable']) !!}
                             </div>
                         </div>
                     </div>                        
                 </div> 
+                @php
+                $index ++;    
+                @endphp
                 @endforeach                                                                          
             </div>
 

@@ -64,15 +64,62 @@
     </div>
     <div class="portlet light bordered">
         <div class="portlet-title" style="border: 0">
-
+            
             @if (auth('user')->check())
             <a href="{{ route('courses.index') }}" class="btn btn-default"><i class="icon-arrow-right"></i> {{ trans('general.back') }}</a>
-            <a href="{{ route('course.attendance.print', $course ) }}" class="btn btn-default" target="new"><i class="fa fa-print"></i> {{ trans('general.print_attendance') }}</a>
-            <a href="{{ route('course.scoresSheet.print', $course ) }}" class="btn btn-default" target="new"><i class="fa fa-print"></i> {{ trans('general.print_scores_sheet') }}</a>
-            <a href="{{ route('course.scoresSheet.print', [$course, 1]) }}" class="btn btn-default" target="new"><i class="fa fa-print"></i> {{ trans('general.print_filled_scores_sheet') }}</a>
+            <a href="{{ route('course.attendance.print', $course ) }}" class="btn btn-default" target="blank"><i class="fa fa-print"></i> {{ trans('general.print_attendance') }}</a>
+            <div class="btn-group">
+                <a class="btn btn-default dropdown-toggle" data-toggle="dropdown" href="javascript:;" aria-expanded="false"> 
+                    {{ trans('general.print_scores_sheet') }}
+                    <i class="fa fa-angle-down"></i>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a href="{{ route('course.scoresSheet.print', [$course, 'chance' => 1]) }}" class="btn btn-default" target="blank"><i class="fa fa-print"></i> {{ trans('general.print_scores_sheet') }} امتحان فاینل</a></li>
+                    <li><a href="{{ route('course.scoresSheet.print', [$course, 'chance' => 2] ) }}" class="btn btn-default" target="blank"><i class="fa fa-print"></i> {{ trans('general.print_scores_sheet') }} چانس دوم</a></li>
+                    <li><a href="{{ route('course.scoresSheet.print', [$course, 'chance' => 3] ) }}" class="btn btn-default" target="blank"><i class="fa fa-print"></i> {{ trans('general.print_scores_sheet') }} چانس سوم</a></li>
+                    <li><a href="{{ route('course.scoresSheet.print', [$course, 'chance' => 4] ) }}" class="btn btn-default" target="blank"><i class="fa fa-print"></i> {{ trans('general.print_scores_sheet') }} چانس چهارم</a></li>                    
+                </ul>
+            </div>
+            
+            <div class="btn-group">
+                <a class="btn btn-default dropdown-toggle" data-toggle="dropdown" href="javascript:;" aria-expanded="false"> 
+                    {{ trans('general.print_filled_scores_sheet') }}
+                    <i class="fa fa-angle-down"></i>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a href="{{ route('course.scoresSheet.print', [$course, 'chance' => 1, 'withScores' => 1]) }}" class="btn btn-default" target="blank"><i class="fa fa-print"></i> {{ trans('general.print_filled_scores_sheet') }} امتحان فاینل</a></li>
+                    <li><a href="{{ route('course.scoresSheet.print', [$course, 'chance' => 2, 'withScores' => 1] ) }}" class="btn btn-default" target="blank"><i class="fa fa-print"></i> {{ trans('general.print_filled_scores_sheet') }} چانس دوم</a></li>
+                    <li><a href="{{ route('course.scoresSheet.print', [$course, 'chance' => 3, 'withScores' => 1] ) }}" class="btn btn-default" target="blank"><i class="fa fa-print"></i> {{ trans('general.print_filled_scores_sheet') }} چانس سوم</a></li>
+                    <li><a href="{{ route('course.scoresSheet.print', [$course, 'chance' => 4, 'withScores' => 1] ) }}" class="btn btn-default" target="blank"><i class="fa fa-print"></i> {{ trans('general.print_filled_scores_sheet') }} چانس چهارم</a></li>                    
+                </ul>
+            </div>
+                        
             @elseif (auth('teacher')->check())
-            <a href="{{ route('course.scoresSheet.print', [$course, 1]) }}" class="btn btn-default" target="new"><i class="fa fa-print"></i> {{ trans('general.print_filled_scores_sheet') }}</a>
-            <a href="{{ route('teacher.timetable.course') }}" class="btn btn-default"><i class="icon-arrow-right"></i> {{ trans('general.back') }}</a>
+            <div class="btn-group">
+                <a class="btn btn-default dropdown-toggle" data-toggle="dropdown" href="javascript:;" aria-expanded="false"> 
+                    {{ trans('general.print_scores_sheet') }}
+                    <i class="fa fa-angle-down"></i>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a href="{{ route('teacher.course.scoresSheet.print', [$course, 'chance' => 1]) }}" class="btn btn-default" target="blank"><i class="fa fa-print"></i> {{ trans('general.print_scores_sheet') }} امتحان فاینل</a></li>
+                    <li><a href="{{ route('teacher.course.scoresSheet.print', [$course, 'chance' => 2] ) }}" class="btn btn-default" target="blank"><i class="fa fa-print"></i> {{ trans('general.print_scores_sheet') }} چانس دوم</a></li>
+                    <li><a href="{{ route('teacher.course.scoresSheet.print', [$course, 'chance' => 3] ) }}" class="btn btn-default" target="blank"><i class="fa fa-print"></i> {{ trans('general.print_scores_sheet') }} چانس سوم</a></li>
+                    <li><a href="{{ route('teacher.course.scoresSheet.print', [$course, 'chance' => 4] ) }}" class="btn btn-default" target="blank"><i class="fa fa-print"></i> {{ trans('general.print_scores_sheet') }} چانس چهارم</a></li>                    
+                </ul>
+            </div>
+            
+            <div class="btn-group">
+                <a class="btn btn-default dropdown-toggle" data-toggle="dropdown" href="javascript:;" aria-expanded="false"> 
+                    {{ trans('general.print_filled_scores_sheet') }}
+                    <i class="fa fa-angle-down"></i>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a href="{{ route('teacher.course.scoresSheet.print', [$course, 'chance' => 1, 'withScores' => 1]) }}" class="btn btn-default" target="blank"><i class="fa fa-print"></i> {{ trans('general.print_filled_scores_sheet') }} امتحان فاینل</a></li>
+                    <li><a href="{{ route('teacher.course.scoresSheet.print', [$course, 'chance' => 2, 'withScores' => 1] ) }}" class="btn btn-default" target="blank"><i class="fa fa-print"></i> {{ trans('general.print_filled_scores_sheet') }} چانس دوم</a></li>
+                    <li><a href="{{ route('teacher.course.scoresSheet.print', [$course, 'chance' => 3, 'withScores' => 1] ) }}" class="btn btn-default" target="blank"><i class="fa fa-print"></i> {{ trans('general.print_filled_scores_sheet') }} چانس سوم</a></li>
+                    <li><a href="{{ route('teacher.course.scoresSheet.print', [$course, 'chance' => 4, 'withScores' => 1] ) }}" class="btn btn-default" target="blank"><i class="fa fa-print"></i> {{ trans('general.print_filled_scores_sheet') }} چانس چهارم</a></li>                    
+                </ul>
+            </div> <a href="{{ route('teacher.timetable.course') }}" class="btn btn-default"><i class="icon-arrow-right"></i> {{ trans('general.back') }}</a>
             @endif
             
 
@@ -95,6 +142,7 @@
                             <th>{{ trans('general.total') }}</th>
                             <th>{{ trans('general.chance_two') }}</th>
                             <th>{{ trans('general.chance_three') }}</th>
+                            <th>{{ trans('general.chance_four') }}</th>
                             <th></th>
                             @can('edit-course')
                             <th>{{ trans('general.delete') }}</th>
@@ -105,7 +153,7 @@
                             $score = $student->scores->first();
                         @endphp         
 
-                            <tr>
+                            <tr class="{{ ! optional($score)->passed ? 'danger' : '' }}">
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $student->form_no }}</td>
                                 <td>{{ $student->name }}</td>
@@ -117,22 +165,25 @@
                                     <input type="number" class="form-control score-input" name="homework" min="0" max="10" value="{{ $score->homework ?? ''  }}">
                                 </td>
                                 <td>
-                                    <input type="number" class="form-control score-input" name="classwork" min="0" max="10" value="{{ $score->classwork ?? ''  }}">
+                                    <input type="number" step="0.01" class="form-control score-input" name="classwork" min="0" max="10" value="{{ $score->classwork ?? ''  }}">
                                 </td>
                                 <td>
-                                    <input type="number" class="form-control score-input" name="midterm" min="0" max="20" value="{{ $score->midterm ?? ''  }}">
+                                    <input type="number" step="0.01" class="form-control score-input" name="midterm" min="0" max="20" value="{{ $score->midterm ?? ''  }}">
                                 </td>
                                 <td>
-                                    <input type="number" class="form-control score-input" name="final" min="0" max="60" value="{{ $score->final ?? ''  }}">
+                                    <input type="number" step="0.01" class="form-control score-input" name="final" min="0" max="60" value="{{ $score->final ?? ''  }}">
                                 </td>
                                 <td style="vertical-align: middle" class="total">
                                     {{ $score->total ?? ''  }}
                                 </td>  
                                 <td>
-                                    <input type="number" class="form-control score-input" name="chance_two" min="0" max="100" value="{{ $score->chance_two ?? ''  }}">
+                                    <input type="number" step="0.01" class="form-control score-input" name="chance_two" min="0" max="100" value="{{ $score->chance_two ?? ''  }}">
                                 </td>
                                 <td>
-                                    <input type="number" class="form-control score-input" name="chance_three" min="0" max="100" value="{{ $score->chance_three ?? ''  }}">
+                                    <input type="number" step="0.01" class="form-control score-input" name="chance_three" min="0" max="100" value="{{ $score->chance_three ?? ''  }}">
+                                </td>
+                                <td>
+                                    <input type="number" step="0.01" class="form-control score-input" name="chance_four" min="0" max="100" value="{{ $score->chance_three ?? ''  }}">
                                 </td>
                                 <td>
                                     <i class="fa fa-times-circle hide failed font-red feed-back"></i> 
@@ -224,7 +275,7 @@
 
 
 <script>
-@if((auth('user')->check() and auth()->user()->can('edit-course')) OR (auth('teacher')->check() and auth('teacher')->user()->id == $course->teacher_id))
+@if((auth('teacher')->check() and auth('teacher')->user()->id == $course->teacher_id))
     var userCanSubmit = true;
 
     function submitScore (input, parent) 

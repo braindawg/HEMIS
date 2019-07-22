@@ -15,7 +15,10 @@ class CourseDataTable extends DataTable
      */
     public function dataTable($query)
     {
-        return datatables($query)
+        $datatables = datatables($query)
+        ->editColumn('active', function ($course) {
+            return $course->active ? "<i class='fa fa-check font-green'></i>" : "<i class='fa fa-remove font-red'></i>";
+        })
             ->addColumn('action', function ($course) {
 
 
@@ -47,7 +50,8 @@ class CourseDataTable extends DataTable
 
                 return $html;
             })
-            ->rawColumns( ['action']);
+            ->rawColumns( ['action','active']);
+            return $datatables;
     }
 
     /**
@@ -63,12 +67,12 @@ class CourseDataTable extends DataTable
         $query = $model->select(
                 'courses.id',
                 'courses.code',
+                'courses.active',
                 'year',
                 'half_year',
                 'courses.semester',
                 'subjects.title as subject',
                 'teachers.name as teacher',
-              //  'groups.name as group',
                 'universities.name as university',
                 'departments.name as department'
             )
@@ -184,8 +188,7 @@ class CourseDataTable extends DataTable
             'semester'     => ['title' => trans('general.semester')],
             'subject'     => [ 'name' => 'subjects.title', 'title' => trans('general.subject')],
             'teacher'     => [ 'name' => 'teachers.name', 'title' => trans('general.teacher')],
-            //'group'     => [ 'name' => 'groups.name', 'title' => trans('general.group')],
-            //'students_count' => ['name' => 'students_count', 'title' => trans('general.students_count'), 'searchable' => false, 'orderable' => false],
+            'active'    => ['title' => trans('general.active')],
             'department'    => ['name' => 'departments.name', 'title' => trans('general.department')],
             'university' => ['name' => 'universities.name', 'title' => trans('general.university')],
         ];

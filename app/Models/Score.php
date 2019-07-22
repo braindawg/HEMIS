@@ -20,7 +20,9 @@ class Score extends Model
         static::saving(function ($model) {
             $model->total = $model->classwork + $model->homework + $model->midterm + $model->final;
 
-            if ($model->chance_three != "" and $model->chance_three >= 55) {
+            if ($model->chance_four != "" and $model->chance_four >= 55) {
+                $model->passed = 1;
+            } elseif ($model->chance_three != "" and $model->chance_three >= 55) {
                 $model->passed = 1;
             } elseif ($model->chance_two != "" and $model->chance_two >= 55) {
                 $model->passed = 1;
@@ -55,4 +57,19 @@ class Score extends Model
                 'action' => trans('general.'.$eventName)            
             ]);
     }
+
+    public function validForChanceTwo()
+    {
+        return $this->total < 55;                    
+    }
+    
+    public function validForChanceThree()
+    {
+        return $this->chance_two != '' and $this->chance_two < 55;                    
+    }
+    
+    public function validForChanceFour()
+    {
+        return $this->chance_three != '' and $this->chance_three < 55;                    
+    }        
 }

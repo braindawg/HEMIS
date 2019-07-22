@@ -90,6 +90,7 @@ class CourseController extends Controller
                 'groups' => $request->groups,
                 'university_id' => $department->university_id,
                 'department_id' => $department->id,
+                'active' => $request->has('active'),
             ]);
 
             $course->students()->sync(Student::whereIn('group_id', $course->groups)->pluck('id'));
@@ -153,6 +154,7 @@ class CourseController extends Controller
             'teacher_id' => $request->teacher,
             'university_id' => \Auth::user()->university_id,
             'department_id' => $request->department,
+            'active' => $request->has('active'),
         ]);
 
         return redirect(route('courses.index'));

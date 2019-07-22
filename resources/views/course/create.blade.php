@@ -114,13 +114,13 @@
                     </div>
                     <div class="row">
                         <div class="col-md-6">
-                            <div class="form-group {{ $errors->has('groups') ? ' has-error' : '' }}">
-                                {!! Form::label('groups', trans('general.group'), ['class' => 'control-label col-sm-3']) !!}
+                            <div class="form-group {{ $errors->has('group') ? ' has-error' : '' }}">
+                                {!! Form::label('group', trans('general.group'), ['class' => 'control-label col-sm-3']) !!}
                                 <div class="col-sm-8">
-                                    {!! Form::select('groups[]', $groups, null, ['class' => 'form-control select2-groups', 'multiple' => 'multiple']) !!}
-                                    @if ($errors->has('groups'))
+                                    {!! Form::select('groups[]', $groups, null, ['class' => 'form-control select2-groups','remote-param' => 'select[name="department"]', 'multiple' => 'multiple']) !!}
+                                    @if ($errors->has('group'))
                                         <span class="help-block">
-                                            <strong>{{ $errors->first('groups') }}</strong>
+                                            <strong>{{ $errors->first('group') }}</strong>
                                         </span>
                                     @endif
                                 </div>
