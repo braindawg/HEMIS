@@ -14,7 +14,7 @@ trait UseByDepartment
             //if user assigned to departments filter else not filter
             if (!auth()->guest() and !auth()->user()->allUniversities() and auth()->user()->departments->count()) {
                 
-                $query->whereIn($query->getQuery()->from . '.department_id',  auth()->user()->departments->pluck('id'));
+                $query->whereIn($query->getQuery()->from . '.department_id',  auth()->user()->departments->pluck('id'))->orWhereNull($query->getQuery()->from . '.department_id');
    
             }
 

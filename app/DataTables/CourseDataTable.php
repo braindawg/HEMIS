@@ -188,7 +188,7 @@ class CourseDataTable extends DataTable
             'semester'     => ['title' => trans('general.semester')],
             'subject'     => [ 'name' => 'subjects.title', 'title' => trans('general.subject')],
             'teacher'     => [ 'name' => 'teachers.name', 'title' => trans('general.teacher')],
-            'active'    => ['title' => trans('general.active')],
+            //'active'    => ['title' => trans('general.active')],
             'department'    => ['name' => 'departments.name', 'title' => trans('general.department')],
             'university' => ['name' => 'universities.name', 'title' => trans('general.university')],
         ];

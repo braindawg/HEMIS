@@ -173,7 +173,7 @@ class StudentsDataTable extends DataTable
                                     table.api().columns(0).search($(this).attr('data-status-id'), false, false, true).draw();
                             });                            
                                 
-                            //$('#dataTableBuilder').wrap('<div class=\"table-responsive\"></div>');
+                            $('#dataTableBuilder').wrap('<div class=\"table-responsive\"></div>');
                         }"
 
                     ]));
