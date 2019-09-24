@@ -369,6 +369,7 @@ return [
 
     //hostel_request_form
     'hostel_form' => 'فورم درخواست شمولیت به لیلیه',
+    'hostel_form1' => 'فورم درخواست بدل اعاشه  ',
     'student_current_location' => 'سکونت فعلی',
     'student_resi_location' => 'سکونت اصلی',
     'street_home_number' => ' نمبر خانه و کوچه',

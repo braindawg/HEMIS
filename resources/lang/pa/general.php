@@ -332,7 +332,7 @@ return [
     'disclaimer_confirmation' => 'د ښاغلو یادوسوو ادارو ځنی هیله لرو د خپلواسناد د لیدو سره د فراغت د ډول ، مسولیت او نه مسولیت د نوموړی زده کړیال په اړه یادی شوی اداری ته ډاډ ورکړی خوشحاله به سو. ',
 
 
-    //REInvolvement request
+    //ReInvolvement request
     'Involvement_request' => ' د بیا شاملیدو د غوښتنی فورمه  ',
     'my_self' => ' زه  ',
     'my_father_name' => ' زوی  ',
@@ -368,6 +368,7 @@ return [
 
     //hostel_request_form
     'hostel_form' => 'د لیلیی د شاملیدو لپاره د غوښتنی فورم',
+    'hostel_form1' => 'دبدل اعاشه د غوښتنی فورم',
     'student_current_location' => 'اوسنی استوګنځې',
     'student_resi_location' => 'اصلي استوګنځي',
     'street_home_number' => 'د کور شمیره او کوڅه',
