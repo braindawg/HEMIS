@@ -132,7 +132,21 @@
                         </div>
                     </div>
                 </div>
-
+                {{-- <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group {{ $errors->has('gender') ? ' has-error' : '' }}">
+                            {!! Form::label('gender', trans('general.gender'), ['class' => 'control-label col-sm-3']) !!}
+                            <div class="col-sm-9">
+                                {!! Form::select('gender', ['Male' => trans('general.Male'),  'Female' => trans('general.Female')], null, ['class' => 'form-control', 'placeholder' => trans('general.select')]) !!}
+                                @if ($errors->has('gender'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('gender') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+                    </div>
+                </div> --}}
                 <hr>
 
                 @php
@@ -221,6 +235,7 @@
                         </div>
                     </div>
                 </div>
+                
                 
                 <hr>
 

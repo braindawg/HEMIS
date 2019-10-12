@@ -118,6 +118,7 @@ class StudentsController extends Controller
                 'address_current' => $request->address_current,
 
                 'status_id' => $request->status,
+                'gender' => $request->gender,
 
                 'name_eng' => $request->name_eng,
                 'last_name_eng' => $request->last_name_eng,
@@ -204,6 +205,7 @@ class StudentsController extends Controller
             'village_current' => $request->village_current,
             'address_current' => $request->address_current,
             'status_id' => $request->has('status') ? $request->status : $student->status_id,
+            'gender' => $request->gender,
 
             'name_eng' => $request->name_eng,
             'last_name_eng' => $request->last_name_eng,
