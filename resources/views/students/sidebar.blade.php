@@ -9,10 +9,16 @@
             <!-- PORTLET MAIN -->
             <div class="portlet light profile-sidebar-portlet bordered">
                 <!-- SIDEBAR USERPIC -->
-                <div class="profile-userpic">                    
-                    <a href="{{ auth()->user()->can('update-student-photo') ? route('students.photo', $student) : "#" }}">
-                        <img src="{{ asset($student->photo_url) }}" class="img-responsive" alt=""> 
-                    </a>                    
+                <div class="profile-userpic"> 
+                    @if($student->photo_url)                   
+                        <a href="{{ auth()->user()->can('update-student-photo') ? route('students.photo', $student) : "#" }}">
+                            <img src="{{ asset($student->photo_url) }}" class="img-responsive" alt=""> 
+                        </a>
+                    @else
+                        <a href="{{ auth()->user()->can('update-student-photo') ? route('students.photo', $student) : "#" }}">
+                            <img src="{{ asset('img/avatar.png') }}" class="img-responsive" alt=""> 
+                        </a>
+                    @endif                 
                 </div>
                 <!-- END SIDEBAR USERPIC -->
                 <!-- SIDEBAR USER TITLE -->
