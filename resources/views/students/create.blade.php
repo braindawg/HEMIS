@@ -254,26 +254,26 @@
 
                                     <div class="row">                        
                                         <div class="col-md-4">
-                                            <div class="form-group {{ $errors->has('school_name') ? ' has-error' : '' }}">
-                                                {!! Form::label('school_name', trans('general.school_name'), ['class' => 'control-label col-sm-4']) !!}                                
+                                            <div class="form-group {{ $errors->has('university_name') ? ' has-error' : '' }}">
+                                                {!! Form::label('university_name', trans('general.university_name'), ['class' => 'control-label col-sm-4']) !!}                                
                                                 <div class="col-sm-8">
-                                                    {!! Form::text('school_name', null, ['class' => 'form-control editable']) !!}     
-                                                    @if ($errors->has('school_name'))
+                                                    {!! Form::text('university_name', null, ['class' => 'form-control editable']) !!}     
+                                                    @if ($errors->has('university_name'))
                                                         <span class="help-block">
-                                                            <strong>{{ $errors->first('school_name') }}</strong>
+                                                            <strong>{{ $errors->first('university_name') }}</strong>
                                                         </span>
                                                     @endif                                                                                                   
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-md-4">
-                                            <div class="form-group {{ $errors->has('school_graduation_year') ? ' has-error' : '' }}">
-                                                {!! Form::label('school_graduation_year', trans('general.school_graduation_year'), ['class' => 'control-label col-sm-4']) !!}                                
+                                            <div class="form-group {{ $errors->has('university_graduation_year') ? ' has-error' : '' }}">
+                                                {!! Form::label('university_graduation_year', trans('general.university_graduation_year'), ['class' => 'control-label col-sm-4']) !!}                                
                                                 <div class="col-sm-8">
-                                                    {!! Form::text('school_graduation_year', null, ['class' => 'form-control ltr editable']) !!}     
-                                                    @if ($errors->has('school_graduation_year'))
+                                                    {!! Form::text('university_graduation_year', null, ['class' => 'form-control ltr editable']) !!}     
+                                                    @if ($errors->has('university_graduation_year'))
                                                         <span class="help-block">
-                                                            <strong>{{ $errors->first('school_graduation_year') }}</strong>
+                                                            <strong>{{ $errors->first('university_graduation_year') }}</strong>
                                                         </span>
                                                     @endif                                                                                                   
                                                 </div>
