@@ -183,7 +183,7 @@
                                     <input type="number" step="0.01" class="form-control score-input" name="chance_three" min="0" max="100" value="{{ $score->chance_three ?? ''  }}">
                                 </td>
                                 <td>
-                                    <input type="number" step="0.01" class="form-control score-input" name="chance_four" min="0" max="100" value="{{ $score->chance_three ?? ''  }}">
+                                    <input type="number" step="0.01" class="form-control score-input" name="chance_four" min="0" max="100" value="{{ $score->chance_four ?? ''  }}">
                                 </td>
                                 <td>
                                     <i class="fa fa-times-circle hide failed font-red feed-back"></i> 

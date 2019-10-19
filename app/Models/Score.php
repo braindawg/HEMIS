@@ -65,11 +65,11 @@ class Score extends Model
     
     public function validForChanceThree()
     {
-        return $this->chance_two != '' and $this->chance_two < 55;                    
+        return $this->chance_two !== null  and $this->chance_two < 55 ;                    
     }
     
     public function validForChanceFour()
     {
-        return $this->chance_three != '' and $this->chance_three < 55;                    
+        return $this->chance_three !== null and $this->chance_three < 55 ;                    
     }        
 }
