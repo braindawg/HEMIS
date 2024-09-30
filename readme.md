@@ -2,17 +2,17 @@
 
 # About HEMIS
 
-HEMIS, is Management Information System for Ministry of Higher Education.
+**HEMIS** is the Management Information System for the Ministry of Higher Education.
 
 # Developers Guideline
 
 This project is going to be the main source of information for MoHE and other universities, so **Maintainablity** and **Flexibility** should be considered before writing even a single line of code. 
 
-For any further development, contribution or fixing bugs, please consider the following guidelines to keep the project source code as clean as posible.
+For any further development, contribution or fixing bugs, please consider the following guidelines to keep the project source code as clean as possible.
 
-## 1. Coding Style Guid
+## 1. Coding Style Guide
 
-Every signle line of code MUST follow a “coding style guide” PSR [[PSR-1](https://www.php-fig.org/psr/psr-1), [PSR-2](https://www.php-fig.org/psr/psr-2)].
+Every single line of code MUST follow the PSR-2 “coding style guide”: [PSR-2](https://www.php-fig.org/psr/psr-2).
 
 * Code MUST use 4 spaces for indenting, not tabs.
 
@@ -41,7 +41,7 @@ braces MUST go on the next line after the body.
 * Opening parentheses for control structures MUST NOT have a space after them,
 and closing parentheses for control structures MUST NOT have a space before.
 
-Please find more details and examples about the above rules [here](https://www.php-fig.org/psr).
+Please find more details and examples about the above rules [here](https://www.php-fig.org/psr/psr-2).
 
 ### Naming Conventions
 
@@ -53,13 +53,13 @@ Method names MUST be declared in *camelCase()*
 
 Variable Names MUST be in *$camelCase*
 
-### Git commit message guidline
+### `git commit` Message Guidelines
 
 Types of commit messages:
 
  * **build**: Changes that affect the build system or external dependencies (example scopes: gulp, packages, npm)
  * **ci**: Changes to CI configuration files and scripts (example scopes: artisan commands)
- * **docs**: Documentation only changes
+ * **docs**: Documentation-only changes
  * **feat**: A new feature
  * **fix**: A bug fix
  * **perf**: A code change that improves performance
@@ -68,3 +68,15 @@ Types of commit messages:
  * **test**: Adding missing tests or correcting existing tests
 
  What this guide effectively says is that, if your commit cannot be described sticking to this guideline, then there’s something wrong with the changes you have made i.e. you should not be committing the code without refining it, or the changes should be separated into multiple commits.
+
+ # Getting Started
+
+In order to set up a HEMIS development environment on your local computer, please follow the below steps:
+
+1. Download and install XAMPP and composer on your computer.
+2. Clone the project from GitHub.
+3. Navigate to the project root directory and run `composer update` to install all required packages and dependencies.
+4. Import the HEMIS DATABASE into your local/development MySQL server.
+  - Note: I will share the SQL schema of the database.
+  - Importing the database from the command-line rather than from phpMyAdmin will take less time.
+5. Set the values in the .env file of the project to match your local settings.
