@@ -1,3 +1,7 @@
+> NOTE: The upstream repository has been made private. I will keep this archived fork available for a couple more years, but no further contributions will be accepted, as it wasn't even my project to begin with. Anyone interested in forking it and continuing any development work on their own is free to do so.
+
+___
+
 <p align="center"><img src="https://hemis.edu.af/img/hemis-logo.png"></p>
 
 # About HEMIS
